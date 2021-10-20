@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -19,17 +20,31 @@ namespace AntsGame
             Intsance = this;
         }
 
-        
+
 
         public void SetUnitsCount(int units)
         {
             m_Units.text = units.ToString();
         }
 
+        float m_Time;
         // Update is called once per frame
+        float average;
+
+        List<int> fps = new List<int>();
         void Update()
         {
-            m_FPS.text = ((int)(1 / Time.deltaTime)).ToString();
+            m_Time += Time.deltaTime;
+
+            fps.Add(((int)(1 / Time.deltaTime)));
+            if (m_Time > 0.5f)
+            {
+                var sum = fps.Sum();
+                m_FPS.text = ((int)(sum / fps.Count)).ToString();
+                m_Time = 0;
+                fps.Clear();
+            }
+
         }
     }
 

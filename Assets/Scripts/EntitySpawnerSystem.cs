@@ -20,15 +20,14 @@ namespace AntsGame.ECS.Systems
 
         protected override void OnUpdate()
         {
-            m_SpawnTimer -= Time.DeltaTime;
 
-            if (m_SpawnTimer <= 0)
+            if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0)
             {
+               
 
 
-                m_SpawnTimer = m_DelayToCreate;
 
-                for (var i = 0; i < 10; i++)
+                for (var i = 0; i < 10000; i++)
                 {
                     m_UnitsCreated++;
 
@@ -39,13 +38,14 @@ namespace AntsGame.ECS.Systems
                         {
                             Value = new float3(
                             m_Random.NextFloat(-m_SpawnStep, m_SpawnStep),
-                           0,
-                              m_Random.NextFloat(-m_SpawnStep, m_SpawnStep))
+                            0,
+                                m_Random.NextFloat(-m_SpawnStep, m_SpawnStep))
                         });
 
-                    UIManager.Intsance.SetUnitsCount(m_UnitsCreated);
+                      
                 }
-              
+
+                UIManager.Intsance.SetUnitsCount(m_UnitsCreated);
             }
         }
 
