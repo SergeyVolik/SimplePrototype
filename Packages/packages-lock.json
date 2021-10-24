@@ -26,6 +26,19 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.dataflowgraph": {
+      "version": "0.19.0-preview.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.entities": "0.17.0-preview.41",
+        "com.unity.jobs": "0.8.0-preview.23",
+        "com.unity.collections": "0.15.0-preview.21",
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.burst": "1.4.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.entities": {
       "version": "0.17.0-preview.42",
       "depth": 0,
