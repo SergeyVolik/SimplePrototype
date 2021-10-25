@@ -83,12 +83,13 @@ namespace Unity.DataFlowGraph.Tour
                  */
                 Aggregate aggr = default;
                 aggr.AnArray = Buffer<long>.SizeRequest(11);
-                set.SetBufferSize(node, MyNode.KernelPorts.Output, aggr);
-                set.Update();
-
-                aggr = default;
                 aggr.SomeOtherArray = Buffer<long>.SizeRequest(13);
                 set.SetBufferSize(node, MyNode.KernelPorts.Output, aggr);
+                //set.Update();
+
+                //aggr = default;
+                //aggr.SomeOtherArray = Buffer<long>.SizeRequest(13);
+                //set.SetBufferSize(node, MyNode.KernelPorts.Output, aggr);
                 set.Update();
 
                 /*

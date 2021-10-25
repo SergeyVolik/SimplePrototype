@@ -52,7 +52,7 @@ namespace Unity.DataFlowGraph.Tour
                      */
                     output = inputA + inputB + 10;
 
-                    Debug.Log($"My output was {output}");
+                    Debug.Log($"My output was {output} inputA={inputA} inputA={inputB}");
                 }
             }
         }
