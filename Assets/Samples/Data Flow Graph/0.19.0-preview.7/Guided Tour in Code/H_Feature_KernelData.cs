@@ -30,7 +30,9 @@ namespace Unity.DataFlowGraph.Tour
                 public MessageInput<MyNode, float> SomeParameter;
             }
 
-            public struct KernelDefs : IKernelPortDefinition {}
+            public struct KernelDefs : IKernelPortDefinition {
+
+            }
 
             struct KernelData : IKernelData
             {
