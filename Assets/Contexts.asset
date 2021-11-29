@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51de080376b3a4f5f950e5050da81e60, type: 3}
+  m_Name: Contexts
+  m_EditorClassIdentifier: 
+  m_GraphModel:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: ContextSample, ns: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Contexts, asm: ContextSample}
+      data:
+        m_AssetModel: {fileID: 11400000}
+        m_GraphNodeModels:
+        - id: 1
+        - id: 2
+        m_EdgeModels: []
+        m_BadgeModels: []
+        m_GraphEdgeModels: []
+        m_PolymorphicEdgeModels: []
+        m_StickyNoteModels: []
+        m_GraphStickyNoteModels: []
+        m_PlacematModels: []
+        m_GraphPlacematModels: []
+        m_GraphVariableModels: []
+        m_GraphPortalModels: []
+        m_Name: 
+        m_StencilTypeName: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Contexts.ContextSampleStencil,
+          ContextSample, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    00000001:
+      type: {class: SampleContext, ns: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Contexts, asm: ContextSample}
+      data:
+        m_Guid:
+          m_Value0: 10774257113169271278
+          m_Value1: 3841974587776854955
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -92, y: -49}
+        m_Title: SampleContext
+        m_InputConstantsById:
+          m_KeyList:
+          - in
+          m_ValueList:
+          - id: 3
+        m_State: 0
+        m_Collapsed: 0
+    00000002:
+      type: {class: SampleContextVertical, ns: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Contexts, asm: ContextSample}
+      data:
+        m_Guid:
+          m_Value0: 1584191376890313217
+          m_Value1: 8201790732012123993
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -8.499008, y: 335.31805}
+        m_Title: SampleContextVertical
+        m_InputConstantsById:
+          m_KeyList:
+          - in
+          m_ValueList:
+          - id: 4
+        m_State: 0
+        m_Collapsed: 0
+    00000003:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000004:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0

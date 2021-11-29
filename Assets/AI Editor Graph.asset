@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c092163e25c16c4286897687c98f74a, type: 3}
+  m_Name: AI Editor Graph
+  m_EditorClassIdentifier: 
+  m_GraphModel:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: AIGraphModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_AssetModel: {fileID: 11400000}
+        m_GraphNodeModels: []
+        m_EdgeModels: []
+        m_BadgeModels: []
+        m_GraphEdgeModels: []
+        m_PolymorphicEdgeModels: []
+        m_StickyNoteModels: []
+        m_GraphStickyNoteModels: []
+        m_PlacematModels: []
+        m_GraphPlacematModels: []
+        m_GraphVariableModels: []
+        m_GraphPortalModels: []
+        m_Name: 
+        m_StencilTypeName: SerV112.UtilityAIEditor.AIStencil, AIEditor, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769404b436f500e4996e55b576adeed3, type: 3}
+  m_Name: Recipe
+  m_EditorClassIdentifier: 
+  m_GraphModel:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: RecipeGraphModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Recipes, asm: RecipesEditor}
+      data:
+        m_AssetModel: {fileID: 11400000}
+        m_GraphNodeModels:
+        - id: 1
+        m_EdgeModels: []
+        m_BadgeModels: []
+        m_GraphEdgeModels: []
+        m_PolymorphicEdgeModels: []
+        m_StickyNoteModels: []
+        m_GraphStickyNoteModels: []
+        m_PlacematModels: []
+        m_GraphPlacematModels: []
+        m_GraphVariableModels: []
+        m_GraphPortalModels: []
+        m_Name: 
+        m_StencilTypeName: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Recipes.RecipeStencil,
+          RecipesEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    00000001:
+      type: {class: BakeNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.Samples.Recipes, asm: RecipesEditor}
+      data:
+        m_Guid:
+          m_Value0: 10794066998614523586
+          m_Value1: 10347031114962381379
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: 31, y: 163}
+        m_Title: Bake
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_TemperatureC: 180
+        m_Minutes: 60

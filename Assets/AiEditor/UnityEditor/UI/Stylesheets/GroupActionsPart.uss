@@ -1,0 +1,20 @@
+.ge-sample-bake-node-part {
+    flex-direction: column;
+    margin: 10px 10px 10px 10px;
+}
+
+.curve-part
+{
+    width: 200px;
+    height: 200px;
+     margin: 0px 0px 0px 0px;
+}
+.ge-sample-bake-node-part .ge-editable-label {
+    flex-grow: 1;
+}
+
+.group-label-text
+{
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-center;
+}
