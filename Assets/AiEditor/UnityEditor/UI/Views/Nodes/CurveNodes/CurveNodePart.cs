@@ -8,56 +8,40 @@ using UnityEngine.UIElements;
 namespace SerV112.UtilityAIEditor
 {
 
-    
 
-    public class CurveNodePart : BaseModelUIPart
+   
+
+    public abstract class CurveNodePart : BaseModelUIPart
     {
         public static readonly string ussClassName = "curve-part";
         public static readonly string groupName = "group-name";
         public static readonly string namespaceName = "namespace-name";
 
-        public static CurveNodePart Create(string name, IGraphElementModel model, IModelUI modelUI, string parentClassName)
-        {
-            if (model is INodeModel)
-            {
-                return new CurveNodePart(name, model, modelUI, parentClassName);
-            }
-
-            return null;
-        }
 
         VisualElement PartContainer { get; set; }
-
+        protected CurveViewElement m_CurveView;
 
         public override VisualElement Root => PartContainer;
 
 
-        CurveNodePart(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
+        public CurveNodePart(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName)
         {
 
         }
 
-
-
-        CurveViewElement m_CurveView; 
+      
         protected override void BuildPartUI(VisualElement container)
         {
-            if (!(m_Model is BooleanCurveScoreNodeModel model))
+            if (!(m_Model is ICurveNodeModel))
                 return;
           
             PartContainer = new VisualElement { name = PartName };
             PartContainer.AddToClassList(ussClassName);
             PartContainer.AddToClassList(m_ParentClassName.WithUssElement(PartName));
 
-            m_CurveView = new CurveViewElement(new LogisticCurve(model.Steepness, model.Offset));
-
-            //var curveFiled = new CurveField();
-            //var curve =  new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
-            //curve.preWrapMode = WrapMode.Clamp;
-            //curve.postWrapMode = WrapMode.Clamp;
-            //curveFiled.value = curve;
-            //curveFiled.AddToClassList(ussClassName);
+            m_CurveView = new CurveViewElement();
+            UpdateCurveFromModel();
 
             PartContainer.Add(m_CurveView);
 
@@ -81,12 +65,13 @@ namespace SerV112.UtilityAIEditor
 
         }
 
+
+        protected abstract void UpdateCurveFromModel();
+       
         protected override void UpdatePartFromModel()
         {
-            if (!(m_Model is BooleanCurveScoreNodeModel model))
-                return;
-
-            m_CurveView.Curve = new LogisticCurve(model.Steepness, model.Offset);
+           
+            UpdateCurveFromModel();
             m_CurveView.MarkDirtyRepaint();
         }
     }

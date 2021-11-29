@@ -10,7 +10,7 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "ScoreSum")]
-    public class ScoreSumNodeModel : NodeModel, IExandableInputPortNode
+    public class ScoreSumNodeModel : NodeModel, IExtendableInputPortNode
     {
         [SerializeField, HideInInspector]
         int m_ScoreInputCount = 2;

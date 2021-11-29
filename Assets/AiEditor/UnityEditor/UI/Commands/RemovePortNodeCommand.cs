@@ -5,7 +5,7 @@ using UnityEngine.GraphToolsFoundation.CommandStateObserver;
 
 namespace SerV112.UtilityAIEditor
 {
-    class RemovePortNodeCommand<T> : ModelCommand<T> where T : NodeModel, IExandableInputPortNode
+    class RemovePortNodeCommand<T> : ModelCommand<T> where T : NodeModel, IExtendableInputPortNode
     {
         const string k_UndoStringSingular = "Remove Port";
 

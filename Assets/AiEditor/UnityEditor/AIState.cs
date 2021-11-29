@@ -36,8 +36,9 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<SetStateNameCommand>(SetStateNameCommand.DefaultHandler);
 
             
-            commandDispatcher.RegisterCommandHandler<SetSlopeBooleanCurveScoreNodeModelCommand>(SetSlopeBooleanCurveScoreNodeModelCommand.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<SetOffsetBooleanCurveScoreNodeModelCommand>(SetOffsetBooleanCurveScoreNodeModelCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetOffsetCommand>(SetOffsetCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetSlopeCommand>(SetSlopeCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetStepnessCommand>(SetStepnessCommand.DefaultHandler);
 
         }
     }

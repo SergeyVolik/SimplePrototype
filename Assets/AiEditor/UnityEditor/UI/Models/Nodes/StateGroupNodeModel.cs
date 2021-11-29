@@ -10,7 +10,7 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "StateGroup")]
-    public class StateGroupNodeModel : NodeModel, IExandableInputPortNode
+    public class StateGroupNodeModel : NodeModel, IExtendableInputPortNode
     {
 
 

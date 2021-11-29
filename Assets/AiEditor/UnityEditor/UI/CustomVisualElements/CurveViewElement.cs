@@ -10,13 +10,13 @@ namespace SerV112.UtilityAIEditor
 {
 
 
-    class CurveViewElement : VisualElement
+    public class CurveViewElement : VisualElement
     {
 
         public ICurve Curve;
-        public CurveViewElement(ICurve curve)
+        public CurveViewElement()
         {
-            Curve = curve;
+
             generateVisualContent += OnGenerateVisualContent;
             style.width = 200;
             style.height = 200;

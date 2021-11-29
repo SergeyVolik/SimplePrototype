@@ -6,17 +6,17 @@ namespace SerV112.UtilityAIEditor
 {
    
 
-    public class SetOffsetBooleanCurveScoreNodeModelCommand : ModelCommand<BooleanCurveScoreNodeModel, float>
+    public class SetStepnessCommand : ModelCommand<ISteepnessable, float>
     {
         const string k_UndoStringSingular = "Set Group Actions Node Name";
         const string k_UndoStringPlural = "Set Group Actions Nodes Names";
 
-        public SetOffsetBooleanCurveScoreNodeModelCommand(float value, params BooleanCurveScoreNodeModel[] nodes)
+        public SetStepnessCommand(float value, params ISteepnessable[] nodes)
             : base(k_UndoStringSingular, k_UndoStringPlural, value, nodes)
         {
         }
 
-        public static void DefaultHandler(GraphToolState state, SetOffsetBooleanCurveScoreNodeModelCommand command)
+        public static void DefaultHandler(GraphToolState state, SetStepnessCommand command)
         {
             state.PushUndo(command);
 
@@ -24,19 +24,19 @@ namespace SerV112.UtilityAIEditor
             {
                 foreach (var nodeModel in command.Models)
                 {
-                    if (command.Value < BooleanCurveScoreNodeModel.OffsetMax && command.Value > BooleanCurveScoreNodeModel.OffsetMin)
+                    if (command.Value < nodeModel.SteepnessMax && command.Value > nodeModel.SteepnessMin)
                     {
 
-                        nodeModel.Offset = command.Value;
+                        nodeModel.Steepness = command.Value;
 
                     }
-                    else if (command.Value > BooleanCurveScoreNodeModel.OffsetMax)
+                    else if (command.Value > nodeModel.SteepnessMax)
                     {
-                        nodeModel.Offset = BooleanCurveScoreNodeModel.OffsetMax;
+                        nodeModel.Steepness = nodeModel.SteepnessMax;
                     }
                     else
                     {
-                        nodeModel.Offset = BooleanCurveScoreNodeModel.OffsetMin;
+                        nodeModel.Steepness = nodeModel.SteepnessMin;
                     }
                     graphUpdater.MarkChanged(nodeModel);
                 }
