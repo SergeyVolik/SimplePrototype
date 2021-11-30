@@ -27,6 +27,8 @@ MonoBehaviour:
         - id: 4
         - id: 5
         - id: 6
+        - id: 7
+        - id: 8
         m_EdgeModels: []
         m_BadgeModels: []
         m_GraphEdgeModels: []
@@ -41,112 +43,216 @@ MonoBehaviour:
         m_StencilTypeName: SerV112.UtilityAIEditor.AIStencil, AIEditor, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     00000001:
-      type: {class: LogisticCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      type: {class: SineCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
-          m_Value0: 10548588734549488807
-          m_Value1: 18233615223952680036
+          m_Value0: 2497842089373378958
+          m_Value1: 14487601107125200980
         m_AssetModel: {fileID: 11400000}
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -1047, y: -1336}
-        m_Title: Logistic Curve Score
+        m_Position: {x: -1747.1449, y: -1052.201}
+        m_Title: Sine Curve
         m_InputConstantsById:
           m_KeyList: []
           m_ValueList: []
         m_State: 0
         m_Collapsed: 0
-        m_Stepness: -3
-        m_Offset: -0.06
+        m_Stepness: 0.44
+        m_Offset: 0
     00000002:
-      type: {class: LinearCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
-      data:
-        m_Guid:
-          m_Value0: 14353793084316951022
-          m_Value1: 10738447998907344847
-        m_AssetModel: {fileID: 11400000}
-        m_Color: {r: 0, g: 0, b: 0, a: 0}
-        m_HasUserColor: 0
-        m_Version: 1
-        m_Position: {x: -361.99994, y: -1325}
-        m_Title: Linear Curve
-        m_InputConstantsById:
-          m_KeyList: []
-          m_ValueList: []
-        m_State: 0
-        m_Collapsed: 0
-        m_Slope: 0.75
-        m_Offset: 0.13
-    00000003:
-      type: {class: LinearCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
-      data:
-        m_Guid:
-          m_Value0: 6387794737811650152
-          m_Value1: 2047947388075234967
-        m_AssetModel: {fileID: 11400000}
-        m_Color: {r: 0, g: 0, b: 0, a: 0}
-        m_HasUserColor: 0
-        m_Version: 1
-        m_Position: {x: -177.99994, y: -978}
-        m_Title: Linear Curve
-        m_InputConstantsById:
-          m_KeyList: []
-          m_ValueList: []
-        m_State: 0
-        m_Collapsed: 0
-        m_Slope: 0.91
-        m_Offset: 0.11
-    00000004:
-      type: {class: SmootherstepCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
-      data:
-        m_Guid:
-          m_Value0: 8238437422556831614
-          m_Value1: 12981127239178181596
-        m_AssetModel: {fileID: 11400000}
-        m_Color: {r: 0, g: 0, b: 0, a: 0}
-        m_HasUserColor: 0
-        m_Version: 1
-        m_Position: {x: -920.1391, y: -825.2526}
-        m_Title: Smootherstep Curve
-        m_InputConstantsById:
-          m_KeyList: []
-          m_ValueList: []
-        m_State: 0
-        m_Collapsed: 0
-    00000005:
-      type: {class: SmoothstepCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
-      data:
-        m_Guid:
-          m_Value0: 9843187099966376745
-          m_Value1: 12132825918137373613
-        m_AssetModel: {fileID: 11400000}
-        m_Color: {r: 0, g: 0, b: 0, a: 0}
-        m_HasUserColor: 0
-        m_Version: 1
-        m_Position: {x: -564.74146, y: -782.66614}
-        m_Title: Smoothstep Curve
-        m_InputConstantsById:
-          m_KeyList: []
-          m_ValueList: []
-        m_State: 0
-        m_Collapsed: 0
-    00000006:
       type: {class: CosineCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
-          m_Value0: 12588216792600793066
-          m_Value1: 2095391494433331663
+          m_Value0: 10168648308530776057
+          m_Value1: 13583755611191762742
         m_AssetModel: {fileID: 11400000}
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -764.8925, y: -1468.8997}
+        m_Position: {x: -356.05524, y: -1047.6326}
         m_Title: Cosine Curve
         m_InputConstantsById:
           m_KeyList: []
           m_ValueList: []
         m_State: 0
         m_Collapsed: 0
-        m_Stepness: 0.91
+        m_Stepness: 0.54
         m_Offset: 0
+    00000003:
+      type: {class: ExponentialCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 17645220990434296177
+          m_Value1: 8301322494547733526
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1506.0981, y: -1053.575}
+        m_Title: Exponential Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_Exponential: 4.67
+        m_Offset: 0
+    00000004:
+      type: {class: LogitCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 16931073424761618438
+          m_Value1: 13542547789074254967
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1280.7805, y: -1029.9604}
+        m_Title: Logit Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_LogBase: 2.17
+    00000005:
+      type: {class: LogisticCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 8921188203353027713
+          m_Value1: 13024481850989440606
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1046.7021, y: -1054.4498}
+        m_Title: Logistic Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_Stepness: 3
+        m_Offset: -0.05
+    00000006:
+      type: {class: SmootherstepCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 15554693386675219148
+          m_Value1: 1555967131621638834
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -824.2374, y: -1050.1375}
+        m_Title: Smootherstep Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+    00000007:
+      type: {class: SmoothstepCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 6366133593922070022
+          m_Value1: 2447670137692709399
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -618.79224, y: -1044.9409}
+        m_Title: Smoothstep Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+    00000008:
+      type: {class: CustomCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 13602439185800865530
+          m_Value1: 7095893426467782689
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -132.49066, y: -1076.6422}
+        m_Title: Custom Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_CustomCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.24821961
+            value: 2.0993185
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.3007741
+            value: 0.47182703
+            inSlope: -3.6422637
+            outSlope: -3.6422637
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.48863488
+            value: 0.82749176
+            inSlope: 0.13568875
+            outSlope: 0.13568875
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.5434406
+            value: 0.8336952
+            inSlope: 0.095986344
+            outSlope: 0.095986344
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.6462252
+            value: 0.8431798
+            inSlope: -20.939949
+            outSlope: -20.939949
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.022447685
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
