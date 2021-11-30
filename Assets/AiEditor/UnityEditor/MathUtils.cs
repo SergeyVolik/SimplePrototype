@@ -9,15 +9,25 @@ namespace SerV112.UtilityAIEditor
 {
     static class MathUtils
     {
-        public static bool PointInBounds(Vector3 newPoint1, float thickness, Rect contentRect)
+        public static bool PointInBounds(Vector3 newPoint1, Rect contentRect)
         {
-            if (-thickness <= newPoint1.x && newPoint1.x <= contentRect.width + thickness && -thickness <= newPoint1.y && newPoint1.y <= contentRect.height + thickness)
+            if (0 <= newPoint1.x && newPoint1.x <= contentRect.width && 0 <= newPoint1.y && newPoint1.y <= contentRect.height)
             {
                 return true;
             }
 
             return false;
         }
+
+        //public static bool PointInBounds(Vector3 newPoint1, float thickness, Rect contentRect)
+        //{
+        //    if (-thickness <= newPoint1.x && newPoint1.x <= contentRect.width + thickness && -thickness <= newPoint1.y && newPoint1.y <= contentRect.height + thickness)
+        //    {
+        //        return true;
+        //    }
+
+        //    return false;
+        //}
 
         public static Vector2 GetPerpendicular(Vector2 vector)
         {

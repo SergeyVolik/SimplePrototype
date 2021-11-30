@@ -10,27 +10,28 @@ namespace SerV112.UtilityAIEditor
 {
 
     [Serializable]
-    [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Cosine Curve")]
-    public class CosineCurveNodeModel : CurveNodeModel, IOffsetable, ISteepnessable
+    [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Exponential Curve")]
+    public class ExponentialCurveNodeModel : CurveNodeModel, IOffsetable, IExponential
     {
 
         [SerializeField, HideInInspector]
-        float m_Stepness = 1;
+        float m_Exponential = 1;
 
         [SerializeField, HideInInspector]
         float m_Offset = 0;
 
-        public float Steepness { get => m_Stepness; set => m_Stepness = value; }
-
-        public const float K_SteepnessMax = 1.4f;
-        public const float k_SteepnessMin = 0;
+        public const float k_ExponentialMax = 100f;
+        public const float k_ExponentialMin = 0.1f;
         public float Offset { get => m_Offset; set => m_Offset = value; }
         public float OffsetMax => k_OffsetMax; 
         public float OffsetMin  => k_OffsetMin;
 
-        public float SteepnessMax => K_SteepnessMax;
 
-        public float SteepnessMin => k_SteepnessMin;
+        public float Exponent { get => m_Exponential; set => m_Exponential = value; }
+
+        public float ExponentMax => k_ExponentialMax;
+
+        public float ExponentMin => k_ExponentialMin;
 
         public const float k_OffsetMax = .4f;
         public const float k_OffsetMin = -.4f;

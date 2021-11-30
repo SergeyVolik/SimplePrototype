@@ -22,6 +22,11 @@ MonoBehaviour:
         m_AssetModel: {fileID: 11400000}
         m_GraphNodeModels:
         - id: 1
+        - id: 2
+        - id: 3
+        - id: 4
+        - id: 5
+        - id: 6
         m_EdgeModels: []
         m_BadgeModels: []
         m_GraphEdgeModels: []
@@ -45,12 +50,103 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -367, y: -1136}
+        m_Position: {x: -1047, y: -1336}
         m_Title: Logistic Curve Score
         m_InputConstantsById:
           m_KeyList: []
           m_ValueList: []
         m_State: 0
         m_Collapsed: 0
-        m_Stepness: 2.17
+        m_Stepness: -3
+        m_Offset: -0.06
+    00000002:
+      type: {class: LinearCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 14353793084316951022
+          m_Value1: 10738447998907344847
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -361.99994, y: -1325}
+        m_Title: Linear Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_Slope: 0.75
+        m_Offset: 0.13
+    00000003:
+      type: {class: LinearCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 6387794737811650152
+          m_Value1: 2047947388075234967
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -177.99994, y: -978}
+        m_Title: Linear Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_Slope: 0.91
+        m_Offset: 0.11
+    00000004:
+      type: {class: SmootherstepCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 8238437422556831614
+          m_Value1: 12981127239178181596
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -920.1391, y: -825.2526}
+        m_Title: Smootherstep Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+    00000005:
+      type: {class: SmoothstepCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 9843187099966376745
+          m_Value1: 12132825918137373613
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -564.74146, y: -782.66614}
+        m_Title: Smoothstep Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+    00000006:
+      type: {class: CosineCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 12588216792600793066
+          m_Value1: 2095391494433331663
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -764.8925, y: -1468.8997}
+        m_Title: Cosine Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_Stepness: 0.91
         m_Offset: 0

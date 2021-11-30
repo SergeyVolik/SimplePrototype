@@ -39,6 +39,8 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<SetOffsetCommand>(SetOffsetCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetSlopeCommand>(SetSlopeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetStepnessCommand>(SetStepnessCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetExponentCommand>(SetExponentCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetLogBaseCommand>(SetLogBaseCommand.DefaultHandler);
 
         }
     }

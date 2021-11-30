@@ -30,7 +30,8 @@ namespace SerV112.UtilityAIEditor
 
         }
 
-      
+        protected virtual float StartX => 0f;
+        protected virtual float EndX => 1f;
         protected override void BuildPartUI(VisualElement container)
         {
             if (!(m_Model is ICurveNodeModel))
@@ -40,7 +41,7 @@ namespace SerV112.UtilityAIEditor
             PartContainer.AddToClassList(ussClassName);
             PartContainer.AddToClassList(m_ParentClassName.WithUssElement(PartName));
 
-            m_CurveView = new CurveViewElement();
+            m_CurveView = new CurveViewElement(StartX, EndX);
             UpdateCurveFromModel();
 
             PartContainer.Add(m_CurveView);

@@ -10,19 +10,19 @@ namespace SerV112.UtilityAIEditor
 {
 
     [Serializable]
-    [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Cosine Curve")]
-    public class CosineCurveNodeModel : CurveNodeModel, IOffsetable, ISteepnessable
+    [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Sine Curve")]
+    public class SineCurveNodeModel : CurveNodeModel, IOffsetable, ISteepnessable
     {
 
         [SerializeField, HideInInspector]
-        float m_Stepness = 1;
+        float m_Stepness = 0.44f;
 
         [SerializeField, HideInInspector]
         float m_Offset = 0;
 
         public float Steepness { get => m_Stepness; set => m_Stepness = value; }
 
-        public const float K_SteepnessMax = 1.4f;
+        public const float K_SteepnessMax = 1;
         public const float k_SteepnessMin = 0;
         public float Offset { get => m_Offset; set => m_Offset = value; }
         public float OffsetMax => k_OffsetMax; 

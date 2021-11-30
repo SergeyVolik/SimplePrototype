@@ -8,10 +8,10 @@ namespace SerV112.UtilityAIEditor
 
     static class VisualElementMeshUtils
     {
-        public static void CreateCurveMesh(Rect contentRect, float thickness, ICurve curve, MeshGenerationContext mgc, int points = 200)
+        public static void CreateCurveMesh(Rect contentRect, float thickness, ICurve curve, MeshGenerationContext mgc, int points = 200, float startX = 0f, float endX = 1f)
         {
             var r = contentRect;
-            float x = 0;
+            float x = startX;
             float y;
             float offset = 1f / points;
 
@@ -24,7 +24,7 @@ namespace SerV112.UtilityAIEditor
             var newPoint1 = Vector3.zero;
             var newPoint2 = Vector3.zero;
 
-            while (x <= 1f)
+            while (x <= endX)
             {
 
                 y = curve.Evaluate(x);
@@ -33,7 +33,7 @@ namespace SerV112.UtilityAIEditor
                 newPoint2 = new Vector3(x * rationX, r.height - y * rationY, Vertex.nearZ);
 
 
-                var res = VisualElementMeshUtils.AddVertexes(newPoint1, newPoint2, vertexes, thickness, r);
+                var res = VisualElementMeshUtils.AddVertexes(newPoint1, newPoint2, vertexes, r);
 
                 if (!res)
                 {
@@ -55,7 +55,7 @@ namespace SerV112.UtilityAIEditor
             newPoint1 = new Vector3(x * rationX, r.height - y * rationY, Vertex.nearZ);
             newPoint2 = new Vector3(x * rationX, r.height - y * rationY, Vertex.nearZ);
 
-            VisualElementMeshUtils.AddVertexes(newPoint1, newPoint2, vertexes, thickness, r);
+            VisualElementMeshUtils.AddVertexes(newPoint1, newPoint2, vertexes, r);
 
             if (vertexes.Count > 2)
             {
@@ -110,10 +110,10 @@ namespace SerV112.UtilityAIEditor
                 mwd.SetAllIndices(indicesList[j].ToArray());
             }
         }
-        private static bool AddVertexes(Vector3 newPoint1, Vector3 newPoint2, List<Vertex> vertexes, float thickness, Rect contentRect)
+        private static bool AddVertexes(Vector3 newPoint1, Vector3 newPoint2, List<Vertex> vertexes, Rect contentRect)
         {
 
-            if (MathUtils.PointInBounds(newPoint1, thickness, contentRect) && MathUtils.PointInBounds(newPoint2, thickness, contentRect))
+            if (MathUtils.PointInBounds(newPoint1, contentRect) && MathUtils.PointInBounds(newPoint2, contentRect))
             {
                 var vertex1 = new Vertex();
                 vertex1.position = newPoint1;

@@ -62,7 +62,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float LogisticCurve(float x, float k = 1, float x0 = 0)
         {
-            float expPow = -k * ((4 * (float)Math.E * (x - x0)) - (2 * (float)Math.E));
+            float expPow = -k * ((4 * ((float)Math.E) * (x - x0)) - (2 * (float)Math.E));
             return 1 / (float)(1 + Mathf.Pow((float)Math.E, expPow));
         }
 
@@ -76,7 +76,7 @@ namespace SerV112.UtilityAIEditor
         public static float LogitCurve(float x, float logBase = 0.5f)
         {
 
-            return (Mathf.Log(x/(1 - x), logBase) + 2 * (float)Math.E) / 4 * (float)Math.E;
+            return (Mathf.Log(x/(1 - x), logBase) + (2 * ((float)Math.E))) / (4 * ((float)Math.E));
         }
 
         
