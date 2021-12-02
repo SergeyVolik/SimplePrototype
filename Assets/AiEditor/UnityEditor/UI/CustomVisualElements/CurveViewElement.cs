@@ -34,7 +34,7 @@ namespace SerV112.UtilityAIEditor
             if (r.width < 0.01f || r.height < 0.01f)
                 return; // Skip rendering when too small.
 
-            VisualElementMeshUtils.CreateCurveMesh(r, 2f, Curve, mgc, 200, m_StartX, m_StartY);
+            VisualElementMeshUtils.CreateCurveMesh(r, 0.5f, Curve, mgc, 200, m_StartX, m_StartY);
         }
     }
 }

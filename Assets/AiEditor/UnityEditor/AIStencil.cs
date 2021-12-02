@@ -11,13 +11,12 @@ namespace SerV112.UtilityAIEditor
  
     public class AIStencil : Stencil
     {
-        public static string toolName = "AI Editor";
+        public static string toolName = "AI Editor2";
 
         public override string ToolName => toolName;
 
         public static readonly string graphName = "AI Editor Graph";
 
-        public static TypeHandle Action { get; } = TypeHandleHelpers.GenerateCustomTypeHandle("Action");
 
         public override IToolbarProvider GetToolbarProvider()
         {

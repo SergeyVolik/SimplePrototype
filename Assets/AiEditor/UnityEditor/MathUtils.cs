@@ -19,20 +19,16 @@ namespace SerV112.UtilityAIEditor
             return false;
         }
 
-        //public static bool PointInBounds(Vector3 newPoint1, float thickness, Rect contentRect)
-        //{
-        //    if (-thickness <= newPoint1.x && newPoint1.x <= contentRect.width + thickness && -thickness <= newPoint1.y && newPoint1.y <= contentRect.height + thickness)
-        //    {
-        //        return true;
-        //    }
-
-        //    return false;
-        //}
 
         public static Vector2 GetPerpendicular(Vector2 vector)
         {
             var bx = -vector.y / vector.x;
             return new Vector2(bx, 1);
+        }
+
+        public static float LinearInterpolaton(Vector2 p0, Vector2 p1, float x)
+        {
+            return p0.y + (x - p0.x) * (p1.y - p0.y) / (p1.x - p0.x);
         }
     }
 }

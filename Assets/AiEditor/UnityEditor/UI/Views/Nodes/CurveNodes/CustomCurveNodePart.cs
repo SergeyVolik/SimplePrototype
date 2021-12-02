@@ -40,6 +40,7 @@ namespace SerV112.UtilityAIEditor
             PartContainer.AddToClassList(m_ParentClassName.WithUssElement(PartName));
 
             m_CurveView = new CurveField();
+            
             m_CurveView.RegisterValueChangedCallback((evt) => model.CustomCurve = evt.newValue);
             m_CurveView.AddToClassList("curve-part");
 

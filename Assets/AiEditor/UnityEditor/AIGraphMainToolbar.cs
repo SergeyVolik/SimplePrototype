@@ -31,6 +31,7 @@ namespace SerV112.UtilityAIEditor
             try
             {
                 m_CommandDispatcher.Dispatch(new BuildAIEditorCommand());
+                
             }
             catch (Exception e) // so the button doesn't get stuck
             {

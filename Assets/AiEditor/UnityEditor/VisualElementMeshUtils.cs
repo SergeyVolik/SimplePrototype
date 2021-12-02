@@ -78,7 +78,7 @@ namespace SerV112.UtilityAIEditor
                     var v3 = vertexesList[j][i + 2];
 
                     var vec = v3.position - v1.position;
-                    var prep = MathUtils.GetPerpendicular(vec).normalized;
+                    var prep = MathUtils.GetPerpendicular(vec).normalized* thickness;
 
                     v1.position = v1.position + new Vector3(prep.x, prep.y);
                     v2.position = v2.position - new Vector3(prep.x, prep.y);

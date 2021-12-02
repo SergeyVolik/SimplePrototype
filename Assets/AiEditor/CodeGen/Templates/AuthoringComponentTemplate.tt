@@ -1,0 +1,56 @@
+<#@ template hostspecific="true" language="C#/Unity" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="SerV112.UtilityAIEditor" #>
+<#
+
+var settingsJson = this.Host.ResolveParameterValue("-", "-", "settings");
+
+var settings = JsonConvert.DeserializeObject<CreateAuthoringComponentSettings>(settingsJson);
+
+#>
+//-----------------------------------------------------------------------
+// This file is AUTO-GENERATED.
+// Changes for this script by hand might be lost when auto-generation is run.
+// (Generated date: <#=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")#>)
+//-----------------------------------------------------------------------
+using Unity.Entities;
+using Unity.Mathematics;
+using UnityEngine;
+<#= settings.GetUsingString() #>
+
+<#if(settings.IsNamespace()){ #>
+namespace <#= settings.Namespace #>
+{
+    [DisallowMultipleComponent]
+    public class <#=settings.Name #> : MonoBehaviour, IConvertGameObjectToEntity
+    {
+
+         <#=settings.GetFields() #>
+
+        public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+        {
+
+            dstManager.AddComponentData(entity, new <#=settings.RuntimeComponent.Type #> {
+                <#= settings.GetInitCopmonentValues() #>           
+            });
+        
+        }
+    }
+
+}
+<#} else { #>
+[DisallowMultipleComponent]
+public class <#=settings.Name #> : MonoBehaviour, IConvertGameObjectToEntity
+{
+    
+     <#=settings.GetFields() #>
+    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
+    {
+
+        dstManager.AddComponentData(entity, new <#=settings.RuntimeComponent.Type #> {
+            <#= settings.GetInitCopmonentValues() #>           
+        });
+               
+    }
+}
+<#}#>

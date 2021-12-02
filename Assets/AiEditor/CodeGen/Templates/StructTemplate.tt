@@ -1,0 +1,45 @@
+<#@ template hostspecific="true" language="C#/Unity" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="SerV112.UtilityAIEditor" #>
+<#
+
+var settingsJson = this.Host.ResolveParameterValue("-", "-", "settings");
+
+var settings = JsonConvert.DeserializeObject<CreateStructSettings>(settingsJson);
+
+#>
+//-----------------------------------------------------------------------
+// This file is AUTO-GENERATED.
+// Changes for this script by hand might be lost when auto-generation is run.
+// (Generated date: <#=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")#>)
+//-----------------------------------------------------------------------
+<# // Using namespaces part #>
+<#= settings.GetUsingString() #>
+<# // create struct with namespace#>
+<# if(settings.IsNamespace()) {#>
+namespace <#= settings.Namespace #>
+{
+	<#=settings.GetAttributs()#>
+	public struct  <#= settings.StructName #> <#=  settings.GetInterfacesString() #>
+	{
+
+<#for(var i = 0; i < settings.Fields.Count; i++) {#>
+		<#=settings.Fields[i]#>
+<#}#>
+	}
+}
+<#}#>
+<# // create struct without namespace#>
+<#else {#>
+<#=settings.GetAttributs()#>
+public struct  <#= settings.StructName #> <#=  settings.GetInterfacesString() #>
+{
+<#for(var i = 0; i < settings.Fields.Count; i++) {#>
+	<#=settings.Fields[i]#>
+<#}#>
+}
+<#}#>
+	
+
+
+
