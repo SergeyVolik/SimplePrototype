@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace SerV112.UtilityAIEditor
 {
-    public class AIGraphWindow2 : GraphViewEditorWindow
+    public class AIGraphWindow : GraphViewEditorWindow
     {
         [InitializeOnLoadMethod]
         static void RegisterTool()
         {
-            ShortcutHelper.RegisterDefaultShortcuts<AIGraphWindow2>(AIStencil.toolName);
+            ShortcutHelper.RegisterDefaultShortcuts<AIGraphWindow>(AIStencil.toolName);
         }
 
         [MenuItem("GTF/Samples/AI Editor", false)]
         public static void ShowAIGraphWindow()
         {
             Debug.Log("ShowRecipeGraphWindow");
-            FindOrCreateGraphWindow<AIGraphWindow2>();
+            FindOrCreateGraphWindow<AIGraphWindow>();
         }
 
         protected override void OnEnable()

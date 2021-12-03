@@ -15,9 +15,9 @@ namespace SerV112.UtilityAIEditor
             const string path = "Assets";
             var template = new GraphTemplate<AIStencil>(AIStencil.graphName);
             CommandDispatcher commandDispatcher = null;
-            if (EditorWindow.HasOpenInstances<AIGraphWindow2>())
+            if (EditorWindow.HasOpenInstances<AIGraphWindow>())
             {
-                var window = EditorWindow.GetWindow<AIGraphWindow2>();
+                var window = EditorWindow.GetWindow<AIGraphWindow>();
                 if (window != null)
                 {
                     commandDispatcher = window.CommandDispatcher;
@@ -33,7 +33,7 @@ namespace SerV112.UtilityAIEditor
             var obj = EditorUtility.InstanceIDToObject(instanceId);
             if (obj is AIGraphAssetModel2 graphAssetModel)
             {
-                var window = GraphViewEditorWindow.FindOrCreateGraphWindow<AIGraphWindow2>();
+                var window = GraphViewEditorWindow.FindOrCreateGraphWindow<AIGraphWindow>();
                 window.SetCurrentSelection(graphAssetModel, GraphViewEditorWindow.OpenMode.OpenAndFocus);
                 return window != null;
             }

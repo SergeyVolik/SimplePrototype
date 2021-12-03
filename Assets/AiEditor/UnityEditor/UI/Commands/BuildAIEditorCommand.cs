@@ -80,21 +80,40 @@ namespace SerV112.UtilityAIEditor
             //    fullPaths.Add(T4GenUtils.CreateEnum(path, enumName, enumSettings));
             //}
 
+            var @namespace = "MyNamespace";
+            var compName = "Struct1";
+;
+
             var pathWithRes = string.Join("/", path, "Resources");
-            var pathWithScripts = string.Join("/", path, "Scripts");
+            var pathWithScripts = string.Join("/", path, "_CodeGen");
+
+            if (AssetDatabase.IsValidFolder(pathWithScripts))
+            {
+                var fileName = compName;
+
+                if (!DirectoryUtils.FileExisted(pathWithScripts, fileName) && AssemblyUtils.CheckIfTypeNameExisted(compName, @namespace))
+                {
+                    throw new Exception($"{compName}.gen.cs didn't create that's because a similar class located out from {pathWithScripts} folder ");
+                }
+            }
 
             if (AssetDatabase.IsValidFolder(pathWithRes))
             {
+               
                 AssetDatabase.DeleteAsset(pathWithRes);
                
             }
             AssetDatabase.CreateFolder(path, "Resources");
+
             if (AssetDatabase.IsValidFolder(pathWithScripts))
             {
                 AssetDatabase.DeleteAsset(pathWithScripts);           
             }
 
-            AssetDatabase.CreateFolder(path, "Scripts");
+            
+
+            AssetDatabase.CreateFolder(path, "_CodeGen");
+
 
             T4GenUtils.CreateComputeShader(pathWithRes, "ComputeShader", new CreateComputeShaderSettings(32));
 
@@ -109,7 +128,9 @@ namespace SerV112.UtilityAIEditor
 
             //}
 
-            var compName = "Struct1";
+
+
+          
 
             T4GenUtils.CreateStruct(pathWithScripts, compName, new CreateStructSettings
             {
@@ -119,15 +140,15 @@ namespace SerV112.UtilityAIEditor
 
                 Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = "Enum1", Name = "Field1" } },
                 Interfaces = new List<string> { "IComponentData"},
-                Namespace = ""
+                Namespace = @namespace
             });
 
-            T4GenUtils.CreateEnum(pathWithScripts, "Enum1", new CreateEnumSettings("Enum1", new List<string> { "Idle","Run","Walk"}));
+            T4GenUtils.CreateEnum(pathWithScripts, "Enum1", new CreateEnumSettings("Enum1", new List<string> { "Idle","Run","Walk"}, @namespace));
 
             T4GenUtils.CreateAuthoringComponent(pathWithScripts, "Authoring" + compName, new CreateAuthoringComponentSettings
             {
                 Name = "Authoring" + compName,
-                Namespace = "",
+                Namespace = @namespace,
                 RuntimeComponent = new CreateAuthoringComponentSettings.Component
                 {
                     Type = compName,
@@ -141,11 +162,13 @@ namespace SerV112.UtilityAIEditor
 
                 },
                 Using = new List<string>()
+                
 
 
             });
 
             AssetDatabase.Refresh();
+
 
         }
     }
