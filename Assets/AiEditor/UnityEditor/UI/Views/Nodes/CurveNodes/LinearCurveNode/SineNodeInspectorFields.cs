@@ -25,7 +25,7 @@ namespace SerV112.UtilityAIEditor
             return ui;
         }
     }
-    class SineNodeInspectorFields : FieldsInspector
+    class SineNodeInspectorFields : CurveNodeInspectorFields<SineCurveNodeModel>
     {
         public static SineNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
         {
@@ -40,30 +40,33 @@ namespace SerV112.UtilityAIEditor
         SineNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName) { }
 
-        protected override IEnumerable<BaseModelPropertyField> GetFields()
+        protected override void AddFields()
         {
+            base.AddFields();
+
             if (m_Model is SineCurveNodeModel nodeModel)
             {
 
-                //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                    m_OwnerElement.CommandDispatcher,
                    nodeModel,
                    nameof(SineCurveNodeModel.Steepness),
                    nameof(SineCurveNodeModel.Steepness),
-                   typeof(SetStepnessCommand));
+                   typeof(SetStepnessCommand)));
 
-                //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+
+                Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
                     nameof(SineCurveNodeModel.Offset),
                     nameof(SineCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand));
+                    typeof(SetOffsetCommand)));
 
 
 
             }
+
         }
+
     }
 }

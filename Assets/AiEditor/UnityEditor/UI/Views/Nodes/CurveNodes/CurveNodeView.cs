@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 namespace SerV112.UtilityAIEditor
 {
+    
     class CurveNodeView : CollapsibleInOutNode
     {
         public static readonly string paramContainerPartName = "parameter-container1";

@@ -13,6 +13,13 @@ namespace SerV112.UtilityAIEditor
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Logistic Curve")]
     public class LogisticCurveNodeModel : CurveNodeModel, IOffsetable, ISteepnessable
     {
+        public override string Tooltip { get => @"LogisticCurveNodeModel
+LogisticCurveNodeModel
+LogisticCurveNodeModel
+LogisticCurveNodeModel
+LogisticCurveNodeModel
+LogisticCurveNodeModel";
+            set { } }
 
         [SerializeField, HideInInspector]
         float m_Stepness = 1;

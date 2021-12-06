@@ -46,16 +46,11 @@ namespace SerV112.UtilityAIEditor
                 yield return new ModelPropertyField<string>(
                     m_OwnerElement.CommandDispatcher,
                     bakeNodeModel,
-                    nameof(StateGroupNodeModel.ActionGroupName),
+                    nameof(StateGroupNodeModel.Name),
                     StateGroupNodeModel.InspectorLabelNameText,
-                    typeof(SetStateGroupNameCommand));
+                    typeof(SetStateNameCommand));
 
-                yield return new ModelPropertyField<string>(
-                    m_OwnerElement.CommandDispatcher,
-                    bakeNodeModel,
-                    nameof(StateGroupNodeModel.FileNamespace),
-                    StateGroupNodeModel.InspectorLabelNamespaceText,
-                    typeof(SetNamespaceNameCommand));
+               
 
             }
         }

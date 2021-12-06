@@ -28,12 +28,6 @@ namespace SerV112.UtilityAIEditor
         protected override void BuildPartList()
         {
             base.BuildPartList();
-
-            bool? collapsed = (NodeModel as ICollapsible)?.Collapsed;
-
-          
-            PartList.InsertPartAfter(titleIconContainerPartName, StateGroupNamePart.Create(paramContainerPartName, Model, this, ussClassName, collapsed));
-
             
         }
         protected override void PostBuildUI()
@@ -70,15 +64,15 @@ namespace SerV112.UtilityAIEditor
 
             
 
-            evt.menu.AppendAction("Input/Add Vertical Port", action =>
-            {
-                CommandDispatcher.Dispatch(new AddPortNodeCommand<StateGroupNodeModel>(PortDirection.Input, PortOrientation.Vertical, verticalNodeModel));
-            });
+            //evt.menu.AppendAction("Input/Add Vertical Port", action =>
+            //{
+            //    CommandDispatcher.Dispatch(new AddPortNodeCommand<StateGroupNodeModel>(PortDirection.Input, PortOrientation.Vertical, verticalNodeModel));
+            //});
 
-            evt.menu.AppendAction("Input/Remove Vertical Port", action =>
-            {
-                CommandDispatcher.Dispatch(new RemovePortNodeCommand<StateGroupNodeModel>(PortDirection.Input, PortOrientation.Vertical, verticalNodeModel));
-            }, a => verticalNodeModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+            //evt.menu.AppendAction("Input/Remove Vertical Port", action =>
+            //{
+            //    CommandDispatcher.Dispatch(new RemovePortNodeCommand<StateGroupNodeModel>(PortDirection.Input, PortOrientation.Vertical, verticalNodeModel));
+            //}, a => verticalNodeModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
         }
     }

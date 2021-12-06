@@ -10,22 +10,20 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "StateGroup")]
-    public class StateGroupNodeModel : NodeModel, IExtendableInputPortNode
+    public class StateGroupNodeModel : NodeModel, INameable
     {
 
-
         [SerializeField, HideInInspector]
-        int m_VerticalInputCount = 2;
+        int m_VerticalInputCount = 1;
 
         [SerializeField, HideInInspector]
         string m_ActionGroupName = "Default Name";
 
-        [SerializeField, HideInInspector]
-        string m_FileNamespace = "";
+        public override string Title { get => base.Title + " (StateGroup)"; set => base.Title = value; }
+
         public int VerticalInputCount => m_VerticalInputCount;
 
-        public string FileNamespace { get => m_FileNamespace; set => m_FileNamespace = value; }
-        public string ActionGroupName { get => m_ActionGroupName; set => m_ActionGroupName = value; }
+        public string Name { get => m_ActionGroupName; set => m_ActionGroupName = value; }
 
         public const string InspectorLabelNameText = "Name";
         public const string InspectorLabelNamespaceText = "Namespace";
@@ -33,28 +31,33 @@ namespace SerV112.UtilityAIEditor
         {
             base.OnDefineNode();
 
-
-            Title = "Actions Group";
+           
 
             for (var i = 0; i < m_VerticalInputCount; i++)
                 this.AddExecutionInputPort("Action " + (i + 1), orientation: PortOrientation.Vertical);
 
+            var port = AddInputPort("Namespace", PortType.Data, AIStencil.Namespace, options: PortModelOptions.Default);
         }
 
-        public void AddPort(PortOrientation orientation, PortDirection direction)
+        public override void OnConnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
         {
+            if (selfConnectedPortModel.DataTypeHandle == TypeHandle.ExecutionFlow)
+            {
+                m_VerticalInputCount++;
 
-            m_VerticalInputCount++;
-
-            DefineNode();
+                DefineNode();
+            }
         }
 
-        public void RemovePort(PortOrientation orientation, PortDirection direction)
+        /// <inheritdoc />
+        public override void OnDisconnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
         {
+            if (selfConnectedPortModel.DataTypeHandle == TypeHandle.ExecutionFlow)
+            {
+                m_VerticalInputCount--;
 
-            m_VerticalInputCount--;
-
-            DefineNode();
+                DefineNode();
+            }
         }
 
         //public override void OnConnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
@@ -79,5 +82,7 @@ namespace SerV112.UtilityAIEditor
             PortCapacity cap = PortCapacity.Single;
             return cap;//Stencil?.GetPortCapacity(portModel, out cap) ?? false ? cap : portModel?.GetDefaultCapacity() ?? PortCapacity.Multi;
         }
+
+
     }
 }

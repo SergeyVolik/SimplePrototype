@@ -21,8 +21,7 @@ namespace SerV112.UtilityAIEditor
         {
 
             generateVisualContent += OnGenerateVisualContent;
-            style.width = 200;
-            style.height = 200;
+            
             m_StartX = startX;
             m_StartY = endX;
         }
@@ -30,11 +29,11 @@ namespace SerV112.UtilityAIEditor
         void OnGenerateVisualContent(MeshGenerationContext mgc)
         {
 
-            Rect r = contentRect;
+            Rect r = parent.contentRect;
             if (r.width < 0.01f || r.height < 0.01f)
                 return; // Skip rendering when too small.
 
-            VisualElementMeshUtils.CreateCurveMesh(r, 0.5f, Curve, mgc, 200, m_StartX, m_StartY);
+            VisualElementMeshUtils.CreateCurveMesh(r, 0.5f, Curve, mgc, 200);
         }
     }
 }

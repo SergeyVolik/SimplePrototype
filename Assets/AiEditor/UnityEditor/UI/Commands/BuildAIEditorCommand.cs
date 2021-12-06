@@ -82,20 +82,14 @@ namespace SerV112.UtilityAIEditor
 
             var @namespace = "MyNamespace";
             var compName = "Struct1";
-;
+            var enumName = "Enum1";
+            var authComp = "Authoring" + compName;
+            var namesOfClasses = new string[] { compName, enumName, authComp };
 
             var pathWithRes = string.Join("/", path, "Resources");
             var pathWithScripts = string.Join("/", path, "_CodeGen");
 
-            if (AssetDatabase.IsValidFolder(pathWithScripts))
-            {
-                var fileName = compName;
-
-                if (!DirectoryUtils.FileExisted(pathWithScripts, fileName) && AssemblyUtils.CheckIfTypeNameExisted(compName, @namespace))
-                {
-                    throw new Exception($"{compName}.gen.cs didn't create that's because a similar class located out from {pathWithScripts} folder ");
-                }
-            }
+            CodeGenValidationUtils.Validate(namesOfClasses, pathWithScripts, @namespace);
 
             if (AssetDatabase.IsValidFolder(pathWithRes))
             {
@@ -138,23 +132,23 @@ namespace SerV112.UtilityAIEditor
                 Attributes = new List<string> { "Serializable" },
                 Using = new List<string>() { "System", "Unity.Mathematics", "Unity.Entities", "Unity.Collections" },
 
-                Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = "Enum1", Name = "Field1" } },
+                Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = enumName, Name = "Field1" } },
                 Interfaces = new List<string> { "IComponentData"},
                 Namespace = @namespace
             });
 
-            T4GenUtils.CreateEnum(pathWithScripts, "Enum1", new CreateEnumSettings("Enum1", new List<string> { "Idle","Run","Walk"}, @namespace));
+            T4GenUtils.CreateEnum(pathWithScripts, enumName, new CreateEnumSettings(enumName, new List<string> { "Idle","Run","Walk"}, @namespace));
 
-            T4GenUtils.CreateAuthoringComponent(pathWithScripts, "Authoring" + compName, new CreateAuthoringComponentSettings
+            T4GenUtils.CreateAuthoringComponent(pathWithScripts, authComp, new CreateAuthoringComponentSettings
             {
-                Name = "Authoring" + compName,
+                Name = authComp,
                 Namespace = @namespace,
                 RuntimeComponent = new CreateAuthoringComponentSettings.Component
                 {
                     Type = compName,
                     Fields = new List<CreateAuthoringComponentSettings.ComponentField> {
                               new CreateAuthoringComponentSettings.ComponentField{
-                                   Type = "Enum1",
+                                   Type = enumName,
                                     Name = "Field1"
                                }
 

@@ -25,7 +25,7 @@ namespace SerV112.UtilityAIEditor
             return ui;
         }
     }
-    class CosineNodeInspectorFields : FieldsInspector
+    class CosineNodeInspectorFields : CurveNodeInspectorFields<CosineCurveNodeModel>
     {
         public static CosineNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
         {
@@ -40,30 +40,36 @@ namespace SerV112.UtilityAIEditor
         CosineNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName) { }
 
-        protected override IEnumerable<BaseModelPropertyField> GetFields()
+        protected override void AddFields()
         {
+            base.AddFields();
+
             if (m_Model is CosineCurveNodeModel nodeModel)
             {
 
                 //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                    m_OwnerElement.CommandDispatcher,
                    nodeModel,
                    nameof(CosineCurveNodeModel.Steepness),
                    nameof(CosineCurveNodeModel.Steepness),
-                   typeof(SetStepnessCommand));
+                   typeof(SetStepnessCommand)));
 
                 //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
                     nameof(CosineCurveNodeModel.Offset),
                     nameof(CosineCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand));
+                    typeof(SetOffsetCommand)));
 
 
 
             }
+
+
+
         }
+
     }
 }

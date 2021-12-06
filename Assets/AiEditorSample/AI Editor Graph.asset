@@ -9,53 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32220e703ac83b44b3ecc40a9d8c7ec, type: 3}
+  m_Script: {fileID: 11500000, guid: b80fbf42a931b12409ecac9e2310a031, type: 3}
   m_Name: AI Editor Graph
   m_EditorClassIdentifier: 
   m_GraphModel:
     id: 0
+  Namespace: 
   references:
     version: 1
     00000000:
-      type: {class: AIGraphModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
-      data:
-        m_AssetModel: {fileID: 11400000}
-        m_GraphNodeModels: []
-        m_EdgeModels: []
-        m_BadgeModels: []
-        m_GraphEdgeModels: []
-        m_PolymorphicEdgeModels: []
-        m_StickyNoteModels: []
-        m_GraphStickyNoteModels: []
-        m_PlacematModels: []
-        m_GraphPlacematModels: []
-        m_GraphVariableModels:
-        - id: 1
-        m_GraphPortalModels: []
-        m_Name: 
-        m_StencilTypeName: SerV112.UtilityAIEditor.AIStencil, AIEditor, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-    00000001:
-      type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
-      data:
-        m_Guid:
-          m_Value0: 18204281920648178210
-          m_Value1: 16588622860812974221
-        m_AssetModel: {fileID: 11400000}
-        m_Color: {r: 0, g: 0, b: 0, a: 0}
-        m_HasUserColor: 0
-        m_Version: 1
-        m_Name: variable
-        m_DataType:
-          Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        m_IsExposed: 1
-        m_Tooltip: 
-        m_InitializationValue:
-          id: 2
-        m_Modifiers: 0
-        variableFlags: 0
-    00000002:
-      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
-      data:
-        m_Value: 0
+      type: {class: , ns: , asm: }

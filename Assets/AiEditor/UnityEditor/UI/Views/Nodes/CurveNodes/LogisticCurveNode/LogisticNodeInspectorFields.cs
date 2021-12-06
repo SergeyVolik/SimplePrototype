@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace SerV112.UtilityAIEditor
             return ui;
         }
     }
-    class LogisticNodeInspectorFields : FieldsInspector
+    class LogisticNodeInspectorFields : CurveNodeInspectorFields<LogisticCurveNodeModel>
     {
         public static LogisticNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
         {
@@ -40,29 +41,34 @@ namespace SerV112.UtilityAIEditor
         LogisticNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName) { }
 
-        protected override IEnumerable<BaseModelPropertyField> GetFields()
+        
+         protected override void AddFields()
         {
+            base.AddFields();
+
             if (m_Model is LogisticCurveNodeModel nodeModel)
             {
 
-
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                    m_OwnerElement.CommandDispatcher,
                    nodeModel,
                    nameof(LogisticCurveNodeModel.Steepness),
                    nameof(LogisticCurveNodeModel.Steepness),
-                   typeof(SetStepnessCommand));
+                   typeof(SetStepnessCommand)));
 
-                yield return new ModelPropertyField<float>(
+
+                Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
                     nameof(LogisticCurveNodeModel.Offset),
                     nameof(LogisticCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand));
+                    typeof(SetOffsetCommand)));
 
 
 
             }
+
         }
+        
     }
 }

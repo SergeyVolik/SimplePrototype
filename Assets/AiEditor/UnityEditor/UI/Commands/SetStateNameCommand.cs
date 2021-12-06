@@ -6,12 +6,12 @@ namespace SerV112.UtilityAIEditor
 {
    
 
-    public class SetStateNameCommand : ModelCommand<StateNodeModel, string>
+    public class SetStateNameCommand : ModelCommand<INameable, string>
     {
         const string k_UndoStringSingular = "Set Group Actions Node Name";
         const string k_UndoStringPlural = "Set Group Actions Nodes Names";
 
-        public SetStateNameCommand(string value, params StateNodeModel[] nodes)
+        public SetStateNameCommand(string value, params INameable[] nodes)
             : base(k_UndoStringSingular, k_UndoStringPlural, value, nodes)
         {
         }
@@ -25,7 +25,7 @@ namespace SerV112.UtilityAIEditor
                 foreach (var nodeModel in command.Models)
                 {
                     nodeModel.Name = command.Value;
-                    nodeModel.Title = command.Value + " (StateNode)";
+                    nodeModel.Title = command.Value;
                     graphUpdater.MarkChanged(nodeModel);
                 }
             }

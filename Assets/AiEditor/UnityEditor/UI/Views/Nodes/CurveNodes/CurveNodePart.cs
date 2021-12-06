@@ -27,17 +27,24 @@ namespace SerV112.UtilityAIEditor
         public CurveNodePart(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName)
         {
-
+            
         }
 
         protected virtual float StartX => 0f;
         protected virtual float EndX => 1f;
         protected override void BuildPartUI(VisualElement container)
         {
+
+
+
             if (!(m_Model is ICurveNodeModel))
                 return;
           
             PartContainer = new VisualElement { name = PartName };
+            PartContainer.style.maxHeight = new StyleLength(StyleKeyword.Auto);
+            PartContainer.style.maxWidth = new StyleLength(StyleKeyword.Auto);
+            PartContainer.style.width = 300;
+            PartContainer.style.height = 300;
             PartContainer.AddToClassList(ussClassName);
             PartContainer.AddToClassList(m_ParentClassName.WithUssElement(PartName));
 

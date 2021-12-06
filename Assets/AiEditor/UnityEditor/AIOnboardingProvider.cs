@@ -10,7 +10,7 @@ namespace SerV112.UtilityAIEditor
         public override VisualElement CreateOnboardingElements(CommandDispatcher store)
         {
             var template = new GraphTemplate<AIStencil>(AIStencil.graphName);
-            return AddNewGraphButton<AIGraphAssetModel2>(template);
+            return AddNewGraphButton<AIGraphAssetModel>(template);
         }
     }
 }

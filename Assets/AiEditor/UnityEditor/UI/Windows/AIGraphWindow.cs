@@ -17,7 +17,6 @@ namespace SerV112.UtilityAIEditor
         [MenuItem("GTF/Samples/AI Editor", false)]
         public static void ShowAIGraphWindow()
         {
-            Debug.Log("ShowRecipeGraphWindow");
             FindOrCreateGraphWindow<AIGraphWindow>();
         }
 
@@ -50,7 +49,7 @@ namespace SerV112.UtilityAIEditor
         /// <inheritdoc />
         protected override bool CanHandleAssetType(IGraphAssetModel asset)
         {
-            return asset is AIGraphAssetModel2;
+            return asset is AIGraphAssetModel;
         }
         protected override MainToolbar CreateMainToolbar()
         {

@@ -25,7 +25,7 @@ namespace SerV112.UtilityAIEditor
             return ui;
         }
     }
-    class LogitNodeInspectorFields : FieldsInspector
+    class LogitNodeInspectorFields : CurveNodeInspectorFields<LogitCurveNodeModel>
     {
         public static LogitNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
         {
@@ -40,23 +40,24 @@ namespace SerV112.UtilityAIEditor
         LogitNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName) { }
 
-        protected override IEnumerable<BaseModelPropertyField> GetFields()
+
+        protected override void AddFields()
         {
+            base.AddFields();
+
             if (m_Model is LogitCurveNodeModel nodeModel)
             {
-             
 
-                //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
                     nameof(LogitCurveNodeModel.LogBase),
                     nameof(LogitCurveNodeModel.LogBase),
-                    typeof(SetLogBaseCommand));
+                    typeof(SetLogBaseCommand)));
 
 
+            }    
 
-            }
         }
     }
 }

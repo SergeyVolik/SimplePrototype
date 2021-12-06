@@ -22,16 +22,6 @@ namespace SerV112.UtilityAIEditor
             if (!(dispatcher is CommandDispatcher commandDispatcher))
                 return;
 
-
-            commandDispatcher.RegisterCommandHandler<AddPortNodeCommand<StateGroupNodeModel>>(AddPortNodeCommand<StateGroupNodeModel>.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand<StateGroupNodeModel>>(RemovePortNodeCommand<StateGroupNodeModel>.DefaultHandler);
-
-            commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand<ScoreSumNodeModel>>(RemovePortNodeCommand<ScoreSumNodeModel>.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<AddPortNodeCommand<ScoreSumNodeModel>>(AddPortNodeCommand<ScoreSumNodeModel>.DefaultHandler);
-
-            commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand<StateGroupNodeModel>>(RemovePortNodeCommand<StateGroupNodeModel>.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<SetStateGroupNameCommand>(SetStateGroupNameCommand.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<BuildAIEditorCommand>(BuildAIEditorCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetNamespaceNameCommand>(SetNamespaceNameCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetStateNameCommand>(SetStateNameCommand.DefaultHandler);
 
@@ -41,6 +31,9 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<SetStepnessCommand>(SetStepnessCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetExponentCommand>(SetExponentCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetLogBaseCommand>(SetLogBaseCommand.DefaultHandler);
+
+            commandDispatcher.RegisterCommandHandler<SetNormalizeMaxValueCommand>(SetNormalizeMaxValueCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetNormalizeMinValueCommand>(SetNormalizeMinValueCommand.DefaultHandler);
 
         }
     }

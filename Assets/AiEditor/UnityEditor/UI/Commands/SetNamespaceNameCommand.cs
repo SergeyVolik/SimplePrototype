@@ -6,12 +6,12 @@ namespace SerV112.UtilityAIEditor
 {
    
 
-    public class SetNamespaceNameCommand : ModelCommand<StateGroupNodeModel, string>
+    public class SetNamespaceNameCommand : ModelCommand<INamespaceField, string>
     {
         const string k_UndoStringSingular = "Set Group Actions Node Name";
         const string k_UndoStringPlural = "Set Group Actions Nodes Names";
 
-        public SetNamespaceNameCommand(string value, params StateGroupNodeModel[] nodes)
+        public SetNamespaceNameCommand(string value, params INamespaceField[] nodes)
             : base(k_UndoStringSingular, k_UndoStringPlural, value, nodes)
         {
         }
@@ -24,7 +24,7 @@ namespace SerV112.UtilityAIEditor
             {
                 foreach (var nodeModel in command.Models)
                 {
-                    nodeModel.FileNamespace = command.Value;
+                    nodeModel.Namespace = command.Value;
                     graphUpdater.MarkChanged(nodeModel);
                 }
             }

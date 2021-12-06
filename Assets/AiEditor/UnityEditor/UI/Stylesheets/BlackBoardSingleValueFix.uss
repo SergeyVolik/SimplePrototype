@@ -1,0 +1,4 @@
+.fix-black-board-single-field {
+	flex-grow: 1;
+}
+

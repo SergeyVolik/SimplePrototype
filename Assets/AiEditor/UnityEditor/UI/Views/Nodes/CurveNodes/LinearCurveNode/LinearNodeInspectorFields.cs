@@ -25,7 +25,7 @@ namespace SerV112.UtilityAIEditor
             return ui;
         }
     }
-    class LinearNodeInspectorFields : FieldsInspector
+    class LinearNodeInspectorFields : CurveNodeInspectorFields<LinearCurveNodeModel>
     {
         public static LinearNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
         {
@@ -40,30 +40,31 @@ namespace SerV112.UtilityAIEditor
         LinearNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName) { }
 
-        protected override IEnumerable<BaseModelPropertyField> GetFields()
+
+        protected override void AddFields()
         {
+            base.AddFields();
+
             if (m_Model is LinearCurveNodeModel nodeModel)
             {
 
-                //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                    m_OwnerElement.CommandDispatcher,
                    nodeModel,
                    nameof(LinearCurveNodeModel.Slope),
                    nameof(LinearCurveNodeModel.Slope),
-                   typeof(SetSlopeCommand));
+                   typeof(SetSlopeCommand)));
 
-                //TODO: add command for set value to model
-                yield return new ModelPropertyField<float>(
+                Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
                     nameof(LinearCurveNodeModel.Offset),
                     nameof(LinearCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand));
-
+                    typeof(SetOffsetCommand)));
 
 
             }
+
         }
     }
 }

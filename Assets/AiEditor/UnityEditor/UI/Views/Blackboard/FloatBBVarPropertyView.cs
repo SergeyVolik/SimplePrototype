@@ -6,15 +6,9 @@ using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
-    public class FloatBBVarPropertyView : BlackboardVariablePropertyView
+    public class FloatBBVarPropertyView : SingleFixBBVarPropertyView
     {
-        protected override void BuildRows()
-        {
-
-            //AddExposedToggle();
-            AddInitializationField();
-            AddTooltipField();
-        }
+       
 
     }
 
