@@ -12,7 +12,12 @@ namespace SerV112.UtilityAIEditor
 
     public class NamespaceStringBBVarPropertyView : SingleFixBBVarPropertyView
     {
-
+        public NamespaceStringBBVarPropertyView()
+        {
+            //m_ExposedToggle = false;
+            
+            ShowExposedCheckBox = false;
+        }
     }
 
     [GraphElementsExtensionMethodsCache(typeof(AIGraphView))]

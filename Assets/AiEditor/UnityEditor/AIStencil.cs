@@ -1,14 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEditor.GraphToolsFoundation.Overdrive.BasicModel;
+using UnityEditor.GraphToolsFoundation.Overdrive.Plugins.Debugging;
+using UnityEditor.GraphToolsFoundation.Searcher;
 using UnityEngine;
 using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
- 
+
     public class AIStencil : Stencil
     {
         public static string toolName = "AI Editor2";
@@ -33,7 +36,7 @@ namespace SerV112.UtilityAIEditor
             return TypeToConstantMapper.GetConstantNodeType(typeHandle);
         }
 
-       
+
         public override void PopulateBlackboardCreateMenu(string sectionName, GenericMenu menu, CommandDispatcher commandDispatcher)
         {
 
@@ -73,41 +76,44 @@ namespace SerV112.UtilityAIEditor
             return new GraphCodeGenProcessor();
         }
 
-       
-
-
-    }
-
-    class GraphCodeGenProcessor : IGraphProcessor
-    {
-        public GraphProcessingResult ProcessGraph(IGraphModel graphModel)
+        public override IEnumerable<IPluginHandler> GetGraphProcessingPluginHandlers(GraphProcessingOptions getGraphProcessingOptions)
         {
-            var res = new GraphProcessingResult();
-            //res.AddError("Error");
-            CheckDuplicatedNames(res, graphModel);
-            return res;
+            if (getGraphProcessingOptions.HasFlag(GraphProcessingOptions.Tracing))
+            {
+                if (m_DebugInstrumentationHandler == null)
+                    m_DebugInstrumentationHandler = new DebugInstrumentationHandler();
+
+                yield return m_DebugInstrumentationHandler;
+            }
+        }
+        public override void OnGraphProcessingStarted(IGraphModel graphModel)
+        {
+            Debug.Log("OnGraphProcessingStarted");
+        }
+        public override void OnGraphProcessingSucceeded(IGraphModel graphModel, GraphProcessingResult results)
+        {
+            Debug.Log("OnGraphProcessingSucceeded");
+        }
+        public override void OnGraphProcessingFailed(IGraphModel graphModel, GraphProcessingResult results)
+        {
+            Debug.Log("OnGraphProcessingFailed");
+        }
+        public override IEnumerable<INodeModel> GetEntryPoints()
+        {
+            return Enumerable.Empty<INodeModel>();
         }
 
-        private void CheckDuplicatedNames(GraphProcessingResult res, IGraphModel graphModel)
+        public override string GetNodeDocumentation(SearcherItem node, IGraphElementModel model) 
         {
-            
-            var stateNodeModels = graphModel.NodeModels
-                .OfType<StateNodeModel>()
-                .ToList();
-
-
-            for (int i = 0; i < stateNodeModels.Count; i++)
+            if (model is StateGroupNodeModel stateModel)
             {
-                for (int j = 0; j < stateNodeModels.Count; j++)
-                {
-                    if (i == j)
-                        continue;
-
-                    if (stateNodeModels[i].Name == stateNodeModels[j].Name)
-                        res.AddError($"a graph contains  two or more StateNodeModel with Name {stateNodeModels[i].Name}", stateNodeModels[i]);
-                }
+                return "It's a node for AI state";
             }
 
+            return null;
         }
+
     }
+
+    
 }

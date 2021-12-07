@@ -8,6 +8,9 @@ using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
+
+
+
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "StateGroup")]
     public class StateGroupNodeModel : NodeModel, INameable, IExtendableInputPortNode
@@ -17,13 +20,13 @@ namespace SerV112.UtilityAIEditor
         int m_VerticalInputCount = 1;
 
         [SerializeField, HideInInspector]
-        string m_ActionGroupName = "Default";
+        string m_EnumName = "Default";
 
-        public override string Title { get => base.Title + " (StateGroup)"; set => base.Title = value; }
+        public override string Title { get => base.Title; set => base.Title = m_EnumName + "(State)"; }
 
         public int VerticalInputCount => m_VerticalInputCount;
 
-        public string Name { get => m_ActionGroupName; set => m_ActionGroupName = value; }
+        public string Name { get => m_EnumName; set => m_EnumName = value; }
 
         public const string InspectorLabelNameText = "Name";
 
@@ -67,7 +70,8 @@ namespace SerV112.UtilityAIEditor
                 this.AddExecutionInputPort("Action " + (i + 1), orientation: PortOrientation.Vertical);
             }
 
-            AddInputPort("Namespace", PortType.Data, AIStencil.Namespace, options: PortModelOptions.Default);
+            //AddInputPort("Namespace", PortType.Data, AIStencil.Namespace, options: PortModelOptions.Default);
+            this.AddExecutionOutputPort("OutputToCodeGen", orientation: PortOrientation.Horizontal);
         }
 
         public override void OnConnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)

@@ -24,7 +24,9 @@ namespace SerV112.UtilityAIEditor
             {
                 foreach (var nodeModel in command.Models)
                 {
+                    nodeModel.Title = command.Value;
                     nodeModel.Namespace = command.Value;
+                    
                     graphUpdater.MarkChanged(nodeModel);
                 }
             }

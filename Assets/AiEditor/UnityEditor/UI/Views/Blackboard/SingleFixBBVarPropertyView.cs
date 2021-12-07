@@ -13,6 +13,8 @@ namespace SerV112.UtilityAIEditor
         private const string fieldClassName = "unity-base-field";
         private const string inputFieldName = "unity-text-input";
         private const string fixClassName = "fix-black-board-single-field";
+
+        protected bool ShowExposedCheckBox = true;
         protected override void PostBuildUI()
         {
             var stylesheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(AiEditorStylesPaths.BlackBoardSingleValueFix);
@@ -27,7 +29,7 @@ namespace SerV112.UtilityAIEditor
         protected override void BuildRows()
         {
 
-            //AddExposedToggle();
+           
             AddInitializationField();
 
             var TextField1 = this.SafeQ(className: fieldClassName);
@@ -45,6 +47,10 @@ namespace SerV112.UtilityAIEditor
             }
 
             AddTooltipField();
+            if (ShowExposedCheckBox)
+            {
+                AddExposedToggle();
+            }
         }
 
     }

@@ -20,7 +20,7 @@ namespace SerV112.UtilityAIEditor
         public bool HasError = false;
         public string Name { get => m_Name; set => m_Name = value; }
 
-        public override string Title { get => base.Title + " (State)"; set => base.Title = value; }
+        public override string Title { get => base.Title; set => base.Title = m_Name + "(State)"; }
         protected override void OnDefineNode()
         {
             if (!HasError)
@@ -35,6 +35,7 @@ namespace SerV112.UtilityAIEditor
 
             //AddOutputPort("Action", PortType.Execution, AIStencil.AIAction, orientation: PortOrientation.Vertical);
             this.AddExecutionOutputPort("Output", orientation: PortOrientation.Vertical);
+            
         }
 
         public override PortCapacity GetPortCapacity(IPortModel portModel)

@@ -3,7 +3,7 @@
 namespace SerV112.UtilityAIEditor
 {
 
-    public interface INamespaceField : IGraphElementModel
+    public interface INamespaceField : IGraphElementModel, IHasTitle
     {
         string Namespace { get; set; }
     }
