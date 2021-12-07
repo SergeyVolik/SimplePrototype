@@ -18,7 +18,8 @@ namespace SerV112.UtilityAIEditor
         public static readonly string graphName = "AI Editor Graph";
 
         public static TypeHandle Namespace { get; } = TypeHandleHelpers.GenerateTypeHandle(typeof(string));
-
+        public static TypeHandle NormalizedFloat { get; } = TypeHandleHelpers.GenerateTypeHandle(typeof(float));
+        public static TypeHandle AIAction { get; } = TypeHandleHelpers.GenerateCustomTypeHandle("AIAction");
         public override IToolbarProvider GetToolbarProvider()
         {
             return m_ToolbarProvider ??= new AIToolbarProvider();
@@ -67,6 +68,46 @@ namespace SerV112.UtilityAIEditor
 
         }
 
-      
+        public override IGraphProcessor CreateGraphProcessor()
+        {
+            return new GraphCodeGenProcessor();
+        }
+
+       
+
+
+    }
+
+    class GraphCodeGenProcessor : IGraphProcessor
+    {
+        public GraphProcessingResult ProcessGraph(IGraphModel graphModel)
+        {
+            var res = new GraphProcessingResult();
+            //res.AddError("Error");
+            CheckDuplicatedNames(res, graphModel);
+            return res;
+        }
+
+        private void CheckDuplicatedNames(GraphProcessingResult res, IGraphModel graphModel)
+        {
+            
+            var stateNodeModels = graphModel.NodeModels
+                .OfType<StateNodeModel>()
+                .ToList();
+
+
+            for (int i = 0; i < stateNodeModels.Count; i++)
+            {
+                for (int j = 0; j < stateNodeModels.Count; j++)
+                {
+                    if (i == j)
+                        continue;
+
+                    if (stateNodeModels[i].Name == stateNodeModels[j].Name)
+                        res.AddError($"a graph contains  two or more StateNodeModel with Name {stateNodeModels[i].Name}", stateNodeModels[i]);
+                }
+            }
+
+        }
     }
 }

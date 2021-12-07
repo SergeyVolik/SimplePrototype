@@ -18,4 +18,334 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: , ns: , asm: }
+      type: {class: AIGraphModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_AssetModel: {fileID: 11400000}
+        m_GraphNodeModels:
+        - id: 1
+        - id: 2
+        - id: 3
+        - id: 4
+        - id: 5
+        m_EdgeModels: []
+        m_BadgeModels: []
+        m_GraphEdgeModels:
+        - id: 6
+        m_PolymorphicEdgeModels: []
+        m_StickyNoteModels: []
+        m_GraphStickyNoteModels:
+        - id: 7
+        m_PlacematModels: []
+        m_GraphPlacematModels: []
+        m_GraphVariableModels:
+        - id: 8
+        - id: 9
+        - id: 10
+        - id: 11
+        - id: 12
+        - id: 13
+        m_GraphPortalModels: []
+        m_Name: 
+        m_StencilTypeName: SerV112.UtilityAIEditor.AIStencil, AIEditor, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    00000001:
+      type: {class: StateGroupNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 10658023942573097994
+          m_Value1: 789139232134704905
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: 58, y: -651.99994}
+        m_Title: StateGroup
+        m_InputConstantsById:
+          m_KeyList:
+          - Namespace
+          m_ValueList:
+          - id: 14
+        m_State: 0
+        m_Collapsed: 0
+        m_VerticalInputCount: 5
+        m_ActionGroupName: Default
+    00000002:
+      type: {class: AverageNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 7420176846806678102
+          m_Value1: 9196139126505915076
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -337.00003, y: -1078}
+        m_Title: Average
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ScoreInputCount: 2
+    00000003:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5682590945027303494
+          m_Value1: 14315910633812363662
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -513.2168, y: -1192.6066}
+        m_Title: Speed
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 10
+    00000004:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 10491523817378495582
+          m_Value1: 7120593879060105150
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 1, g: 0, b: 0, a: 1}
+        m_HasUserColor: 1
+        m_Version: 1
+        m_Position: {x: -105.94998, y: -1122.3999}
+        m_Title: State1
+        m_InputConstantsById:
+          m_KeyList:
+          - Input
+          m_ValueList:
+          - id: 15
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: State1
+        HasError: 0
+    00000005:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 4434650510198599756
+          m_Value1: 14156727466758694997
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 1, g: 0, b: 0, a: 1}
+        m_HasUserColor: 1
+        m_Version: 1
+        m_Position: {x: 210.25003, y: -1021}
+        m_Title: State1
+        m_InputConstantsById:
+          m_KeyList:
+          - Input
+          m_ValueList:
+          - id: 16
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: State1
+        HasError: 0
+    00000006:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 7843702649552427517
+          m_Value1: 8004987678329792817
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5682590945027303494
+            m_Value1: 14315910633812363662
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 7420176846806678102
+            m_Value1: 9196139126505915076
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000007:
+      type: {class: StickyNoteModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 9917139134464431148
+          m_Value1: 3557887383328447111
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Title: 
+        m_Contents: 
+        m_ThemeName: Classic
+        m_TextSizeName: Small
+        m_Position:
+          serializedVersion: 2
+          x: 30.000015
+          y: -1391
+          width: 200
+          height: 160
+    00000008:
+      type: {class: NamespaceVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 6411581114915770987
+          m_Value1: 8177125591727974574
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: namespace
+        m_DataType:
+          Identification: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 17
+        m_Modifiers: 0
+        variableFlags: 0
+    00000009:
+      type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 16064544081591144186
+          m_Value1: 1692193806005245887
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Health
+        m_DataType:
+          Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 18
+        m_Modifiers: 0
+        variableFlags: 0
+    0000000A:
+      type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 10854513954842234435
+          m_Value1: 2197956360769210169
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Speed
+        m_DataType:
+          Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 19
+        m_Modifiers: 0
+        variableFlags: 0
+    0000000B:
+      type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 16796324668603633750
+          m_Value1: 17770640823428672013
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Damage
+        m_DataType:
+          Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 20
+        m_Modifiers: 0
+        variableFlags: 0
+    0000000C:
+      type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 2330301797025242044
+          m_Value1: 5419235324914769152
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Ammo
+        m_DataType:
+          Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 21
+        m_Modifiers: 0
+        variableFlags: 0
+    0000000D:
+      type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
+      data:
+        m_Guid:
+          m_Value0: 16128240928059484018
+          m_Value1: 14541296723270486681
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Weapon
+        m_DataType:
+          Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 22
+        m_Modifiers: 0
+        variableFlags: 0
+    0000000E:
+      type: {class: StringConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 
+    0000000F:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000010:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000011:
+      type: {class: StringConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 
+    00000012:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000013:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000014:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000015:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000016:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0

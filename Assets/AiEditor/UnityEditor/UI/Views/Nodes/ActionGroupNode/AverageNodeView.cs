@@ -36,17 +36,17 @@ namespace SerV112.UtilityAIEditor
             if (evt.menu.MenuItems().Count > 0)
                 evt.menu.AppendSeparator();
 
-            
 
-            //evt.menu.AppendAction("Input/Add Port", action =>
-            //{
-            //    CommandDispatcher.Dispatch(new AddPortNodeCommand<ScoreSumNodeModel>(PortDirection.Input, PortOrientation.Vertical, verticalNodeModel));
-            //});
 
-            //evt.menu.AppendAction("Input/Remove Port", action =>
-            //{
-            //    CommandDispatcher.Dispatch(new RemovePortNodeCommand<ScoreSumNodeModel>(PortDirection.Input, PortOrientation.Vertical, verticalNodeModel));
-            //}, a => verticalNodeModel.ScoreInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+            evt.menu.AppendAction("Input/Add Port", action =>
+            {
+                CommandDispatcher.Dispatch(new AddPortNodeCommand(verticalNodeModel));
+            });
+
+            evt.menu.AppendAction("Input/Remove Port", action =>
+            {
+                CommandDispatcher.Dispatch(new RemovePortNodeCommand(verticalNodeModel));
+            }, a => verticalNodeModel.ScoreInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
         }
     }

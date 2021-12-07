@@ -11,6 +11,7 @@ using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEngine;
 using UnityEngine.GraphToolsFoundation.CommandStateObserver;
+using UnityEngine.GraphToolsFoundation.Overdrive;
 using UnityEngine.SceneManagement;
 
 namespace SerV112.UtilityAIEditor
@@ -109,57 +110,71 @@ namespace SerV112.UtilityAIEditor
             AssetDatabase.CreateFolder(path, "_CodeGen");
 
 
-            T4GenUtils.CreateComputeShader(pathWithRes, "ComputeShader", new CreateComputeShaderSettings(32));
 
 
-            //var externalVariables = graphToolState.WindowState.AssetModel.GraphModel.VariableDeclarations;
+            var externalVariables = graphToolState.WindowState.AssetModel.GraphModel.VariableDeclarations;
 
-            //for (int i = 0; i < externalVariables.Count; i++)
-            //{
-            //    var variable = externalVariables[i];
-            //    var strcutName = variable.GetVariableName();
+            for (int i = 0; i < externalVariables.Count; i++)
+            {
+                if (externalVariables[i].DataType == TypeHandle.Float)
+                {
 
+                    var variable = externalVariables[i];
+                    var strcutName = variable.GetVariableName();
+                    Debug.Log(strcutName);
 
-            //}
+                    T4GenUtils.CreateStruct(pathWithScripts, strcutName, new CreateStructSettings
+                    {
+                        StructName = strcutName,
+                        Attributes = new List<string> { "Serializable", "GenerateAuthoringComponent" },
+                        Using = new List<string>() { "Unity.Entities", "System" },
+
+                        Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = "float", Name = "Value" } },
+                        Interfaces = new List<string> { "IComponentData" },
+                        Namespace = ""
+                    });
+                }
+
+            }
 
 
 
           
 
-            T4GenUtils.CreateStruct(pathWithScripts, compName, new CreateStructSettings
-            {
-                StructName = compName,
-                Attributes = new List<string> { "Serializable" },
-                Using = new List<string>() { "System", "Unity.Mathematics", "Unity.Entities", "Unity.Collections" },
+            //T4GenUtils.CreateStruct(pathWithScripts, compName, new CreateStructSettings
+            //{
+            //    StructName = compName,
+            //    Attributes = new List<string> { "Serializable" },
+            //    Using = new List<string>() { "System", "Unity.Mathematics", "Unity.Entities", "Unity.Collections" },
 
-                Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = enumName, Name = "Field1" } },
-                Interfaces = new List<string> { "IComponentData"},
-                Namespace = @namespace
-            });
+            //    Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = enumName, Name = "Field1" } },
+            //    Interfaces = new List<string> { "IComponentData"},
+            //    Namespace = @namespace
+            //});
 
-            T4GenUtils.CreateEnum(pathWithScripts, enumName, new CreateEnumSettings(enumName, new List<string> { "Idle","Run","Walk"}, @namespace));
+            //T4GenUtils.CreateEnum(pathWithScripts, enumName, new CreateEnumSettings(enumName, new List<string> { "Idle","Run","Walk"}, @namespace));
 
-            T4GenUtils.CreateAuthoringComponent(pathWithScripts, authComp, new CreateAuthoringComponentSettings
-            {
-                Name = authComp,
-                Namespace = @namespace,
-                RuntimeComponent = new CreateAuthoringComponentSettings.Component
-                {
-                    Type = compName,
-                    Fields = new List<CreateAuthoringComponentSettings.ComponentField> {
-                              new CreateAuthoringComponentSettings.ComponentField{
-                                   Type = enumName,
-                                    Name = "Field1"
-                               }
+            //T4GenUtils.CreateAuthoringComponent(pathWithScripts, authComp, new CreateAuthoringComponentSettings
+            //{
+            //    Name = authComp,
+            //    Namespace = @namespace,
+            //    RuntimeComponent = new CreateAuthoringComponentSettings.Component
+            //    {
+            //        Type = compName,
+            //        Fields = new List<CreateAuthoringComponentSettings.ComponentField> {
+            //                  new CreateAuthoringComponentSettings.ComponentField{
+            //                       Type = enumName,
+            //                        Name = "Field1"
+            //                   }
 
-                         }
+            //             }
 
-                },
-                Using = new List<string>()
+            //    },
+            //    Using = new List<string>()
                 
 
 
-            });
+            //});
 
             AssetDatabase.Refresh();
 

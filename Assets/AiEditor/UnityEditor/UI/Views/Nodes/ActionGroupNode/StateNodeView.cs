@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEngine;
@@ -22,7 +23,13 @@ namespace SerV112.UtilityAIEditor
     }
     class StateNodeView : CollapsibleInOutNode
     {
-       
+        protected override void UpdateElementFromModel()
+        {
+            base.UpdateElementFromModel();
+   
+            
+
+        }
     }
 
 

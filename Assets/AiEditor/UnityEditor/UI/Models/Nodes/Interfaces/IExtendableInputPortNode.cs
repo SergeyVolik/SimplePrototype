@@ -1,11 +1,12 @@
-﻿using UnityEditor.GraphToolsFoundation.Overdrive;
+﻿using System.Collections.Generic;
+using UnityEditor.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
-    public interface IExtendableInputPortNode
+    public interface IExtendableInputPortNode : INodeModel
     {
-        void RemovePort(PortOrientation orientation, PortDirection direction);
-        void AddPort(PortOrientation orientation, PortDirection direction);
+        IEnumerable<IGraphElementModel> RemovePort();
+        void AddPort();
     }
 
 }

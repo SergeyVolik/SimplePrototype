@@ -22,6 +22,8 @@ namespace SerV112.UtilityAIEditor
             if (!(dispatcher is CommandDispatcher commandDispatcher))
                 return;
 
+            commandDispatcher.RegisterCommandHandler<BuildAIEditorCommand>(BuildAIEditorCommand.DefaultHandler);
+
             commandDispatcher.RegisterCommandHandler<SetNamespaceNameCommand>(SetNamespaceNameCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetStateNameCommand>(SetStateNameCommand.DefaultHandler);
 
@@ -35,6 +37,8 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<SetNormalizeMaxValueCommand>(SetNormalizeMaxValueCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetNormalizeMinValueCommand>(SetNormalizeMinValueCommand.DefaultHandler);
 
+            commandDispatcher.RegisterCommandHandler<AddPortNodeCommand>(AddPortNodeCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand>(RemovePortNodeCommand.DefaultHandler);
         }
     }
 

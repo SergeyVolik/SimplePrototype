@@ -1,27 +1,27 @@
 ﻿using System.Linq;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEditor.GraphToolsFoundation.Overdrive.BasicModel;
+using UnityEngine;
 using UnityEngine.GraphToolsFoundation.CommandStateObserver;
 
 namespace SerV112.UtilityAIEditor
 {
-    class RemovePortNodeCommand<T> : ModelCommand<T> where T : NodeModel, IExtendableInputPortNode
+    class RemovePortNodeCommand : ModelCommand<IExtendableInputPortNode>
     {
         const string k_UndoStringSingular = "Remove Port";
 
         readonly PortDirection m_PortDirection;
         readonly PortOrientation m_PortOrientation;
 
-        public RemovePortNodeCommand(PortDirection direction, PortOrientation orientation, params T[] nodes)
+        public RemovePortNodeCommand(params IExtendableInputPortNode[] nodes)
             : base(k_UndoStringSingular, k_UndoStringSingular, nodes)
         {
-            m_PortDirection = direction;
-            m_PortOrientation = orientation;
+
         }
 
-        public static void DefaultHandler(GraphToolState state, RemovePortNodeCommand<T> command)
+        public static void DefaultHandler(GraphToolState state, RemovePortNodeCommand command)
         {
-            if (!command.Models.Any() || command.m_PortDirection == PortDirection.None)
+            if (!command.Models.Any())
                 return;
 
             state.PushUndo(command);
@@ -29,8 +29,15 @@ namespace SerV112.UtilityAIEditor
             using (var updater = state.GraphViewState.UpdateScope)
             {
                 foreach (var nodeModel in command.Models)
-                    nodeModel.RemovePort(command.m_PortOrientation, command.m_PortDirection);
+                {
 
+                    //state.GraphViewState.GraphModel.DeleteEdges(nodeModel.GetConnectedEdges().ToList());
+                    var eges = nodeModel.RemovePort();
+                    
+                    var deletedModels = state.GraphViewState.GraphModel.DeleteElements(eges.ToList()).ToList();
+                    
+                    updater.MarkDeleted(deletedModels);
+                }
                 updater.MarkChanged(command.Models);
             }
         }
