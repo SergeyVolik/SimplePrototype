@@ -10,7 +10,7 @@ namespace Namespace
 {
 	[Serializable]
 	[GenerateAuthoringComponent]	
-	public struct  Damage  : IComponentData
+	public struct  HeroSpeed  : IComponentData
 	{
 
 		public float Value;

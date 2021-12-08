@@ -68,6 +68,7 @@ namespace SerV112.UtilityAIEditor
 
             MenuToggle("TestBoolPref1", AIBoolPref.TestBoolPref1);
             MenuToggle("TestBoolPref2", AIBoolPref.TestBoolPref2);
+            menu.AddItem(CreateTextContent("Open settings"), false, () => { AIToolSettingsWindow.Init(m_GraphView.GraphModel.AssetModel as AIGraphAssetModel); });
         }
     }
 }

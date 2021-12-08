@@ -20,7 +20,8 @@ namespace SerV112.UtilityAIEditor
         public bool HasError = false;
         public string Name { get => m_Name; set => m_Name = value; }
 
-        public override string Title { get => base.Title; set => base.Title = m_Name + "(State)"; }
+        public override string Title { get => base.Title; set => base.Title = m_Name + " (State)"; }
+        public override string DisplayTitle => Title;
         protected override void OnDefineNode()
         {
             if (!HasError)

@@ -11,6 +11,8 @@ namespace SerV112.UtilityAIEditor
 
     public class AIGraphAssetModel : GraphAssetModel
     {
+        [SerializeField]
+        public string Namespace;
 
         [MenuItem("Assets/Create/AIAsset")]
         public static void CreateGraph(MenuCommand menuCommand)

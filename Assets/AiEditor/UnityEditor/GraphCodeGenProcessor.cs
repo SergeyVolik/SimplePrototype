@@ -20,6 +20,7 @@ namespace SerV112.UtilityAIEditor
             Debug.Log("GraphCodeGenProcessor ProcessGraph");
             CheckDuplicatedNames(res, graphModel);
             ValidateNames(res, graphModel);
+            CheckExistedFilesWithNodesNames(res, graphModel);
             return res;
         }
 
@@ -27,6 +28,25 @@ namespace SerV112.UtilityAIEditor
         {
             ValidateVariablesNames(res, graphModel);
             ValidateOuterVariablesNames(res, graphModel);
+        }
+
+        private void CheckExistedFilesWithNodesNames(GraphProcessingResult res, IGraphModel graphModel)
+        {
+            var asset = graphModel.AssetModel as AIGraphAssetModel;
+
+            var path = asset.GetDirectoryName();
+            var @namespace = asset.Namespace;
+
+            var namesOfClasses = new List<string>();
+
+            graphModel.VariableDeclarations.ToList().ForEach(e =>
+            {
+                namesOfClasses.Add(e.Title);
+            });
+
+            var pathWithScripts = string.Join("/", path, "_CodeGen");
+
+            CodeGenValidationUtils.Validate(namesOfClasses.ToArray(), pathWithScripts, @namespace, res);
         }
         private void ValidateVariablesNames(GraphProcessingResult res, IGraphModel graphModel)
         {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Unity.Entities;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
+using UnityEditor.GraphToolsFoundation.Overdrive.BasicModel;
 using UnityEngine;
 using UnityEngine.GraphToolsFoundation.CommandStateObserver;
 using UnityEngine.GraphToolsFoundation.Overdrive;
@@ -40,7 +41,7 @@ namespace SerV112.UtilityAIEditor
         public static void DefaultHandler(GraphToolState graphToolState, BuildAIEditorCommand command)
         {
             //var graphModel = graphToolState.WindowState.AssetModel.GraphModel;
-            var path = graphToolState.WindowState.AssetModel.GetDirectoryName();
+
 
             //var actionGroup = graphModel.NodeModels.OfType<StateGroupNodeModel>().ToList();
             //List<string> fullPaths = new List<string>();
@@ -80,7 +81,7 @@ namespace SerV112.UtilityAIEditor
 
             //    fullPaths.Add(T4GenUtils.CreateEnum(path, enumName, enumSettings));
             //}
-
+            var path = graphToolState.WindowState.AssetModel.GetDirectoryName();
             var @namespace = "MyNamespace";
             var compName = "Struct1";
             var enumName = "Enum1";
@@ -90,7 +91,6 @@ namespace SerV112.UtilityAIEditor
             var pathWithRes = string.Join("/", path, "Resources");
             var pathWithScripts = string.Join("/", path, "_CodeGen");
 
-            CodeGenValidationUtils.Validate(namesOfClasses, pathWithScripts, @namespace);
 
             if (AssetDatabase.IsValidFolder(pathWithRes))
             {
@@ -109,37 +109,34 @@ namespace SerV112.UtilityAIEditor
 
             AssetDatabase.CreateFolder(path, "_CodeGen");
 
+            var Namespace = ((AIGraphAssetModel)graphToolState.WindowState.AssetModel).Namespace;
+            var varibales = graphToolState.WindowState.AssetModel.GraphModel.VariableDeclarations.ToList();
 
-
-
-            var externalVariables = graphToolState.WindowState.AssetModel.GraphModel.VariableDeclarations;
-
-            for (int i = 0; i < externalVariables.Count; i++)
+            varibales.ForEach(e =>
             {
-                if (externalVariables[i].DataType == TypeHandle.Float)
-                {
-
-                    var variable = externalVariables[i];
-                    var strcutName = variable.GetVariableName();
-                    Debug.Log(strcutName);
-
-                    T4GenUtils.CreateStruct(pathWithScripts, strcutName, new CreateStructSettings
-                    {
-                        StructName = strcutName,
-                        Attributes = new List<string> { "Serializable", "GenerateAuthoringComponent" },
-                        Using = new List<string>() { "Unity.Entities", "System" },
-
-                        Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = "float", Name = "Value" } },
-                        Interfaces = new List<string> { "IComponentData" },
-                        Namespace = ""
-                    });
-                }
-
-            }
+                CreateEcsComponent(pathWithScripts, e.Title, "float", Namespace);
+            });
 
 
+            //var genStartPoints = graphToolState.WindowState.AssetModel.GraphModel.NodeModels.OfType<CodeGenerationSettigsModel>().ToList();
 
-          
+
+            //for (int i = 0; i < genStartPoints.Count; i++)
+            //{
+            //    var ports = genStartPoints[i].GetPorts(direction: PortDirection.Input, portType: PortType.Execution).Where(e => e.GetConnectedEdges().Count() > 0).ToList();
+
+            //    for (int j = 0; j < ports.Count; j++)
+            //    {
+            //        var port = ports[j];
+
+            //        var node = port.GetConnectedEdges().FirstOrDefault()?.FromPort.NodeModel;
+
+            //    }
+            //}
+
+
+
+
 
             //T4GenUtils.CreateStruct(pathWithScripts, compName, new CreateStructSettings
             //{
@@ -171,7 +168,7 @@ namespace SerV112.UtilityAIEditor
 
             //    },
             //    Using = new List<string>()
-                
+
 
 
             //});
@@ -179,6 +176,20 @@ namespace SerV112.UtilityAIEditor
             AssetDatabase.Refresh();
 
 
+        }
+
+        static void CreateEcsComponent(string pathWithScripts, string name, string type, string @namespace = "")
+        {
+            T4GenUtils.CreateStruct(pathWithScripts, name, new CreateStructSettings
+            {
+                StructName = name,
+                Attributes = new List<string> { "Serializable", "GenerateAuthoringComponent" },
+                Using = new List<string>() { "Unity.Entities", "System" },
+
+                Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = type, Name = "Value" } },
+                Interfaces = new List<string> { "IComponentData" },
+                Namespace = @namespace
+            });
         }
     }
     public static class T4GenUtils
@@ -398,8 +409,13 @@ namespace SerV112.UtilityAIEditor
                     AttributsString.Append("[");
                     AttributsString.Append(Attributes[i]);
                     AttributsString.Append("]");
+
                     if (Attributes.Count - 1 > i)
                         AttributsString.Append(Environment.NewLine);
+                    if (!string.IsNullOrEmpty(Namespace))
+                    {
+                        AttributsString.Append("\t");
+                    }
                 }
                
             }

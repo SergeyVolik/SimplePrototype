@@ -54,19 +54,6 @@ namespace SerV112.UtilityAIEditor
                 });
             }
 
-            if (sectionName == AIBlackboardGraphModel.k_Sections[1])
-            {
-                menu.AddItem(new GUIContent("Namespaces"), false, () =>
-                {
-                    const string newItemName = "namespace";
-                    var finalName = newItemName;
-                    var i = 0;
-                    while (commandDispatcher.State.WindowState.GraphModel.VariableDeclarations.Any(v => v.Title == finalName))
-                        finalName = newItemName + i++;
-
-                    commandDispatcher.Dispatch(new CreateGraphVariableDeclarationCommand(finalName, true, AIStencil.Namespace, typeof(NamespaceVariableDeclarationModel)));
-                });
-            }
 
 
         }

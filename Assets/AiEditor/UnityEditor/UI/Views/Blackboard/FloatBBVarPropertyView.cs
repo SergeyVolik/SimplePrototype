@@ -9,7 +9,7 @@ namespace SerV112.UtilityAIEditor
     public class FloatBBVarPropertyView : SingleFixBBVarPropertyView
     {
        
-
+        
     }
 
     [GraphElementsExtensionMethodsCache(typeof(AIGraphView))]

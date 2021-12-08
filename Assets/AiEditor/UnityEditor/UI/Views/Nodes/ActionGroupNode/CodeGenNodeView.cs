@@ -30,6 +30,30 @@ namespace SerV112.UtilityAIEditor
             
 
         }
+
+        protected override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+        {
+            base.BuildContextualMenu(evt);
+
+            if (!(Model is CodeGenerationSettigsModel verticalNodeModel))
+                return;
+
+            if (evt.menu.MenuItems().Count > 0)
+                evt.menu.AppendSeparator();
+
+
+
+            evt.menu.AppendAction("Input/Add Vertical Port", action =>
+            {
+                CommandDispatcher.Dispatch(new AddPortNodeCommand(verticalNodeModel));
+            });
+
+            evt.menu.AppendAction("Input/Remove Vertical Port", action =>
+            {
+                CommandDispatcher.Dispatch(new RemovePortNodeCommand(verticalNodeModel));
+            }, a => verticalNodeModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+
+        }
     }
 
 

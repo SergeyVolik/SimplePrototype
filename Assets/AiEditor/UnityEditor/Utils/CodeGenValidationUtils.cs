@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
 
     public static class CodeGenValidationUtils
     {
-        public static void Validate(string[] namesOfClasses, string scriptGenFolderPath, string @namespace)
+        public static void Validate(string[] namesOfClasses, string scriptGenFolderPath, string @namespace, GraphProcessingResult res)
         {
             if (AssetDatabase.IsValidFolder(scriptGenFolderPath))
             {
@@ -19,12 +20,14 @@ namespace SerV112.UtilityAIEditor
 
                 for (int i = 0; i < namesOfClasses.Length; i++)
                 {
-                    var existed = DirectoryUtils.FileExisted(fileEntries, $"{namesOfClasses}.cs");
+                    var existed = DirectoryUtils.FileExisted(fileEntries, $"{namesOfClasses[i]}");
                     var typeExisted = AssemblyUtils.CheckIfTypeNameExisted(namesOfClasses[i], @namespace);
 
                     if (!existed && typeExisted)
                     {
-                        throw new Exception($"{namesOfClasses[i]}.gen.cs didn't create that's because a similar class located out from {scriptGenFolderPath} folder ");
+                        res.AddError($"{namesOfClasses[i]} class existed and located out from {scriptGenFolderPath} folder!");
+                     
+                        
                     }
 
                 }

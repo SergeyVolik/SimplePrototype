@@ -16,14 +16,13 @@ namespace SerV112.UtilityAIEditor
     public class StateGroupNodeModel : NodeModel, INameable, IExtendableInputPortNode
     {
 
-        [SerializeField, HideInInspector]
-        int m_VerticalInputCount = 1;
+       
 
         [SerializeField, HideInInspector]
         string m_EnumName = "Default";
 
-        public override string Title { get => base.Title; set => base.Title = m_EnumName + "(State)"; }
-
+        public override string Title { get => base.Title; set => base.Title = m_EnumName + " (StateGroup)"; }
+        public override string DisplayTitle => Title;
         public int VerticalInputCount => m_VerticalInputCount;
 
         public string Name { get => m_EnumName; set => m_EnumName = value; }
@@ -36,7 +35,8 @@ namespace SerV112.UtilityAIEditor
         //    return result;
         //}
 
-
+        [SerializeField, HideInInspector]
+        int m_VerticalInputCount = 1;
         public void AddPort()
         {
             m_VerticalInputCount++;
@@ -65,56 +65,13 @@ namespace SerV112.UtilityAIEditor
             base.OnDefineNode();
 
             for (var i = 0; i < m_VerticalInputCount; i++)
-            {
-                //AddInputPort("Action " + (i + 1), PortType.Execution, AIStencil.AIAction, options: PortModelOptions.Default, orientation: PortOrientation.Vertical);
+            {              
                 this.AddExecutionInputPort("Action " + (i + 1), orientation: PortOrientation.Vertical);
             }
 
-            //AddInputPort("Namespace", PortType.Data, AIStencil.Namespace, options: PortModelOptions.Default);
-            this.AddExecutionOutputPort("OutputToCodeGen", orientation: PortOrientation.Horizontal);
-        }
-
-        public override void OnConnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
-        {
-            //if (selfConnectedPortModel.DataTypeHandle == TypeHandle.ExecutionFlow)
-            //{
-            //    m_VerticalInputCount++;
-
-            //    DefineNode();
-            //}
-        }
-
-        /// <inheritdoc />
-        public override void OnDisconnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
-        {
-            //if (selfConnectedPortModel.DataTypeHandle == TypeHandle.ExecutionFlow)
-            //{
-            //    m_VerticalInputCount--;
-
-            //    DefineNode();
-            //    CommandDispatcher.Dispatch(new DisconnectNodeCommand(connectedNodes));
-
-
-            //}
 
         }
 
-        //public override void OnConnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
-        //{
-        //    if (selfConnectedPortModel.DataTypeHandle == TypeHandle.ExecutionFlow)
-        //    {
-        //        var edges = selfConnectedPortModel.GetConnectedEdges().ToList();
-        //        if(edges.Count > 0)
-        //            selfConnectedPortModel.GraphModel.DeleteEdges(edges.AsReadOnly());
-
-        //        Debug.Log($"ExecutionFlow connected {edges.Count}");
-        //    }
-        //}
-
-        ///// <inheritdoc />
-        //public override void OnDisconnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
-        //{
-        //}
 
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {

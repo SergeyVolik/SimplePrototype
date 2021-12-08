@@ -8,7 +8,7 @@ namespace SerV112.UtilityAIEditor
 {
     public class AIBlackboardGraphModel : BlackboardGraphModel
     {
-        internal static readonly string[] k_Sections = { /*"Ingredients", "Cookware",*/ "Out Variables", "Namespaces"  };
+        internal static readonly string[] k_Sections = { /*"Ingredients", "Cookware",*/ "Out Variables"  };
             
         /// <inheritdoc />
         public AIBlackboardGraphModel(IGraphAssetModel graphAssetModel)
@@ -30,17 +30,6 @@ namespace SerV112.UtilityAIEditor
 
         public override IEnumerable<IVariableDeclarationModel> GetSectionRows(string sectionName)
         {
-            //if (sectionName == k_Sections[0])
-            //{
-            //    return GraphModel?.VariableDeclarations?.Where(v => v.DataType == AIStencil.Ingredient) ??
-            //        Enumerable.Empty<IVariableDeclarationModel>();
-            //}
-
-            //if (sectionName == k_Sections[1])
-            //{
-            //    return GraphModel?.VariableDeclarations?.Where(v => v.DataType == AIStencil.Cookware) ??
-            //        Enumerable.Empty<IVariableDeclarationModel>();
-            //}
 
             if (sectionName == k_Sections[0])
             {
@@ -48,11 +37,6 @@ namespace SerV112.UtilityAIEditor
                     Enumerable.Empty<IVariableDeclarationModel>();
             }
 
-            if (sectionName == k_Sections[1])
-            {
-                return GraphModel?.VariableDeclarations?.Where(v => v.DataType == AIStencil.Namespace) ??
-                    Enumerable.Empty<IVariableDeclarationModel>();
-            }
 
             return Enumerable.Empty<IVariableDeclarationModel>();
         }

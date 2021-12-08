@@ -10,7 +10,7 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "CodeGen/CodeGenerationSettigs")]
-    public class CodeGenerationSettigsModel : NodeModel, INamespaceField
+    public class CodeGenerationSettigsModel : NodeModel, INamespaceField, IExtendableInputPortNode
     {
 
         [SerializeField, HideInInspector]
@@ -24,13 +24,40 @@ namespace SerV112.UtilityAIEditor
         {
             base.OnDefineNode();
 
+            for (int i = 0; i < m_VerticalInputCount; i++)
+            {
+                this.AddExecutionInputPort($"CodePart{i+1}", orientation: PortOrientation.Horizontal);
+            }
             
-            //var port = AddInputPort("Namespace", PortType.Data, AIStencil.Namespace, options: PortModelOptions.Default);
-
-            this.AddExecutionInputPort("CodePart1", orientation: PortOrientation.Horizontal);
 
         }
 
+        public int VerticalInputCount => m_VerticalInputCount;
+        [SerializeField, HideInInspector]
+        int m_VerticalInputCount = 1;
+        public void AddPort()
+        {
+            m_VerticalInputCount++;
+            DefineNode();
+
+        }
+        public IEnumerable<IGraphElementModel> RemovePort()
+        {
+            m_VerticalInputCount--;
+
+            var ports = Ports.Where(e => e.Direction == PortDirection.Input && e.DataTypeHandle == TypeHandle.ExecutionFlow).ToList();
+            IEnumerable<IGraphElementModel> edgesToRemove = null;
+
+            if (ports.Count > 0)
+            {
+                edgesToRemove = ports[ports.Count - 1].GetConnectedEdges().ToList();
+            }
+
+            DefineNode();
+
+            return edgesToRemove;
+
+        }
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {
             PortCapacity cap = PortCapacity.Single;

@@ -37,27 +37,6 @@ namespace SerV112.UtilityAIEditor
         }
 
 
-        //public override void OnConnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
-        //{
-        //    if (selfConnectedPortModel.DataTypeHandle == AIStencil.NormalizedFloat && selfConnectedPortModel.Direction == PortDirection.Input && m_ScoreInputCount == GetNumbderConectedPorts() + 1)
-        //    {
-        //        m_ScoreInputCount++;
-
-        //        DefineNode();
-        //    }
-        //}
-
-        ///// <inheritdoc />
-        //public override void OnDisconnection(IPortModel selfConnectedPortModel, IPortModel otherConnectedPortModel)
-        //{
-        //    if (selfConnectedPortModel.DataTypeHandle == AIStencil.NormalizedFloat && m_ScoreInputCount > 2 && selfConnectedPortModel.Direction == PortDirection.Input)
-        //    {
-        //        m_ScoreInputCount--;
-
-        //        DefineNode();
-        //    }
-        //}
-
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {
             PortCapacity cap = PortCapacity.Single;
