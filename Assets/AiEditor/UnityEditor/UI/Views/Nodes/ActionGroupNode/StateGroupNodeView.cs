@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEngine;
@@ -10,7 +12,6 @@ namespace SerV112.UtilityAIEditor
     /// It's a class for binding view and model of node with UGF reflection
     /// </summary>
     [GraphElementsExtensionMethodsCache(typeof(AIGraphView))]
-    
     public static class CreateStateGroupNodeWithUGFReflection
     {
         public static IModelUI CreateNode(this ElementBuilder elementBuilder, CommandDispatcher dispatcher, StateGroupNodeModel model)
@@ -41,12 +42,13 @@ namespace SerV112.UtilityAIEditor
             base.UpdateElementFromModel();
         }
 
-
+        private uint? lastGraphViewEpoch;
+        private uint? lastSettingsEpoch;
         protected override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
             base.BuildContextualMenu(evt);
 
-            if (!(Model is StateGroupNodeModel verticalNodeModel))
+            if (!(Model is StateGroupNodeModel stateGroupModel))
                 return;
 
             if (evt.menu.MenuItems().Count > 0)
@@ -56,13 +58,37 @@ namespace SerV112.UtilityAIEditor
 
             evt.menu.AppendAction("Input/Add Vertical Port", action =>
             {
-                CommandDispatcher.Dispatch(new AddPortNodeCommand(verticalNodeModel));
+                CommandDispatcher.Dispatch(new AddPortNodeCommand(stateGroupModel));
             });
 
             evt.menu.AppendAction("Input/Remove Vertical Port", action =>
             {
-                CommandDispatcher.Dispatch(new RemovePortNodeCommand(verticalNodeModel));
-            }, a => verticalNodeModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+                CommandDispatcher.Dispatch(new RemovePortNodeCommand(stateGroupModel));
+            }, a => stateGroupModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+
+            evt.menu.AppendAction("Show Code Preview", action =>
+            {
+                var state = CommandDispatcher?.State as AIState;
+                var model = stateGroupModel;
+                var path = string.Join("/", Application.temporaryCachePath, model.Name + ".gen.cs");
+
+                if (lastGraphViewEpoch != state.GraphViewState.CurrentVersion ||
+                   !File.Exists(path) ||
+                    lastSettingsEpoch != state.ToolSettingsState.CurrentVersion)
+                {
+                    lastGraphViewEpoch = state.GraphViewState.CurrentVersion;
+                    lastSettingsEpoch = state.ToolSettingsState.CurrentVersion;
+
+                    model.GenereteStateGroup(Application.temporaryCachePath);   
+                    
+                }
+
+                var text = File.ReadAllText(path, encoding: System.Text.Encoding.UTF8);
+                CodeViewWindow.ShowCode(text, model.Name);
+
+
+
+            }, a => CommandDispatcher?.State?.GraphProcessingState?.Errors.Count == 0 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
         }
     }

@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor.GraphToolsFoundation.Overdrive;
+using UnityEditor.GraphToolsFoundation.Overdrive.BasicModel;
 using UnityEngine;
 using UnityEngine.GraphToolsFoundation.Overdrive;
+
 
 namespace SerV112.UtilityAIEditor
 {
@@ -18,16 +20,55 @@ namespace SerV112.UtilityAIEditor
             var res = new GraphProcessingResult();
 
             Debug.Log("GraphCodeGenProcessor ProcessGraph");
+            ValidateErrors(res, graphModel);
+            ValidateWarnings(res, graphModel);
+            return res;
+        }
+
+        private void ValidateErrors(GraphProcessingResult res, IGraphModel graphModel)
+        {
             CheckDuplicatedNames(res, graphModel);
             ValidateNames(res, graphModel);
             CheckExistedFilesWithNodesNames(res, graphModel);
-            return res;
+            ValidateNamespace(res, graphModel);
+        }
+
+        private void ValidateWarnings(GraphProcessingResult res, IGraphModel graphMode)
+        {
+            //var nodes = graphMode.NodeModels.OfType<StateNodeModel>().ToList();
+
+            //nodes.ForEach(e =>
+            //{
+            //    var ports = e.GetPorts(PortDirection.Output, PortType.Execution).ToList();
+
+            //    ports.ForEach(p =>
+            //    {
+            //        if (p.GetConnectedEdges().Count() == 0)
+            //            res.AddWarning($"StateNodeModel {e.Name} without connetion!", e);
+
+            //    });
+            //});
         }
 
         private void ValidateNames(GraphProcessingResult res, IGraphModel graphModel)
         {
             ValidateVariablesNames(res, graphModel);
             ValidateOuterVariablesNames(res, graphModel);
+        }
+
+        private void ValidateNamespace(GraphProcessingResult res, IGraphModel graphModel)
+        {
+            var model = graphModel.AssetModel as AIGraphAssetModel;
+            var @namespace = model.Namespace.Split('.');
+
+            for (int i = 0; i < @namespace.Length; i++)
+            {
+                if (!provider.IsValidIdentifier(@namespace[i]))
+                {
+                    res.AddError($"Graph has an invalid namespace. Please fix it in a graph settings window {ValidationValiableRules}");
+                    break;
+                }
+            }
         }
 
         private void CheckExistedFilesWithNodesNames(GraphProcessingResult res, IGraphModel graphModel)
@@ -50,26 +91,27 @@ namespace SerV112.UtilityAIEditor
         }
         private void ValidateVariablesNames(GraphProcessingResult res, IGraphModel graphModel)
         {
-           graphModel.NodeModels
-               .OfType<INameable>()
-               .ToList().ForEach(e => {
+            graphModel.NodeModels
+                .OfType<INameable>()
+                .ToList().ForEach(e =>
+                {
 
-                   if (!CheckName(e.Name))
-                   {
+                    if (!CheckName(e.Name))
+                    {
 
-                       string typeName = "Type Not Detected";
-                       if (e is StateNodeModel)
-                       {
-                           typeName = nameof(StateNodeModel);
-                       }
-                       else if (e is StateGroupNodeModel)
-                       {
-                           typeName = nameof(StateGroupNodeModel);
-                       }
+                        string typeName = "Type Not Detected";
+                        if (e is StateNodeModel)
+                        {
+                            typeName = nameof(StateNodeModel);
+                        }
+                        else if (e is StateGroupNodeModel)
+                        {
+                            typeName = nameof(StateGroupNodeModel);
+                        }
 
-                       res.AddError($"{typeName} node has an invalid name: {e.Name}{Environment.NewLine}{ValidationValiableRules}");
-                   }
-               });
+                        res.AddError($"{typeName} node has an invalid name: {e.Name}{Environment.NewLine}{ValidationValiableRules}");
+                    }
+                });
         }
 
         private bool CheckName(string name)
@@ -79,12 +121,12 @@ namespace SerV112.UtilityAIEditor
             {
                 return true;
             }
-            
+
             return false;
-            
+
         }
 
-        const string ValidationValiableRules = 
+        const string ValidationValiableRules =
 @"1. The only allowed characters for identifiers are all alphanumeric characters([A-Z], [a-z], [0-9]),
 ‘_‘ (underscore). example “geek@” is not a valid C# identifier as it contain‘@’ – special character.
 Identifiers should not start with digits([0-9]).
@@ -93,7 +135,8 @@ Identifiers should not start with digits([0-9]).
         private void ValidateOuterVariablesNames(GraphProcessingResult res, IGraphModel graphModel)
         {
             graphModel.VariableDeclarations
-            .ToList().ForEach(e => {
+            .ToList().ForEach(e =>
+            {
 
                 if (!CheckName(e.Title))
                 {
@@ -106,16 +149,21 @@ Identifiers should not start with digits([0-9]).
 
         private void CheckDuplicatedNames(GraphProcessingResult res, IGraphModel graphModel)
         {
-            CheckDuplicatedNamesForStateNodeModel(res, graphModel);
-            CheckDuplicatedNamesForStateGroupNodeModel(res, graphModel);
+            CheckDuplicatedScriptNames(res, graphModel);
+            CheckDuplicatedEnumScriptNames(res, graphModel);
         }
-        private void CheckDuplicatedNamesForStateNodeModel(GraphProcessingResult res, IGraphModel graphModel)
+        private void CheckDuplicatedScriptNames(GraphProcessingResult res, IGraphModel graphModel)
         {
 
             var stateNodeModels = graphModel.NodeModels
-                .OfType<StateNodeModel>()
+                .OfType<IScriptName>()
                 .ToList();
 
+            var decModels = graphModel.VariableDeclarations
+                .OfType<IScriptName>()
+                .ToList();
+
+            stateNodeModels = stateNodeModels.Concat(decModels).ToList();
 
             for (int i = 0; i < stateNodeModels.Count; i++)
             {
@@ -126,41 +174,75 @@ Identifiers should not start with digits([0-9]).
 
                     if (stateNodeModels[i].Name == stateNodeModels[j].Name)
                     {
+
                         var elem = stateNodeModels[i];
 
-                        res.AddError($"a graph contains  two or more StateNodeModel with Name: {stateNodeModels[i].Name}", stateNodeModels[i], new QuickFix("Add to name 1", (cd) =>
+                        if (stateNodeModels[i] is StateGroupNodeModel sgnm)
                         {
-                            cd.Dispatch(new SetStateNameCommand(elem.Name + "1", elem));
-                        }));
+                            res.AddError($"a graph contains  two or more StateNodeModel with Name: {stateNodeModels[i].Name}", sgnm, new QuickFix("Add to name 1", (cd) =>
+                            {
+                                cd.Dispatch(new SetStateNameCommand(elem.Name + "1", elem));
+                            }));
+                        }
+                        else if (stateNodeModels[i] is IVariableDeclarationModel vd)
+                        {
+                            res.AddError($"a graph contains  two or more scripts with Name: {stateNodeModels[i].Name}");
+
+                            
+                        }
+
                     }
                 }
             }
 
         }
 
-        private void CheckDuplicatedNamesForStateGroupNodeModel(GraphProcessingResult res, IGraphModel graphModel)
+        private IEnumerable<INodeModel> GetConnectedNodes(NodeModel model, PortDirection dir, PortType type)
+        {
+            List<INodeModel> connectedNodes = new List<INodeModel>();
+            var ports = model.GetPorts(PortDirection.Input, PortType.Execution).ToList();
+          
+            for (int i = 0; i < ports.Count; i++)
+            {
+                var edges = ports[i].GetConnectedEdges().ToList();
+
+                for (int j = 0; j < edges.Count; j++)
+                {
+                    connectedNodes.Add(edges[j].FromPort.NodeModel);
+                }
+            }
+
+            return connectedNodes;
+        }
+        private void CheckDuplicatedEnumScriptNames(GraphProcessingResult res, IGraphModel graphModel)
         {
 
             var stateNodeModels = graphModel.NodeModels
                 .OfType<StateGroupNodeModel>()
                 .ToList();
 
-
-            for (int i = 0; i < stateNodeModels.Count; i++)
+            for (int k = 0; k < stateNodeModels.Count; k++)
             {
-                for (int j = 0; j < stateNodeModels.Count; j++)
+
+
+
+                var nodes = GetConnectedNodes(stateNodeModels[k], PortDirection.Input, PortType.Execution).OfType<INameable>().ToList();
+                for (int i = 0; i < nodes.Count; i++)
                 {
-                    if (i == j)
-                        continue;
-
-                    if (stateNodeModels[i].Name == stateNodeModels[j].Name)
+                    for (int j = 0; j < nodes.Count; j++)
                     {
-                        var elem = stateNodeModels[i];
+                        if (i == j)
+                            continue;
 
-                        res.AddError($"a graph contains  two or more StateGroupNodeModel with Name: {stateNodeModels[i].Name}", stateNodeModels[i], new QuickFix("Add to name 1", (cd) =>
+                        if (nodes[i].Name == nodes[j].Name)
                         {
-                            cd.Dispatch(new SetStateNameCommand(elem.Name + "1", elem));
-                        }));
+                            var elem = nodes[i];
+
+                            res.AddError($"a graph contains  two or more StateNodeModel with Name: {nodes[i].Name}", nodes[i] as INodeModel, new QuickFix("Add to name 1", (cd) =>
+                            {
+                                cd.Dispatch(new SetStateNameCommand(elem.Name + "1", elem));
+                            }));
+                        }
                     }
                 }
             }

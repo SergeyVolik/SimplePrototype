@@ -7,12 +7,6 @@ using System.Text;
 
 public class CodeViewWindow : EditorWindow
 {
-    [MenuItem("Window/UI Toolkit/CodeViewWindow")]
-    public static void ShowExample()
-    {
-        CodeViewWindow wnd = CreateWindow<CodeViewWindow>();
-        wnd.titleContent = new GUIContent("CodeViewWindow");
-    }
 
     public static void ShowCode(string code, string title)
     {
@@ -30,25 +24,6 @@ public class CodeViewWindow : EditorWindow
 
     Label m_NumberOfCode;
     TextField m_CodeLines;
-
-    const string Code = @"// Action to perform when button is pressed.
-// Toggles the text on all buttons in 'container'.
-Action action = () =>
-{
-    container.Query<Button>().ForEach((button) =>
-    {
-        button.text = button.text.EndsWith('Button') ? 'Button(Clicked)' : 'Button';
-    });
-};
-
-// Get a reference to the Button from UXML and assign it its action.
-var uxmlButton = container.Q<Button>('the-uxml-button');
-uxmlButton.RegisterCallback<MouseUpEvent>((evt) => action());
-
-// Create a new Button with an action and give it a style class.
-var csharpButton = new Button(action) { text = 'C# Button' };
-csharpButton.AddToClassList('some-styled-button');
-container.Add(csharpButton);";
 
     private static int CountLines(string str)
     {

@@ -13,7 +13,7 @@ namespace SerV112.UtilityAIEditor
 
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "StateGroup")]
-    public class StateGroupNodeModel : NodeModel, INameable, IExtendableInputPortNode
+    public class StateGroupNodeModel : NodeModel, IScriptName, IExtendableInputPortNode
     {
 
        
@@ -77,6 +77,25 @@ namespace SerV112.UtilityAIEditor
         {
             PortCapacity cap = PortCapacity.Single;
             return cap;//Stencil?.GetPortCapacity(portModel, out cap) ?? false ? cap : portModel?.GetDefaultCapacity() ?? PortCapacity.Multi;
+        }
+
+        public void GenereteStateGroup(string path)
+        {
+            var ports = this.GetPorts(PortDirection.Input, PortType.Execution).ToList();
+            List<string> @params = new List<string>();
+            for (int i = 0; i < ports.Count; i++)
+            {
+                var edges = ports[i].GetConnectedEdges().ToList();
+
+                if (edges.Count > 0)
+                {
+                    var edge = edges[0].FromPort.NodeModel as StateNodeModel;
+                    @params.Add(edge.Name);
+                }
+            }
+
+            var asset = this.GraphModel.AssetModel as AIGraphAssetModel;
+            T4GenUtils.CreateEnum(path, this.Name, new CreateEnumSettings(this.Name, @params, asset.Namespace));
         }
 
        

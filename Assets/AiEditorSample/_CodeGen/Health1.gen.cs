@@ -1,16 +1,16 @@
 ﻿//-----------------------------------------------------------------------
 // This file is AUTO-GENERATED.
 // Changes for this script by hand might be lost when auto-generation is run.
-// (Generated date: 2021.12.08 15:14:52)
+// (Generated date: 2021.12.09 21:51:37)
 //-----------------------------------------------------------------------
 using Unity.Entities;
 using System;
 
-namespace Namespace
+namespace aaaaaa
 {
 	[Serializable]
 	[GenerateAuthoringComponent]	
-	public struct  Health  : IComponentData
+	public struct  Health1  : IComponentData
 	{
 
 		public float Value;

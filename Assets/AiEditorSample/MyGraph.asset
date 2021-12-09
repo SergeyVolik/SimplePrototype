@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GraphModel:
     id: 0
-  m_Namespace: 123123123
+  m_Namespace: aaaaaa
   references:
     version: 1
     00000000:
@@ -25,23 +25,26 @@ MonoBehaviour:
         - id: 1
         - id: 2
         - id: 3
+        - id: 4
+        - id: 5
+        - id: 6
+        - id: 7
         m_EdgeModels: []
         m_BadgeModels: []
         m_GraphEdgeModels:
-        - id: 4
-        - id: 5
+        - id: 8
         m_PolymorphicEdgeModels: []
         m_StickyNoteModels: []
         m_GraphStickyNoteModels: []
         m_PlacematModels: []
         m_GraphPlacematModels: []
         m_GraphVariableModels:
-        - id: 6
-        - id: 7
-        - id: 8
         - id: 9
         - id: 10
         - id: 11
+        - id: 12
+        - id: 13
+        - id: 14
         m_GraphPortalModels: []
         m_Name: 
         m_StencilTypeName: SerV112.UtilityAIEditor.AIStencil, AIEditor, Version=0.0.0.0,
@@ -56,16 +59,16 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -586.9995, y: -1190.9984}
-        m_Title: State2111 (State)
+        m_Position: {x: -376.9996, y: -1196.9983}
+        m_Title: State11 (State)
         m_InputConstantsById:
           m_KeyList:
           - Input
           m_ValueList:
-          - id: 12
+          - id: 15
         m_State: 0
         m_Collapsed: 0
-        m_Name: State2111
+        m_Name: State11
         HasError: 0
     00000002:
       type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
@@ -77,16 +80,16 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -848.99963, y: -1184.9991}
-        m_Title: State211 (State)
+        m_Position: {x: -620.9997, y: -1311.9988}
+        m_Title: Health (State)
         m_InputConstantsById:
           m_KeyList:
           - Input
           m_ValueList:
-          - id: 13
+          - id: 16
         m_State: 0
         m_Collapsed: 0
-        m_Name: State211
+        m_Name: Health
         HasError: 0
     00000003:
       type: {class: StateGroupNodeModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
@@ -98,41 +101,92 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -803.39954, y: -909.7493}
-        m_Title: Default11 (StateGroup)
+        m_Position: {x: -606.4003, y: -958.74866}
+        m_Title: Health11 (StateGroup)
         m_InputConstantsById:
           m_KeyList: []
           m_ValueList: []
         m_State: 0
         m_Collapsed: 0
-        m_EnumName: Default11
+        m_EnumName: Health11
         m_VerticalInputCount: 2
     00000004:
-      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
         m_Guid:
-          m_Value0: 3038749874535944570
-          m_Value1: 14151806918833755581
+          m_Value0: 5365635425330603414
+          m_Value1: 13839668564957903541
         m_AssetModel: {fileID: 11400000}
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_FromPortReference:
-          m_NodeModelGuid:
-            m_Value0: 7859422542902007832
-            m_Value1: 12410381764298708701
-          m_GraphAssetModel: {fileID: 11400000}
-          m_UniqueId: Output
-        m_ToPortReference:
-          m_NodeModelGuid:
-            m_Value0: 2843189746354173248
-            m_Value1: 1443627278225919311
-          m_GraphAssetModel: {fileID: 11400000}
-          m_UniqueId: Action 2
-        m_EdgeControlPoints: []
-        m_EditMode: 0
-        m_EdgeLabel: 
+        m_Position: {x: -1022.026, y: -1267.8054}
+        m_Title: HeroSpeed
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 11
     00000005:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5422880484399342817
+          m_Value1: 9783582686724738179
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1019.09155, y: -1205.0737}
+        m_Title: HeroSpeed
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 11
+    00000006:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5547375122076752235
+          m_Value1: 7898151954491661739
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -878.67004, y: -1003.96625}
+        m_Title: Health
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 10
+    00000007:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 4894222926914820831
+          m_Value1: 12532523555128609201
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -786.29236, y: -1087.4257}
+        m_Title: Health
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 10
+    00000008:
       type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
         m_Guid:
@@ -157,7 +211,7 @@ MonoBehaviour:
         m_EdgeControlPoints: []
         m_EditMode: 0
         m_EdgeLabel: 
-    00000006:
+    00000009:
       type: {class: NamespaceVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
@@ -174,10 +228,10 @@ MonoBehaviour:
         m_IsExposed: 1
         m_Tooltip: 
         m_InitializationValue:
-          id: 14
+          id: 17
         m_Modifiers: 0
         variableFlags: 0
-    00000007:
+    0000000A:
       type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
@@ -187,17 +241,17 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Name: Health
+        m_Name: Health1
         m_DataType:
           Identification: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
             PublicKeyToken=b77a5c561934e089
         m_IsExposed: 1
         m_Tooltip: 
         m_InitializationValue:
-          id: 15
+          id: 18
         m_Modifiers: 0
         variableFlags: 0
-    00000008:
+    0000000B:
       type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
@@ -214,10 +268,10 @@ MonoBehaviour:
         m_IsExposed: 1
         m_Tooltip: 
         m_InitializationValue:
-          id: 16
+          id: 19
         m_Modifiers: 0
         variableFlags: 0
-    00000009:
+    0000000C:
       type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
@@ -234,10 +288,10 @@ MonoBehaviour:
         m_IsExposed: 1
         m_Tooltip: 
         m_InitializationValue:
-          id: 17
+          id: 20
         m_Modifiers: 0
         variableFlags: 0
-    0000000A:
+    0000000D:
       type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
@@ -254,10 +308,10 @@ MonoBehaviour:
         m_IsExposed: 1
         m_Tooltip: 
         m_InitializationValue:
-          id: 18
+          id: 21
         m_Modifiers: 0
         variableFlags: 0
-    0000000B:
+    0000000E:
       type: {class: FloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor, asm: AIEditor}
       data:
         m_Guid:
@@ -274,38 +328,38 @@ MonoBehaviour:
         m_IsExposed: 1
         m_Tooltip: 
         m_InitializationValue:
-          id: 19
+          id: 22
         m_Modifiers: 0
         variableFlags: 0
-    0000000C:
-      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
-      data:
-        m_Value: 1
-    0000000D:
-      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
-      data:
-        m_Value: 0
-    0000000E:
-      type: {class: StringConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
-      data:
-        m_Value: Namespace
     0000000F:
       type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
-        m_Value: 0
+        m_Value: 1
     00000010:
       type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
         m_Value: 0
     00000011:
-      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      type: {class: StringConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
-        m_Value: 0
+        m_Value: Namespace
     00000012:
       type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
         m_Value: 0
     00000013:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000014:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000015:
+      type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Value: 0
+    00000016:
       type: {class: FloatConstant, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel, asm: Unity.GraphTools.Foundation.Overdrive.Model}
       data:
         m_Value: 0
