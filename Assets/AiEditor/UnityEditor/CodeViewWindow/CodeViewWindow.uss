@@ -1,0 +1,44 @@
+.unity-snippet-code__title {
+
+    -unity-font-style: bold;
+    margin-top: 8px;
+}
+.unity-samples-explorer__snippets-conteiner
+{
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+}
+.unity-snippet-code__code_outer_conteiner
+{
+    flex-direction: row;
+    border-width: 1px;
+    border-color: rgba(84, 84, 84, 255);
+    background-color: rgba(36,36, 36, 255);
+}
+.unity-snippet-code__code_conteiner
+{
+    flex-direction: row;
+    overflow: hidden;
+}
+.unity-snippet-code__code
+{
+    height: auto;
+}
+
+.unity-snippet-code__code-line-numbers
+{
+    min-width: 30px;
+    -unity-text-align: upper-right;
+    font-size: 13px;
+    padding: 6px;
+    color: rgba(100,100,100,255);
+}
+.unity-snippet-code__code-text
+{
+    border-width: 1px;
+    padding: 4px;
+}
+TextInput{
+    -unity-text-align: upper-left;
+}

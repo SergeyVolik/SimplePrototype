@@ -20,15 +20,16 @@ namespace SerV112.UtilityAIEditor
         {
             state.PushUndo(command);
 
-            using (var graphUpdater = state.GraphViewState.UpdateScope)
+            var aiState = state as AIState;
+            using (var graphUpdater = aiState.ToolSettingsState.UpdateScope)
             {
                 foreach (var nodeModel in command.Models)
                 {
-                    nodeModel.Title = command.Value;
                     nodeModel.Namespace = command.Value;
-                    
-                    graphUpdater.MarkChanged(nodeModel);
+                    graphUpdater.MarkChangedNamespace(nodeModel.Namespace);
                 }
+
+               
             }
         }
     }

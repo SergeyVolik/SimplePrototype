@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b80fbf42a931b12409ecac9e2310a031, type: 3}
-  m_Name: AI Editor Graph
+  m_Name: MyGraph
   m_EditorClassIdentifier: 
   m_GraphModel:
     id: 0
-  Namespace: Namespace
+  m_Namespace: 123123123
   references:
     version: 1
     00000000:
@@ -56,7 +56,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -441.99957, y: -1338.9984}
+        m_Position: {x: -586.9995, y: -1190.9984}
         m_Title: State2111 (State)
         m_InputConstantsById:
           m_KeyList:
@@ -77,7 +77,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -909.99976, y: -1186.9994}
+        m_Position: {x: -848.99963, y: -1184.9991}
         m_Title: State211 (State)
         m_InputConstantsById:
           m_KeyList:

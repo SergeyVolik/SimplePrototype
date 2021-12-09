@@ -8,10 +8,12 @@ using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEditor.UIElements;
 using UnityEngine;
 
+
 namespace SerV112.UtilityAIEditor
 {
     public class AIGraphMainToolbar : MainToolbar
     {
+
         public AIGraphMainToolbar(CommandDispatcher commandDispatcher, GraphView graphView)
             : base(commandDispatcher, graphView) 
         {
@@ -68,7 +70,12 @@ namespace SerV112.UtilityAIEditor
 
             MenuToggle("TestBoolPref1", AIBoolPref.TestBoolPref1);
             MenuToggle("TestBoolPref2", AIBoolPref.TestBoolPref2);
-            menu.AddItem(CreateTextContent("Open settings"), false, () => { AIToolSettingsWindow.Init(m_GraphView.GraphModel.AssetModel as AIGraphAssetModel); });
+            menu.AddItem(
+                CreateTextContent("Open settings"),
+                false, 
+                () => {
+                    AIToolSettingsWindow.Init(m_GraphView.GraphModel.AssetModel as AIGraphAssetModel, m_GraphView); 
+            });
         }
     }
 }

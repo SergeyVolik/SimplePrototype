@@ -9,10 +9,10 @@ using UnityEngine;
 namespace SerV112.UtilityAIEditor
 {
 
-    public class AIGraphAssetModel : GraphAssetModel
+    public class AIGraphAssetModel : GraphAssetModel, INamespaceField
     {
         [SerializeField]
-        public string Namespace;
+        private string m_Namespace;
 
         [MenuItem("Assets/Create/AIAsset")]
         public static void CreateGraph(MenuCommand menuCommand)
@@ -50,5 +50,7 @@ namespace SerV112.UtilityAIEditor
         }
 
         protected override Type GraphModelType => typeof(AIGraphModel);
+
+        public string Namespace { get => m_Namespace; set => m_Namespace = value; }
     }
 }

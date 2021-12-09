@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+   
+     <engine:ScrollView class="unity-scroll-view unity-scroll-view--vertical unity-scroll-view--scroll unity-samples-explorer__snippets-conteiner">
+        <engine:VisualElement class="unity-snippet-code__conteiner">
+            <engine:Label text="C#" class="unity-text-element unity-label unity-snippet-code__title" />
+            <engine:VisualElement class="unity-snippet-code__code_outer_conteiner">
+                 <engine:VisualElement class="unity-snippet-code__code_conteiner">
+                    <engine:Label name="LinesOfCode" class="unity-text-element unity-label unity-snippet-code__code unity-snippet-code__input unity-snippet-code__code-line-numbers" />
+                    <engine:TextField name="Code" class="unity-base-field unity-base-field--no-label unity-base-text-field unity-snippet-code__code unity-snippet-code__code-text" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        
+
+   </engine:ScrollView>
+</engine:UXML>

@@ -31,8 +31,6 @@ namespace SerV112.UtilityAIEditor
                 foreach (var nodeModel in command.Models)
                 {
                     nodeModel.AddPort();
-                   
-
                     
                 }
 

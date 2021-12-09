@@ -4,66 +4,113 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEngine;
+using UnityEngine.GraphToolsFoundation.CommandStateObserver;
+using UnityEngine.UIElements;
 
 namespace SerV112.UtilityAIEditor
 {
 
     public class AIToolSettingsWindow : EditorWindow
     {
-        string newNamespace = "MyCompany.MyProject";
-        bool groupEnabled;
-        bool myBool = true;
-        float myFloat = 1.23f;
+        class StateObserver : StateObserver<AIState>
+        {
+
+            AIToolSettingsWindow m_Window;
+            public StateObserver(AIToolSettingsWindow window)
+                : base(nameof(AIState.ToolSettingsState))
+            {
+                m_Window = window;
+            }
+
+            protected override void Observe(AIState state)
+            {
+                using (var observation = this.ObserveState(state.ToolSettingsState))
+                {
+                    if (observation.UpdateType != UpdateType.None)
+                    {
+                        UnityEngine.Debug.Log(state.ToolSettingsState.Namespace);
+                        m_Window.m_Namespace.SetValueWithoutNotify(state.ToolSettingsState.Namespace);
+                    }
+                }
+            }
+
+        }
 
         private AIGraphAssetModel m_AssetModel;
-
-        
-        public static void Init(AIGraphAssetModel AssetModel)
+        private GraphView m_GraphView;
+        private StateObserver observer;
+        public static void Init(AIGraphAssetModel AssetModel, UnityEditor.GraphToolsFoundation.Overdrive.GraphView GraphView)
         {
-
             var window = EditorWindow.GetWindow<AIToolSettingsWindow>("Settings", true);
-            // Get existing open window or if none, make a new one:
-            //= (AIToolSettingsWindow)EditorWindow.GetWindow(typeof(AIToolSettingsWindow));
-            //window.titleContent = new GUIContent("Settings");
             window.ShowAuxWindow();
-            window.InitInternal(AssetModel);
-
-             
+            window.InitInternal(AssetModel, GraphView);  
         }
 
-        private void InitInternal(AIGraphAssetModel AssetModel)
+        public bool Check = true;
+
+        private void InitInternal(AIGraphAssetModel AssetModel, UnityEditor.GraphToolsFoundation.Overdrive.GraphView graphView)
         {
             m_AssetModel = AssetModel;
-            newNamespace = m_AssetModel.Namespace;
+            m_GraphView = graphView;
+            observer = new StateObserver(this);
+            m_Namespace.SetValueWithoutNotify(m_AssetModel.Namespace);
+            m_GraphView.CommandDispatcher.RegisterObserver(observer);
+            m_SettingsLabel.text = m_AssetModel.Name + " Settings";
+
+
         }
 
+        public TextField m_Namespace;
+        private Label m_SettingsLabel;
+        private void OnEnable()
+        {
+            
+            minSize = new Vector2(200, 200);
+            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/AiEditor/UnityEditor/SettingsWindow.uxml");
+            uiAsset.CloneTree(rootVisualElement);
+
+            m_SettingsLabel = rootVisualElement.SafeQ<Label>("SettingsName");
+            m_Namespace = rootVisualElement.SafeQ<TextField>("Namespace");
+
+          
+
+            m_Namespace.RegisterCallback<FocusInEvent>(OnFocusInTextField);
+            m_Namespace.RegisterCallback<FocusOutEvent>(OnFocusOutTextField);
+
+        }
+
+        string m_OnFocusStartText;
+        private void OnFocusInTextField(FocusInEvent evt)
+        {
+
+            var textField = evt.target as TextField;
+            m_OnFocusStartText = textField.text;
+
+
+        }
+
+        private void OnFocusOutTextField(FocusOutEvent evt)
+        {
+            var textField = evt.target as TextField;
+            if (textField.text != m_OnFocusStartText)
+            {
+                m_GraphView.CommandDispatcher.Dispatch(new SetNamespaceNameCommand(textField.text, m_AssetModel));
+            }
+        }
+
+        private void OnDestroy()
+        {
+            m_GraphView?.CommandDispatcher?.UnregisterObserver(observer);
+        }
+
+        string newNamespace;
         void OnGUI()
         {
-            GUILayout.Label("Base Settings", EditorStyles.boldLabel);
-            groupEnabled = EditorGUILayout.BeginToggleGroup("Use namespace", groupEnabled);
-           
-            newNamespace = EditorGUILayout.TextField("Namespace", newNamespace);
-
-            if (!groupEnabled)
-            {
-
-                if (!string.IsNullOrEmpty(m_AssetModel.Namespace))
-                {
-                    m_AssetModel.Namespace = string.Empty;
-                }
-            }
-            else
-            {
-                if (!string.Equals(m_AssetModel.Namespace, newNamespace))
-                {
-                    m_AssetModel.Namespace = newNamespace;
-                }
-            }
-
-            //myBool = EditorGUILayout.Toggle("Toggle", myBool);
-            //myFloat = EditorGUILayout.Slider("Slider", myFloat, -3, 3);
-            EditorGUILayout.EndToggleGroup();
+            // Nothing to do here, unless you need to also handle IMGUI stuff.
         }
+
+
     }
 }
