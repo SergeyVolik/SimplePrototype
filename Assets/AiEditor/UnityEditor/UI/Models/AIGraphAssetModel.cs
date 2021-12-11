@@ -12,7 +12,7 @@ namespace SerV112.UtilityAIEditor
     public class AIGraphAssetModel : GraphAssetModel, INamespaceField
     {
         [SerializeField]
-        private string m_Namespace;
+        private string m_Namespace = "";
 
         [MenuItem("Assets/Create/AIAsset")]
         public static void CreateGraph(MenuCommand menuCommand)

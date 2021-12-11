@@ -8,7 +8,8 @@ namespace SerV112.UtilityAIEditor
     {
         protected override bool IsCompatiblePort(IPortModel startPortModel, IPortModel compatiblePortModel)
         {
-            return startPortModel.DataTypeHandle == compatiblePortModel.DataTypeHandle;
+            return base.IsCompatiblePort(startPortModel, compatiblePortModel) &&
+                startPortModel.DataTypeHandle == compatiblePortModel.DataTypeHandle;
         }
     }
 }

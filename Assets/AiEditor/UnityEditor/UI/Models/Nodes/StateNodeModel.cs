@@ -10,42 +10,39 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "State")]
-    public class StateNodeModel : NodeModel, INameable
+    public class StateNodeModel : MathNode, INameable
     {
 
         [SerializeField, HideInInspector]
         string m_Name = "State";
 
         public const string DefaultTooltip = "StateNodeModel";
-        public bool HasError = false;
+
         public string Name { get => m_Name; set => m_Name = value; }
 
         public override string Title { get => base.Title; set => base.Title = m_Name + " (State)"; }
         public override string DisplayTitle => Title;
+
+
         protected override void OnDefineNode()
         {
-            if (!HasError)
-            {
-                Tooltip = DefaultTooltip;
-            }
+
 
             base.OnDefineNode();
 
             
-            AddInputPort("Input", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default);
+            AddInputPort("Input", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
+            AddOutputPort("Out", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
 
-            //AddOutputPort("Action", PortType.Execution, AIStencil.AIAction, orientation: PortOrientation.Vertical);
-            this.AddExecutionOutputPort("Output", orientation: PortOrientation.Vertical);
             
         }
 
-        public override PortCapacity GetPortCapacity(IPortModel portModel)
+
+        public override float Evaluate()
         {
-            PortCapacity cap = PortCapacity.Single;
+            var port = this.GetInputPorts().FirstOrDefault();
 
-            return cap;//Stencil?.GetPortCapacity(portModel, out cap) ?? false ? cap : portModel?.GetDefaultCapacity() ?? PortCapacity.Multi;
+            return port.GetValue();
         }
-
-
     }
 }

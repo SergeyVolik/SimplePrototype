@@ -76,6 +76,7 @@ namespace Unity.DataFlowGraph.Tour
                  * a node from them.
                  */
                 var node = m_Set.Create<MyNode>();
+                
                 m_NodeList.Add(node);
             }
         }

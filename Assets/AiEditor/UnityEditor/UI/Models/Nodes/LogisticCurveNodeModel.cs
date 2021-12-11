@@ -13,12 +13,7 @@ namespace SerV112.UtilityAIEditor
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Logistic Curve")]
     public class LogisticCurveNodeModel : CurveNodeModel, IOffsetable, ISteepnessable
     {
-        public override string Tooltip { get => @"LogisticCurveNodeModel
-LogisticCurveNodeModel
-LogisticCurveNodeModel
-LogisticCurveNodeModel
-LogisticCurveNodeModel
-LogisticCurveNodeModel";
+        public override string Tooltip { get => @"LogisticCurveNodeModel";
             set { } }
 
         [SerializeField, HideInInspector]
@@ -40,6 +35,11 @@ LogisticCurveNodeModel";
 
         public const float k_OffsetMax = .4f;
         public const float k_OffsetMin = -.4f;
+
+        public override float Evaluate()
+        {
+            return CurveUtils.LogisticCurve(GetParameterValue(0), m_Stepness, m_Offset);
+        }
 
     }
 }

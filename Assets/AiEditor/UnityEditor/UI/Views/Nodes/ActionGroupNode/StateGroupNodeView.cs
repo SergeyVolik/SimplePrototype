@@ -66,6 +66,11 @@ namespace SerV112.UtilityAIEditor
                 CommandDispatcher.Dispatch(new RemovePortNodeCommand(stateGroupModel));
             }, a => stateGroupModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
+            evt.menu.AppendAction("Execute", action =>
+            {
+                Debug.Log((Model as StateGroupNodeModel).Evaluate());
+            }, a => DropdownMenuAction.Status.Normal);
+
             evt.menu.AppendAction("Show Code Preview", action =>
             {
                 var state = CommandDispatcher?.State as AIState;
@@ -84,7 +89,7 @@ namespace SerV112.UtilityAIEditor
                 }
 
                 var text = File.ReadAllText(path, encoding: System.Text.Encoding.UTF8);
-                CodeViewWindow.ShowCode(text, model.Name);
+                CodeViewWindow.OpenCodeViewWindow(text, model.Name);
 
 
 

@@ -5,22 +5,70 @@ using UnityEditor.UIElements;
 using System;
 using System.Text;
 
-public class CodeViewWindow : EditorWindow
+
+public abstract class CloseAfterdReloadScriptsWindow : EditorWindow
+{
+    protected static bool NeedClose = true;
+    [UnityEditor.Callbacks.DidReloadScripts]
+    private static void OnScriptsReloaded()
+    {
+        NeedClose = true;
+    }
+
+    protected virtual void CreateGUI()
+    {
+        if (NeedClose)
+        {
+            Close();
+        }
+    }
+    protected static void Open<T>(bool mult, params object[] UserData) where T : CloseAfterdReloadScriptsWindow
+    {
+        NeedClose = false;
+        T wnd;
+        if (mult)
+        {
+            wnd = CreateWindow<T>();
+        }
+        else {
+            wnd = GetWindow<T>();
+        }
+        wnd.OpenInternal(UserData);
+
+
+    }
+
+
+    protected abstract void OpenInternal(params object[] UserData);
+
+}
+
+public class CodeViewWindow : CloseAfterdReloadScriptsWindow
 {
 
-    public static void ShowCode(string code, string title)
+
+    public static void OpenCodeViewWindow(string code, string title)
     {
-        CodeViewWindow wnd = CreateWindow<CodeViewWindow>();
-        wnd.titleContent = new GUIContent(title);
-        wnd.m_CodeLines.SetValueWithoutNotify(code);
+        Open<CodeViewWindow>(true, code, title);
+    }
+
+    protected override void OpenInternal(params object[] UserData)
+    {
+        string code = UserData[0].ToString();
+        string title = UserData[1].ToString();
+
+        titleContent = new GUIContent(title);
+
+        m_CodeLines.SetValueWithoutNotify(code);
         StringBuilder builder = new StringBuilder("");
         for (var i = 1; i < CountLines(code); i++)
         {
             builder.AppendLine(i.ToString() + ".");
         }
 
-        wnd.m_NumberOfCode.text = builder.ToString();
+        m_NumberOfCode.text = builder.ToString();
     }
+
 
     Label m_NumberOfCode;
     TextField m_CodeLines;
@@ -29,8 +77,11 @@ public class CodeViewWindow : EditorWindow
     {
        return  str.Split('\n').Length;
     }
-    public void CreateGUI()
+
+  
+    protected override void CreateGUI()
     {
+        base.CreateGUI();
         // Each editor window contains a root VisualElement object
         VisualElement root = rootVisualElement;
 

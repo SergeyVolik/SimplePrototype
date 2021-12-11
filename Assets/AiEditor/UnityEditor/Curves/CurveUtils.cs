@@ -14,7 +14,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float LinearCurve(float x, float slope = 1, float offset = 0)
         {
-            return (x / slope) - offset;
+            return Mathf.Clamp01((x / slope) - offset);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float ExponentialCurve(float x, float exponent = 1, float offset = 0)
         {
-            return 1 - ((1 - Mathf.Pow(x, exponent)) / 1) + offset;
+            return Mathf.Clamp01(1 - ((1 - Mathf.Pow(x, exponent)) / 1) + offset);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float SineCurve(float x, float steepness = 0.5f, float offset = 0)
         {
-            return Mathf.Sin(x*Mathf.PI* steepness) + offset;
+            return Mathf.Clamp01(Mathf.Sin(x*Mathf.PI* steepness) + offset);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float CosineCurve(float x, float steepness = 0.5f, float offset = 0)
         {
-            return 1 - Mathf.Cos(x * Mathf.PI * steepness) + offset;
+            return Mathf.Clamp01(1 - Mathf.Cos(x * Mathf.PI * steepness) + offset);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace SerV112.UtilityAIEditor
         public static float LogisticCurve(float x, float k = 1, float x0 = 0)
         {
             float expPow = -k * ((4 * ((float)Math.E) * (x - x0)) - (2 * (float)Math.E));
-            return 1 / (float)(1 + Mathf.Pow((float)Math.E, expPow));
+            return Mathf.Clamp01(1 / (float)(1 + Mathf.Pow((float)Math.E, expPow)));
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace SerV112.UtilityAIEditor
         public static float LogitCurve(float x, float logBase = 0.5f)
         {
 
-            return (Mathf.Log(x/(1 - x), logBase) + (2 * ((float)Math.E))) / (4 * ((float)Math.E));
+            return Mathf.Clamp01((Mathf.Log(x/(1 - x), logBase) + (2 * ((float)Math.E))) / (4 * ((float)Math.E)));
         }
 
         
@@ -88,7 +88,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float SmoothstepCurve(float x)
         {
-            return x*x*(3-2*x);
+            return Mathf.Clamp01(x *x*(3-2*x));
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace SerV112.UtilityAIEditor
         /// <returns></returns>
         public static float SmootherstepCurve(float x)
         {
-            return x*x*x*(x*(6*x - 15) + 10);
+            return Mathf.Clamp01(x *x*x*(x*(6*x - 15) + 10));
         }
     }
 }

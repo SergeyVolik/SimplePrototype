@@ -27,5 +27,10 @@ namespace SerV112.UtilityAIEditor
         public const float k_LogBaseMax = 5f;
         public const float k_LogBaseMin = 0.1f;
 
+        public override float Evaluate()
+        {
+            return CurveUtils.LogitCurve(GetParameterValue(0), m_LogBase);
+        }
+
     }
 }

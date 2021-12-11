@@ -19,5 +19,10 @@ namespace SerV112.UtilityAIEditor
 
         public AnimationCurve CustomCurve { get => m_CustomCurve; set => m_CustomCurve = value; }
 
+        public override float Evaluate()
+        {
+            return 0;
+        }
+
     }
 }

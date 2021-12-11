@@ -30,5 +30,17 @@ namespace SerV112.UtilityAIEditor
         {
             return p0.y + (x - p0.x) * (p1.y - p0.y) / (p1.x - p0.x);
         }
+
+        public static float Normalization01WithClamp01(float x, float min, float max)
+        {
+            return Mathf.Clamp01((x - min) / (max - min));
+           
+        }
+
+        public static float Normalization01(float x, float min, float max)
+        {
+            return (x - min) / (max - min);
+
+        }
     }
 }

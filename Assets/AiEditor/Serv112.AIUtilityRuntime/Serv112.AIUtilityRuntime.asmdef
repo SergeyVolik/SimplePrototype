@@ -1,0 +1,23 @@
+{
+    "name": "Serv112.AIUtilityRuntime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:cb406e48efc9c46d9a3d4911ffbdecd7",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:e04e6c86a9f3947eb95fded39f9e60cc",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f",
+        "GUID:d352094423468554fa8b43f786314fe9",
+        "GUID:e0cd26848372d4e5c891c569017e11f1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

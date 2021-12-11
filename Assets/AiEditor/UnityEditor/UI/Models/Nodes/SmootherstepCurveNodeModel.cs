@@ -14,6 +14,9 @@ namespace SerV112.UtilityAIEditor
     public class SmootherstepCurveNodeModel : CurveNodeModel
     {
 
-
+        public override float Evaluate()
+        {
+            return CurveUtils.SmootherstepCurve(GetParameterValue(0));
+        }
     }
 }

@@ -13,7 +13,10 @@ namespace SerV112.UtilityAIEditor
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Utility Curves/Smoothstep Curve")]
     public class SmoothstepCurveNodeModel : CurveNodeModel
     {
-
+        public override float Evaluate()
+        {
+            return CurveUtils.SmoothstepCurve(GetParameterValue(0));
+        }
 
     }
 }

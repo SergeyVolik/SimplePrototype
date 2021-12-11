@@ -10,50 +10,46 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Average")]
-    public class AverageNodeModel : NodeModel, IExtendableInputPortNode
+    public class AverageNodeModel : NormalizedFunctionNodeModel, IExtendableInputPortNode
     {
         [SerializeField, HideInInspector]
         int m_ScoreInputCount = 2;
 
         public int ScoreInputCount => m_ScoreInputCount;
 
-        private int GetNumbderConectedPorts()
+
+        List<string> inputPortNames = new List<string>();
+        const string InputPortName = "Input";
+        public AverageNodeModel()
         {
-            var result = Ports.Where(e => e.Direction == PortDirection.Input && e.GetConnectedEdges().ToList().Count > 0).Count();
-            return result;
-        }
-
-        protected override void OnDefineNode()
-        {
-            base.OnDefineNode();
-
-
-            for (var i = 0; i < m_ScoreInputCount; i++)
-                AddInputPort($"Input{i}", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.NoEmbeddedConstant);
-
-            AddOutputPort("Output", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.NoEmbeddedConstant);
-
-            
+            inputPortNames.Add($"{InputPortName}{inputPortNames.Count}");
+            inputPortNames.Add($"{InputPortName}{inputPortNames.Count}");
+            m_ParameterNames = inputPortNames.ToArray();
         }
 
 
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {
             PortCapacity cap = PortCapacity.Single;
-            return cap;//Stencil?.GetPortCapacity(portModel, out cap) ?? false ? cap : portModel?.GetDefaultCapacity() ?? PortCapacity.Multi;
+            return cap;
         }
 
         public void AddPort()
         {
             m_ScoreInputCount++;
+            inputPortNames.Add($"{InputPortName}{inputPortNames.Count}");
+            m_ParameterNames = inputPortNames.ToArray();
             DefineNode();
 
         }
         public IEnumerable<IGraphElementModel> RemovePort()
         {
+            var last = inputPortNames[inputPortNames.Count - 1];
+            inputPortNames.Remove(last);
+            m_ParameterNames = inputPortNames.ToArray();
             m_ScoreInputCount--;
 
-            var ports = Ports.Where(e => e.Direction == PortDirection.Input && e.DataTypeHandle == AIStencil.NormalizedFloat).ToList();
+            var ports = this.GetInputPorts().ToList();
             IEnumerable<IGraphElementModel> edgesToRemove = null;
 
             if (ports.Count > 0)
@@ -65,6 +61,22 @@ namespace SerV112.UtilityAIEditor
 
             return edgesToRemove;
 
+        }
+
+        public override float Evaluate()
+        {
+            if (inputPortNames.Count == 0)
+                return 0;
+
+            float sum = 0;
+            for (int i = 0; i < inputPortNames.Count; i++)
+            {
+                sum += GetParameterValue(i);
+            }
+
+            sum /= inputPortNames.Count;
+
+            return sum;
         }
     }
 }

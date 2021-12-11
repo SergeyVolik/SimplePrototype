@@ -36,5 +36,10 @@ namespace SerV112.UtilityAIEditor
         public const float k_OffsetMax = .4f;
         public const float k_OffsetMin = -.4f;
 
+        public override float Evaluate()
+        {
+            return CurveUtils.ExponentialCurve(GetParameterValue(0), m_Exponential, m_Offset);
+        }
+
     }
 }

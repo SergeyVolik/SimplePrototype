@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 namespace SerV112.UtilityAIEditor
 {
 
-    public class AIToolSettingsWindow : EditorWindow
+    public class AIToolSettingsWindow : CloseAfterdReloadScriptsWindow
     {
         class StateObserver : StateObserver<AIState>
         {
@@ -38,29 +38,32 @@ namespace SerV112.UtilityAIEditor
 
         }
 
+
+
         private AIGraphAssetModel m_AssetModel;
         private GraphView m_GraphView;
         private StateObserver observer;
+
         public static void Init(AIGraphAssetModel AssetModel, UnityEditor.GraphToolsFoundation.Overdrive.GraphView GraphView)
         {
-            var window = EditorWindow.GetWindow<AIToolSettingsWindow>("Settings", true);
-            window.ShowAuxWindow();
-            window.InitInternal(AssetModel, GraphView);  
+            Open<AIToolSettingsWindow>(false, AssetModel, GraphView);
+
         }
 
         public bool Check = true;
 
-        private void InitInternal(AIGraphAssetModel AssetModel, UnityEditor.GraphToolsFoundation.Overdrive.GraphView graphView)
-        {
-            m_AssetModel = AssetModel;
-            m_GraphView = graphView;
-            observer = new StateObserver(this);
-            m_Namespace.SetValueWithoutNotify(m_AssetModel.Namespace);
-            m_GraphView.CommandDispatcher.RegisterObserver(observer);
-            m_SettingsLabel.text = m_AssetModel.Name + " Settings";
+        //private void InitInternal(AIGraphAssetModel AssetModel, UnityEditor.GraphToolsFoundation.Overdrive.GraphView graphView)
+        //{
+        //    titleContent = new GUIContent("Settings");
+        //    m_AssetModel = AssetModel;
+        //    m_GraphView = graphView;
+        //    observer = new StateObserver(this);
+        //    m_Namespace.SetValueWithoutNotify(m_AssetModel.Namespace);
+        //    m_GraphView.CommandDispatcher.RegisterObserver(observer);
+        //    m_SettingsLabel.text = m_AssetModel.Name + " Settings";
 
 
-        }
+        //}
 
         public TextField m_Namespace;
         private Label m_SettingsLabel;
@@ -105,12 +108,24 @@ namespace SerV112.UtilityAIEditor
             m_GraphView?.CommandDispatcher?.UnregisterObserver(observer);
         }
 
-        string newNamespace;
-        void OnGUI()
+        private void OnDisable()
         {
-            // Nothing to do here, unless you need to also handle IMGUI stuff.
+            m_GraphView?.CommandDispatcher?.UnregisterObserver(observer);
         }
 
 
+        protected override void OpenInternal(params object[] UserData)
+        {
+            m_AssetModel = UserData[0] as AIGraphAssetModel;
+            m_GraphView = UserData[1] as GraphView;
+
+            titleContent = new GUIContent("Settings");
+            m_GraphView.CommandDispatcher.UnregisterObserver(observer);
+            observer = new StateObserver(this);
+            m_Namespace.SetValueWithoutNotify(m_AssetModel.Namespace);
+           
+            m_GraphView.CommandDispatcher.RegisterObserver(observer);
+            m_SettingsLabel.text = m_AssetModel.Name + " Settings";
+        }
     }
 }

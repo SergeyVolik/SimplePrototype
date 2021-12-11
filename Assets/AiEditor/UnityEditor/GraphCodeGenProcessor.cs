@@ -12,6 +12,28 @@ using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
+
+    public static class NodeExtentions
+    {
+        public static IEnumerable<INodeModel> GetConnectedNodes(this NodeModel model, PortDirection dir, PortType type)
+        {
+            List<INodeModel> connectedNodes = new List<INodeModel>();
+            var ports = model.GetPorts(dir, type).ToList();
+
+            for (int i = 0; i < ports.Count; i++)
+            {
+                var edges = ports[i].GetConnectedEdges().ToList();
+
+                for (int j = 0; j < edges.Count; j++)
+                {
+                    connectedNodes.Add(edges[j].FromPort.NodeModel);
+                }
+            }
+
+            return connectedNodes;
+        }
+
+    }
     class GraphCodeGenProcessor : IGraphProcessor
     {
         private static CodeDomProvider provider = CodeDomProvider.CreateProvider("C#");
@@ -19,9 +41,8 @@ namespace SerV112.UtilityAIEditor
         {
             var res = new GraphProcessingResult();
 
-            Debug.Log("GraphCodeGenProcessor ProcessGraph");
             ValidateErrors(res, graphModel);
-            ValidateWarnings(res, graphModel);
+
             return res;
         }
 
@@ -33,22 +54,7 @@ namespace SerV112.UtilityAIEditor
             ValidateNamespace(res, graphModel);
         }
 
-        private void ValidateWarnings(GraphProcessingResult res, IGraphModel graphMode)
-        {
-            //var nodes = graphMode.NodeModels.OfType<StateNodeModel>().ToList();
 
-            //nodes.ForEach(e =>
-            //{
-            //    var ports = e.GetPorts(PortDirection.Output, PortType.Execution).ToList();
-
-            //    ports.ForEach(p =>
-            //    {
-            //        if (p.GetConnectedEdges().Count() == 0)
-            //            res.AddWarning($"StateNodeModel {e.Name} without connetion!", e);
-
-            //    });
-            //});
-        }
 
         private void ValidateNames(GraphProcessingResult res, IGraphModel graphModel)
         {
@@ -58,9 +64,14 @@ namespace SerV112.UtilityAIEditor
 
         private void ValidateNamespace(GraphProcessingResult res, IGraphModel graphModel)
         {
+          
+
             var model = graphModel.AssetModel as AIGraphAssetModel;
+            if (string.IsNullOrEmpty(model.Namespace))
+                return;
             var @namespace = model.Namespace.Split('.');
 
+         
             for (int i = 0; i < @namespace.Length; i++)
             {
                 if (!provider.IsValidIdentifier(@namespace[i]))
@@ -197,23 +208,7 @@ Identifiers should not start with digits([0-9]).
 
         }
 
-        private IEnumerable<INodeModel> GetConnectedNodes(NodeModel model, PortDirection dir, PortType type)
-        {
-            List<INodeModel> connectedNodes = new List<INodeModel>();
-            var ports = model.GetPorts(PortDirection.Input, PortType.Execution).ToList();
-          
-            for (int i = 0; i < ports.Count; i++)
-            {
-                var edges = ports[i].GetConnectedEdges().ToList();
-
-                for (int j = 0; j < edges.Count; j++)
-                {
-                    connectedNodes.Add(edges[j].FromPort.NodeModel);
-                }
-            }
-
-            return connectedNodes;
-        }
+        
         private void CheckDuplicatedEnumScriptNames(GraphProcessingResult res, IGraphModel graphModel)
         {
 
@@ -226,7 +221,7 @@ Identifiers should not start with digits([0-9]).
 
 
 
-                var nodes = GetConnectedNodes(stateNodeModels[k], PortDirection.Input, PortType.Execution).OfType<INameable>().ToList();
+                var nodes = stateNodeModels[k].GetConnectedNodes(PortDirection.Input, PortType.Data).OfType<INameable>().ToList();
                 for (int i = 0; i < nodes.Count; i++)
                 {
                     for (int j = 0; j < nodes.Count; j++)

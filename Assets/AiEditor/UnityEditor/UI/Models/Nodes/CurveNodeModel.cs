@@ -10,7 +10,7 @@ using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
-    public abstract class CurveNodeModel : NodeModel, ICurveNodeModel
+    public abstract class CurveNodeModel : NormalizedFunctionNodeModel, ICurveNodeModel
     {
         [SerializeField, HideInInspector]
         private float m_Min;
@@ -19,14 +19,18 @@ namespace SerV112.UtilityAIEditor
         public float MinNormalizationValue { get => m_Min; set => m_Min = value; }
         public float MaxNormalizationValue { get => m_Max; set => m_Max = value; }
 
-        protected override void OnDefineNode()
+        public CurveNodeModel()
         {
-            base.OnDefineNode();
-
-
-            AddInputPort("Input", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default, portId: "MyPort");
-            AddOutputPort("Output", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default);
+            m_ParameterNames = new string[] { "Input" };
         }
+        //protected override void OnDefineNode()
+        //{
+        //    base.OnDefineNode();
+
+
+        //    AddInputPort("Input", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default, portId: "MyPort");
+        //    AddOutputPort("Output", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default);
+        //}
 
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {

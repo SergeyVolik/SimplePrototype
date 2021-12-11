@@ -1,5 +1,5 @@
 {
-    "name": "AIEditor",
+    "name": "SerV112.UtilityAIEditor",
     "rootNamespace": "",
     "references": [
         "Unity.GraphTools.Foundation.Overdrive",

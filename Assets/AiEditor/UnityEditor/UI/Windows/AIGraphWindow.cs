@@ -14,6 +14,8 @@ namespace SerV112.UtilityAIEditor
             ShortcutHelper.RegisterDefaultShortcuts<AIGraphWindow>(AIStencil.toolName);
         }
 
+
+
         [MenuItem("GTF/Samples/AI Editor", false)]
         public static void ShowAIGraphWindow()
         {
@@ -22,6 +24,7 @@ namespace SerV112.UtilityAIEditor
 
         protected override void OnEnable()
         {
+            //WithSidePanel = false;
             EditorToolName = "AI Editor";
             base.OnEnable();
         }
