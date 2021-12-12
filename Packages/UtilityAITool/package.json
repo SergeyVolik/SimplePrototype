@@ -1,16 +1,15 @@
 {
   "name": "com.serv112.utilityaitool",
   "version": "0.0.1",
-  "description": "This is an example package",
+  "description": "This is Utility AI Graph Tool for creating curve-based AI. Warning: This package contains embedded package (https://github.com/deniszykov/t4-templates-unity3d, https://assetstore.unity.com/packages/tools/utilities/t4-code-generation-63294)",
   "unity": "2020.3",
   "displayName": "Utility AI Tool",
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "2.0.0-preview",
     "com.unity.dataflowgraph": "0.19.0-preview.7",
     "com.unity.graphtools.foundation": "0.11.2-preview"
-	
- },
- "keywords": [
+  },
+  "keywords": [
     "Utility AI",
     "ECS"
   ],
@@ -18,5 +17,13 @@
     "name": "SerV112",
     "email": "volik.sergey112@gmail.com",
     "url": "https://example.com"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Monobehaviour example",
+      "description": "Samples for with using monobehaviout script",
+      "path": "Samples/Monobehaviour"
+    }
+  ],
+  "type": "tool"
 }
