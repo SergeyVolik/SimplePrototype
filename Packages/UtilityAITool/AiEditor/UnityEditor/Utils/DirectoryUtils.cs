@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace SerV112.UtilityAIEditor
 {
+    
+
     public static class DirectoryUtils
     {
+
+        public const string DefaultPath = "Packages/com.serv112.utilityaitool";
 
         public static bool FileExisted(string[] fileEntries, string fileName)
         {

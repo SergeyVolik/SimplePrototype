@@ -15,10 +15,10 @@ namespace SerV112.UtilityAIEditor
     public static class T4GenUtils
     {
         private static CSharpCodeProvider compiler = new CSharpCodeProvider();
-        private static readonly string EnumTemplate = string.Join("/", Application.dataPath, "AiEditor/CodeGen/Templates/EnumTemplate.tt");
-        private static readonly string AuthoringComponentTemplate = string.Join("/", Application.dataPath, "AiEditor/CodeGen/Templates/AuthoringComponentTemplate.tt");
-        private static readonly string ComputeShaderTemplate = string.Join("/", Application.dataPath, "AiEditor/CodeGen/Templates/ComputeShaderTemplate.tt");
-        private static readonly string StructTemplate = string.Join("/", Application.dataPath, "AiEditor/CodeGen/Templates/StructTemplate.tt");
+        private static readonly string EnumTemplate = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/CodeGen/Templates/EnumTemplate.tt");
+        private static readonly string AuthoringComponentTemplate = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/CodeGen/Templates/AuthoringComponentTemplate.tt");
+        private static readonly string ComputeShaderTemplate = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/CodeGen/Templates/ComputeShaderTemplate.tt");
+        private static readonly string StructTemplate = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/CodeGen/Templates/StructTemplate.tt");
 
         public static void CreateEcsComponent(string pathWithScripts, string name, Type type, string @namespace = "")
         {

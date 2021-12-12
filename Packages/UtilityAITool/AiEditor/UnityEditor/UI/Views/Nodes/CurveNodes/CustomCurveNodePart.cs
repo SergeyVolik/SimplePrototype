@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEditor.UIElements;
@@ -55,8 +56,8 @@ namespace SerV112.UtilityAIEditor
         protected override void PostBuildPartUI()
         {
             base.PostBuildPartUI();
-
-            var stylesheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/AiEditor/UnityEditor/UI/Stylesheets/GroupActionsPart.uss");
+            var path = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/UnityEditor/UI/Stylesheets/GroupActionsPart.uss");
+            var stylesheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(path);
             if (stylesheet != null)
             {
                 PartContainer.styleSheets.Add(stylesheet);

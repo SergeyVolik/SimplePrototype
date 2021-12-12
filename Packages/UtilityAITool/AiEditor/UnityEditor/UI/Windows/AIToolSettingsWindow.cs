@@ -71,7 +71,9 @@ namespace SerV112.UtilityAIEditor
         {
             
             minSize = new Vector2(200, 200);
-            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/AiEditor/UnityEditor/SettingsWindow.uxml");
+
+            var pathUxml = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/UnityEditor/SettingsWindow.uxml");
+            VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(pathUxml);
             uiAsset.CloneTree(rootVisualElement);
 
             m_SettingsLabel = rootVisualElement.SafeQ<Label>("SettingsName");
