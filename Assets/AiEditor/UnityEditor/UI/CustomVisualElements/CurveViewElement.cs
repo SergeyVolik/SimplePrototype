@@ -15,15 +15,13 @@ namespace SerV112.UtilityAIEditor
 
         public ICurve Curve;
 
-        private float m_StartX;
-        private float m_StartY;
-        public CurveViewElement(float startX, float endX)
+
+        public CurveViewElement()
         {
 
             generateVisualContent += OnGenerateVisualContent;
             
-            m_StartX = startX;
-            m_StartY = endX;
+
         }
        
         void OnGenerateVisualContent(MeshGenerationContext mgc)

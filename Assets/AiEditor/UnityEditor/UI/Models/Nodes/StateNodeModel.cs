@@ -31,8 +31,8 @@ namespace SerV112.UtilityAIEditor
             base.OnDefineNode();
 
             
-            AddInputPort("Input", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
-            AddOutputPort("Out", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
+            AddInputPort("input", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
+            AddOutputPort("output", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
 
             
         }

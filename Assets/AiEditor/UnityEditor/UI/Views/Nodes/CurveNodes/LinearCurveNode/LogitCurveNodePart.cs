@@ -10,8 +10,6 @@ namespace SerV112.UtilityAIEditor
 
     public class LogitCurveNodePart : CurveNodePart
     {
-        protected override float StartX => 0f;
-        protected override float EndX => 1f;
         public LogitCurveNodePart(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
            : base(name, model, ownerElement, parentClassName)
         {

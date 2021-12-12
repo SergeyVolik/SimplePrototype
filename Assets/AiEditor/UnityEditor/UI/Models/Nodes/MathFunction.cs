@@ -47,7 +47,7 @@ namespace SerV112.UtilityAIEditor
                 this.AddDataInputPort(name, InputType, options: options);
             }
             if(!DeadEndNode)
-                DataOut0 = this.AddDataOutputPort("out", OutputType);//this.AddDataOutputPort<float>("out");
+                DataOut0 = this.AddDataOutputPort("output", OutputType);//this.AddDataOutputPort<float>("out");
 
 
         }
