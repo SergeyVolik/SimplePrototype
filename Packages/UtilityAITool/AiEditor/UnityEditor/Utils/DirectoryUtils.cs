@@ -12,7 +12,7 @@ namespace SerV112.UtilityAIEditor
     public static class DirectoryUtils
     {
 
-        public const string DefaultPath = "Packages/Utility AI Tool";
+        public const string DefaultPath = "Packages/UtilityAITool";
 
         public static bool FileExisted(string[] fileEntries, string fileName)
         {
