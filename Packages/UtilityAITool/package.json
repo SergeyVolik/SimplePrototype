@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "This is an example package",
   "unity": "2020.3",
+  "displayName": "Utility AI Tool",
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "2.0.0-preview",
     "com.unity.dataflowgraph": "0.19.0-preview.7",
