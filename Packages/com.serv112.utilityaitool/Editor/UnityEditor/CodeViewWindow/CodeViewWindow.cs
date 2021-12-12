@@ -95,14 +95,14 @@ namespace SerV112.UtilityAIEditor
 
             // Import UXML
 
-            var pathUxml = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/UnityEditor/CodeViewWindow/CodeViewWindow.uxml");
+            var pathUxml = string.Join("/", DirectoryUtils.DefaultPath, "Editor/UnityEditor/CodeViewWindow/CodeViewWindow.uxml");
             var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(pathUxml);
             VisualElement labelFromUXML = visualTree.Instantiate();
             root.Add(labelFromUXML);
 
             // A stylesheet can be added to a VisualElement.
             // The style will be applied to the VisualElement and all of its children.
-            var pathStyle = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/UnityEditor/CodeViewWindow/CodeViewWindow.uss");
+            var pathStyle = string.Join("/", DirectoryUtils.DefaultPath, "Editor/UnityEditor/CodeViewWindow/CodeViewWindow.uss");
             var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(pathStyle);
 
             root.styleSheets.Add(styleSheet);

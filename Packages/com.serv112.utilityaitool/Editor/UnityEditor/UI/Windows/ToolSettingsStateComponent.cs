@@ -6,6 +6,7 @@ using UnityEngine;
 namespace SerV112.UtilityAIEditor
 {
 
+
     [Serializable]
     public class ToolSettingsWindowStateComponent : AssetStateComponent<ToolSettingsWindowStateComponent.StateUpdater>
     {
@@ -20,19 +21,25 @@ namespace SerV112.UtilityAIEditor
                 m_State.SetUpdateType(UpdateType.Complete);
             }
 
-            public void ChangeCheckBox(bool value)
+            public void MarkChangeBuildMode(BuildMode value)
             {
-                m_State.m_CheckBox = value;
+                m_State.m_BuildMode = value;
                 m_State.SetUpdateType(UpdateType.Complete);
             }
         }
 
+        public enum BuildMode
+        {
+            ECS,
+            MonoBehaviour
+        }
+
         [SerializeField]
         private string m_Namespace = "ToolSettingsWindowStateComponent";
-
-        public string Namespace => m_Namespace;
         [SerializeField]
-        private bool m_CheckBox = false;
+        private BuildMode m_BuildMode = BuildMode.MonoBehaviour;
+        public string Namespace => m_Namespace;
+        public BuildMode BuildType => m_BuildMode;
         public ToolSettingsWindowStateComponent()
         {
 

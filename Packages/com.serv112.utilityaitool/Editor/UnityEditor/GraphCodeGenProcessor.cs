@@ -41,6 +41,7 @@ namespace SerV112.UtilityAIEditor
         {
             var res = new GraphProcessingResult();
 
+            Debug.Log("GraphCodeGenProcessor");
             ValidateErrors(res, graphModel);
 
             return res;

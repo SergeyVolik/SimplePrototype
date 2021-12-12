@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.GraphToolsFoundation.Overdrive;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.GraphToolsFoundation.CommandStateObserver;
 using UnityEngine.UIElements;
+using static SerV112.UtilityAIEditor.ToolSettingsWindowStateComponent;
 
 namespace SerV112.UtilityAIEditor
 {
@@ -30,8 +32,10 @@ namespace SerV112.UtilityAIEditor
                 {
                     if (observation.UpdateType != UpdateType.None)
                     {
-                        UnityEngine.Debug.Log(state.ToolSettingsState.Namespace);
+                        Debug.Log(state.ToolSettingsState.Namespace);
                         m_Window.m_Namespace.SetValueWithoutNotify(state.ToolSettingsState.Namespace);
+                        Debug.Log(state.ToolSettingsState.BuildType);
+                        m_Window.m_BuildMode.SetValueWithoutNotify(state.ToolSettingsState.BuildType);
                     }
                 }
             }
@@ -52,37 +56,36 @@ namespace SerV112.UtilityAIEditor
 
         public bool Check = true;
 
-        //private void InitInternal(AIGraphAssetModel AssetModel, UnityEditor.GraphToolsFoundation.Overdrive.GraphView graphView)
-        //{
-        //    titleContent = new GUIContent("Settings");
-        //    m_AssetModel = AssetModel;
-        //    m_GraphView = graphView;
-        //    observer = new StateObserver(this);
-        //    m_Namespace.SetValueWithoutNotify(m_AssetModel.Namespace);
-        //    m_GraphView.CommandDispatcher.RegisterObserver(observer);
-        //    m_SettingsLabel.text = m_AssetModel.Name + " Settings";
-
-
-        //}
-
-        public TextField m_Namespace;
+        private TextField m_Namespace;
+        //public TextField Namespace => m_Namespace;
+        //public EnumField BuildType => m_BuildMode;
         private Label m_SettingsLabel;
+        private EnumField m_BuildMode;
+
         private void OnEnable()
         {
             
             minSize = new Vector2(200, 200);
 
-            var pathUxml = string.Join("/", DirectoryUtils.DefaultPath, "AiEditor/UnityEditor/SettingsWindow.uxml");
+            var pathUxml = string.Join("/", DirectoryUtils.DefaultPath, "Editor/UnityEditor/SettingsWindow.uxml");
             VisualTreeAsset uiAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(pathUxml);
             uiAsset.CloneTree(rootVisualElement);
 
             m_SettingsLabel = rootVisualElement.SafeQ<Label>("SettingsName");
             m_Namespace = rootVisualElement.SafeQ<TextField>("Namespace");
+            m_BuildMode = rootVisualElement.SafeQ<EnumField>("build-mode");
 
-          
+
+            m_BuildMode.Init(BuildMode.MonoBehaviour);
 
             m_Namespace.RegisterCallback<FocusInEvent>(OnFocusInTextField);
             m_Namespace.RegisterCallback<FocusOutEvent>(OnFocusOutTextField);
+            m_BuildMode.RegisterCallback<ChangeEvent<Enum>>((evt) =>
+            {
+
+                m_GraphView.CommandDispatcher.Dispatch(new SetBuildModeCommand((BuildMode)evt.newValue, m_AssetModel));
+                
+            });
 
         }
 
@@ -101,6 +104,7 @@ namespace SerV112.UtilityAIEditor
             var textField = evt.target as TextField;
             if (textField.text != m_OnFocusStartText)
             {
+                Debug.Log(textField.text);
                 m_GraphView.CommandDispatcher.Dispatch(new SetNamespaceNameCommand(textField.text, m_AssetModel));
             }
         }
@@ -128,6 +132,11 @@ namespace SerV112.UtilityAIEditor
            
             m_GraphView.CommandDispatcher.RegisterObserver(observer);
             m_SettingsLabel.text = m_AssetModel.Name + " Settings";
+
+
+            m_BuildMode.Init(BuildMode.MonoBehaviour);
+            m_BuildMode.SetValueWithoutNotify(m_AssetModel.BuildMode);
+            
         }
     }
 }

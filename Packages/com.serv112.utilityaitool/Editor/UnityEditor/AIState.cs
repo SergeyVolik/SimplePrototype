@@ -90,6 +90,7 @@ namespace SerV112.UtilityAIEditor
 
             commandDispatcher.RegisterCommandHandler<AddPortNodeCommand>(AddPortNodeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand>(RemovePortNodeCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetBuildModeCommand>(SetBuildModeCommand.DefaultHandler);
         }
     }
 

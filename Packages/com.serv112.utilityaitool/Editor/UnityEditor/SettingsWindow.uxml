@@ -2,6 +2,7 @@
 <UXML
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd"
     xsi:schemaLocation="UnityEngine.UIElements ../UIElementsSchema/UnityEngine.UIElements.xsd">
 
@@ -11,6 +12,7 @@
     <Box style="width: 100%; height: 100%;">
         <Label name="SettingsName" text="Settings" class="offset-left"><Style src="styles.uss" /></Label>
         <TextField name="Namespace" label="Namespace" value="" />
+        <uie:EnumField label="Build mode" name="build-mode" include-obsolete-values="false"/>
     </Box>
 
 </UXML>
