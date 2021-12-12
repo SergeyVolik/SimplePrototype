@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.serv112.utilityaitool": {
-      "version": "file:UtilityAITool",
+      "version": "file:com.serv112.utilityaitool",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
