@@ -1,24 +1,13 @@
-﻿using System;
-using System.Reflection;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEditor.GraphToolsFoundation.Overdrive.BasicModel;
-using UnityEngine;
-using static SerV112.UtilityAIEditor.ToolSettingsWindowStateComponent;
 
 namespace SerV112.UtilityAIEditor
 {
 
-    public class AIGraphAssetModel : GraphAssetModel, INamespaceField
+    public static class CreateAssetEditor
     {
-        [SerializeField]
-        private string m_Namespace = "";
-        [SerializeField]
-        private BuildMode m_BuildMode = BuildMode.MonoBehaviour;
-
-        public string Namespace { get => m_Namespace; set => m_Namespace = value; }
-        public BuildMode BuildMode { get => m_BuildMode; set => m_BuildMode = value; }
 
         [MenuItem("Assets/Create/AIAsset")]
         public static void CreateGraph(MenuCommand menuCommand)
@@ -54,9 +43,5 @@ namespace SerV112.UtilityAIEditor
 
             return false;
         }
-
-        protected override Type GraphModelType => typeof(AIGraphModel);
-
-
     }
 }

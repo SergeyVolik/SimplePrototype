@@ -28,11 +28,7 @@ namespace SerV112.UtilityAIEditor
             }
         }
 
-        public enum BuildMode
-        {
-            ECS,
-            MonoBehaviour
-        }
+       
 
         [SerializeField]
         private string m_Namespace = "ToolSettingsWindowStateComponent";

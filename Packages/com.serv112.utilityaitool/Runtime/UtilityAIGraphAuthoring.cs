@@ -1,8 +1,9 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
-using SerV112.UtilityAIEditor;
+
 using Unity.Collections;
+using SerV112.UtilityAIEditor;
 
 namespace SerV112.UtilityAIRuntime
 {
@@ -28,6 +29,9 @@ namespace SerV112.UtilityAIRuntime
         public AIGraphAssetModel GraphAsset => m_GraphAsset;
 
     }
+
+
+    
 
     
 

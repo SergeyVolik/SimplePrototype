@@ -1,18 +1,11 @@
 ﻿//-----------------------------------------------------------------------
 // This file is AUTO-GENERATED.
 // Changes for this script by hand might be lost when auto-generation is run.
-// (Generated date: 2021.12.12 20:18:57)
+// (Generated date: 2021.12.13 15:28:39)
 //-----------------------------------------------------------------------
-using Unity.Entities;
-using System;
-
-[Serializable]
-[GenerateAuthoringComponent]
-public struct  variable1  : IComponentData
+public enum  Actions
 {
-	public float Value;
+	RunAway,
+	Reload,
+	Stoot,
 }
-	
-
-
-

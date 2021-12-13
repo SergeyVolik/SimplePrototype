@@ -24,6 +24,5 @@
       "description": "Samples for with using monobehaviout script",
       "path": "Samples/Monobehaviour"
     }
-  ],
-  "type": "tool"
+  ]
 }

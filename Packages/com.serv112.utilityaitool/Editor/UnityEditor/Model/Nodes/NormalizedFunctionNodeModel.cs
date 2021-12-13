@@ -14,8 +14,8 @@ namespace SerV112.UtilityAIEditor
 
         public NormalizedFunctionNodeModel()
         {
-            InputType = AIStencil.NormalizedFloat;
-            OutputType = AIStencil.NormalizedFloat;
+            InputType = AIGraphCustomTypes.NormalizedFloat;
+            OutputType = AIGraphCustomTypes.NormalizedFloat;
         }
 
     }

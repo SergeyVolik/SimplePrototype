@@ -19,6 +19,28 @@ namespace SerV112.UtilityAIEditor
         private static readonly string AuthoringComponentTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AuthoringComponentTemplate.tt");
         private static readonly string ComputeShaderTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/ComputeShaderTemplate.tt");
         private static readonly string StructTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/StructTemplate.tt");
+        private static readonly string AIProcessorTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AIProcessor.tt");
+
+        public static void CreateMonoBehaviourAIProcessor(string pathWithScripts, string filename, CreateAIProcessorSettings settings)
+        {
+            filename = Path.ChangeExtension(filename, "cs");
+            pathWithScripts = string.Join("/", pathWithScripts, filename);
+            string templatePath = AIProcessorTemplate;
+
+            var templateSettings = TemplateSettings.CreateDefault(templatePath);
+            string templateInputSettigns = JsonConvert.SerializeObject(settings);
+
+            UnityTemplateGenerator.RunForTemplate(
+              templatePath,
+              pathWithScripts,
+              settings: templateSettings,
+              parameters: new Dictionary<string, string>() {
+                    { "settings" , templateInputSettigns }
+                }
+              );
+
+
+        }
 
         public static void CreateEcsComponent(string pathWithScripts, string name, Type type, string @namespace = "")
         {
@@ -27,17 +49,35 @@ namespace SerV112.UtilityAIEditor
 
             T4GenUtils.CreateStruct(pathWithScripts, name, new CreateStructSettings
             {
-                StructName = name,
+                Name = name,
                 Attributes = new List<string> { "Serializable", "GenerateAuthoringComponent" },
                 Using = new List<string>() { "Unity.Entities", "System" },
 
               
 
-            Fields = new List<CreateStructSettings.FieldData> { new CreateStructSettings.FieldData { Type = compiler.GetTypeOutput(type1), Name = "Value" } },
+            Fields = new List<FieldData> { new FieldData { Type = compiler.GetTypeOutput(type1), Name = "Value" } },
                 Interfaces = new List<string> { "IComponentData" },
                 Namespace = @namespace
             });
         }
+
+        public static void CreateEcsComponent(string pathWithScripts, string name, string type, string @namespace = "")
+        {
+
+            var type1 = new CodeTypeReference(type);
+
+            T4GenUtils.CreateStruct(pathWithScripts, name, new CreateStructSettings
+            {
+                Name = name,
+                Attributes = new List<string> { "Serializable", "GenerateAuthoringComponent" },
+                Using = new List<string>() { "Unity.Entities", "System" },
+                Fields = new List<FieldData> { new FieldData { Type = type, Name = "Value" } },
+                Interfaces = new List<string> { "IComponentData" },
+                Namespace = @namespace
+            });
+        }
+
+
 
         public static string CreateEnum(string SavePath, string fileName, CreateEnumSettings settings)
         {
@@ -215,28 +255,15 @@ namespace SerV112.UtilityAIEditor
         }
     }
 
-    [Serializable]
-    public class CreateStructSettings
+    public abstract class BaseGenCodeSettings
     {
-        public string StructName { get; set; }
+        public string Name { get; set; }
         public string Namespace { get; set; }
-
+        public string Parent { get; set; }
+        public List<string> Using { get; set; }
         public List<string> Interfaces { get; set; }
         public List<string> Attributes { get; set; }
-        public List<string> Using { get; set; }
-        public List<FieldData> Fields { get; set; }
 
-        [Serializable]
-        public class FieldData
-        {
-            public string Type;
-            public string Name;
-
-            public override string ToString()
-            {
-                return "public " + Type + " " + Name + ";";
-            }
-        }
 
         public string GetAttributs()
         {
@@ -293,18 +320,92 @@ namespace SerV112.UtilityAIEditor
         {
             var Interfaces1 = new StringBuilder("");
 
-            if (Interfaces.Count > 0)
+            var parentExist = !string.IsNullOrEmpty(Parent);
+            var interfaceExist = Interfaces?.Count > 0;
+            if (parentExist || interfaceExist)
             {
                 Interfaces1.Append(" : ");
-                for (var i = 0; i < Interfaces.Count; i++)
+
+                if (parentExist)
                 {
-                    Interfaces1.Append(Interfaces[i]);
-                    if (Interfaces.Count - 1 > i)
+                    Interfaces1.Append($"{Parent}");
+                    if (interfaceExist && Interfaces.Count > 0)
                         Interfaces1.Append(",");
                 }
+
+
+                if (interfaceExist)
+                {
+                    for (var i = 0; i < Interfaces.Count; i++)
+                    {
+                        Interfaces1.Append(Interfaces[i]);
+                        if (Interfaces.Count - 1 > i)
+                            Interfaces1.Append(",");
+                    }
+                }
+                
             }
             return Interfaces1.ToString();
         }
+    }
+
+    [Serializable]
+    public class FieldData
+    {
+        public string Type;
+        public string Name;
+
+        public override string ToString()
+        {
+            return "public " + Type + " " + Name + ";";
+        }
+    }
+
+    [Serializable]
+    public class CreateAIProcessorSettings : BaseGenCodeSettings
+    {
+        public List<ActionParts> ActionPartsOfCode { get; set; }
+        public List<PropertyParts> PropertyPartsOfCode { get; set; }
+
+       
+
+
+    }
+
+    [Serializable]
+    public class ActionParts
+    {
+        public string EnumType { get; set; }
+        public string Name { get; set; }
+
+    }
+
+    [Serializable]
+    public class PropertyParts
+    {
+        public string Name { get; set; }
+
+        public Range RageAttribut { get; set; }
+
+       
+
+
+    }
+
+    [Serializable]
+    public class Range
+    {
+        public float Min { get; set; }
+        public float Max { get; set; }
+    }
+
+    [Serializable]
+    public class CreateStructSettings : BaseGenCodeSettings
+    {
+        public List<FieldData> Fields { get; set; }
+
+      
+
     }
 
 

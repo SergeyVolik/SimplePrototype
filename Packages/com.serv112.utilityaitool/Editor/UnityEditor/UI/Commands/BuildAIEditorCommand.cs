@@ -36,46 +36,97 @@ namespace SerV112.UtilityAIEditor
         /// </summary>
         /// <param name="graphToolState">The state.</param>
         /// <param name="command">The command.</param>
+        /// 
+        AIGraphAssetModel m_AssetModel;
+        string pathWithScripts;
         public static void DefaultHandler(GraphToolState graphToolState, BuildAIEditorCommand command)
         {
-
+            command.m_AssetModel = graphToolState.WindowState.AssetModel as AIGraphAssetModel;
             var path = graphToolState.WindowState.AssetModel.GetDirectoryName();
 
-            var pathWithRes = string.Join("/", path, "Resources");
-            var pathWithScripts = string.Join("/", path, "_CodeGen");
+
+            command.pathWithScripts = string.Join("/", path, "_CodeGen");
 
 
-            if (AssetDatabase.IsValidFolder(pathWithRes))
+            if (AssetDatabase.IsValidFolder(command.pathWithScripts))
             {
-               
-                AssetDatabase.DeleteAsset(pathWithRes);
-               
+                AssetDatabase.DeleteAsset(command.pathWithScripts);           
             }
-            AssetDatabase.CreateFolder(path, "Resources");
-
-            if (AssetDatabase.IsValidFolder(pathWithScripts))
-            {
-                AssetDatabase.DeleteAsset(pathWithScripts);           
-            }
-
-            
 
             AssetDatabase.CreateFolder(path, "_CodeGen");
 
-            var Namespace = ((AIGraphAssetModel)graphToolState.WindowState.AssetModel).Namespace;
-            var varibales = graphToolState.WindowState.AssetModel.GraphModel.VariableDeclarations.ToList();
+           
+           
 
-            varibales.ForEach(e =>
+            switch (command.m_AssetModel.BuildMode)
             {
-                T4GenUtils.CreateEcsComponent(pathWithScripts, e.Title, typeof(float), Namespace);
-            });
-
-            graphToolState.WindowState.AssetModel.GraphModel.NodeModels.OfType<StateGroupNodeModel>().ToList().ForEach(e => e.GenereteStateGroup(pathWithScripts));
+                case BuildMode.ECS:
+                    command.EcsBuild();
+                    break;
+                case BuildMode.MonoBehaviour:
+                    command.MonoBehaviourBuild();
+                    break;
+                default:
+                    break;
+            }
 
             AssetDatabase.Refresh();
 
-
         }
+
+        void EcsBuild()
+        {
+            var varibales = m_AssetModel.GraphModel.VariableDeclarations.ToList();
+            var Namespace = m_AssetModel.Namespace;
+
+            varibales.ForEach(e =>
+            {
+                T4GenUtils.CreateEcsComponent(pathWithScripts, e.GetVariableName(), typeof(float), Namespace);
+            });
+        }
+
+        void MonoBehaviourBuild()
+        {
+           var enumTypes = new List<ActionParts>();
+            var nameNumber = 1;
+            m_AssetModel.GraphModel.NodeModels.OfType<StateGroupNodeModel>().ToList().ForEach(e => {
+
+                e.GenereteStateGroup(pathWithScripts);
+                enumTypes.Add(new ActionParts { Name = $"Action{nameNumber}", EnumType = e.Name  });
+                nameNumber++;
+            });
+
+            var Namespace = m_AssetModel.Namespace;
+            var varibales = m_AssetModel.GraphModel.VariableDeclarations.ToList();
+
+            var properties = new List<PropertyParts>();
+            for (int i = 0; i < varibales.Count; i++)
+            {
+                properties.Add(new PropertyParts
+                {
+                    Name = varibales[i].GetVariableName(),
+                    RageAttribut = new Range { 
+                         Max = 100,
+                         Min = 0
+                    }
+                }); 
+            }
+
+
+
+            var AiProcessorSettins = new CreateAIProcessorSettings
+            {
+                 Name = "AiProcessorCustom",
+                 Namespace = Namespace,
+                 Parent = "AIGraphProcessor",
+                 Attributes = new List<string> { "DisallowMultipleComponent" },
+                 PropertyPartsOfCode = properties,
+                 ActionPartsOfCode = enumTypes
+
+            };
+
+            T4GenUtils.CreateMonoBehaviourAIProcessor(pathWithScripts, "AiProcessorCustom", AiProcessorSettins);
+        }  
 
         
     }

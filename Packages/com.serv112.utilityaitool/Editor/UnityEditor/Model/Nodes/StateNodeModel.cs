@@ -31,8 +31,8 @@ namespace SerV112.UtilityAIEditor
             base.OnDefineNode();
 
             
-            AddInputPort("input", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
-            AddOutputPort("output", PortType.Data, AIStencil.NormalizedFloat, options: PortModelOptions.Default);
+            AddInputPort("input", PortType.Data, AIGraphCustomTypes.NormalizedFloat, options: PortModelOptions.Default);
+            AddOutputPort("output", PortType.Data, AIGraphCustomTypes.NormalizedFloat, options: PortModelOptions.Default);
 
             
         }
@@ -43,6 +43,17 @@ namespace SerV112.UtilityAIEditor
             var port = this.GetInputPorts().FirstOrDefault();
 
             return port.GetValue();
+        }
+
+        public override PortCapacity GetPortCapacity(IPortModel portModel)
+        {
+            PortCapacity cap = PortCapacity.Single;
+
+            if (portModel.Direction == PortDirection.Output)
+                cap = PortCapacity.Multi;
+
+
+            return cap;
         }
     }
 }

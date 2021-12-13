@@ -8,7 +8,7 @@ namespace SerV112.UtilityAIEditor
 {
     public class AIBlackboardGraphModel : BlackboardGraphModel
     {
-        internal static readonly string[] k_Sections = { /*"Ingredients", "Cookware",*/ "Out Variables"  };
+        public static readonly string[] k_Sections = { /*"Ingredients", "Cookware",*/ "Out Variables"  };
             
         /// <inheritdoc />
         public AIBlackboardGraphModel(IGraphAssetModel graphAssetModel)

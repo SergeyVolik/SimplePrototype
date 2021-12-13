@@ -78,16 +78,7 @@ namespace SerV112.UtilityAIEditor
         {
 
         }
-        public void GenereteStateGroup(string path)
-        {
-            List<string> @params = new List<string>();
-            this.GetConnectedNodes( PortDirection.Input, PortType.Data).OfType<StateNodeModel>().ToList().ForEach(e => {
-                @params.Add(e.Name);
-            });
-
-            var asset = this.GraphModel.AssetModel as AIGraphAssetModel;
-            T4GenUtils.CreateEnum(path, this.Name, new CreateEnumSettings(this.Name, @params, asset.Namespace));
-        }
+       
 
         public override float Evaluate()
         {

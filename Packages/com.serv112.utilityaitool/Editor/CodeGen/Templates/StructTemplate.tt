@@ -20,7 +20,7 @@ var settings = JsonConvert.DeserializeObject<CreateStructSettings>(settingsJson)
 namespace <#= settings.Namespace #>
 {
 	<#=settings.GetAttributs()#>
-	public struct  <#= settings.StructName #> <#=  settings.GetInterfacesString() #>
+	public struct  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
 	{
 
 <#for(var i = 0; i < settings.Fields.Count; i++) {#>
@@ -32,7 +32,7 @@ namespace <#= settings.Namespace #>
 <# // create struct without namespace#>
 <#else {#>
 <#=settings.GetAttributs()#>
-public struct  <#= settings.StructName #> <#=  settings.GetInterfacesString() #>
+public struct  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
 {
 <#for(var i = 0; i < settings.Fields.Count; i++) {#>
 	<#=settings.Fields[i]#>

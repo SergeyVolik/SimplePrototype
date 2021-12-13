@@ -11,11 +11,7 @@ using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
-    [Serializable]
-    public struct NormalizedFloat
-    {
-        public float Value;
-    }
+
 
     public class AIStencil : Stencil
     {
@@ -26,9 +22,7 @@ namespace SerV112.UtilityAIEditor
         public static readonly string graphName = "AI Editor Graph";
 
        
-        public static TypeHandle Namespace { get; } = TypeHandleHelpers.GenerateTypeHandle(typeof(string));
-        public static TypeHandle NormalizedFloat { get; } = TypeHandleHelpers.GenerateCustomTypeHandle(typeof(NormalizedFloat), "NormalizedFloat");
-        public static TypeHandle AIAction { get; } = TypeHandleHelpers.GenerateCustomTypeHandle("AIAction");
+
         public override IToolbarProvider GetToolbarProvider()
         {
             return m_ToolbarProvider ??= new AIToolbarProvider();
@@ -64,6 +58,7 @@ namespace SerV112.UtilityAIEditor
 
         }
 
+        
         public override IGraphProcessor CreateGraphProcessor()
         {
             return new GraphCodeGenProcessor();
@@ -106,6 +101,7 @@ namespace SerV112.UtilityAIEditor
             return null;
         }
 
+       
     }
 
     
