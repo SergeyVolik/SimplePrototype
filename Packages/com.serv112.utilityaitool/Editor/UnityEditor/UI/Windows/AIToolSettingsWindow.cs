@@ -32,9 +32,7 @@ namespace SerV112.UtilityAIEditor
                 {
                     if (observation.UpdateType != UpdateType.None)
                     {
-                        Debug.Log(state.ToolSettingsState.Namespace);
                         m_Window.m_Namespace.SetValueWithoutNotify(state.ToolSettingsState.Namespace);
-                        Debug.Log(state.ToolSettingsState.BuildType);
                         m_Window.m_BuildMode.SetValueWithoutNotify(state.ToolSettingsState.BuildType);
                     }
                 }

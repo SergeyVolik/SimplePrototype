@@ -110,7 +110,6 @@ namespace SerV112.UtilityAIEditor
                         ObjectPath = str,
                         Object = AssetDatabase.LoadAssetAtPath(str, typeof(UnityEngine.Object))
                     });
-                    Debug.Log("Reimported Asset: " + str);
                 }
 
                 AssetDatabase.SaveAssetIfDirty(m_AssetModel);
@@ -260,9 +259,11 @@ namespace SerV112.UtilityAIEditor
 
 
 
+
+            var AiProcessorSettinsName = "AiProcessorNew";
             var AiProcessorSettins = new CreateAIProcessorSettings
             {
-                 Name = "AiProcessorCustom",
+                 Name = AiProcessorSettinsName,
                  Namespace = Namespace,
                  Parent = "AIGraphProcessor",
                  Attributes = new List<string> { "DisallowMultipleComponent" },
@@ -271,7 +272,34 @@ namespace SerV112.UtilityAIEditor
 
             };
 
-            T4GenUtils.CreateMonoBehaviourAIProcessor(pathWithScripts, "AiProcessorCustom", AiProcessorSettins);
+            T4GenUtils.CreateMonoBehaviourAIProcessor(pathWithScripts, AiProcessorSettinsName, AiProcessorSettins);
+
+            var @params = new List<string>();
+
+            for (int i = 0; i < enumTypes.Count; i++)
+            {
+                @params.Add(enumTypes[i].Name);
+                @params.Add($"Event{enumTypes[i].Name}");
+            }
+            for (int i = 0; i < properties.Count; i++)
+            {
+                @params.Add(properties[i].Name);
+            }
+
+            var editorInspector = $"{AiProcessorSettinsName}Inspector";
+            var AIProcessorInspector = new CreateAIProcessorInspectorSettings
+            {
+                Namespace = Namespace,
+                Name = editorInspector,
+                Parent = "Editor",
+                Attributes = new List<string> { $"CustomEditor(typeof({AiProcessorSettinsName})) ","CanEditMultipleObjects"},
+                ErrorMessage = "Asset not setted!",
+                SerializedProperties = @params,
+                 
+
+            };
+
+            T4GenUtils.CreateMonoBehaviourAIProcessorInspector(pathWithEditorScripts, editorInspector, AIProcessorInspector);
         }  
 
         

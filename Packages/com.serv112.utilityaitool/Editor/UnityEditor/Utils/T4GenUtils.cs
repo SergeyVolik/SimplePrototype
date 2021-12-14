@@ -20,6 +20,7 @@ namespace SerV112.UtilityAIEditor
         private static readonly string ComputeShaderTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/ComputeShaderTemplate.tt");
         private static readonly string StructTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/StructTemplate.tt");
         private static readonly string AIProcessorTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AIProcessor.tt");
+        private static readonly string AIProcessorTemplateInspector = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AIProcessorInspector.tt");
 
         public static void CreateMonoBehaviourAIProcessor(string pathWithScripts, string filename, CreateAIProcessorSettings settings)
         {
@@ -40,6 +41,25 @@ namespace SerV112.UtilityAIEditor
               );
 
 
+        }
+
+        public static void CreateMonoBehaviourAIProcessorInspector(string pathWithScripts, string filename, CreateAIProcessorInspectorSettings settings)
+        {
+            filename = Path.ChangeExtension(filename, "cs");
+            pathWithScripts = string.Join("/", pathWithScripts, filename);
+            string templatePath = AIProcessorTemplateInspector;
+
+            var templateSettings = TemplateSettings.CreateDefault(templatePath);
+            string templateInputSettigns = JsonConvert.SerializeObject(settings);
+
+            UnityTemplateGenerator.RunForTemplate(
+              templatePath,
+              pathWithScripts,
+              settings: templateSettings,
+              parameters: new Dictionary<string, string>() {
+                    { "settings" , templateInputSettigns }
+                }
+              );
         }
 
         public static void CreateEcsComponent(string pathWithScripts, string name, Type type, string @namespace = "")
@@ -361,6 +381,13 @@ namespace SerV112.UtilityAIEditor
         }
     }
 
+
+    [Serializable]
+    public class CreateAIProcessorInspectorSettings : BaseGenCodeSettings
+    {
+        public List<string> SerializedProperties { get; set; }
+        public string ErrorMessage;
+    }
     [Serializable]
     public class CreateAIProcessorSettings : BaseGenCodeSettings
     {

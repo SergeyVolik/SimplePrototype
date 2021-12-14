@@ -25,7 +25,7 @@
 //    public override void OnInspectorGUI()
 //    {
 //        serializedObject.Update();
-        
+
 //        EditorGUILayout.PropertyField(m_Asset);
 
 //        if (m_Asset.objectReferenceValue != null)
@@ -34,7 +34,8 @@
 //            EditorGUILayout.PropertyField(m_Action1);
 //            EditorGUILayout.PropertyField(m_Health);
 //        }
-//        else {
+//        else
+//        {
 //            EditorGUILayout.HelpBox("Error", MessageType.Error, true);
 //        }
 //        serializedObject.ApplyModifiedProperties();

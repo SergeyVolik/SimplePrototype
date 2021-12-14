@@ -1,0 +1,103 @@
+<#@ template hostspecific="true" language="C#/Unity" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="SerV112.UtilityAIEditor" #>
+<#
+
+var settingsJson = this.Host.ResolveParameterValue("-", "-", "settings");
+
+var settings = JsonConvert.DeserializeObject<CreateAIProcessorInspectorSettings>(settingsJson);
+
+#>
+//-----------------------------------------------------------------------
+// This file is AUTO-GENERATED.
+// Changes for this script by hand might be lost when auto-generation is run.
+// (Generated date: <#=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")#>)
+//-----------------------------------------------------------------------
+using UnityEngine;
+using UnityEditor;
+<# // create struct with namespace#>
+<# if(settings.IsNamespace()) {#>
+namespace <#= settings.Namespace #>
+{
+	<#=settings.GetAttributs()#>
+	public class  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
+	{
+		SerializedProperty m_Asset;
+<#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
+		SerializedProperty m_<#= settings.SerializedProperties[i] #>;
+<#}#>
+		void OnEnable()
+		{
+			m_Asset = serializedObject.FindProperty("m_Asset");
+
+<#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
+		    m_<#= settings.SerializedProperties[i]#> = serializedObject.FindProperty("m_<#= settings.SerializedProperties[i]#>");
+<#}#>
+		}
+
+		public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+
+            EditorGUILayout.PropertyField(m_Asset);
+
+            if (m_Asset.objectReferenceValue != null)
+            {
+<#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
+		        EditorGUILayout.PropertyField(m_<#= settings.SerializedProperties[i]#>);
+<#}#>
+            }
+            else
+            {
+                EditorGUILayout.HelpBox("<#= settings.ErrorMessage#>", MessageType.Error, true);
+            }
+            serializedObject.ApplyModifiedProperties();
+        }
+
+
+	}
+}
+<#}#>
+<# // create struct without namespace#>
+<#else {#>
+
+<#=settings.GetAttributs()#>
+public class  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
+{
+    SerializedProperty m_Asset;
+<#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
+    SerializedProperty m_<#= settings.SerializedProperties[i] #>;
+<#}#>
+	void OnEnable()
+	{
+		m_Asset = serializedObject.FindProperty("m_Asset");
+
+<#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
+		    m_<#= settings.SerializedProperties[i]#> = serializedObject.FindProperty("m_<#= settings.SerializedProperties[i]#>");
+<#}#>
+	}
+
+	public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+
+        EditorGUILayout.PropertyField(m_Asset);
+
+        if (m_Asset.objectReferenceValue != null)
+        {
+<#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
+		        EditorGUILayout.PropertyField(m_<#= settings.SerializedProperties[i]#>);
+<#}#>
+        }
+        else
+        {
+            EditorGUILayout.HelpBox("<#= settings.ErrorMessage#>", MessageType.Error, true);
+        }
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+<#}#>
+	
+
+
+
