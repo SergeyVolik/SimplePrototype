@@ -11,7 +11,10 @@ namespace SerV112.UtilityAIEditor
 {
     class AiGraphAssetModificationProcessor : UnityEditor.AssetModificationProcessor
     {
-
+        const string titleDelete = "AI Asset Delete";
+        const string messageDelete = "Do you want to delete AI Graph asset? If you do it, folder _CodeGen will be deleted too!";
+        const string ok = "Ok";
+        const string cancel = "Cancel";
         static AssetDeleteResult OnWillDeleteAsset(string path, RemoveAssetOptions opt)
         {
             var AiGraph = AssetDatabase.LoadAssetAtPath<AIGraphAssetModel>(path);
@@ -20,7 +23,8 @@ namespace SerV112.UtilityAIEditor
 
             if (AiGraph)
             {
-                if (EditorUtility.DisplayDialog("AI Asset", "Do you want to delete AI Graph asset? If you do it, all depended assets will be deleted!", "Ok", "Cancel"))
+
+                if (EditorUtility.DisplayDialog(titleDelete, messageDelete, ok, cancel))
                 {
                     try
                     {
@@ -54,6 +58,7 @@ namespace SerV112.UtilityAIEditor
             return result;
         }
 
+        const string titleMove = "AI Asset Move";
         private static AssetMoveResult OnWillMoveAsset(string sourcePath, string destinationPath)
         {
             // Debug.Log("Source path: " + sourcePath + ". Destination path: " + destinationPath + ".");
@@ -65,17 +70,6 @@ namespace SerV112.UtilityAIEditor
             {
                 try
                 {
-                    //var path = Path.GetDirectoryName(destinationPath);
-                    //Debug.Log(Path.GetDirectoryName(AiGraph.RootDirectory));
-                    //string FolderName = new DirectoryInfo(AiGraph.RootDirectory).Name;
-                    //if (!string.IsNullOrEmpty(AiGraph.RootDirectory) && Directory.Exists(AiGraph.RootDirectory))
-                    //{
-
-                    //    Directory.Move(AiGraph.RootDirectory, $"{path}/{FolderName}");
-                    //    AiGraph.RootDirectory = $"{path}/{FolderName}";
-                    //    File.Move(sourcePath, destinationPath);
-                    //    assetMoveResult = AssetMoveResult.DidMove;
-                    //}
                     if (AiGraph.RootDirectory)
                     {
                         var path = AssetDatabase.GetAssetPath(AiGraph.RootDirectory);
