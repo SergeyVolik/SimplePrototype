@@ -13,7 +13,7 @@ namespace SerV112.UtilityAIEditor
 
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "StateGroup")]
-    public class StateGroupNodeModel : NormalizedFunctionNodeModel, IScriptName, IExtendableInputPortNode
+    public class StateGroupNodeModel : NormalizedFunctionNodeModel, IScriptName, IExtendableInputPortNode, IFieldName
     {
 
        
@@ -21,20 +21,25 @@ namespace SerV112.UtilityAIEditor
         [SerializeField, HideInInspector]
         string m_EnumName = "Default";
 
+        [SerializeField, HideInInspector]
+        string m_FieldName = "Default";
+
         public override string Title { get => base.Title; set => base.Title = m_EnumName + " (StateGroup)"; }
         public override string DisplayTitle => Title;
         public int VerticalInputCount => m_VerticalInputCount;
 
         public string Name { get => m_EnumName; set => m_EnumName = value; }
+        public string FieldName { get => m_FieldName; set => m_FieldName = value; }
 
         public const string InspectorLabelNameText = "Name";
 
         List<string> InputPorts = new List<string>();
         public StateGroupNodeModel()
         {
+            OutputType = AIGraphCustomTypes.AIGroup;
             InputPorts.Add($"State{InputPorts.Count}");
             m_ParameterNames = InputPorts.ToArray();
-            DeadEndNode = true;
+
         }
 
         [SerializeField, HideInInspector]

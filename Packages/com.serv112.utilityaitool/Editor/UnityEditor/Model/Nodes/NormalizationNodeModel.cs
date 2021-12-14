@@ -30,6 +30,9 @@ namespace SerV112.UtilityAIEditor
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {
             PortCapacity cap = PortCapacity.Single;
+
+            if (portModel.Direction == PortDirection.Output)
+                cap = PortCapacity.Multi;
             return cap;
         }
 

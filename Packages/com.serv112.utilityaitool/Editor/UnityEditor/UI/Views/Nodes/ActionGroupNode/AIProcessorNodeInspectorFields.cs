@@ -10,13 +10,13 @@ namespace SerV112.UtilityAIEditor
     /// It's a class for binding view and model of node to insteptor window with UGF reflection
     /// </summary>
     [GraphElementsExtensionMethodsCache(typeof(ModelInspectorView))]
-    public static class CreateStateNodeInspectorFieldsWithUGFReflection
+    public static class CreateAIProcessorNodeInspectorFieldsWithUGFReflection
     {
-        public static IModelUI CreateActionGroupNodeInspector(this ElementBuilder elementBuilder, CommandDispatcher dispatcher, StateNodeModel model)
+        public static IModelUI CreateActionGroupNodeInspector(this ElementBuilder elementBuilder, CommandDispatcher dispatcher, AIProcessorNodeModel model)
         {
             var ui = UnityEditor.GraphToolsFoundation.Overdrive.ModelInspectorFactoryExtensions.CreateNodeInspector(elementBuilder, dispatcher, model);
 
-            (ui as ModelUI)?.PartList.AppendPart(StateNodeInspectorFields.Create("bake-node-fields", model, ui, ModelInspector.ussClassName));
+            (ui as ModelUI)?.PartList.AppendPart(AIProcessorNodeInspectorFields.Create("bake-node-fields", model, ui, ModelInspector.ussClassName));
 
             ui.BuildUI();
             ui.UpdateFromModel();
@@ -24,33 +24,33 @@ namespace SerV112.UtilityAIEditor
             return ui;
         }
     }
-    class StateNodeInspectorFields : FieldsInspector
+    class AIProcessorNodeInspectorFields : FieldsInspector
     {
-        public static StateNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
+        public static AIProcessorNodeInspectorFields Create(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
         {
-            if (model is StateNodeModel)
+            if (model is AIProcessorNodeModel)
             {
-                return new StateNodeInspectorFields(name, model, ownerElement, parentClassName);
+                return new AIProcessorNodeInspectorFields(name, model, ownerElement, parentClassName);
             }
 
             return null;
         }
 
-        StateNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
+        AIProcessorNodeInspectorFields(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName) { }
 
         protected override IEnumerable<BaseModelPropertyField> GetFields()
         {
-            if (m_Model is StateNodeModel nodeModel)
+            if (m_Model is AIProcessorNodeModel bakeNodeModel)
             {
                 yield return new ModelPropertyField<string>(
                     m_OwnerElement.CommandDispatcher,
-                    nodeModel,
-                    nameof(StateNodeModel.Name),
-                    nameof(StateNodeModel.Name),
+                    bakeNodeModel,
+                    nameof(AIProcessorNodeModel.Name),
+                    AIProcessorNodeModel.InspectorName,
                     typeof(SetNameCommand));
 
-
+               
 
             }
         }

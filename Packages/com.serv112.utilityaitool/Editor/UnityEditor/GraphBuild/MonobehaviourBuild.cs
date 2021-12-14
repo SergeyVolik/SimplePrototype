@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
+using UnityEditor.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
@@ -19,79 +20,89 @@ namespace SerV112.UtilityAIEditor
 
         void MonoBehaviourBuild()
         {
-            var enumTypes = new List<ActionParts>();
-            var nameNumber = 1;
-            m_AssetModel.GraphModel.NodeModels.OfType<StateGroupNodeModel>().ToList().ForEach(e => {
-
-                e.GenereteStateGroup(pathWithScripts);
-                enumTypes.Add(new ActionParts { Name = $"Action{nameNumber}", EnumType = e.Name });
-                nameNumber++;
-            });
 
             var Namespace = m_AssetModel.Namespace;
-            var varibales = m_AssetModel.GraphModel.VariableDeclarations.ToList();
+            
+            var processors = m_AssetModel.GraphModel.NodeModels.OfType<AIProcessorNodeModel>().ToList();
 
-            var properties = new List<PropertyParts>();
-            for (int i = 0; i < varibales.Count; i++)
+            for (int i = 0; i < processors.Count; i++)
             {
-                properties.Add(new PropertyParts
-                {
-                    Name = varibales[i].GetVariableName(),
-                    RageAttribut = new Range
-                    {
-                        Max = 100,
-                        Min = 0
-                    }
+                var nameNumber = 1;
+                var enumTypes = new List<ActionParts>();
+                var stateGroups = processors[i].GetConnectedNodes(PortDirection.Input, PortType.Data).OfType<StateGroupNodeModel>().ToList();
+
+                stateGroups.ForEach(e => {
+
+                    e.GenereteStateGroup(pathWithScripts);
+                    enumTypes.Add(new ActionParts { Name = e.FieldName, EnumType = e.Name });
+                    nameNumber++;
                 });
+
+                var varibales = m_AssetModel.GraphModel.VariableDeclarations.ToList();
+
+                var properties = new List<PropertyParts>();
+                for (int j = 0; j < varibales.Count; j++)
+                {
+                    properties.Add(new PropertyParts
+                    {
+                        Name = varibales[j].GetVariableName(),
+                        RageAttribut = new Range
+                        {
+                            Max = 100,
+                            Min = 0
+                        }
+                    });
+                }
+
+
+
+
+                var AiProcessorSettinsName = processors[i].Name;
+                var AiProcessorSettins = new CreateAIProcessorSettings
+                {
+                    Name = AiProcessorSettinsName,
+                    Namespace = Namespace,
+                    Parent = "AIGraphProcessor",
+                    Attributes = new List<string> { "DisallowMultipleComponent" },
+                    PropertyPartsOfCode = properties,
+                    ActionPartsOfCode = enumTypes
+
+                };
+
+                T4GenUtils.CreateMonoBehaviourAIProcessor(pathWithScripts, AiProcessorSettinsName, AiProcessorSettins);
+
+                var @params = new List<string>();
+
+                for (int j = 0; j < enumTypes.Count; j++)
+                {
+                    @params.Add(enumTypes[i].Name);
+                    @params.Add($"Event{enumTypes[i].Name}");
+                }
+                for (int j = 0; j < properties.Count; j++)
+                {
+                    @params.Add(properties[i].Name);
+                }
+
+
+                var editorInspector = $"{AiProcessorSettinsName}Inspector";
+
+                var AIProcessorInspector = new CreateAIProcessorInspectorSettings
+                {
+                    Namespace = Namespace,
+                    Name = editorInspector,
+                    Parent = "Editor",
+                    Attributes = new List<string> { $"CustomEditor(typeof({AiProcessorSettinsName})) ", "CanEditMultipleObjects" },
+                    ErrorMessage = $"This script generated for specific AI Graph asset. Build guid: {m_AssetModel.CodeGenGuid}, asset path: {AssetPath}",
+                    SerializedProperties = @params,
+                    TargetGuid = m_AssetModel.CodeGenGuid,
+                    TargetClass = AiProcessorSettinsName
+
+
+                };
+
+                T4GenUtils.CreateMonoBehaviourAIProcessorInspector(pathWithEditorScripts, editorInspector, AIProcessorInspector);
             }
-
-
-
-
-            var AiProcessorSettinsName = "AiProcessorNew";
-            var AiProcessorSettins = new CreateAIProcessorSettings
-            {
-                Name = AiProcessorSettinsName,
-                Namespace = Namespace,
-                Parent = "AIGraphProcessor",
-                Attributes = new List<string> { "DisallowMultipleComponent" },
-                PropertyPartsOfCode = properties,
-                ActionPartsOfCode = enumTypes
-
-            };
-
-            T4GenUtils.CreateMonoBehaviourAIProcessor(pathWithScripts, AiProcessorSettinsName, AiProcessorSettins);
-
-            var @params = new List<string>();
-
-            for (int i = 0; i < enumTypes.Count; i++)
-            {
-                @params.Add(enumTypes[i].Name);
-                @params.Add($"Event{enumTypes[i].Name}");
-            }
-            for (int i = 0; i < properties.Count; i++)
-            {
-                @params.Add(properties[i].Name);
-            }
-
-            
-            var editorInspector = $"{AiProcessorSettinsName}Inspector";
-            
-            var AIProcessorInspector = new CreateAIProcessorInspectorSettings
-            {
-                Namespace = Namespace,
-                Name = editorInspector,
-                Parent = "Editor",
-                Attributes = new List<string> { $"CustomEditor(typeof({AiProcessorSettinsName})) ", "CanEditMultipleObjects" },
-                ErrorMessage = $"This script generated for specifyc AI Graph asset build guid: {m_AssetModel.CodeGenGuid} asset path: {AssetPath}",
-                SerializedProperties = @params,
-                TargetGuid = m_AssetModel.CodeGenGuid,
-                TargetClass = AiProcessorSettinsName
-
-
-            };
-
-            T4GenUtils.CreateMonoBehaviourAIProcessorInspector(pathWithEditorScripts, editorInspector, AIProcessorInspector);
+           
 
             State = AIGraphBuidState.AfterReimport;
             AssetDatabase.Refresh();

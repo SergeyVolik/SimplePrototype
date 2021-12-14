@@ -6,17 +6,17 @@ namespace SerV112.UtilityAIEditor
 {
    
 
-    public class SetStateNameCommand : ModelCommand<INameable, string>
+    public class SetNameCommand : ModelCommand<INameable, string>
     {
         const string k_UndoStringSingular = "Set Group Actions Node Name";
         const string k_UndoStringPlural = "Set Group Actions Nodes Names";
 
-        public SetStateNameCommand(string value, params INameable[] nodes)
+        public SetNameCommand(string value, params INameable[] nodes)
             : base(k_UndoStringSingular, k_UndoStringPlural, value, nodes)
         {
         }
 
-        public static void DefaultHandler(GraphToolState state, SetStateNameCommand command)
+        public static void DefaultHandler(GraphToolState state, SetNameCommand command)
         {
             state.PushUndo(command);
 

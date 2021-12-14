@@ -48,9 +48,16 @@ namespace SerV112.UtilityAIEditor
                     bakeNodeModel,
                     nameof(StateGroupNodeModel.Name),
                     StateGroupNodeModel.InspectorLabelNameText,
-                    typeof(SetStateNameCommand));
+                    typeof(SetNameCommand));
 
-               
+                yield return new ModelPropertyField<string>(
+                   m_OwnerElement.CommandDispatcher,
+                   bakeNodeModel,
+                   nameof(StateGroupNodeModel.FieldName),
+                   nameof(StateGroupNodeModel.FieldName),
+                   typeof(SetFieldNameCommand));
+
+
 
             }
         }

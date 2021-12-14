@@ -12,10 +12,14 @@ namespace SerV112.UtilityAIEditor
     {
         public float Value;
     }
+
+    [Serializable]
+    public struct AIGroup
+    {
+    }
     public class AIGraphCustomTypes
     {
-        public static TypeHandle Namespace { get; } = TypeHandleHelpers.GenerateTypeHandle(typeof(string));
         public static TypeHandle NormalizedFloat { get; } = TypeHandleHelpers.GenerateCustomTypeHandle(typeof(NormalizedFloat), "NormalizedFloat");
-        public static TypeHandle AIAction { get; } = TypeHandleHelpers.GenerateCustomTypeHandle("AIAction");
+        public static TypeHandle AIGroup { get; } = TypeHandleHelpers.GenerateCustomTypeHandle(typeof(AIGroup), "AIGroup");
     }
 }

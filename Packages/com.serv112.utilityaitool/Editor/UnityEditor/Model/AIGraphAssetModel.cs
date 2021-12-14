@@ -26,7 +26,8 @@ namespace SerV112.UtilityAIEditor
         private BuildMode m_BuildMode = BuildMode.MonoBehaviour;
         [SerializeField]
         private string m_CodeGenGuid;
-
+        [SerializeField]
+        private string m_FolderGuid;
         [SerializeField]
         private UnityEngine.Object m_RootDirectory;
 
@@ -36,6 +37,7 @@ namespace SerV112.UtilityAIEditor
         private List<UnityEngine.Object> m_GeneratedObjects;
 
         public string CodeGenGuid { get => m_CodeGenGuid; set => m_CodeGenGuid = value; }
+        public string FolderGuid { get => m_FolderGuid; set => m_FolderGuid = value; }
 
         public List<UnityEngine.Object> GeneratedObjects { get => m_GeneratedObjects; set => m_GeneratedObjects = value; }
         public string Namespace { get => m_Namespace; set => m_Namespace = value; }

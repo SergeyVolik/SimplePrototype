@@ -76,9 +76,9 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<BuildAIEditorCommand>(BuildAIEditorCommand.DefaultHandler);
 
             commandDispatcher.RegisterCommandHandler<SetNamespaceNameCommand>(SetNamespaceNameCommand.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<SetStateNameCommand>(SetStateNameCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetNameCommand>(SetNameCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetFieldNameCommand>(SetFieldNameCommand.DefaultHandler);
 
-            
             commandDispatcher.RegisterCommandHandler<SetOffsetCommand>(SetOffsetCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetSlopeCommand>(SetSlopeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetStepnessCommand>(SetStepnessCommand.DefaultHandler);
@@ -91,6 +91,7 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<AddPortNodeCommand>(AddPortNodeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand>(RemovePortNodeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetBuildModeCommand>(SetBuildModeCommand.DefaultHandler);
+          
         }
     }
 

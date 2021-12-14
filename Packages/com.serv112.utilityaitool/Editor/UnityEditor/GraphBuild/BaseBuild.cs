@@ -19,26 +19,36 @@ namespace SerV112.UtilityAIEditor
         public BaseBuild(AIGraphAssetModel asset)
         {
             m_AssetModel = asset;
-
+            string _CodeGenFolder;
             State = AIGraphBuidState.BeforeReimport;
             AssetPath = asset.GetFilename();
             var path = asset.GetDirectoryName();
+
+            if (m_AssetModel.RootDirectory == null)
+            {
+                m_AssetModel.FolderGuid = GUID.Generate().ToString();
+                _CodeGenFolder = $"_CodeGen_{m_AssetModel.FolderGuid}";
+                AssetDatabase.CreateFolder(path, _CodeGenFolder);
+                AssetDatabase.CreateFolder(pathWithScripts, "Editor");
+            }
+            else
+            {
+                _CodeGenFolder = $"_CodeGen_{m_AssetModel.FolderGuid}";
+            }
+
+          
+
             m_AssetModel.CodeGenGuid = GUID.Generate().ToString();
-            var _CodeGenFolder = $"_CodeGen_{m_AssetModel.CodeGenGuid}";
+         
             pathWithScripts = string.Join("/", path, _CodeGenFolder);
 
             pathWithEditorScripts = string.Join("/", pathWithScripts, "Editor");
 
             m_AssetModel.GeneratedObjects.Clear();
 
-            if (m_AssetModel.RootDirectory != null)
-            {
-                AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(m_AssetModel.RootDirectory));
-            }
 
+           
 
-            AssetDatabase.CreateFolder(path, _CodeGenFolder);
-            AssetDatabase.CreateFolder(pathWithScripts, "Editor");
         }
 
         public static void CollectAssetRefs(string[] importedAssets, BaseBuild build)

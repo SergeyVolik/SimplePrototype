@@ -193,7 +193,7 @@ Identifiers should not start with digits([0-9]).
                         {
                             res.AddError($"a graph contains  two or more StateNodeModel with Name: {stateNodeModels[i].Name}", sgnm, new QuickFix("Add to name 1", (cd) =>
                             {
-                                cd.Dispatch(new SetStateNameCommand(elem.Name + "1", elem));
+                                cd.Dispatch(new SetNameCommand(elem.Name + "1", elem));
                             }));
                         }
                         else if (stateNodeModels[i] is IVariableDeclarationModel vd)
@@ -236,7 +236,7 @@ Identifiers should not start with digits([0-9]).
 
                             res.AddError($"a graph contains  two or more StateNodeModel with Name: {nodes[i].Name}", nodes[i] as INodeModel, new QuickFix("Add to name 1", (cd) =>
                             {
-                                cd.Dispatch(new SetStateNameCommand(elem.Name + "1", elem));
+                                cd.Dispatch(new SetNameCommand(elem.Name + "1", elem));
                             }));
                         }
                     }
