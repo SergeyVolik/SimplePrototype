@@ -278,9 +278,9 @@ MonoBehaviour:
   m_EventAction2:
     m_PersistentCalls:
       m_Calls: []
-  m_Health: 37
-  m_Ammo: 30.7
-  m_EnemyDistance: 10.7
+  m_Health: 0
+  m_Ammo: 0
+  m_EnemyDistance: 0
 --- !u!4 &1966229348
 Transform:
   m_ObjectHideFlags: 0

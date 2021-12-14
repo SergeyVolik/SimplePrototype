@@ -16,6 +16,16 @@ MonoBehaviour:
     id: 0
   m_Namespace: 
   m_BuildMode: 1
+  m_CodeGenGuid: bef3c8f0966f7e54ab7098f953e325c1
+  m_GeneratedObjects:
+  - Object: {fileID: 102900000, guid: e14179ee4db22e44d99b27fe6ae50bb0, type: 3}
+    ObjectPath: Assets\AiEditorSample/_CodeGen
+  - Object: {fileID: 11500000, guid: 953a5ed7581f7454388216f79e6bde48, type: 3}
+    ObjectPath: Assets/AiEditorSample/_CodeGen/AiProcessorCustom.cs
+  - Object: {fileID: 11500000, guid: 5af2208628953424188eb8a7039662bc, type: 3}
+    ObjectPath: Assets/AiEditorSample/_CodeGen/Actions.gen.cs
+  - Object: {fileID: 11500000, guid: 8ddd414d03cd4654c9e1aa2e7d810bec, type: 3}
+    ObjectPath: Assets/AiEditorSample/_CodeGen/Actions1.gen.cs
   references:
     version: 1
     00000000:
@@ -135,7 +145,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 982.6177, y: -69.0375}
+        m_Position: {x: 1000.6177, y: -71.037506}
         m_Title: Actions (StateGroup)
         m_InputConstantsById:
           m_KeyList: []
@@ -158,7 +168,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -58.306187, y: -211.62424}
+        m_Position: {x: -32.306187, y: -232.62425}
         m_Title: Normalization
         m_InputConstantsById:
           m_KeyList:
@@ -239,7 +249,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 523.0325, y: 82.09242}
+        m_Position: {x: 637.0325, y: 15.09243}
         m_Title: Reload (State)
         m_InputConstantsById:
           m_KeyList: []
@@ -257,7 +267,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 583.6475, y: -138.19754}
+        m_Position: {x: 655.6475, y: -193.19754}
         m_Title: RunAway (State)
         m_InputConstantsById:
           m_KeyList: []
@@ -275,7 +285,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 520.5499, y: 310.05246}
+        m_Position: {x: 652.5499, y: 266.0525}
         m_Title: Stoot (State)
         m_InputConstantsById:
           m_KeyList: []
@@ -293,7 +303,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 284.34695, y: 438.5105}
+        m_Position: {x: 356.34695, y: 356.5105}
         m_Title: OneMinus
         m_InputConstantsById:
           m_KeyList: []
@@ -312,7 +322,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 287.28735, y: -167.2584}
+        m_Position: {x: 359.28735, y: -249.25842}
         m_Title: OneMinus
         m_InputConstantsById:
           m_KeyList: []
@@ -331,7 +341,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 204.55823, y: 157.5735}
+        m_Position: {x: 276.55823, y: 75.573494}
         m_Title: OneMinus
         m_InputConstantsById:
           m_KeyList: []

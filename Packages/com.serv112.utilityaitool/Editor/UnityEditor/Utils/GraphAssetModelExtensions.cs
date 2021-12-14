@@ -17,6 +17,7 @@ namespace SerV112.UtilityAIEditor
 
         public static string GetDirectoryName(this IGraphAssetModel model)
         {
+            
             return Path.GetDirectoryName(model.GetPath());
         }
     }

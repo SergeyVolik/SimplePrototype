@@ -31,9 +31,9 @@ namespace SerV112.UtilityAIEditor
        
 
         [SerializeField]
-        private string m_Namespace = "ToolSettingsWindowStateComponent";
+        private string m_Namespace;
         [SerializeField]
-        private BuildMode m_BuildMode = BuildMode.MonoBehaviour;
+        private BuildMode m_BuildMode;
         public string Namespace => m_Namespace;
         public BuildMode BuildType => m_BuildMode;
         public ToolSettingsWindowStateComponent()
