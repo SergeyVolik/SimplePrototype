@@ -16,14 +16,14 @@ MonoBehaviour:
     id: 0
   m_Namespace: 
   m_BuildMode: 1
-  m_CodeGenGuid: 77a277bbf1f52a04fb9be576691c3a0f
-  m_RootDirectory: {fileID: 102900000, guid: c0ac9afc7908a764f89febadab244abe, type: 3}
+  m_CodeGenGuid: e9ff26f31fd1c9743ba1452ab317c702
+  m_RootDirectory: {fileID: 102900000, guid: 5f17e392f01443541b02951d3d406049, type: 3}
   m_GeneratedObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 102900000, guid: 5f17e392f01443541b02951d3d406049, type: 3}
+  - {fileID: 11500000, guid: 453d933729b66fb4ebfa6efcd1f721dc, type: 3}
+  - {fileID: 11500000, guid: 53bb21a887199fc43b2468c494d988a9, type: 3}
+  - {fileID: 11500000, guid: 69c7653b1361cda44a6e894f7ec5e4e7, type: 3}
+  - {fileID: 11500000, guid: c91c4a7645eb48f49af0280307ea04e5, type: 3}
   references:
     version: 1
     00000000:
@@ -105,7 +105,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -432.45425, y: 172.98404}
+        m_Position: {x: -394.45422, y: 85.98404}
         m_Title: Ammo
         m_InputConstantsById:
           m_KeyList: []
@@ -124,7 +124,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -215.69733, y: -314.43042}
+        m_Position: {x: -339.6973, y: -387.43042}
         m_Title: Health
         m_InputConstantsById:
           m_KeyList: []
@@ -166,7 +166,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 1.6938095, y: -177.62428}
+        m_Position: {x: -122.30616, y: -250.62428}
         m_Title: Normalization
         m_InputConstantsById:
           m_KeyList:
@@ -193,7 +193,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -185.03778, y: 113.22455}
+        m_Position: {x: -147.03775, y: 26.224548}
         m_Title: Normalization
         m_InputConstantsById:
           m_KeyList:

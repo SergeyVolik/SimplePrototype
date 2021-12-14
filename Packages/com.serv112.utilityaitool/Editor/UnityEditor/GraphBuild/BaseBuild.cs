@@ -12,8 +12,8 @@ namespace SerV112.UtilityAIEditor
         protected AIGraphAssetModel m_AssetModel;
         protected string pathWithScripts;
         protected string pathWithEditorScripts;
-        protected static AIGraphBuidState State;
-
+        protected AIGraphBuidState State;
+        protected string AssetPath;
         public AIGraphAssetModel Model => m_AssetModel;
 
         public BaseBuild(AIGraphAssetModel asset)
@@ -21,7 +21,7 @@ namespace SerV112.UtilityAIEditor
             m_AssetModel = asset;
 
             State = AIGraphBuidState.BeforeReimport;
-            m_AssetModel = asset;
+            AssetPath = asset.GetFilename();
             var path = asset.GetDirectoryName();
             m_AssetModel.CodeGenGuid = GUID.Generate().ToString();
             var _CodeGenFolder = $"_CodeGen_{m_AssetModel.CodeGenGuid}";
@@ -50,7 +50,7 @@ namespace SerV112.UtilityAIEditor
             var pathWithScripts = build.pathWithScripts;
             var pathWithEditorScripts = build.pathWithEditorScripts;
 
-            if (State == AIGraphBuidState.AfterReimport && m_AssetModel)
+            if (build.State == AIGraphBuidState.AfterReimport && m_AssetModel)
             {
 
                 m_AssetModel.RootDirectory = AssetDatabase.LoadAssetAtPath(pathWithScripts, typeof(UnityEngine.Object));
@@ -64,8 +64,7 @@ namespace SerV112.UtilityAIEditor
 
                 AssetDatabase.SaveAssetIfDirty(m_AssetModel);
 
-                m_AssetModel = null;
-
+                build = null;
             }
         }
 

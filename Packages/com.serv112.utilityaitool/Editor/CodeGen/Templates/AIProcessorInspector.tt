@@ -15,6 +15,7 @@ var settings = JsonConvert.DeserializeObject<CreateAIProcessorInspectorSettings>
 //-----------------------------------------------------------------------
 using UnityEngine;
 using UnityEditor;
+
 <# // create struct with namespace#>
 <# if(settings.IsNamespace()) {#>
 namespace <#= settings.Namespace #>
@@ -22,6 +23,10 @@ namespace <#= settings.Namespace #>
 	<#=settings.GetAttributs()#>
 	public class  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
 	{
+        const string k_TargetGUID = "<#= settings.TargetGuid #>";
+        const string k_Error = "Please set up AI Graph asset";
+        const string k_Error2 = "<#= settings.ErrorMessage#>";
+
 		SerializedProperty m_Asset;
 <#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
 		SerializedProperty m_<#= settings.SerializedProperties[i] #>;
@@ -37,19 +42,27 @@ namespace <#= settings.Namespace #>
 
 		public override void OnInspectorGUI()
         {
+            var t = (target as <#= settings.TargetClass#>);
+
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(m_Asset);
 
             if (m_Asset.objectReferenceValue != null)
             {
+                if(t.CheckGuid(k_TargetGUID))
+                {
 <#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
-		        EditorGUILayout.PropertyField(m_<#= settings.SerializedProperties[i]#>);
+		            EditorGUILayout.PropertyField(m_<#= settings.SerializedProperties[i]#>);
 <#}#>
+                }
+                else{
+                    EditorGUILayout.HelpBox(k_Error2, MessageType.Error, true);
+                }
             }
             else
             {
-                EditorGUILayout.HelpBox("<#= settings.ErrorMessage#>", MessageType.Error, true);
+                EditorGUILayout.HelpBox(k_Error, MessageType.Error, true);
             }
             serializedObject.ApplyModifiedProperties();
         }
@@ -64,6 +77,9 @@ namespace <#= settings.Namespace #>
 <#=settings.GetAttributs()#>
 public class  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
 {
+    const string k_TargetGUID = "<#= settings.TargetGuid #>";
+    const string k_Error = "Please set up AI Graph asset";
+    const string k_Error2 = "<#= settings.ErrorMessage#>";
     SerializedProperty m_Asset;
 <#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
     SerializedProperty m_<#= settings.SerializedProperties[i] #>;
@@ -79,19 +95,27 @@ public class  <#= settings.Name #> <#=  settings.GetInterfacesString() #>
 
 	public override void OnInspectorGUI()
     {
+        var t = (target as <#= settings.TargetClass#>);
+
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(m_Asset);
 
         if (m_Asset.objectReferenceValue != null)
         {
+            if(t.CheckGuid(k_TargetGUID))
+            {
 <#for(var i = 0; i < settings.SerializedProperties.Count; i++) {#>
 		        EditorGUILayout.PropertyField(m_<#= settings.SerializedProperties[i]#>);
 <#}#>
+            }
+            else{
+                EditorGUILayout.HelpBox(k_Error2, MessageType.Error, true);
+            }
         }
         else
         {
-            EditorGUILayout.HelpBox("<#= settings.ErrorMessage#>", MessageType.Error, true);
+            EditorGUILayout.HelpBox(k_Error, MessageType.Error, true);
         }
         serializedObject.ApplyModifiedProperties();
     }

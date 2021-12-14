@@ -21,6 +21,12 @@ namespace SerV112.UtilityAIRuntime
         private Dictionary<string, IConstant> m_Variables;
         private List<StateGroupNodeModel> m_EntryNodes;
 
+
+        public bool CheckGuid(string guild)
+        {
+            return m_Asset != null && string.Equals(m_Asset.CodeGenGuid, guild);
+        }
+
         protected virtual void Awake()
         {
             m_Clone = Instantiate(m_Asset);

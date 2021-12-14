@@ -266,10 +266,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966229345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0600f68b22f9eea45a8547c7e4d0e08c, type: 3}
+  m_Script: {fileID: 11500000, guid: 453d933729b66fb4ebfa6efcd1f721dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Asset: {fileID: 11400000, guid: d7390b49f0244654b9f5618634b83df7, type: 2}
+  m_Asset: {fileID: 11400000, guid: 20c54ef30ed293e4ba01118e6c5f9b98, type: 2}
   m_Action1: 0
   m_EventAction1:
     m_PersistentCalls:

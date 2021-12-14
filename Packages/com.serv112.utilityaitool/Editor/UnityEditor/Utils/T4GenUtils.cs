@@ -387,6 +387,8 @@ namespace SerV112.UtilityAIEditor
     {
         public List<string> SerializedProperties { get; set; }
         public string ErrorMessage;
+        public string TargetGuid;
+        public string TargetClass;
     }
     [Serializable]
     public class CreateAIProcessorSettings : BaseGenCodeSettings

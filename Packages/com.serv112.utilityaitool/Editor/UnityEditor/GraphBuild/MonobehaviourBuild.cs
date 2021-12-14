@@ -74,15 +74,19 @@ namespace SerV112.UtilityAIEditor
                 @params.Add(properties[i].Name);
             }
 
+            
             var editorInspector = $"{AiProcessorSettinsName}Inspector";
+            
             var AIProcessorInspector = new CreateAIProcessorInspectorSettings
             {
                 Namespace = Namespace,
                 Name = editorInspector,
                 Parent = "Editor",
                 Attributes = new List<string> { $"CustomEditor(typeof({AiProcessorSettinsName})) ", "CanEditMultipleObjects" },
-                ErrorMessage = "Asset not setted!",
+                ErrorMessage = $"This script generated for specifyc AI Graph asset build guid: {m_AssetModel.CodeGenGuid} asset path: {AssetPath}",
                 SerializedProperties = @params,
+                TargetGuid = m_AssetModel.CodeGenGuid,
+                TargetClass = AiProcessorSettinsName
 
 
             };
