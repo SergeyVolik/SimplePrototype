@@ -1,7 +1,7 @@
 ﻿//-----------------------------------------------------------------------
 // This file is AUTO-GENERATED.
 // Changes for this script by hand might be lost when auto-generation is run.
-// (Generated date: 2021.12.14 16:56:25)
+// (Generated date: 2021.12.14 17:47:24)
 //-----------------------------------------------------------------------
 
 using UnityEngine;

@@ -16,16 +16,14 @@ MonoBehaviour:
     id: 0
   m_Namespace: 
   m_BuildMode: 1
-  m_CodeGenGuid: bef3c8f0966f7e54ab7098f953e325c1
+  m_CodeGenGuid: 77a277bbf1f52a04fb9be576691c3a0f
+  m_RootDirectory: {fileID: 102900000, guid: c0ac9afc7908a764f89febadab244abe, type: 3}
   m_GeneratedObjects:
-  - Object: {fileID: 102900000, guid: e14179ee4db22e44d99b27fe6ae50bb0, type: 3}
-    ObjectPath: Assets\AiEditorSample/_CodeGen
-  - Object: {fileID: 11500000, guid: 953a5ed7581f7454388216f79e6bde48, type: 3}
-    ObjectPath: Assets/AiEditorSample/_CodeGen/AiProcessorCustom.cs
-  - Object: {fileID: 11500000, guid: 5af2208628953424188eb8a7039662bc, type: 3}
-    ObjectPath: Assets/AiEditorSample/_CodeGen/Actions.gen.cs
-  - Object: {fileID: 11500000, guid: 8ddd414d03cd4654c9e1aa2e7d810bec, type: 3}
-    ObjectPath: Assets/AiEditorSample/_CodeGen/Actions1.gen.cs
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   references:
     version: 1
     00000000:
@@ -126,7 +124,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -322.69733, y: -93.430435}
+        m_Position: {x: -215.69733, y: -314.43042}
         m_Title: Health
         m_InputConstantsById:
           m_KeyList: []
@@ -145,7 +143,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 1000.6177, y: -71.037506}
+        m_Position: {x: 1025.6179, y: -124.037506}
         m_Title: Actions (StateGroup)
         m_InputConstantsById:
           m_KeyList: []
@@ -168,7 +166,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: -32.306187, y: -232.62425}
+        m_Position: {x: 1.6938095, y: -177.62428}
         m_Title: Normalization
         m_InputConstantsById:
           m_KeyList:
@@ -249,7 +247,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 637.0325, y: 15.09243}
+        m_Position: {x: 652.0325, y: 86.092445}
         m_Title: Reload (State)
         m_InputConstantsById:
           m_KeyList: []
@@ -267,7 +265,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 655.6475, y: -193.19754}
+        m_Position: {x: 652.6476, y: -185.19754}
         m_Title: RunAway (State)
         m_InputConstantsById:
           m_KeyList: []
@@ -285,7 +283,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 652.5499, y: 266.0525}
+        m_Position: {x: 641.5499, y: 278.05252}
         m_Title: Stoot (State)
         m_InputConstantsById:
           m_KeyList: []
@@ -322,7 +320,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 359.28735, y: -249.25842}
+        m_Position: {x: 375.28732, y: -197.25842}
         m_Title: OneMinus
         m_InputConstantsById:
           m_KeyList: []
@@ -360,7 +358,7 @@ MonoBehaviour:
         m_Color: {r: 0, g: 0, b: 0, a: 0}
         m_HasUserColor: 0
         m_Version: 1
-        m_Position: {x: 979.04987, y: 152.1451}
+        m_Position: {x: 1021.0501, y: 156.14523}
         m_Title: Actions1 (StateGroup)
         m_InputConstantsById:
           m_KeyList: []

@@ -16,12 +16,7 @@ namespace SerV112.UtilityAIEditor
         MonoBehaviour
     }
 
-    [Serializable]
-    public class AIGraphAsset
-    {
-        public UnityEngine.Object Object;
-        public string ObjectPath;
-    }
+
     public class AIGraphAssetModel : GraphAssetModel, INamespaceField
     {
         [Header("AI Code Generation Data")]
@@ -38,11 +33,11 @@ namespace SerV112.UtilityAIEditor
 
         public UnityEngine.Object RootDirectory { get => m_RootDirectory; set => m_RootDirectory = value; }
         [SerializeField]
-        private List<AIGraphAsset> m_GeneratedObjects;
+        private List<UnityEngine.Object> m_GeneratedObjects;
 
         public string CodeGenGuid { get => m_CodeGenGuid; set => m_CodeGenGuid = value; }
 
-        public List<AIGraphAsset> GeneratedObjects { get => m_GeneratedObjects; set => m_GeneratedObjects = value; }
+        public List<UnityEngine.Object> GeneratedObjects { get => m_GeneratedObjects; set => m_GeneratedObjects = value; }
         public string Namespace { get => m_Namespace; set => m_Namespace = value; }
         public BuildMode BuildMode { get => m_BuildMode; set => m_BuildMode = value; }
 
