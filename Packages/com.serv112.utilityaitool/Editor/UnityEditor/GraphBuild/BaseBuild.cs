@@ -21,7 +21,7 @@ namespace SerV112.UtilityAIEditor
             m_AssetModel = asset;
             string _CodeGenFolder;
             State = AIGraphBuidState.BeforeReimport;
-            AssetPath = asset.GetFilename();
+            AssetPath = AssetDatabase.GetAssetPath(asset);
             var path = asset.GetDirectoryName();
 
             if (m_AssetModel.RootDirectory == null)
@@ -58,20 +58,19 @@ namespace SerV112.UtilityAIEditor
 
             var m_AssetModel = build.Model;
             var pathWithScripts = build.pathWithScripts;
-            var pathWithEditorScripts = build.pathWithEditorScripts;
 
             if (build.State == AIGraphBuidState.AfterReimport && m_AssetModel)
             {
 
                 m_AssetModel.RootDirectory = AssetDatabase.LoadAssetAtPath(pathWithScripts, typeof(UnityEngine.Object));
-                m_AssetModel.GeneratedObjects.Add(m_AssetModel.RootDirectory);
-
 
                 foreach (string str in importedAssets)
                 {
                     m_AssetModel.GeneratedObjects.Add(AssetDatabase.LoadAssetAtPath(str, typeof(UnityEngine.Object)));
                 }
 
+                build.State = AIGraphBuidState.AssetsSaved;
+                EditorUtility.SetDirty(m_AssetModel);                
                 AssetDatabase.SaveAssetIfDirty(m_AssetModel);
 
                 build = null;

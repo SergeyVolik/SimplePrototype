@@ -1,7 +1,7 @@
 ﻿//-----------------------------------------------------------------------
 // This file is AUTO-GENERATED.
 // Changes for this script by hand might be lost when auto-generation is run.
-// (Generated date: 2021.12.14 20:56:23)
+// (Generated date: 2021.12.15 10:23:57)
 //-----------------------------------------------------------------------
 
 using UnityEngine;
@@ -14,12 +14,12 @@ public class  AIProcessor  : AIGraphProcessor
 {
 	private bool HasChanges = true;
 
-    public Сheerfulness Сheerfulness => m_Сheerfulness;
+    public Cheerfulness Cheerfulness => m_Cheerfulness;
     [SerializeField]
-    private Сheerfulness m_Сheerfulness;
+    private Cheerfulness m_Cheerfulness;
     [SerializeField]
-    private UnityEvent<Сheerfulness> m_EventСheerfulness = new UnityEvent<Сheerfulness>();
-    public UnityEvent<Сheerfulness> EventСheerfulness => m_EventСheerfulness;
+    private UnityEvent<Cheerfulness> m_EventCheerfulness = new UnityEvent<Cheerfulness>();
+    public UnityEvent<Cheerfulness> EventCheerfulness => m_EventCheerfulness;
 
     private const string EnergyConst = "Energy";
     [SerializeField]
@@ -61,11 +61,11 @@ public class  AIProcessor  : AIGraphProcessor
     {
         if (HasChanges)
         {
-            var  Сheerfulness1 = (Сheerfulness)Execute(0);
-            if (Сheerfulness1 != m_Сheerfulness)
+            var  Cheerfulness1 = (Cheerfulness)Execute(0);
+            if (Cheerfulness1 != m_Cheerfulness)
             {
-                m_Сheerfulness = Сheerfulness1;
-                EventСheerfulness.Invoke(m_Сheerfulness);
+                m_Cheerfulness = Cheerfulness1;
+                EventCheerfulness.Invoke(m_Cheerfulness);
                
             }
              HasChanges = false;

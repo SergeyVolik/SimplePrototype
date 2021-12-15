@@ -3,6 +3,7 @@
     public enum AIGraphBuidState
     {
         BeforeReimport,
-        AfterReimport
+        AfterReimport,
+        AssetsSaved
     }
 }

@@ -225,8 +225,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 747865919}
-  - component: {fileID: 747865918}
   - component: {fileID: 747865920}
+  - component: {fileID: 747865918}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 747865917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcbf39a6d439aa04392262387537e617, type: 3}
+  m_Script: {fileID: 11500000, guid: 60021fc5478a9684aa3cd5a758410925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Asset: {fileID: 11400000, guid: 188dfc3a896618940b0a62c0b720c992, type: 2}

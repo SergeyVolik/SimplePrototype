@@ -9,23 +9,23 @@ public class AiEvents : MonoBehaviour
     void Awake()
     {
         processor = GetComponent<AIProcessor>();
-        processor.EventÑheerfulness.AddListener((state) =>
+        processor.EventCheerfulness.AddListener((state) =>
         {
             switch (state)
             {
-                case Ñheerfulness.Speep:
-                    Debug.Log(Ñheerfulness.Speep);
+                case Cheerfulness.Speep:
+                    Debug.Log(Cheerfulness.Speep);
                     break;
-                case Ñheerfulness.WakeUp:
-                    Debug.Log(Ñheerfulness.WakeUp);
+                case Cheerfulness.WakeUp:
+                    Debug.Log(Cheerfulness.WakeUp);
                     break;
                 default:
                     break;
             }
+
+            
         });
 
 
     }
-
-
 }

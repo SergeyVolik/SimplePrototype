@@ -14,7 +14,7 @@ namespace SerV112.UtilityAIEditor
         SerializedProperty m_CodeGenGuid; 
         SerializedProperty m_GeneratedObjects;
         SerializedProperty m_RootDirectory;
-        
+        SerializedProperty m_FolderGuid; 
         void OnEnable()
         {
             m_GraphModel = serializedObject.FindProperty("m_GraphModel");
@@ -23,11 +23,30 @@ namespace SerV112.UtilityAIEditor
             m_CodeGenGuid = serializedObject.FindProperty("m_CodeGenGuid");
             m_GeneratedObjects = serializedObject.FindProperty("m_GeneratedObjects");
             m_RootDirectory = serializedObject.FindProperty("m_RootDirectory");
-
+            m_FolderGuid = serializedObject.FindProperty("m_FolderGuid");
         }
+
+        public static void ProcessDirectory(string targetDirectory)
+        {
+            // Process the list of files found in the directory.
+            string[] fileEntries = Directory.GetFiles(targetDirectory);
+            foreach (string fileName in fileEntries)
+                File.Delete(fileName);
+
+            // Recurse into subdirectories of this directory.
+            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+            foreach (string subdirectory in subdirectoryEntries)
+            {
+                ProcessDirectory(subdirectory);
+                Directory.Delete(subdirectory);
+            }
+        }
+
 
         public override void OnInspectorGUI()
         {
+            var target = (AIGraphAssetModel)this.target;
+
             serializedObject.Update();
             GUI.enabled = false;
 
@@ -37,23 +56,42 @@ namespace SerV112.UtilityAIEditor
             EditorGUILayout.PropertyField(m_BuildMode, true);
             EditorGUILayout.PropertyField(m_CodeGenGuid, true);
             EditorGUILayout.PropertyField(m_RootDirectory, true);
+            EditorGUILayout.PropertyField(m_FolderGuid, true);
             GUI.enabled = true;
 
             if (m_RootDirectory.objectReferenceValue)
             {
-                EditorGUILayout.HelpBox($"Be careful! Don't save assets in the _CodeGen_{m_CodeGenGuid.stringValue} folder. This folder is created on every graph build ", MessageType.Warning, true);
-                if (GUILayout.Button($"Delete _CodeGen_{m_CodeGenGuid.stringValue} folder"))
+                EditorGUILayout.HelpBox($"Be careful! Don't save assets in the _CodeGen_{m_FolderGuid.stringValue} folder. This folder is created on every graph build ", MessageType.Warning, true);
+                if (GUILayout.Button($"Delete _CodeGen_{m_FolderGuid.stringValue} folder"))
                 {
                     var rootFolder = AssetDatabase.GetAssetPath(m_RootDirectory.objectReferenceValue);
                     if (Directory.Exists(rootFolder))
                     {
+                       
                         Directory.Delete(rootFolder, true);
                         File.Delete($"{rootFolder}.meta");
                     }
 
-                    m_RootDirectory.objectReferenceValue = null;
+                    //m_RootDirectory.objectReferenceValue = null;
+                    target.RootDirectory = null;
+                    target.GeneratedObjects.Clear();
+                    AssetDatabase.SaveAssets();
                     AssetDatabase.Refresh();
-                    m_GeneratedObjects.arraySize = 0;
+                    
+                }
+
+                if (GUILayout.Button($"Clear _CodeGen_{m_FolderGuid.stringValue} folder"))
+                {
+                    var rootFolder = AssetDatabase.GetAssetPath(m_RootDirectory.objectReferenceValue);
+                    if (Directory.Exists(rootFolder))
+                    {
+                        ProcessDirectory(rootFolder);
+                    }
+
+                    target.GeneratedObjects.Clear();
+                    AssetDatabase.SaveAssets();
+                    AssetDatabase.Refresh();
+                    
                 }
             }
         

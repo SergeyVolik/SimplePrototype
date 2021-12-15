@@ -28,14 +28,13 @@ namespace SerV112.UtilityAIEditor
         private string m_CodeGenGuid;
         [SerializeField]
         private string m_FolderGuid;
-        [SerializeField]
+        [SerializeReference]
         private UnityEngine.Object m_RootDirectory;
-
-
-        public UnityEngine.Object RootDirectory { get => m_RootDirectory; set => m_RootDirectory = value; }
-        [SerializeField]
+        [SerializeReference]
         private List<UnityEngine.Object> m_GeneratedObjects;
 
+        public UnityEngine.Object RootDirectory { get => m_RootDirectory; set => m_RootDirectory = value; }
+       
         public string CodeGenGuid { get => m_CodeGenGuid; set => m_CodeGenGuid = value; }
         public string FolderGuid { get => m_FolderGuid; set => m_FolderGuid = value; }
 
