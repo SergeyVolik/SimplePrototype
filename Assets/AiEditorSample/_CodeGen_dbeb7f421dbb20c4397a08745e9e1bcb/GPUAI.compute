@@ -1,0 +1,91 @@
+#pragma kernel CSMain
+const float minus_infinity = -(1. / 0.);
+const float infinity = (1. / 0.);
+const float PI = 3.14159265359;
+const float E = 2.7182818284590452353;
+float logWithBase(float base, float x)
+{
+    return log(x) / log(base);
+}
+float LinearCurve(float x, float slope, float offset)
+{
+    return clamp((x / slope) - offset, 0, 1);
+}
+float ExponentialCurve(float x, float exponent, float offset)
+{
+    return clamp(1 - ((1 - pow(x, exponent)) / 1) + offset, 0, 1);
+}
+float LogisticCurve(float x, float k, float x0)
+{
+    float expPow = -k * ((4 * (E) * (x - x0)) - (2 * E));
+    return clamp(1 / (1 + pow(E, expPow)), 0, 1);
+}
+float SmoothstepCurve(float x)
+{
+    return clamp(x * x * (3 - 2 * x), 0, 1);
+}
+float SmootherstepCurve(float x)
+{
+    return clamp(x * x * x * (x * (6 * x - 15) + 10), 0, 1);
+}
+float SineCurve(float x, float steepness, float offset)
+{
+    return clamp(sin(x * PI * steepness) + offset, 0, 1);
+}
+float CosineCurve(float x, float steepness, float offset)
+{
+  
+    return clamp(1 - cos(x * PI * steepness) + offset, 0, 1);
+
+}
+float OneMinus(float value)
+{
+    return 1 - value;
+}
+float Normalize(float value, float min, float max)
+{
+    return clamp((value - min) / (max - min), 0, 1);
+}
+float LogitCurve(float x, float logBase)
+{
+   return clamp((logWithBase(logBase, x / (1 - x)) + (2 * E)) / (4 * E), 0, 1);
+}
+
+int SelectMaxValueIndex2(float values[2])
+{
+    float max = minus_infinity;
+    int result = 0;
+    for (int i = 0; i < 2; i++)
+    {
+        if (max < values[i])
+        {
+            max = values[i];
+            result = i;
+
+        }
+
+    }
+    
+    return result;
+}
+
+RWStructuredBuffer<float> Data;
+bool UpdateData;
+RWStructuredBuffer<int> Result;
+
+[numthreads(64,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    int index = id.x;
+    
+    if (UpdateData)
+    {
+        float entry1 = Normalize(Data[index], 0, 100);
+        float entry2 = OneMinus(Normalize(Data[index], 0, 100));
+    
+        float values[2] = { entry1, entry2 };
+    
+        Result[index] = SelectMaxValueIndex2(values);
+    }
+    
+}
