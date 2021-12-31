@@ -58,9 +58,16 @@ namespace SerV112.UtilityAIEditor
                 Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
-                    nameof(SineCurveNodeModel.Offset),
-                    nameof(SineCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand)));
+                    nameof(SineCurveNodeModel.OffsetY),
+                    nameof(SineCurveNodeModel.OffsetY),
+                    typeof(SetOffsetYCommand)));
+
+                Fields.Add(new ModelPropertyField<float>(
+                    m_OwnerElement.CommandDispatcher,
+                    nodeModel,
+                    nameof(SineCurveNodeModel.OffsetX),
+                    nameof(SineCurveNodeModel.OffsetX),
+                    typeof(SetOffsetXCommand)));
 
 
 

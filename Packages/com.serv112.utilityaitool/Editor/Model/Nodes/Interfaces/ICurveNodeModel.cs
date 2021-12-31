@@ -1,7 +1,7 @@
 ﻿namespace SerV112.UtilityAIEditor
 {
 
-    public interface ICurveNodeModel : INormalizeable
+    public interface ICurveNodeModel
     {
 
     }

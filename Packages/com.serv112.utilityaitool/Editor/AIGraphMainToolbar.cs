@@ -67,15 +67,27 @@ namespace SerV112.UtilityAIEditor
             }
 
             menu.AddSeparator("");
-
-            MenuToggle("TestBoolPref1", AIBoolPref.TestBoolPref1);
-            MenuToggle("TestBoolPref2", AIBoolPref.TestBoolPref2);
+            MenuToggle("AutoProcess", BoolPref.AutoProcess);
+            MenuToggle("AutoAlignDraggedEdges", BoolPref.AutoAlignDraggedEdges);
+            MenuToggle("WarnOnUIFullRebuild", BoolPref.WarnOnUIFullRebuild);
+            MenuToggle("LogUIBuildTime", BoolPref.LogUIBuildTime);
+            MenuToggle("DependenciesLogging", BoolPref.DependenciesLogging);
+            MenuToggle("ErrorOnRecursiveDispatch", BoolPref.ErrorOnRecursiveDispatch); 
+            MenuToggle("LogAllDispatchedCommands", BoolPref.LogAllDispatchedCommands);
+            MenuToggle("ShowUnusedNodes", BoolPref.ShowUnusedNodes);
+            MenuToggle("SearcherInRegularWindow", BoolPref.SearcherInRegularWindow);
+            MenuToggle("LogUIUpdate", BoolPref.LogUIUpdate);
+            MenuToggle("LogUIUpdate", BoolPref.AutoItemizeVariables);
+            MenuToggle("LogUIUpdate", BoolPref.AutoItemizeConstants);
+            //MenuToggle("TestBoolPref1", AIBoolPref.TestBoolPref1);
+            //MenuToggle("TestBoolPref2", AIBoolPref.TestBoolPref2);
+            menu.AddSeparator("");
             menu.AddItem(
-                CreateTextContent("Open settings"),
-                false, 
-                () => {
-                    AIToolSettingsWindow.Init(m_GraphView.GraphModel.AssetModel as AIGraphAssetModel, m_GraphView); 
-            });
+                    CreateTextContent("Open settings"),
+                    false, 
+                    () => {
+                        AIToolSettingsWindow.Init(m_GraphView.GraphModel.AssetModel as AIGraphAssetModel, m_GraphView); 
+                });
         }
     }
 }

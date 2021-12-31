@@ -45,19 +45,20 @@ namespace SerV112.UtilityAIEditor
 
         public static void DefaultHandler(GraphToolState graphToolState, BuildAIEditorCommand command)
         {
-            var assetModel = graphToolState.WindowState.AssetModel as AIGraphAssetModel;
+            var AiGraphModel = graphToolState.WindowState.GraphModel as AIGraphModel;
+            var assetModel = AiGraphModel.AssetModel as AIGraphAssetModel;
 
             switch (assetModel.BuildMode)
             {
-                case BuildMode.ECS:
-                    Build = new ECSBuild(assetModel);
-
+                case BuildMode.MonoBehaviourGPU:
+                    Build = new MonobehaviourGPUBuild(AiGraphModel);
                     break;
-                case BuildMode.MonoBehaviour:
-                    Build = new MonobehaviourBuild(assetModel);
+                case BuildMode.MonoBehaviourJobSystem:
+                    Build = new MonobehaviourJobSystemBuild(AiGraphModel);
+                    
                     break;
                 default:
-                    Build = new MonobehaviourBuild(assetModel);
+                    Build = new MonobehaviourGPUBuild(AiGraphModel);
                     break;
             }
 

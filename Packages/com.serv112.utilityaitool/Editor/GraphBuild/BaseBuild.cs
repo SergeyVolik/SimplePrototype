@@ -10,26 +10,29 @@ namespace SerV112.UtilityAIEditor
     public abstract class BaseBuild : IAIGraphCodeGenBuild
     {
         protected AIGraphAssetModel m_AssetModel;
+        protected AIGraphModel m_AIGraphModel;
         protected string pathWithScripts;
         protected string pathWithEditorScripts;
+        protected string pathWithResourcesScripts;
         protected AIGraphBuidState State;
         protected string AssetPath;
         public AIGraphAssetModel Model => m_AssetModel;
 
-        public BaseBuild(AIGraphAssetModel asset)
+        public BaseBuild(AIGraphModel asset)
         {
-            m_AssetModel = asset;
+            m_AIGraphModel = asset;
+            m_AssetModel = m_AIGraphModel.AssetModel as AIGraphAssetModel;
             string _CodeGenFolder;
             State = AIGraphBuidState.BeforeReimport;
-            AssetPath = AssetDatabase.GetAssetPath(asset);
-            var path = asset.GetDirectoryName();
+            AssetPath = AssetDatabase.GetAssetPath(m_AssetModel);
+            var path = m_AssetModel.GetDirectoryName();
 
             if (m_AssetModel.RootDirectory == null)
             {
                 m_AssetModel.FolderGuid = GUID.Generate().ToString();
                 _CodeGenFolder = $"_CodeGen_{m_AssetModel.FolderGuid}";
                 AssetDatabase.CreateFolder(path, _CodeGenFolder);
-                AssetDatabase.CreateFolder(pathWithScripts, "Editor");
+               
             }
             else
             {
@@ -43,6 +46,12 @@ namespace SerV112.UtilityAIEditor
             pathWithScripts = string.Join("/", path, _CodeGenFolder);
 
             pathWithEditorScripts = string.Join("/", pathWithScripts, "Editor");
+            pathWithResourcesScripts = string.Join("/", pathWithScripts, "Resources");
+
+            if (!AssetDatabase.IsValidFolder(pathWithEditorScripts))
+                AssetDatabase.CreateFolder(pathWithScripts, "Editor");
+            if (!AssetDatabase.IsValidFolder(pathWithResourcesScripts))
+                AssetDatabase.CreateFolder(pathWithScripts, "Resources");
 
             m_AssetModel.GeneratedObjects.Clear();
 

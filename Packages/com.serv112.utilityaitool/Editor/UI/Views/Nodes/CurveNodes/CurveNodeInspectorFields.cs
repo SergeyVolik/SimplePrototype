@@ -19,21 +19,8 @@ namespace SerV112.UtilityAIEditor
 
         protected virtual void AddFields()
         {
-            var nodeModel = m_Model as T;
+            
 
-            Fields.Add(new ModelPropertyField<float>(
-                m_OwnerElement.CommandDispatcher,
-                nodeModel,
-                nameof(CurveNodeModel.MaxNormalizationValue),
-                nameof(CurveNodeModel.MaxNormalizationValue),
-                typeof(SetNormalizeMaxValueCommand)));
-
-            Fields.Add(new ModelPropertyField<float>(
-                m_OwnerElement.CommandDispatcher,
-                nodeModel,
-                nameof(CurveNodeModel.MinNormalizationValue),
-                nameof(CurveNodeModel.MinNormalizationValue),
-                typeof(SetNormalizeMinValueCommand)));
         }
 
         protected override IEnumerable<BaseModelPropertyField> GetFields()

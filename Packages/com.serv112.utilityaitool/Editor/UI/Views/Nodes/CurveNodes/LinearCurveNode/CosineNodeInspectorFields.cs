@@ -47,7 +47,6 @@ namespace SerV112.UtilityAIEditor
             if (m_Model is CosineCurveNodeModel nodeModel)
             {
 
-                //TODO: add command for set value to model
                 Fields.Add(new ModelPropertyField<float>(
                    m_OwnerElement.CommandDispatcher,
                    nodeModel,
@@ -55,14 +54,21 @@ namespace SerV112.UtilityAIEditor
                    nameof(CosineCurveNodeModel.Steepness),
                    typeof(SetStepnessCommand)));
 
-                //TODO: add command for set value to model
+
                 Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
-                    nameof(CosineCurveNodeModel.Offset),
-                    nameof(CosineCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand)));
+                    nameof(CosineCurveNodeModel.OffsetY),
+                    nameof(CosineCurveNodeModel.OffsetY),
+                    typeof(SetOffsetYCommand)));
 
+
+                Fields.Add(new ModelPropertyField<float>(
+                    m_OwnerElement.CommandDispatcher,
+                    nodeModel,
+                    nameof(CosineCurveNodeModel.OffsetX),
+                    nameof(CosineCurveNodeModel.OffsetX),
+                    typeof(SetOffsetXCommand)));
 
 
             }

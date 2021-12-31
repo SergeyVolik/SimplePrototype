@@ -33,6 +33,24 @@ namespace SerV112.UtilityAIEditor
             return connectedNodes;
         }
 
+        public static IEnumerable<INodeModel> GetConnectedInputDataNodes(this NodeModel model)
+        {
+            List<INodeModel> connectedNodes = new List<INodeModel>();
+            var ports = model.GetPorts(PortDirection.Input, PortType.Data).ToList();
+
+            for (int i = 0; i < ports.Count; i++)
+            {
+                var edges = ports[i].GetConnectedEdges().ToList();
+
+                for (int j = 0; j < edges.Count; j++)
+                {
+                    connectedNodes.Add(edges[j].FromPort.NodeModel);
+                }
+            }
+
+            return connectedNodes;
+        }
+
     }
     class GraphCodeGenProcessor : IGraphProcessor
     {
@@ -103,6 +121,7 @@ namespace SerV112.UtilityAIEditor
         }
         private void ValidateVariablesNames(GraphProcessingResult res, IGraphModel graphModel)
         {
+
             graphModel.NodeModels
                 .OfType<INameable>()
                 .ToList().ForEach(e =>
@@ -112,14 +131,7 @@ namespace SerV112.UtilityAIEditor
                     {
 
                         string typeName = "Type Not Detected";
-                        if (e is StateNodeModel)
-                        {
-                            typeName = nameof(StateNodeModel);
-                        }
-                        else if (e is StateGroupNodeModel)
-                        {
-                            typeName = nameof(StateGroupNodeModel);
-                        }
+                        typeName = e.GetType().Name;
 
                         res.AddError($"{typeName} node has an invalid name: {e.Name}{Environment.NewLine}{ValidationValiableRules}");
                     }
@@ -146,10 +158,10 @@ Identifiers should not start with digits([0-9]).
 3. Identifiers should not contain white spaces.";
         private void ValidateOuterVariablesNames(GraphProcessingResult res, IGraphModel graphModel)
         {
+
             graphModel.VariableDeclarations
             .ToList().ForEach(e =>
             {
-
                 if (!CheckName(e.Title))
                 {
                     res.AddError($"Outer varibale has an invalid name: {e.Title}{Environment.NewLine}{ValidationValiableRules}");

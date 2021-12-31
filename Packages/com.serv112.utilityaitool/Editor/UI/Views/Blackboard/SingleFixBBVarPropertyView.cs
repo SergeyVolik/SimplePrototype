@@ -29,22 +29,6 @@ namespace SerV112.UtilityAIEditor
         protected override void BuildRows()
         {
 
-           
-            AddInitializationField();
-
-            var TextField1 = this.SafeQ(className: fieldClassName);
-
-            if (TextField1 != null)
-            {
-                TextField1.AddToClassList(fixClassName);
-            }
-
-            var element = this.SafeQ(inputFieldName);
-
-            if (element != null)
-            {
-                element.AddToClassList(fixClassName);
-            }
 
             AddTooltipField();
             if (ShowExposedCheckBox)

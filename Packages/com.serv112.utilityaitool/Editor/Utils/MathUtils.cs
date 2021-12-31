@@ -33,13 +33,17 @@ namespace SerV112.UtilityAIEditor
 
         public static float Normalization01WithClamp01(float x, float min, float max)
         {
-            return Mathf.Clamp01((x - min) / (max - min));
+            return Mathf.Clamp01(Normalization01(x, min, max));
            
         }
 
         public static float Normalization01(float x, float min, float max)
         {
-            return (x - min) / (max - min);
+            var resu = max - min;
+            if (resu == 0)
+                return 0;
+
+            return (x - min) / resu;
 
         }
     }

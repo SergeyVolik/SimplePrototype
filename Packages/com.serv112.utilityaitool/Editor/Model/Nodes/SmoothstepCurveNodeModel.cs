@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerV112.UtilityAI.Math;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.GraphToolsFoundation.Overdrive;
@@ -15,7 +16,7 @@ namespace SerV112.UtilityAIEditor
     {
         public override float Evaluate()
         {
-            return CurveUtils.SmoothstepCurve(GetParameterValue(0));
+            return UtilityAIMath.SmoothstepCurve(GetParameterValue(0));
         }
 
     }

@@ -1,4 +1,6 @@
 ﻿
+using SerV112.UtilityAI.Math;
+
 namespace SerV112.UtilityAIEditor
 {
 
@@ -13,7 +15,7 @@ namespace SerV112.UtilityAIEditor
         }
         public float Evaluate(float x)
         {
-            return CurveUtils.LogitCurve(x, m_LogBase);
+            return UtilityAIMath.LogitCurve(x, m_LogBase);
         }
     }
 }

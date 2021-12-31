@@ -22,7 +22,7 @@ namespace SerV112.UtilityAIEditor
             if (!(m_Model is LinearCurveNodeModel model))
                 return;
 
-            m_CurveView.Curve = new LinearCurve(model.Slope, model.Offset);
+            m_CurveView.Curve = new LinearCurve(model.Slope, model.OffsetY);
         }
     }
 }

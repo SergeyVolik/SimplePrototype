@@ -27,11 +27,7 @@ namespace SerV112.UtilityAIEditor
         }
 
         public IPortModel InputPort => this.InputsById["Input"];
-        public override PortCapacity GetPortCapacity(IPortModel portModel)
-        {
-            PortCapacity cap = PortCapacity.Single;
-            return cap;
-        }
+
 
         public override float Evaluate()
         {

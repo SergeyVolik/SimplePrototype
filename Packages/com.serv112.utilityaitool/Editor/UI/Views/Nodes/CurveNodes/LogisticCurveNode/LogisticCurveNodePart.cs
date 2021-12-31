@@ -22,7 +22,7 @@ namespace SerV112.UtilityAIEditor
             if (!(m_Model is LogisticCurveNodeModel model))
                 return;
 
-            m_CurveView.Curve = new LogisticCurve(model.Steepness, model.Offset);
+            m_CurveView.Curve = new LogisticCurve(model.Steepness, model.OffsetX);
         }
     }
 }

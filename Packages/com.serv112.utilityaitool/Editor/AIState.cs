@@ -79,19 +79,22 @@ namespace SerV112.UtilityAIEditor
             commandDispatcher.RegisterCommandHandler<SetNameCommand>(SetNameCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetFieldNameCommand>(SetFieldNameCommand.DefaultHandler);
 
-            commandDispatcher.RegisterCommandHandler<SetOffsetCommand>(SetOffsetCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetOffsetYCommand>(SetOffsetYCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetSlopeCommand>(SetSlopeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetStepnessCommand>(SetStepnessCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetExponentCommand>(SetExponentCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetLogBaseCommand>(SetLogBaseCommand.DefaultHandler);
 
-            commandDispatcher.RegisterCommandHandler<SetNormalizeMaxValueCommand>(SetNormalizeMaxValueCommand.DefaultHandler);
-            commandDispatcher.RegisterCommandHandler<SetNormalizeMinValueCommand>(SetNormalizeMinValueCommand.DefaultHandler);
-
             commandDispatcher.RegisterCommandHandler<AddPortNodeCommand>(AddPortNodeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<RemovePortNodeCommand>(RemovePortNodeCommand.DefaultHandler);
             commandDispatcher.RegisterCommandHandler<SetBuildModeCommand>(SetBuildModeCommand.DefaultHandler);
-          
+            commandDispatcher.RegisterCommandHandler<SetGPUPrecisionCommand>(SetGPUPrecisionCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<UpdateConstantToNormalizeValueCommand>(UpdateConstantToNormalizeValueCommand.DefaultHandler);
+
+            commandDispatcher.RegisterCommandHandler<SetDebugCommand>(SetDebugCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetOffsetXCommand>(SetOffsetXCommand.DefaultHandler);
+            commandDispatcher.RegisterCommandHandler<SetValue01Command>(SetValue01Command.DefaultHandler);
+
         }
     }
 

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
 namespace SerV112.UtilityAIEditor
@@ -17,49 +18,117 @@ namespace SerV112.UtilityAIEditor
         private static CSharpCodeProvider compiler = new CSharpCodeProvider();
         private static readonly string EnumTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/EnumTemplate.tt");
         private static readonly string AuthoringComponentTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AuthoringComponentTemplate.tt");
-        private static readonly string ComputeShaderTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/ComputeShaderTemplate.tt");
         private static readonly string StructTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/StructTemplate.tt");
-        private static readonly string AIProcessorTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AIProcessor.tt");
-        private static readonly string AIProcessorTemplateInspector = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/AIProcessorInspector.tt");
+        private static readonly string UtilityAIAgentMonoInspector = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityAIAgentMonoInspector.tt");
 
-        public static void CreateMonoBehaviourAIProcessor(string pathWithScripts, string filename, CreateAIProcessorSettings settings)
+        private static readonly string UtilityAISimulationTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityAISimulationMono.tt");
+        private static readonly string UtilityAIAgentTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityAIAgentMono.tt");
+
+
+        public static void CreateMonoBehaviourAIProcessorInspector(string pathWithScripts, string filename, AIAgentInspectorSettings settings)
         {
-            filename = Path.ChangeExtension(filename, "cs");
-            pathWithScripts = string.Join("/", pathWithScripts, filename);
-            string templatePath = AIProcessorTemplate;
-
-            var templateSettings = TemplateSettings.CreateDefault(templatePath);
-            string templateInputSettigns = JsonConvert.SerializeObject(settings);
-
-            UnityTemplateGenerator.RunForTemplate(
-              templatePath,
-              pathWithScripts,
-              settings: templateSettings,
-              parameters: new Dictionary<string, string>() {
-                    { "settings" , templateInputSettigns }
-                }
-              );
-
-
+            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityAIAgentMonoInspector);
         }
 
-        public static void CreateMonoBehaviourAIProcessorInspector(string pathWithScripts, string filename, CreateAIProcessorInspectorSettings settings)
+        public static void CreateUtilityAISimulationMonoScript(string pathWithScripts, string filename, UtilityAISimulationSettings settings)
         {
-            filename = Path.ChangeExtension(filename, "cs");
+            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityAISimulationTemplate);
+        }
+
+        public static void CreateUtilityAIAgentMonoScript(string pathWithScripts, string filename, UtilityAISimulationSettings settings)
+        {
+            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityAIAgentTemplate);
+        }
+
+        public static void CreateTemplate(string pathWithScripts, string filename, string extention, string settingsJson, string templatePath)
+        {
+            filename = Path.ChangeExtension(filename, extention);
             pathWithScripts = string.Join("/", pathWithScripts, filename);
-            string templatePath = AIProcessorTemplateInspector;
 
             var templateSettings = TemplateSettings.CreateDefault(templatePath);
-            string templateInputSettigns = JsonConvert.SerializeObject(settings);
+            var temporaryFolder = string.Join("/", Application.temporaryCachePath, filename); ;
+            var isFileExistInUnityProject = File.Exists(pathWithScripts);
 
-            UnityTemplateGenerator.RunForTemplate(
-              templatePath,
-              pathWithScripts,
-              settings: templateSettings,
-              parameters: new Dictionary<string, string>() {
-                    { "settings" , templateInputSettigns }
+
+            if (isFileExistInUnityProject)
+            {
+                UnityTemplateGenerator.RunForTemplate(
+                  templatePath,
+                  temporaryFolder,
+                  settings: templateSettings,
+                  parameters: new Dictionary<string, string>() {
+                    { "settings" , settingsJson }
+                    }
+                  );
+
+                if (!FileCompare(pathWithScripts, temporaryFolder))
+                {
+                    Debug.LogWarning($"files not equals: {pathWithScripts} {temporaryFolder}");
+                    File.Copy(temporaryFolder, pathWithScripts, true);
                 }
-              );
+            }
+            else
+            {
+                UnityTemplateGenerator.RunForTemplate(
+                templatePath,
+                pathWithScripts,
+                settings: templateSettings,
+                parameters: new Dictionary<string, string>() {
+                    { "settings" , settingsJson }
+                  }
+                );
+            }
+        }
+
+        private static bool FileCompare(string file1, string file2)
+        {
+            int file1byte;
+            int file2byte;
+            FileStream fs1;
+            FileStream fs2;
+
+            // Determine if the same file was referenced two times.
+            if (file1 == file2)
+            {
+                // Return true to indicate that the files are the same.
+                return true;
+            }
+
+            // Open the two files.
+            fs1 = new FileStream(file1, FileMode.Open);
+            fs2 = new FileStream(file2, FileMode.Open);
+
+            // Check the file sizes. If they are not the same, the files
+            // are not the same.
+            if (fs1.Length != fs2.Length)
+            {
+                // Close the file
+                fs1.Close();
+                fs2.Close();
+
+                // Return false to indicate files are different
+                return false;
+            }
+
+            // Read and compare a byte from each file until either a
+            // non-matching set of bytes is found or until the end of
+            // file1 is reached.
+            do
+            {
+                // Read one byte from each file.
+                file1byte = fs1.ReadByte();
+                file2byte = fs2.ReadByte();
+            }
+            while ((file1byte == file2byte) && (file1byte != -1));
+
+            // Close the files.
+            fs1.Close();
+            fs2.Close();
+
+            // Return the success of the comparison. "file1byte" is
+            // equal to "file2byte" at this point only if the files are
+            // the same.
+            return ((file1byte - file2byte) == 0);
         }
 
         public static void CreateEcsComponent(string pathWithScripts, string name, Type type, string @namespace = "")
@@ -73,9 +142,9 @@ namespace SerV112.UtilityAIEditor
                 Attributes = new List<string> { "Serializable", "GenerateAuthoringComponent" },
                 Using = new List<string>() { "Unity.Entities", "System" },
 
-              
 
-            Fields = new List<FieldData> { new FieldData { Type = compiler.GetTypeOutput(type1), Name = "Value" } },
+
+                Fields = new List<FieldData> { new FieldData { Type = compiler.GetTypeOutput(type1), Name = "Value" } },
                 Interfaces = new List<string> { "IComponentData" },
                 Namespace = @namespace
             });
@@ -99,86 +168,23 @@ namespace SerV112.UtilityAIEditor
 
 
 
-        public static string CreateEnum(string SavePath, string fileName, CreateEnumSettings settings)
+        public static void CreateEnum(string SavePath, string fileName, CreateEnumSettings settings)
         {
 
-            fileName = Path.ChangeExtension(fileName, "gen.cs");
-            SavePath = string.Join("/", SavePath, fileName);
-            string templatePath = EnumTemplate;
-
-            var templateSettings = TemplateSettings.CreateDefault(templatePath);
-            string templateInputSettigns = JsonConvert.SerializeObject(settings);
-
-            UnityTemplateGenerator.RunForTemplate(
-              templatePath,
-              SavePath,
-              settings: templateSettings,
-              parameters: new Dictionary<string, string>() {
-                    { "settings" , templateInputSettigns }
-                }
-              );
-
-            return SavePath;
+            CreateTemplate(SavePath, fileName, "cs", JsonConvert.SerializeObject(settings), EnumTemplate);
         }
 
-
-        public static void CreateComputeShader(string SavePath, string fileName, CreateComputeShaderSettings settings)
-        {
-            fileName = Path.ChangeExtension(fileName, "gen.compute");
-            SavePath = string.Join("/", SavePath, fileName);
-            string templatePath = ComputeShaderTemplate;
-
-            var templateSettings = TemplateSettings.CreateDefault(templatePath);
-            string templateInputSettigns = JsonConvert.SerializeObject(settings);
-
-            UnityTemplateGenerator.RunForTemplate(
-             templatePath,
-             SavePath,
-             settings: templateSettings,
-             parameters: new Dictionary<string, string>() {
-                    { "settings" , templateInputSettigns }
-               }
-             );
-        }
 
         public static void CreateStruct(string SavePath, string fileName, CreateStructSettings settings)
         {
-            fileName = Path.ChangeExtension(fileName, "gen.cs");
-            SavePath = string.Join("/", SavePath, fileName);
-            string templatePath = StructTemplate;
-
-
-            var templateSettings = TemplateSettings.CreateDefault(templatePath);
-            string templateInputSettigns = JsonConvert.SerializeObject(settings);
-
-            UnityTemplateGenerator.RunForTemplate(
-             templatePath,
-             SavePath,
-             settings: templateSettings,
-             parameters: new Dictionary<string, string>() {
-                    { "settings" , templateInputSettigns }
-               }
-             );
+            CreateTemplate(SavePath, fileName, "cs", JsonConvert.SerializeObject(settings), StructTemplate);
         }
 
         public static void CreateAuthoringComponent(string SavePath, string fileName, CreateAuthoringComponentSettings settings)
         {
-            fileName = Path.ChangeExtension(fileName, "cs");
-            SavePath = string.Join("/", SavePath, fileName);
-            string templatePath = AuthoringComponentTemplate;
 
+            CreateTemplate(SavePath, fileName, "cs", JsonConvert.SerializeObject(settings), AuthoringComponentTemplate);
 
-            var templateSettings = TemplateSettings.CreateDefault(templatePath);
-            string templateInputSettigns = JsonConvert.SerializeObject(settings);
-
-            UnityTemplateGenerator.RunForTemplate(
-             templatePath,
-             SavePath,
-             settings: templateSettings,
-             parameters: new Dictionary<string, string>() {
-                    { "settings" , templateInputSettigns }
-               }
-             );
         }
     }
 
@@ -275,8 +281,79 @@ namespace SerV112.UtilityAIEditor
         }
     }
 
+
+
+    //[Serializable]
+    //public class UtilityAIAgentMonoSettings : BaseGenCodeSettings
+    //{
+      
+    //    public string SimulationClassName { get; set; }
+    //    public List<string> ResultsTypesNames { get; set; }
+
+    //}
+
+    [Serializable]
+    public class UtilityAISimulationSettings : BaseGenCodeSettings
+    {
+        public string AIAgentClassName { get; set; }
+        public string AISimulationClassName { get; set; }
+        public string AIAgentInspectorClassName { get; set; }
+        public string AISimulationInspectorClassName { get; set; }
+
+        public string ComputeShaderResourcePath { get; set; }
+
+        public List<Property> Properties { get; set; }
+        public List<FieldData> Results { get; set; }
+
+        public AIAgentInspectorSettings AiAgentInspector { get; set; }
+
+        public bool Debug;
+        public int NumThreadsInComputeShader;
+ 
+    }
+
+    [Serializable]
+    public class Property
+    {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public Range Range { get; set; }
+    }
+    [Serializable]
+    public class BoxMessage
+    {
+        public MessageType MessageType { get; set; }
+        public string Message { get; set; }
+    }
+    [Serializable]
+    public class AIAgentInspectorSettings
+    {
+        public List<BoxMessage> BoxMessages;
+    }
+
+    [Serializable]
+    public class FieldData
+    {
+        public string Type;
+        public string Name;
+
+        public override string ToString()
+        {
+            return "public " + Type + " " + Name + ";";
+        }
+    }
+
+    [Serializable]
+    public class Range
+    {
+        public float Min { get; set; }
+        public float Max { get; set; }
+    }
+
+    [Serializable]
     public abstract class BaseGenCodeSettings
     {
+        public string CodeGenMessage { get; set; }
         public string Name { get; set; }
         public string Namespace { get; set; }
         public string Parent { get; set; }
@@ -363,77 +440,55 @@ namespace SerV112.UtilityAIEditor
                             Interfaces1.Append(",");
                     }
                 }
-                
+
             }
             return Interfaces1.ToString();
         }
     }
 
-    [Serializable]
-    public class FieldData
-    {
-        public string Type;
-        public string Name;
-
-        public override string ToString()
-        {
-            return "public " + Type + " " + Name + ";";
-        }
-    }
 
 
-    [Serializable]
-    public class CreateAIProcessorInspectorSettings : BaseGenCodeSettings
-    {
-        public List<string> SerializedProperties { get; set; }
-        public string ErrorMessage;
-        public string TargetGuid;
-        public string TargetClass;
-    }
-    [Serializable]
-    public class CreateAIProcessorSettings : BaseGenCodeSettings
-    {
-        public List<ActionParts> ActionPartsOfCode { get; set; }
-        public List<PropertyParts> PropertyPartsOfCode { get; set; }
 
-       
+    
+    //[Serializable]
+    //public class CreateAIProcessorSettings : BaseGenCodeSettings
+    //{
+    //    public List<ActionParts> ActionPartsOfCode { get; set; }
+    //    public List<PropertyParts> PropertyPartsOfCode { get; set; }
 
 
-    }
-
-    [Serializable]
-    public class ActionParts
-    {
-        public string EnumType { get; set; }
-        public string Name { get; set; }
-
-    }
-
-    [Serializable]
-    public class PropertyParts
-    {
-        public string Name { get; set; }
-
-        public Range RageAttribut { get; set; }
-
-       
 
 
-    }
+    //}
 
-    [Serializable]
-    public class Range
-    {
-        public float Min { get; set; }
-        public float Max { get; set; }
-    }
+    //[Serializable]
+    //public class ActionParts
+    //{
+    //    public string EnumType { get; set; }
+    //    public string Name { get; set; }
+
+    //}
+
+    //[Serializable]
+    //public class PropertyParts
+    //{
+    //    public string Name { get; set; }
+
+    //    public Range RageAttribut { get; set; }
+
+
+
+
+    //}
+
+
 
     [Serializable]
     public class CreateStructSettings : BaseGenCodeSettings
     {
         public List<FieldData> Fields { get; set; }
 
-      
+
 
     }
 

@@ -60,9 +60,9 @@ namespace SerV112.UtilityAIEditor
                 Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
-                    nameof(LogisticCurveNodeModel.Offset),
-                    nameof(LogisticCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand)));
+                    nameof(LogisticCurveNodeModel.OffsetX),
+                    nameof(LogisticCurveNodeModel.OffsetX),
+                    typeof(SetOffsetYCommand)));
 
 
 

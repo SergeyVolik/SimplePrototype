@@ -22,7 +22,7 @@ namespace SerV112.UtilityAIEditor
             if (!(m_Model is CosineCurveNodeModel model))
                 return;
 
-            m_CurveView.Curve = new CosineCurve(model.Steepness, model.Offset);
+            m_CurveView.Curve = new CosineCurve(model.Steepness, model.OffsetY, model.OffsetX);
         }
     }
 }

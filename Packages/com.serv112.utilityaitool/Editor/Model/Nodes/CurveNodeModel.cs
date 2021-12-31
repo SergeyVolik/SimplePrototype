@@ -12,31 +12,14 @@ namespace SerV112.UtilityAIEditor
 {
     public abstract class CurveNodeModel : NormalizedFunctionNodeModel, ICurveNodeModel
     {
-        [SerializeField, HideInInspector]
-        private float m_Min;
-        [SerializeField, HideInInspector]
-        private float m_Max;
-        public float MinNormalizationValue { get => m_Min; set => m_Min = value; }
-        public float MaxNormalizationValue { get => m_Max; set => m_Max = value; }
 
         public CurveNodeModel()
         {
             m_ParameterNames = new string[] { "Input" };
         }
-        //protected override void OnDefineNode()
-        //{
-        //    base.OnDefineNode();
 
+        public IPortModel InputPort => this.InputsById["Input"];
 
-        //    AddInputPort("Input", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default, portId: "MyPort");
-        //    AddOutputPort("Output", PortType.Data, TypeHandle.Float, options: PortModelOptions.Default);
-        //}
-
-        public override PortCapacity GetPortCapacity(IPortModel portModel)
-        {
-            PortCapacity cap = PortCapacity.Single;
-            return cap;
-        }
 
     }
 }

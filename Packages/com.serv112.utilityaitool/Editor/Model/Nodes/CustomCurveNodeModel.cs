@@ -15,7 +15,7 @@ namespace SerV112.UtilityAIEditor
     {
 
         [SerializeField, HideInInspector]
-        AnimationCurve m_CustomCurve;
+        AnimationCurve m_CustomCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
         public AnimationCurve CustomCurve { get => m_CustomCurve; set => m_CustomCurve = value; }
 

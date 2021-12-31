@@ -46,7 +46,7 @@ namespace SerV112.UtilityAIEditor
             evt.menu.AppendAction("Input/Remove Port", action =>
             {
                 CommandDispatcher.Dispatch(new RemovePortNodeCommand(verticalNodeModel));
-            }, a => verticalNodeModel.ScoreInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+            }, a => verticalNodeModel.NumberOfInputPorts > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
         }
     }

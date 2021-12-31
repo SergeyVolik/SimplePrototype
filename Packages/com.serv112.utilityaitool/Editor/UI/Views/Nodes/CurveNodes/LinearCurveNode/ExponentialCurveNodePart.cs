@@ -22,7 +22,7 @@ namespace SerV112.UtilityAIEditor
             if (!(m_Model is ExponentialCurveNodeModel model))
                 return;
 
-            m_CurveView.Curve = new ExponentialCurve(model.Exponent, model.Offset);
+            m_CurveView.Curve = new ExponentialCurve(model.Exponent, model.OffsetY);
         }
     }
 }

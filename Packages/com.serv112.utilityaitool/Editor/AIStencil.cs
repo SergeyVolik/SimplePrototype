@@ -12,7 +12,9 @@ using UnityEngine.GraphToolsFoundation.Overdrive;
 namespace SerV112.UtilityAIEditor
 {
 
+    public class NormalizedFloatConstant : Constant<NormalizedFloat> { }
 
+   
     public class AIStencil : Stencil
     {
         public static string toolName = "AI Editor2";
@@ -21,22 +23,11 @@ namespace SerV112.UtilityAIEditor
 
         public static readonly string graphName = "AI Editor Graph";
 
+        private AIGraphDebugger m_Debugger; 
+        public override IDebugger Debugger => m_Debugger ??= new AIGraphDebugger();
+        public override IToolbarProvider GetToolbarProvider() =>  m_ToolbarProvider ??= new AIToolbarProvider();       
+        public override IBlackboardGraphModel CreateBlackboardGraphModel(IGraphAssetModel graphAssetModel) => new AIBlackboardGraphModel(graphAssetModel);
        
-
-        public override IToolbarProvider GetToolbarProvider()
-        {
-            return m_ToolbarProvider ??= new AIToolbarProvider();
-        }
-        public override IBlackboardGraphModel CreateBlackboardGraphModel(IGraphAssetModel graphAssetModel)
-        {
-            return new AIBlackboardGraphModel(graphAssetModel);
-        }
-        public override Type GetConstantNodeValueType(TypeHandle typeHandle)
-        {
-            return TypeToConstantMapper.GetConstantNodeType(typeHandle);
-        }
-
-
         public override void PopulateBlackboardCreateMenu(string sectionName, GenericMenu menu, CommandDispatcher commandDispatcher)
         {
 
@@ -44,13 +35,19 @@ namespace SerV112.UtilityAIEditor
             {
                 menu.AddItem(new GUIContent("Input AI Params"), false, () =>
                 {
-                    const string newItemName = "variable";
+                    const string newItemName = "NormalizedValue";
                     var finalName = newItemName;
                     var i = 0;
                     while (commandDispatcher.State.WindowState.GraphModel.VariableDeclarations.Any(v => v.Title == finalName))
                         finalName = newItemName + i++;
 
-                    commandDispatcher.Dispatch(new CreateGraphVariableDeclarationCommand(finalName, true, TypeHandle.Float, typeof(FloatVariableDeclarationModel)));
+                    commandDispatcher.Dispatch(
+                        new CreateGraphVariableDeclarationCommand(
+                            finalName,
+                            true,
+                            AIGraphCustomTypes.NormalizedFloat,
+                            typeof(NormalizedFloatVariableDeclarationModel))
+                        );
                 });
             }
 
@@ -58,10 +55,28 @@ namespace SerV112.UtilityAIEditor
 
         }
 
-        
-        public override IGraphProcessor CreateGraphProcessor()
+
+        public override IGraphProcessor CreateGraphProcessor() => new GraphCodeGenProcessor();
+
+        static Dictionary<TypeHandle, Type> s_TypeToConstantNodeModelTypeCache;
+
+        public override Type GetConstantNodeValueType(TypeHandle typeHandle)
         {
-            return new GraphCodeGenProcessor();
+            if (s_TypeToConstantNodeModelTypeCache == null)
+            {
+                s_TypeToConstantNodeModelTypeCache = new Dictionary<TypeHandle, Type>
+                {
+                    { AIGraphCustomTypes.NormalizedFloat, typeof(NormalizedFloatConstant) },
+
+                };
+            }
+
+            if (s_TypeToConstantNodeModelTypeCache.TryGetValue(typeHandle, out var type))
+            {
+                return type;
+            }
+
+            return TypeToConstantMapper.GetConstantNodeType(typeHandle);
         }
 
         public override IEnumerable<IPluginHandler> GetGraphProcessingPluginHandlers(GraphProcessingOptions getGraphProcessingOptions)
@@ -73,7 +88,10 @@ namespace SerV112.UtilityAIEditor
 
                 yield return m_DebugInstrumentationHandler;
             }
+
+            yield return new MyCustomPluginHandler();
         }
+
         public override void OnGraphProcessingStarted(IGraphModel graphModel)
         {
             Debug.Log("OnGraphProcessingStarted");
@@ -86,19 +104,17 @@ namespace SerV112.UtilityAIEditor
         {
             Debug.Log("OnGraphProcessingFailed");
         }
+
         public override IEnumerable<INodeModel> GetEntryPoints()
         {
-            return Enumerable.Empty<INodeModel>();
+            var entries = GraphModel.NodeModels.OfType<AIProcessorNodeModel>();
+
+            return entries;
         }
 
         public override string GetNodeDocumentation(SearcherItem node, IGraphElementModel model) 
-        {
-            if (model is StateGroupNodeModel stateModel)
-            {
-                return "It's a node for AI state";
-            }
-
-            return null;
+        {     
+            return $"Description {model}";
         }
 
        

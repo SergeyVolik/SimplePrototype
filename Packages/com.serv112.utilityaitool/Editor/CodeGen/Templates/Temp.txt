@@ -1,0 +1,126 @@
+public class <#= AIAgentClassName #> : MonoBehaviour
+{
+	[SerializeField]
+    public int Index;
+    
+<#if(settings.Properties.Count > 0) { #>
+    [Header("Params")]
+<#} #>
+<#for(int i =0; i < settings.Properties.Count; i++) { #>
+    [SerializeField]
+    [Range(<#= settings.Properties[i].Range.Min #>, <#= settings.Properties[i].Range.Max #>)]
+    private <#= settings.Properties[i].Type #> <#= settings.Properties[i].Name #>;
+
+    public void Change<#= settings.Properties[i].Name #>(float value) {
+        m_Simulation.Change<#= settings.Properties[i].Name #>(Index, value);
+        <#= settings.Properties[i].Name #> = value;
+    }
+    public float Get<#= settings.Properties[i].Name #>()
+    {      
+        return <#= settings.Properties[i].Name #>;
+    }
+<#}#>
+
+   
+
+    <#= AISimulationName #> m_Simulation;
+
+#if UNITY_EDITOR
+    private bool Awaked = false;
+#endif
+
+    private void Awake()
+    {
+        m_Simulation = <#= AISimulationName #>.Instance;
+
+        if (!m_Simulation)
+        {
+            GameObject obj = new GameObject(nameof(<#= AISimulationName #>));
+            m_Simulation = obj.AddComponent<<#= AISimulationName #>>();
+        }
+
+#if UNITY_EDITOR
+        Awaked = true;
+#endif
+    }
+
+    private void OnEnable()
+    {
+        m_Simulation.AddAgent(this);
+    }
+
+    private void OnDisable()
+    {
+        m_Simulation.RemoveAgent(this);
+    }
+<#if(settings.Results.Count > 0) { #>
+    [Header("Results")]
+<#} #>
+<#for(int i =0; i < settings.Results.Count; i++) { #>
+    [SerializeField]
+    public <#= settings.Results[i].Name #> <#= settings.Results[i].Name #>;
+    public <#= settings.Results[i].Name #> Get<#= settings.Results[i].Name #> => (<#= settings.Results[i].Name #>)m_Simulation.Get<#= settings.Results[i].Name #>(Index);
+<#}#>
+
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (Application.isPlaying && Awaked)
+        {
+<#for(int i =0; i < settings.Properties.Count; i++) { #>
+    Change<#= settings.Properties[i].Name #>(<#= settings.Properties[i].Name #>);
+<#}#>
+           
+        }
+    }
+#endif
+}
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(<#= AIAgentClassName#>))]
+[CanEditMultipleObjects]
+public class  <#= AIAgentInspectorClassName #> : Editor
+{
+<#for(var i = 0; i < settings.AiAgentInspector.BoxMessages.Count; i++) { #>
+    const string m_Warning<#=i#> = "<#= settings.AiAgentInspector.BoxMessages[i].Message#>";
+ <#}#>
+    SerializedProperty Index;
+
+<#for(var i = 0; i < settings.Properties.Count; i++) {#>
+    SerializedProperty m_<#= settings.Properties[i].Name] #>;
+<#}#>
+	void OnEnable()
+	{
+		Index = serializedObject.FindProperty("Index");
+
+<#for(var i = 0; i < settings.Properties[i].Name.Count; i++) {#>
+		    m_<#= settings.Properties[i].Name#> = serializedObject.FindProperty("<#= settings.Properties.Name#>");
+<#}#>
+	}
+
+	public override void OnInspectorGUI()
+    {
+
+        serializedObject.Update();
+       
+        if(Application.isPlaying)
+        {
+            GUI.enabled = false;
+            EditorGUILayout.PropertyField(Index);
+            GUI.enabled = true;
+        }
+
+<#for(var i = 0; i < settings.Properties[i].Name.Count; i++) {#>
+		EditorGUILayout.PropertyField(m_<#= settings.Properties.Name[i]#>);
+<#}#>
+
+<#for(var i = 0; i < settings.AiAgentInspector.BoxMessages.Count; i++) { #>
+    EditorGUILayout.HelpBox(m_Warning<#=i#>, MessageType.<#=settings.AiAgentInspector.BoxMessages[i].MessageType.ToString()#>, true);
+<#}#>
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+
+#endif

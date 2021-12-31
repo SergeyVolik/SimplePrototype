@@ -64,7 +64,7 @@ namespace SerV112.UtilityAIEditor
             evt.menu.AppendAction("Input/Remove Vertical Port", action =>
             {
                 CommandDispatcher.Dispatch(new RemovePortNodeCommand(stateGroupModel));
-            }, a => stateGroupModel.VerticalInputCount > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
+            }, a => stateGroupModel.NumberOfInputPorts > 2 ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
             evt.menu.AppendAction("Execute", action =>
             {
@@ -75,7 +75,7 @@ namespace SerV112.UtilityAIEditor
             {
                 var state = CommandDispatcher?.State as AIState;
                 var model = stateGroupModel;
-                var path = string.Join("/", Application.temporaryCachePath, model.Name + ".gen.cs");
+                var path = string.Join("/", Application.temporaryCachePath, model.Name + ".cs");
 
                 if (lastGraphViewEpoch != state.GraphViewState.CurrentVersion ||
                    !File.Exists(path) ||

@@ -22,7 +22,7 @@ namespace SerV112.UtilityAIEditor
             if (!(m_Model is SineCurveNodeModel model))
                 return;
 
-            m_CurveView.Curve = new SineCurve(model.Steepness, model.Offset);
+            m_CurveView.Curve = new SineCurve(model.Steepness, model.OffsetY, model.OffsetX);
         }
     }
 }

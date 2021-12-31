@@ -33,7 +33,7 @@ namespace SerV112.UtilityAIEditor
 
             if (sectionName == k_Sections[0])
             {
-                return GraphModel?.VariableDeclarations?.Where(v => v.DataType == TypeHandle.Float) ??
+                return GraphModel?.VariableDeclarations ??
                     Enumerable.Empty<IVariableDeclarationModel>();
             }
 

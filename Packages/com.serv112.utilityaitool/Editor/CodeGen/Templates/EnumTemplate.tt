@@ -11,7 +11,7 @@ var settings = JsonConvert.DeserializeObject<CreateEnumSettings>(settingsJson);
 //-----------------------------------------------------------------------
 // This file is AUTO-GENERATED.
 // Changes for this script by hand might be lost when auto-generation is run.
-// (Generated date: <#=DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")#>)
+// (Generated date: <#=DateTime.Now.ToString("yyyy-MM-dd")#>)
 //-----------------------------------------------------------------------
 <#//create with namespace#>
 <#if(settings.IsNamespace()){#>

@@ -1,4 +1,6 @@
 ﻿
+using SerV112.UtilityAI.Math;
+
 namespace SerV112.UtilityAIEditor
 {
 
@@ -7,7 +9,7 @@ namespace SerV112.UtilityAIEditor
     {
         public float Evaluate(float x)
         {
-            return CurveUtils.SmootherstepCurve(x);
+            return UtilityAIMath.SmootherstepCurve(x);
         }
     }
 }

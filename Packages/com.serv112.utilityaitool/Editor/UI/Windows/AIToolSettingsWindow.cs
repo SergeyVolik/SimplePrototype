@@ -34,6 +34,8 @@ namespace SerV112.UtilityAIEditor
                     {
                         m_Window.m_Namespace.SetValueWithoutNotify(state.ToolSettingsState.Namespace);
                         m_Window.m_BuildMode.SetValueWithoutNotify(state.ToolSettingsState.BuildType);
+                        m_Window.m_GPUPrecision.SetValueWithoutNotify(state.ToolSettingsState.GPUPrecision);
+                        m_Window.m_Debug.SetValueWithoutNotify(state.ToolSettingsState.Debug);
                     }
                 }
             }
@@ -59,7 +61,8 @@ namespace SerV112.UtilityAIEditor
         //public EnumField BuildType => m_BuildMode;
         private Label m_SettingsLabel;
         private EnumField m_BuildMode;
-
+        private EnumField m_GPUPrecision;
+        private Toggle m_Debug;
         private void OnEnable()
         {
             
@@ -72,10 +75,12 @@ namespace SerV112.UtilityAIEditor
             m_SettingsLabel = rootVisualElement.SafeQ<Label>("SettingsName");
             m_Namespace = rootVisualElement.SafeQ<TextField>("Namespace");
             m_BuildMode = rootVisualElement.SafeQ<EnumField>("build-mode");
+            m_GPUPrecision = rootVisualElement.SafeQ<EnumField>("precision");           
+            m_Debug = rootVisualElement.SafeQ<Toggle>("debug");
 
-
-            m_BuildMode.Init(BuildMode.MonoBehaviour);
-
+            m_BuildMode.Init(BuildMode.MonoBehaviourGPU);
+            m_GPUPrecision.Init(GPUPrecision.@float);
+           
             m_Namespace.RegisterCallback<FocusInEvent>(OnFocusInTextField);
             m_Namespace.RegisterCallback<FocusOutEvent>(OnFocusOutTextField);
             m_BuildMode.RegisterCallback<ChangeEvent<Enum>>((evt) =>
@@ -85,6 +90,17 @@ namespace SerV112.UtilityAIEditor
                 
             });
 
+            m_GPUPrecision.RegisterCallback<ChangeEvent<Enum>>((evt) =>
+            {
+
+                m_GraphView.CommandDispatcher.Dispatch(new SetGPUPrecisionCommand((GPUPrecision)evt.newValue, m_AssetModel));
+
+            });
+
+            m_Debug.RegisterCallback<ChangeEvent<bool>>(evt =>
+            {
+                m_GraphView.CommandDispatcher.Dispatch(new SetDebugCommand(evt.newValue, m_AssetModel));
+            });
         }
 
         string m_OnFocusStartText;
@@ -130,11 +146,14 @@ namespace SerV112.UtilityAIEditor
            
             m_GraphView.CommandDispatcher.RegisterObserver(observer);
             m_SettingsLabel.text = m_AssetModel.Name + " Settings";
+            m_Debug.SetValueWithoutNotify(m_AssetModel.Debug);
 
-
-            m_BuildMode.Init(BuildMode.MonoBehaviour);
+            m_BuildMode.Init(m_AssetModel.BuildMode);
             m_BuildMode.SetValueWithoutNotify(m_AssetModel.BuildMode);
-            
+
+            m_GPUPrecision.Init(m_AssetModel.GPUPrecision);
+            m_GPUPrecision.SetValueWithoutNotify(m_AssetModel.GPUPrecision);
+
         }
     }
 }

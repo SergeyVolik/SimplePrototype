@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerV112.UtilityAI.Math;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.GraphToolsFoundation.Overdrive;
@@ -15,7 +16,7 @@ namespace SerV112.UtilityAIEditor
     {
 
         [SerializeField, HideInInspector]
-        float m_LogBase = 1;
+        float m_LogBase = 2.5f;
 
 
         public float LogBase { get => m_LogBase; set => m_LogBase = value; }
@@ -29,7 +30,7 @@ namespace SerV112.UtilityAIEditor
 
         public override float Evaluate()
         {
-            return CurveUtils.LogitCurve(GetParameterValue(0), m_LogBase);
+            return UtilityAIMath.LogitCurve(GetParameterValue(0), m_LogBase);
         }
 
     }

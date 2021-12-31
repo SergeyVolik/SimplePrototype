@@ -59,9 +59,9 @@ namespace SerV112.UtilityAIEditor
                 Fields.Add(new ModelPropertyField<float>(
                     m_OwnerElement.CommandDispatcher,
                     nodeModel,
-                    nameof(ExponentialCurveNodeModel.Offset),
-                    nameof(ExponentialCurveNodeModel.Offset),
-                    typeof(SetOffsetCommand)));
+                    nameof(ExponentialCurveNodeModel.OffsetY),
+                    nameof(ExponentialCurveNodeModel.OffsetY),
+                    typeof(SetOffsetYCommand)));
 
 
 

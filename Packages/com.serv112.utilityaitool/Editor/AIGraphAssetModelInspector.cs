@@ -11,19 +11,30 @@ namespace SerV112.UtilityAIEditor
         SerializedProperty m_GraphModel;
         SerializedProperty m_Namespace;
         SerializedProperty m_BuildMode;
+        SerializedProperty m_GPUPrecision;
         SerializedProperty m_CodeGenGuid; 
         SerializedProperty m_GeneratedObjects;
         SerializedProperty m_RootDirectory;
-        SerializedProperty m_FolderGuid; 
+        SerializedProperty m_FolderGuid;
+        SerializedProperty LastGeneratedEnumsNames;
+        SerializedProperty LastGeneratedMonoAgent;
+        SerializedProperty LastGeneratedMonoSimulation;
+        SerializedProperty LastGeneratedHlsl;
+
         void OnEnable()
         {
             m_GraphModel = serializedObject.FindProperty("m_GraphModel");
             m_Namespace = serializedObject.FindProperty("m_Namespace");
             m_BuildMode = serializedObject.FindProperty("m_BuildMode");
+            m_GPUPrecision = serializedObject.FindProperty("m_GPUPrecision");
             m_CodeGenGuid = serializedObject.FindProperty("m_CodeGenGuid");
             m_GeneratedObjects = serializedObject.FindProperty("m_GeneratedObjects");
             m_RootDirectory = serializedObject.FindProperty("m_RootDirectory");
             m_FolderGuid = serializedObject.FindProperty("m_FolderGuid");
+            LastGeneratedEnumsNames = serializedObject.FindProperty("LastGeneratedEnumsNames");
+            LastGeneratedMonoAgent = serializedObject.FindProperty("LastGeneratedMonoAgent");
+            LastGeneratedMonoSimulation = serializedObject.FindProperty("LastGeneratedMonoSimulation");
+            LastGeneratedHlsl = serializedObject.FindProperty("LastGeneratedHlsl");
         }
 
         public static void ProcessDirectory(string targetDirectory)
@@ -54,6 +65,7 @@ namespace SerV112.UtilityAIEditor
 
             EditorGUILayout.PropertyField(m_Namespace, true);         
             EditorGUILayout.PropertyField(m_BuildMode, true);
+            EditorGUILayout.PropertyField(m_GPUPrecision, true);           
             EditorGUILayout.PropertyField(m_CodeGenGuid, true);
             EditorGUILayout.PropertyField(m_RootDirectory, true);
             EditorGUILayout.PropertyField(m_FolderGuid, true);
@@ -99,7 +111,11 @@ namespace SerV112.UtilityAIEditor
            
 
             EditorGUILayout.PropertyField(m_GeneratedObjects, true);
-          
+            EditorGUILayout.PropertyField(LastGeneratedEnumsNames, true);
+            EditorGUILayout.PropertyField(LastGeneratedMonoAgent, true);
+            EditorGUILayout.PropertyField(LastGeneratedMonoSimulation, true);
+            EditorGUILayout.PropertyField(LastGeneratedHlsl, true);
+
             GUI.enabled = true;
 
            

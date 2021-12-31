@@ -26,6 +26,18 @@ namespace SerV112.UtilityAIEditor
                 m_State.m_BuildMode = value;
                 m_State.SetUpdateType(UpdateType.Complete);
             }
+
+            public void MarkChangeGPUPrecision(GPUPrecision value)
+            {
+                m_State.m_GPUPrecision = value;
+                m_State.SetUpdateType(UpdateType.Complete);
+            }
+
+            public void MarkChangeDebug(bool value)
+            {
+                m_State.m_Debug = value;
+                m_State.SetUpdateType(UpdateType.Complete);
+            }
         }
 
        
@@ -33,9 +45,15 @@ namespace SerV112.UtilityAIEditor
         [SerializeField]
         private string m_Namespace;
         [SerializeField]
+        private GPUPrecision m_GPUPrecision = GPUPrecision.@float;
+        [SerializeField]
         private BuildMode m_BuildMode;
+        [SerializeField]
+        private bool m_Debug;
+        public bool Debug => m_Debug;
         public string Namespace => m_Namespace;
         public BuildMode BuildType => m_BuildMode;
+        public GPUPrecision GPUPrecision => m_GPUPrecision;
         public ToolSettingsWindowStateComponent()
         {
 

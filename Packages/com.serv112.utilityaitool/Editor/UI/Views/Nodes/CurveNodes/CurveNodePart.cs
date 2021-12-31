@@ -27,7 +27,7 @@ namespace SerV112.UtilityAIEditor
         public CurveNodePart(string name, IGraphElementModel model, IModelUI ownerElement, string parentClassName)
             : base(name, model, ownerElement, parentClassName)
         {
-            
+            m_CurveView = new CurveViewElement();
         }
 
 
@@ -46,7 +46,7 @@ namespace SerV112.UtilityAIEditor
             PartContainer.AddToClassList(ussClassName);
             PartContainer.AddToClassList(m_ParentClassName.WithUssElement(PartName));
 
-            m_CurveView = new CurveViewElement();
+           
             UpdateCurveFromModel();
 
             PartContainer.Add(m_CurveView);
