@@ -11,33 +11,29 @@ public class Controller : MonoBehaviour
 	private Rigidbody m_Rigidbody;
 	private Camera m_ViewCamera;
 	private Vector3 m_Velocity;
-	[SerializeField]
-	private Animator m_Controller;
 
-	private static readonly int m_AnimatorParamX;
-	private static readonly int m_AnimatorParamY;
-	private static readonly int m_AimParam;
-	private static readonly int m_MoveParam;
 	[SerializeField]
-	Rig m_AimRig;
+	private FieldOfView EyeSensor;
 
-	static Controller()
-	{
-		m_AnimatorParamX = Animator.StringToHash("Horizontal");
-		m_AnimatorParamY = Animator.StringToHash("Vertical");
-		m_AimParam = Animator.StringToHash("Aim");
-		m_MoveParam = Animator.StringToHash("Move");
-	}
-	void Start()
-	{
-		m_Rigidbody = GetComponent<Rigidbody>();
-		m_ViewCamera = Camera.main;
-		m_AimRig.weight = 0;
-	}
+	
+	
 	public Vector3 mousePos;
 	public Vector3 vec;
 	bool m_Aim;
 	bool m_Move;
+	public bool Move => m_Move;
+	public bool Aim => m_Aim;
+	public float Horizontal => m_Horizontal;
+	public float Vertical => m_Vertical;
+	public float m_Vertical;
+	public float m_Horizontal;
+	void Start()
+	{
+		m_Rigidbody = GetComponent<Rigidbody>();
+		m_ViewCamera = Camera.main;
+
+	}
+
 	void AimRot()
 	{
 		m_Rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vec), Time.fixedDeltaTime * m_RotSpeed);
@@ -55,56 +51,22 @@ public class Controller : MonoBehaviour
 		
 		}
 
-		m_Controller.SetBool(m_MoveParam, m_Move);
 	}
 
 
-	private float m_WeightTo01Duration = 1f;
-	IEnumerator SetWeight1()
-	{
-		float time = 0;
-		while (m_WeightTo01Duration > time)
-		{
-			time += Time.deltaTime;
-			yield return null;
-			m_AimRig.weight = time;
 
-		}
-		
-	}
-	IEnumerator SetWeight0()
-	{
-		float time = 0;
-		while (m_WeightTo01Duration > time)
-		{
-			time += Time.deltaTime;
-			yield return null;
-			m_AimRig.weight = 1 - time;
-		}
 
-	}
-	Coroutine lastCoroutime;
 	void Update()
 	{
 
 		if (Input.GetMouseButtonDown(1))
 		{
 			m_Aim = true;
-			m_Controller.SetBool(m_AimParam, m_Aim);
-
-			if(lastCoroutime != null)
-				StopCoroutine(lastCoroutime);
-			lastCoroutime = StartCoroutine(SetWeight1());
-			
 
 		}
 		else if (Input.GetMouseButtonUp(1))
 		{
 			m_Aim = false;
-			m_Controller.SetBool(m_AimParam, m_Aim);
-			if (lastCoroutime != null)
-				StopCoroutine(lastCoroutime);
-			lastCoroutime = StartCoroutine(SetWeight0());
 		}
 
 
@@ -117,42 +79,41 @@ public class Controller : MonoBehaviour
 		//transform.LookAt(transform.position + vec * 10);
 
 		//transform.rotation = 
-		var Horizontal = Input.GetAxisRaw("Horizontal");
-		var Vertical = Input.GetAxisRaw("Vertical");
-		m_Velocity = new Vector3(Horizontal, 0, Vertical).normalized * m_MoveSpeed;
+		m_Horizontal = Input.GetAxisRaw("Horizontal");
+		m_Vertical = Input.GetAxisRaw("Vertical");
+		m_Velocity = new Vector3(m_Horizontal, 0, Vertical).normalized * m_MoveSpeed;
 
 		var forwardDot = Vector3.Dot(transform.forward, Vector3.forward);
 		var rightDot = Vector3.Dot(transform.forward, Vector3.right);
 		//Debug.Log($"forwardDot {forwardDot} {rightDot}");
 		if (forwardDot > 0.9f && forwardDot > rightDot)
 		{
-			Debug.Log("Up");
+			//Debug.Log("Up");
 			
 		}
 		else if (forwardDot < -0.9 && rightDot > forwardDot)
 		{
-			Debug.Log("Down");
-			Horizontal = -Horizontal;
-			Vertical = -Vertical;
+			//Debug.Log("Down");
+			m_Horizontal = -m_Horizontal;
+			m_Vertical = -Vertical;
 		}
         else if (rightDot < -0.9 && rightDot < forwardDot)
         {
-			var hor = Horizontal;
-			Horizontal = Vertical;
-			Vertical = hor;
-			Debug.Log("Left");
+			var hor = m_Horizontal;
+			m_Horizontal = Vertical;
+			m_Vertical = hor;
+			//Debug.Log("Left");
 		}
 
         else if (rightDot > 0.9 && rightDot > forwardDot)
 		{
-			var hor = -Horizontal;
-			Horizontal = -Vertical;
-			Vertical = hor;
-			Debug.Log("Right");
+			var hor = -m_Horizontal;
+			m_Horizontal = -Vertical;
+			m_Vertical = hor;
+			//Debug.Log("Right");
 		}
 
-		m_Controller.SetFloat(m_AnimatorParamX, Horizontal);
-		m_Controller.SetFloat(m_AnimatorParamY, Vertical);
+	
 	}
 
 	void FixedUpdate()
