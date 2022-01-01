@@ -4,37 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-
-public abstract class ObjectPoolSingleton<T> : MonoBehaviour where T : UnityEngine.Object
+namespace SerV112.UtilityAI.Game
 {
-    [SerializeField]
-    protected T m_Prefab;
-
-    [SerializeField]
-    private int m_StartCapacity = 10;
-    [SerializeField]
-    private int m_MaxCapacity = 10;
-
-    IObjectPool<T> m_PoolOfPistols;
-
-    public IObjectPool<T> PoolOfPistols => m_PoolOfPistols;
-
-    public static ObjectPoolSingleton<T> Intsance;
-    private void Awake()
+    public abstract class ObjectPoolSingleton<T> : MonoBehaviour where T : UnityEngine.Object
     {
-        if (Intsance)
-            Destroy(this);
+        [SerializeField]
+        protected T m_Prefab;
 
-        Intsance = this;
+        [SerializeField]
+        private int m_StartCapacity = 10;
+        [SerializeField]
+        private int m_MaxCapacity = 10;
 
-        m_PoolOfPistols = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity, m_MaxCapacity);
+        IObjectPool<T> m_PoolOfPistols;
+
+        public IObjectPool<T> PoolOfPistols => m_PoolOfPistols;
+
+        public static ObjectPoolSingleton<T> Instance;
+        private void Awake()
+        {
+            if (Instance)
+                Destroy(this);
+
+            Instance = this;
+
+            m_PoolOfPistols = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity, m_MaxCapacity);
+        }
+
+        protected abstract T CreateObject();
+
+        protected abstract void DestroyObject(T pistol);
+
+        protected abstract void TakeFromPool(T pistol);
+
+        protected abstract void ReturnToPool(T pistol);
     }
-
-    protected abstract T CreateObject();
-
-    protected abstract void DestroyObject(T pistol);
-
-    protected abstract void TakeFromPool(T pistol);
-
-    protected abstract void ReturnToPool(T pistol);
 }

@@ -1,14 +1,31 @@
-﻿public interface IGun : IReloadeable, IShootable, IDropable, IEquipable, IGunFamily
+﻿namespace SerV112.UtilityAI.Game
 {
+    public interface IGun : IReloadeable, IShootable, IDropable, IEquipable,/* IGunFamily,*/ IBulletConteiner
+    {
 
-    int MaxBulletsInGun { get; }
-    int CurrentBullets { get; set; }
-   
-}
+        int MaxBulletsInGun { get; }
+        int CurrentBullets { get; set; }
 
-public enum GunFamily
-{
-    Pistol,
-    Shotgun,
-    Rifle
+    }
+
+    public interface IPistol : IGun
+    {
+
+    }
+
+    public interface IRifle : IGun
+    {
+
+    }
+
+    public interface IShotgun : IGun
+    {
+
+    }
+    public enum GunFamily
+    {
+        Pistol,
+        Shotgun,
+        Rifle
+    }
 }

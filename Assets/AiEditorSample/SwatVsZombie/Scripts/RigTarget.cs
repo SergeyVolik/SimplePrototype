@@ -3,78 +3,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
-public class RigTarget : MonoBehaviour
+namespace SerV112.UtilityAI.Game
 {
-    [SerializeReference]
-    List<MultiAimConstraint> Rigs = new List<MultiAimConstraint>();
-    [SerializeField]
-    Rig m_AimRig;
-
-    [SerializeField]
-    private float m_WeightTo01Duration = 1f;
-
-    [SerializeField]
-    RigBuilder buider;
-    private Coroutine m_LastCoroutime;
-    private void Start()
+    public class RigTarget : MonoBehaviour
     {
-        m_AimRig.weight = 0;
-    }
-    public void SetTarget(Transform target)
-    {
-        for (int i = 0; i < Rigs.Count; i++)
+        [SerializeReference]
+        List<MultiAimConstraint> Rigs = new List<MultiAimConstraint>();
+        [SerializeField]
+        Rig m_AimRig;
+
+        [SerializeField]
+        private float m_WeightTo01Duration = 1f;
+
+        [SerializeField]
+        RigBuilder buider;
+        private Coroutine m_LastCoroutime;
+        private void Start()
         {
-
-            var data = Rigs[i].data.sourceObjects;
-            data.SetTransform(0, target);
-            Rigs[i].data.sourceObjects = data;
+            m_AimRig.weight = 0;
         }
-        m_AimRig.weight = 1;
-        //Set1Weight();
-        buider.Build();
-    }
-    public void ClearTarget()
-    {
-        Set0Weight();
-    }
-
-    private void Set1Weight()
-    {
-        if (m_LastCoroutime != null)
-            StopCoroutine(m_LastCoroutime);
-        m_LastCoroutime = StartCoroutine(SetWeight1());
-    }
-
-    private void Set0Weight()
-    {
-        if (m_LastCoroutime != null)
-            StopCoroutine(m_LastCoroutime);
-        m_LastCoroutime = StartCoroutine(SetWeight0());
-    }
-
-    IEnumerator SetWeight1()
-    {
-        float time = 0;
-        while (m_WeightTo01Duration > time)
+        public void SetTarget(Transform target)
         {
-            time += Time.deltaTime;
-            yield return null;
+            for (int i = 0; i < Rigs.Count; i++)
+            {
 
-            m_AimRig.weight = time;
-
+                var data = Rigs[i].data.sourceObjects;
+                data.SetTransform(0, target);
+                Rigs[i].data.sourceObjects = data;
+            }
+            m_AimRig.weight = 1;
+            //Set1Weight();
+            buider.Build();
+        }
+        public void ClearTarget()
+        {
+            Set0Weight();
         }
 
-    }
-    IEnumerator SetWeight0()
-    {
-        float time = 0;
-        while (m_WeightTo01Duration > time)
+        private void Set1Weight()
         {
-            time += Time.deltaTime;
-            yield return null;
-            m_AimRig.weight = 1 - time;
+            if (m_LastCoroutime != null)
+                StopCoroutine(m_LastCoroutime);
+            m_LastCoroutime = StartCoroutine(SetWeight1());
+        }
+
+        private void Set0Weight()
+        {
+            if (m_LastCoroutime != null)
+                StopCoroutine(m_LastCoroutime);
+            m_LastCoroutime = StartCoroutine(SetWeight0());
+        }
+
+        IEnumerator SetWeight1()
+        {
+            float time = 0;
+            while (m_WeightTo01Duration > time)
+            {
+                time += Time.deltaTime;
+                yield return null;
+
+                m_AimRig.weight = time;
+
+            }
+
+        }
+        IEnumerator SetWeight0()
+        {
+            float time = 0;
+            while (m_WeightTo01Duration > time)
+            {
+                time += Time.deltaTime;
+                yield return null;
+                m_AimRig.weight = 1 - time;
+            }
+
         }
 
     }
-
 }

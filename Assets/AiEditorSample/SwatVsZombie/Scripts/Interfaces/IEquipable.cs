@@ -1,4 +1,7 @@
-﻿public interface IEquipable
+﻿namespace SerV112.UtilityAI.Game
 {
-    void Equip();
+    public interface IEquipable
+    {
+        void Equip();
+    }
 }

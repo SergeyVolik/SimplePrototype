@@ -1,90 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ObjectPool<T> : IObjectPool<T> where T : UnityEngine.Object
+namespace SerV112.UtilityAI.Game
 {
-    private Func<T> m_OnCreate;
-    private Action<T> m_OnTakeFromPool;
-    private Action<T> m_OnReturnedToPool;
-    private Action<T> m_OnObjectDestroy;
-    private int m_MaxCapacity;
-
-    Stack<T> m_PooledObjects = new Stack<T>();
-    public ObjectPool(Func<T> onCreate, Action<T> onTakeFromPool, Action<T> onReturnedToPool, Action<T> onObjectDestroy, int startCapacity, int maxCapacity)
+    public class ObjectPool<T> : IObjectPool<T> where T : UnityEngine.Object
     {
-        m_OnCreate = onCreate;
-        m_OnTakeFromPool = onTakeFromPool;
-        m_OnReturnedToPool = onReturnedToPool;
-        m_OnObjectDestroy = onObjectDestroy;
-        m_MaxCapacity = maxCapacity;
+        private Func<T> m_OnCreate;
+        private Action<T> m_OnTakeFromPool;
+        private Action<T> m_OnReturnedToPool;
+        private Action<T> m_OnObjectDestroy;
+        private int m_MaxCapacity;
 
-        PrepareInternal(startCapacity);
-    }
-
-
-    T CreateObjectInternal()
-    {
-
-        return m_OnCreate();
-    }
-
-    void PrepareInternal(int startCapacity)
-    {
-
-        for (int i = 0; i < startCapacity; i++)
+        Stack<T> m_PooledObjects = new Stack<T>();
+        public ObjectPool(Func<T> onCreate, Action<T> onTakeFromPool, Action<T> onReturnedToPool, Action<T> onObjectDestroy, int startCapacity, int maxCapacity)
         {
-            m_PooledObjects.Push(CreateObjectInternal());
+            m_OnCreate = onCreate;
+            m_OnTakeFromPool = onTakeFromPool;
+            m_OnReturnedToPool = onReturnedToPool;
+            m_OnObjectDestroy = onObjectDestroy;
+            m_MaxCapacity = maxCapacity;
 
-        }
-    }
-
-    public int Capacity => m_PooledObjects.Count;
-
-    public int MaxCapacity => m_MaxCapacity;
-
-    public T Get()
-    {
-        T obj;
-
-        if (m_PooledObjects.Count == 0)
-        {
-
-            obj = CreateObjectInternal();
-        }
-        else
-        {
-            obj = m_PooledObjects.Pop();
+            PrepareInternal(startCapacity);
         }
 
-        m_OnTakeFromPool(obj);
 
-        return obj;
-    }
-
-    public bool Release(T obj)
-    {
-
-        if (obj != null)
+        T CreateObjectInternal()
         {
-            if (Capacity == MaxCapacity)
+
+            return m_OnCreate();
+        }
+
+        void PrepareInternal(int startCapacity)
+        {
+
+            for (int i = 0; i < startCapacity; i++)
             {
-                m_OnObjectDestroy(obj);
+                m_PooledObjects.Push(CreateObjectInternal());
+
+            }
+        }
+
+        public int Capacity => m_PooledObjects.Count;
+
+        public int MaxCapacity => m_MaxCapacity;
+
+        public T Get()
+        {
+            T obj;
+
+            if (m_PooledObjects.Count == 0)
+            {
+
+                obj = CreateObjectInternal();
             }
             else
             {
-                m_OnReturnedToPool(obj);
-                m_PooledObjects.Push(obj);
-
+                obj = m_PooledObjects.Pop();
             }
 
-            return true;
-        }
-        else
-        {
-            Debug.LogError($"You are trying to return null object of type {typeof(T)} ");
-        }
-        return false;
+            m_OnTakeFromPool(obj);
 
+            return obj;
+        }
+
+        public bool Release(T obj)
+        {
+
+            if (obj != null)
+            {
+                if (Capacity == MaxCapacity)
+                {
+                    m_OnObjectDestroy(obj);
+                }
+                else
+                {
+                    m_OnReturnedToPool(obj);
+                    m_PooledObjects.Push(obj);
+
+                }
+
+                return true;
+            }
+            else
+            {
+                Debug.LogError($"You are trying to return null object of type {typeof(T)} ");
+            }
+            return false;
+
+        }
     }
 }

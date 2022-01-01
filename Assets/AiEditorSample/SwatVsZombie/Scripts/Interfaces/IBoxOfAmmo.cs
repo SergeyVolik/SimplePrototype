@@ -1,5 +1,8 @@
-﻿public interface IBoxOfAmmo
+﻿namespace SerV112.UtilityAI.Game
 {
-    IBullet Type { get; set; }
-    int NumberOfBullets { get; set; }
+    public interface IBoxOfAmmo
+    {
+        IBullet Type { get; set; }
+        int NumberOfBullets { get; set; }
+    }
 }

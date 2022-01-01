@@ -140,10 +140,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8191141701626245186}
-  - component: {fileID: 8191141701626245185}
   - component: {fileID: 6517540117247619366}
   - component: {fileID: 6517540117247619361}
   - component: {fileID: 6517540117247619360}
+  - component: {fileID: 3161020950321049535}
   m_Layer: 0
   m_Name: PistolPlaceHolderItem
   m_TagString: Weapon
@@ -166,18 +166,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!114 &8191141701626245185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8191141701626245187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 440152b84ad64cc43976e250f65ab29b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &6517540117247619366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -224,6 +212,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AnimWeapon: {fileID: 6517540117642675613}
+--- !u!114 &3161020950321049535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191141701626245187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144af289aebf46f4c873c281bf0ad2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8191141702433803939
 GameObject:
   m_ObjectHideFlags: 0

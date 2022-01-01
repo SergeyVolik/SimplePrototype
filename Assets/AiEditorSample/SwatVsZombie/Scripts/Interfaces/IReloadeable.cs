@@ -1,5 +1,8 @@
-﻿public interface IReloadeable
+﻿namespace SerV112.UtilityAI.Game
 {
-    void Reload();
-}
+    public interface IReloadeable
+    {
+        void Reload();
+    }
 
+}

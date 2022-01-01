@@ -1,4 +1,7 @@
-﻿public interface IShootable
+﻿namespace SerV112.UtilityAI.Game
 {
-    void Reload();
+    public interface IShootable
+    {
+        void Reload();
+    }
 }

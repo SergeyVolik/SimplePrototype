@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
 
-public interface IBulletConteiner
+namespace SerV112.UtilityAI.Game
 {
-    IEnumerable<IBullet> Bullets { get; set; }
+    public interface IBulletConteiner
+    {
+        IEnumerable<IBullet> Bullets { get; set; }
+    }
+
 }

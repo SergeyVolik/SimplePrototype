@@ -1,4 +1,7 @@
-﻿public interface IDropable
+﻿namespace SerV112.UtilityAI.Game
 {
-    void Drop();
+    public interface IDropable
+    {
+        void Drop();
+    }
 }

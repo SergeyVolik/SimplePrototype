@@ -1,5 +1,8 @@
-﻿public interface IBullet
+﻿namespace SerV112.UtilityAI.Game
 {
-    GunFamily Type { get; }
-    int Damage { get; }
+    public interface IBullet
+    {
+        GunFamily Type { get; }
+        int Damage { get; }
+    }
 }

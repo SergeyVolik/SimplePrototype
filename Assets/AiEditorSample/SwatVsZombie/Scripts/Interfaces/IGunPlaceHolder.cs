@@ -1,6 +1,8 @@
-﻿public interface IGunPlaceHolder : IBulletConteiner, IGunFamily
+﻿namespace SerV112.UtilityAI.Game
 {
-    int BulletsInGun { get; set; }
-    public void SetUpRealGun(IGun gun);
+    public interface IGunPlaceholder : IBulletConteiner, /*IGunFamily,*/ IDropable
+    {
+        public void SetUpRealGun(IGun gun);
 
+    }
 }

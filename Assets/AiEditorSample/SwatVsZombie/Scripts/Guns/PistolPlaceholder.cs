@@ -5,31 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PistolPlaceholder : MonoBehaviour, IGun
+namespace SerV112.UtilityAI.Game
 {
-    public IEnumerable<IBullet> Bullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public int MaxBulletsInGun => throw new System.NotImplementedException();
-
-    public int CurrentBullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public void Drop()
+    public class PistolPlaceholder : MonoBehaviour, IGunPlaceholder
     {
-        throw new System.NotImplementedException();
+        public IEnumerable<IBullet> Bullets { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public GunFamily Type => GunFamily.Pistol;
+
+
+
+        public void Drop()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetUpRealGun(IGun gun)
+        {
+            gun.Bullets = Bullets;
+        }
     }
 
-    public void Equip()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Reload()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Shoot()
-    {
-        throw new System.NotImplementedException();
-    }
 }
