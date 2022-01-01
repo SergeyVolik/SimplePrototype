@@ -6,7 +6,7 @@ namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(PrepareRotation))]
-    public class AnimationActiovator : MonoBehaviour
+    public class AnimationActivator : MonoBehaviour
     {
         private Rigidbody m_RB;
         private PrepareRotation m_PrepareRot;
@@ -16,17 +16,35 @@ namespace SerV112.UtilityAI.Game
         {
             m_RB = GetComponent<Rigidbody>();
             m_PrepareRot = GetComponent<PrepareRotation>();
-            m_PrepareRot.PrepareFinished.AddListener(() =>
-            {
-                m_AnimWeapon.Animator.enabled = true;
-                m_AnimWeapon.Collider.isTrigger = true;
-            });
+        }
 
+        void PrepareFinished()
+        {
+            m_AnimWeapon.Animator.enabled = true;
+            m_AnimWeapon.Collider.isTrigger = true;
+        }
+        void OnEnable()
+        {
+            m_PrepareRot.PrepareFinished.AddListener(PrepareFinished);
+
+            m_RB.useGravity = true;
+            m_RB.isKinematic = false;
+            m_AnimWeapon.Collider.isTrigger = false;
+            m_AnimWeapon.Animator.enabled = false;
+            m_AnimWeapon.Animator.transform.localPosition = Vector3.zero;
+            m_AnimWeapon.Animator.transform.localRotation = Quaternion.identity;
             StartCoroutine(CheckRBSpeed());
+        }
+
+        private void OnDisable()
+        {
+            m_PrepareRot.PrepareFinished.RemoveListener(PrepareFinished);
         }
 
         IEnumerator CheckRBSpeed()
         {
+            yield return null;
+
             while (!m_RB.IsSleeping())
             {
                 yield return null;

@@ -5,22 +5,21 @@ namespace SerV112.UtilityAI.Game
 {
     public class Pistol : MonoBehaviour, IPistol
     {
-        public IEnumerable<IBullet> Bullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        [SerializeField]
+        private int m_MaxBulletsInGun = 30;
+        public int MaxBulletsInGun => m_MaxBulletsInGun;
 
-        public int MaxBulletsInGun => throw new System.NotImplementedException();
-
-        public int CurrentBullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-        public GunFamily Type => GunFamily.Pistol;
+        public int m_CurrentBullets;
+        public int CurrentBullets { get => m_CurrentBullets; set => m_CurrentBullets = value; }
 
         public void Drop()
         {
-            throw new System.NotImplementedException();
+            gameObject.SetActive(false);
         }
 
         public void Equip()
         {
-            throw new System.NotImplementedException();
+            gameObject.SetActive(true);
         }
 
         public void Reload()
@@ -31,6 +30,16 @@ namespace SerV112.UtilityAI.Game
         public void Shoot()
         {
             throw new System.NotImplementedException();
+        }
+
+        public Vector3 GetPosistion()
+        {
+            return transform.position;
+        }
+
+        public Quaternion GetRotation()
+        {
+            return transform.rotation;
         }
     }
 }

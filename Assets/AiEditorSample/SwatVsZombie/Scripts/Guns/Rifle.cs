@@ -15,7 +15,6 @@ namespace SerV112.UtilityAI.Game
 
         public int CurrentBullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-        public GunFamily Type => GunFamily.Rifle;
 
         public void Drop()
         {
@@ -23,6 +22,16 @@ namespace SerV112.UtilityAI.Game
         }
 
         public void Equip()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Vector3 GetPosistion()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Quaternion GetRotation()
         {
             throw new System.NotImplementedException();
         }

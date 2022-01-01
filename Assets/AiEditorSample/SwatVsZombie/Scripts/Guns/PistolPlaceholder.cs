@@ -7,23 +7,34 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(GunDataComponent))]
     public class PistolPlaceholder : MonoBehaviour, IGunPlaceholder
     {
-        public IEnumerable<IBullet> Bullets { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        Rigidbody m_Rigidbody;
+        GunDataComponent m_GunDataComponent;
 
-        public GunFamily Type => GunFamily.Pistol;
+        void Awake()
+        {
+            m_GunDataComponent = GetComponent<GunDataComponent>();
+            m_Rigidbody = GetComponent<Rigidbody>();
+        }
 
-
+        public GunDataComponent GunDataComponent => m_GunDataComponent;
 
         public void Drop()
         {
-            throw new NotImplementedException();
+            gameObject.SetActive(true);
+            m_Rigidbody.AddForce(m_Rigidbody.transform.forward * m_GunDataComponent.GunThrowForce);
         }
 
-        public void SetUpRealGun(IGun gun)
+        public void SetPositionAndRot(Vector3 post, Quaternion rot)
         {
-            gun.Bullets = Bullets;
+            transform.SetPositionAndRotation(post, rot);
         }
+
+       
+
     }
 
 }

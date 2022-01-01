@@ -8,7 +8,6 @@ namespace SerV112.UtilityAI.Game
 {
     public class PistolBullet : MonoBehaviour, IBullet
     {
-        public GunFamily Type => GunFamily.Pistol;
 
         [SerializeField]
         private int m_Damage = 10;

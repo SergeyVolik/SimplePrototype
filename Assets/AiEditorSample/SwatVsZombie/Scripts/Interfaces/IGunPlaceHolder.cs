@@ -1,8 +1,11 @@
-﻿namespace SerV112.UtilityAI.Game
-{
-    public interface IGunPlaceholder : IBulletConteiner, /*IGunFamily,*/ IDropable
-    {
-        public void SetUpRealGun(IGun gun);
+﻿
 
+using UnityEngine;
+
+namespace SerV112.UtilityAI.Game
+{
+    public interface IGunPlaceholder : IDropable
+    {
+        void SetPositionAndRot(Vector3 post, Quaternion rot);
     }
 }

@@ -36,17 +36,7 @@ namespace SerV112.UtilityAI.Game
 			m_Rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_AimRotation), Time.fixedDeltaTime * m_RotSpeed);
 		}
 
-		const string WeaponTag = "Weapon";
-		private void OnTriggerEnter(Collider other)
-		{
-			if (other.CompareTag(WeaponTag))
-			{
 
-
-
-				Debug.Log("WeaponTag detected");
-			}
-		}
 		void DefaultRot()
 		{
 			if (m_Velocity != Vector3.zero)
