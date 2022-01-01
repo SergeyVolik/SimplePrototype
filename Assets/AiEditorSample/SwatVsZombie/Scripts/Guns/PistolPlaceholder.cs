@@ -1,8 +1,11 @@
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class Pistol : MonoBehaviour, IGun
+public class PistolPlaceholder : MonoBehaviour, IGun
 {
     public IEnumerable<IBullet> Bullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 

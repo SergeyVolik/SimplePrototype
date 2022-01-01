@@ -39,7 +39,15 @@ public class Controller : MonoBehaviour
 		m_Rigidbody.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vec), Time.fixedDeltaTime * m_RotSpeed);
 	}
 
-	void DefaultRot()
+	const string WeaponTag = "Weapon";
+    private void OnTriggerEnter(Collider other)
+    {
+		if (other.CompareTag(WeaponTag))
+		{
+			Debug.Log("WeaponTag detected");
+		}
+    }
+    void DefaultRot()
 	{
 		if (m_Velocity != Vector3.zero)
 		{

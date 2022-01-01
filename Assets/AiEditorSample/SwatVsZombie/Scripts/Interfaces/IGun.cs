@@ -1,15 +1,9 @@
-﻿using System.Collections.Generic;
-
-public interface IGun
+﻿public interface IGun : IReloadeable, IShootable, IDropable, IEquipable, IGunFamily
 {
-    IEnumerable<IBullet> Bullets { get; set; }
 
     int MaxBulletsInGun { get; }
     int CurrentBullets { get; set; }
-    void Shoot();
-    void Reload();
-    void Drop();
-    void Equip();
+   
 }
 
 public enum GunFamily
