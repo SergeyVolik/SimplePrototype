@@ -13,7 +13,7 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private RigTarget TargetSetup;
         [SerializeField]
-        private MoveSystemComponent controller;
+        private MoveSystem controller;
         // Start is called before the first frame update
         private static readonly int m_AnimatorParamX;
         private static readonly int m_AnimatorParamY;

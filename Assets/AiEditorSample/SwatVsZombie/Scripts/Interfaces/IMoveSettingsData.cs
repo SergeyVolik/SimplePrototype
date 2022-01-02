@@ -17,7 +17,11 @@
 
 	}
 
-	public interface IMoveSettingsData : IRotationSpeed, IMoveSpeed, IRunSpeed
+	public interface ICurrentSpeed
+	{
+		float CurrentSpeed { get; set; }
+	}
+	public interface IMoveSettingsData : IRotationSpeed, IMoveSpeed, IRunSpeed, ICurrentSpeed
 	{
 	
 		

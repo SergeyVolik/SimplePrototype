@@ -16,6 +16,10 @@ namespace SerV112.UtilityAI.Game
         public float MoveSpeed { get => m_Speed; set => m_Speed = value; }
         public float RotationSpeed { get => m_RotSpeed; set => m_RotSpeed = value; }
         public float RunSpeed { get => m_RunSpeed; set => m_RunSpeed = value; }
+
+        [SerializeField]
+        private float m_CurrentSpeed = 6;
+        public float CurrentSpeed { get => m_CurrentSpeed; set => m_CurrentSpeed = value; }
     }
 
 }

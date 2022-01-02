@@ -5,35 +5,8 @@ using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
-    public interface IMoveInputData
-    {
-        float Horizontal { get; }
-        float Vertical { get; }
-
-        bool IsMove { get; }
-    }
-
-    public interface FireEvent
-    {
-        UnityEvent Fire { get; }
-    }
-
-    public interface JumpEvent
-    {
-        UnityEvent Jump { get; }
-    }
-
-    public interface RunEvents
-    {
-        UnityEvent RunStart { get; }
-        UnityEvent RunStop { get; }
-    }
-
-    public interface AimEvents
-    {
-        UnityEvent AimStart { get; }
-        UnityEvent AimStop { get; }
-    }
+  
+   
 
     [DisallowMultipleComponent]
     public class PlayerInputDataComponent : MonoBehaviour, IMoveInputData, IAimData
