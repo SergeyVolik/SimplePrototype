@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
+    [DisallowMultipleComponent]
     [RequireComponent(typeof(MoveDataComponent))]
     public class RunSystemSystem : MonoBehaviour
     {

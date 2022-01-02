@@ -3,38 +3,31 @@ using System.Collections;
 namespace SerV112.UtilityAI.Game
 {
 
+	[RequireComponent(typeof(CharacterController))]
 	[RequireComponent(typeof(MoveDataComponent))]
+	[RequireComponent(typeof(VelocityYDataComponent))]
 	public class MoveSystem : MonoBehaviour
 	{
 
-		private Rigidbody m_Rigidbody;
-		private Vector3 m_Velocity;
+		private CharacterController m_CharacterController;
 		private ICurrentSpeed m_MoveSpeed;
 		private IMoveInputData m_MoveData;
-
+		private Vector3 m_Velocity;
 		void Awake()
 		{
+
 			m_MoveData = GetComponent<IMoveInputData>();
 			m_MoveSpeed = GetComponent<ICurrentSpeed>();
-			m_Rigidbody = GetComponent<Rigidbody>();
+			m_CharacterController = GetComponent<CharacterController>();
 
-		}
-
-		void Update()
-		{
-
-			m_Velocity = new Vector3(m_MoveData.Horizontal, 0, m_MoveData.Vertical).normalized * m_MoveSpeed.CurrentSpeed;
 		}
 
 		void FixedUpdate()
 		{
-			Move();
-		}
 
-		void Move()
-		{
-			m_Rigidbody.MovePosition(m_Rigidbody.position + m_Velocity * Time.fixedDeltaTime);
+			m_Velocity = new Vector3(m_MoveData.Horizontal, 0, m_MoveData.Vertical).normalized * m_MoveSpeed.CurrentSpeed;
+			m_CharacterController.Move(m_Velocity * Time.fixedDeltaTime);
+			
 		}
-
-	}
+    }
 }
