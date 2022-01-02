@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(HealthDataComponent))]
+    [RequireComponent(typeof(IHealthData))]
     public class HealApplicatorSystem : MonoBehaviour, IHealable
     {
         private IHealthData m_Health;

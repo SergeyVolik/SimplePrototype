@@ -5,6 +5,8 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(MoveDataComponent))]
+    [RequireComponent(typeof(IRotationSpeed))]
+    [RequireComponent(typeof(IAimData))]
     public class AimRotateSystem : MonoBehaviour
     {
         private IRotationSpeed data;
@@ -29,7 +31,7 @@ namespace SerV112.UtilityAI.Game
 
         private void AimRot()
         {
-            if (aimData.Aim)
+            if (aimData.NeedAim)
             {
                 var ray = m_ViewCamera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out var hit, Mathf.Infinity))

@@ -8,16 +8,18 @@ namespace SerV112.UtilityAI.Game
     public class EquipWeaponSystem : MonoBehaviour
     {
         HandComponent m_Hand;
-        // Start is called before the first frame update
-        void Awake()
+
+        void Start()
         {
             m_Hand = GetComponent<HandComponent>();
         }
 
+        
+
         const string WeaponTag = "Weapon";
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(WeaponTag))
+            if (this.enabled == true && other.CompareTag(WeaponTag))
             {
                 if (m_Hand.ActiveGun == null)
                 {

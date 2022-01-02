@@ -6,6 +6,7 @@ namespace SerV112.UtilityAI.Game
 {
 
     [DisallowMultipleComponent]
+    
     public class HandComponent : MonoBehaviour
     {
         [SerializeField]

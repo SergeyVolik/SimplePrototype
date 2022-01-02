@@ -6,7 +6,7 @@ namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(MoveDataComponent))]
-    public class RunSystemSystem : MonoBehaviour
+    public class RunSystem : MonoBehaviour
     {
         IMoveSettingsData data;
         // Start is called before the first frame update

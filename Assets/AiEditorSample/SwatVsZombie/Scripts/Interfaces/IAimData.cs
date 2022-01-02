@@ -2,6 +2,6 @@
 {
 	public interface IAimData
 	{
-		public bool Aim { get; }
+		public bool NeedAim { get; }
 	}
 }

@@ -17,7 +17,7 @@ namespace SerV112.UtilityAI.Game
 
         public bool IsMove => m_Move;
 
-        public bool Aim => m_Aim;
+        public bool NeedAim => m_Aim;
 
         [SerializeField]
         private bool m_Aim;
@@ -30,17 +30,20 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private float m_Vertical;
 
+        [SerializeField]
+        private KeyCode m_AimKey = KeyCode.Mouse1;
+
         private void Update()
         {
             m_Horizontal = Input.GetAxisRaw("Horizontal");
             m_Vertical = Input.GetAxisRaw("Vertical");
             m_Move = m_Horizontal != 0 || m_Vertical != 0 ? true : false;
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetKeyDown(m_AimKey))
             {
                 m_Aim = true;
 
             }
-            else if (Input.GetMouseButtonUp(1))
+            else if (Input.GetKeyUp(m_AimKey))
             {
                 m_Aim = false;
             }

@@ -6,16 +6,15 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(HealthDataComponent))]
+    [RequireComponent(typeof(IHealthData))]
     public class DamageApplicatorSystem : MonoBehaviour, IDamageable
     {
         [SerializeField]
         private UnityEvent<int> m_OnTakeDamage;
 
-
         private IHealthData m_Health;
 
-        void Awake()
+        private void Awake()
         {
             m_Health = GetComponent<IHealthData>();
         }

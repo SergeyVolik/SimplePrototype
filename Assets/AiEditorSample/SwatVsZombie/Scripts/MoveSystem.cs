@@ -4,8 +4,8 @@ namespace SerV112.UtilityAI.Game
 {
 
 	[RequireComponent(typeof(CharacterController))]
-	[RequireComponent(typeof(MoveDataComponent))]
-	[RequireComponent(typeof(VelocityYDataComponent))]
+	[RequireComponent(typeof(IMoveInputData))]
+	[RequireComponent(typeof(ICurrentSpeed))]
 	public class MoveSystem : MonoBehaviour
 	{
 
@@ -15,7 +15,6 @@ namespace SerV112.UtilityAI.Game
 		private Vector3 m_Velocity;
 		void Awake()
 		{
-
 			m_MoveData = GetComponent<IMoveInputData>();
 			m_MoveSpeed = GetComponent<ICurrentSpeed>();
 			m_CharacterController = GetComponent<CharacterController>();

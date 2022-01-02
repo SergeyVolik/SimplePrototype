@@ -6,9 +6,9 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(DamageApplicatorSystem))]
-    [RequireComponent(typeof(HealthDataComponent))]
-    public class KillComponent : MonoBehaviour, IKillable
+    [RequireComponent(typeof(IDamageable))]
+    [RequireComponent(typeof(IHealthData))]
+    public class KillSystem : MonoBehaviour, IKillable
     {
         private IDamageable m_DamageApplicator;
         private IHealthData m_HealthData;
@@ -35,8 +35,11 @@ namespace SerV112.UtilityAI.Game
         }
         private void CheckToKill(int damage)
         {
-            if (m_HealthData.Health == 0)
+            if (m_HealthData.Health <= 0)
+            {
                 m_OnKilled.Invoke();
+                ForceDead();
+            }
         }
         public void ForceDead()
         {

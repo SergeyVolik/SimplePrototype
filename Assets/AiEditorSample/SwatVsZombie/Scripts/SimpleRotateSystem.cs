@@ -28,7 +28,7 @@ namespace SerV112.UtilityAI.Game
 
 		private void DefaultRot()
 		{
-			if (m_MoveData.IsMove && !aimData.Aim)
+			if (m_MoveData.IsMove && !aimData.NeedAim)
 			{
 
 				transform.rotation = Quaternion.Slerp(

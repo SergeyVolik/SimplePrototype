@@ -23,6 +23,10 @@ namespace SerV112.UtilityAI.Game
 
         private void OnCollisionEnter(Collision collision)
         {
+            var com = collision.gameObject.GetComponent<IDamageable>();
+            if (com != null)
+                com.TakeDamage(m_Damage);
+
             PistolBulletPoolSingleton.Instance.Pool.Release(this);
             m_Rigidbody.velocity = Vector3.zero;
             m_Rigidbody.angularVelocity = Vector3.zero;

@@ -9,37 +9,40 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(GravitySystem))]
     [RequireComponent(typeof(GravityDataComponent))]
     [RequireComponent(typeof(VelocityYDataComponent))]
+    [RequireComponent(typeof(IJumpInputData))]
     public class JumpSystem : MonoBehaviour
     {
-        [SerializeField]
-        private float m_JumpForce = 10;
 
-        IGravityData gravityData;
-        IVelocityY velocity;
-        GravitySystem GravitySystem;
-        // Start is called before the first frame update
+      
+        private IGravityData m_GravityData;
+        private IVelocityY m_YVelocity;
+        private GravitySystem m_GravitySystem;
+        private IJumpInputData m_JumpInput;
+        private bool m_Jump;
+
         private void Start()
         {
-            GravitySystem = GetComponent<GravitySystem>();
-            gravityData = GetComponent<IGravityData>();
-            velocity = GetComponent<IVelocityY>();
+            m_JumpInput = GetComponent<IJumpInputData>();
+            m_GravitySystem = GetComponent<GravitySystem>();
+            m_GravityData = GetComponent<IGravityData>();
+            m_YVelocity = GetComponent<IVelocityY>();
         }
 
-        bool jump;
+       
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && GravitySystem.ground)
+            if (m_JumpInput.NeedJump && m_GravitySystem.ground)
             {
-                jump = true;
+                m_Jump = true;
             }
         }
         private void FixedUpdate()
         {
 
-            if (jump)
+            if (m_Jump)
             { 
-                jump = false;
-                velocity.VelocityY += Mathf.Sqrt(m_JumpForce * -1.0f * gravityData.Gravity);
+                m_Jump = false;
+                m_YVelocity.VelocityY += Mathf.Sqrt(m_JumpInput.JumpForce * -1.0f * m_GravityData.Gravity);
 
             }
         }
