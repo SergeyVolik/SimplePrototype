@@ -23,10 +23,14 @@ namespace SerV112.UtilityAI.Game
         {
 
             m_LastGunPlaceholders = placeholder;
-            placeholder.gameObject.SetActive(false);
             
+            placeholder.gameObject.SetActive(false);
+
             m_ActiveGun = m_Pistol;
             m_ActiveGun.Equip();
+            m_Pistol.GunData.UpdateData(placeholder.GunDataComponent);
+           
+          
             return m_Pistol;
         }
 
@@ -40,6 +44,16 @@ namespace SerV112.UtilityAI.Game
         {
             m_ActiveGun = m_Rifle;
             return m_Rifle;
+        }
+
+        public void ThrowWeapon()
+        {
+            ActiveGun.Drop();
+            LastGunPlaceholders.SetPositionAndRot(ActiveGun.GetPosistion(), ActiveGun.GetRotation());
+            LastGunPlaceholders.Drop();
+
+            m_ActiveGun = null;
+            m_LastGunPlaceholders = null;
         }
 
     }

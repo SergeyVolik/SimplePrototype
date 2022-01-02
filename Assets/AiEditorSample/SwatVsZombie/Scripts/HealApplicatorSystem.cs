@@ -7,7 +7,7 @@ namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(HealthDataComponent))]
-    public class HealApplicatorComponent : MonoBehaviour, IHealable
+    public class HealApplicatorSystem : MonoBehaviour, IHealable
     {
         private IHealthData m_Health;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-	[RequireComponent(typeof(FieldOfViewComponent))]
+	[RequireComponent(typeof(FieldOfViewSystem))]
 	public class FieldOfViewMeshDebugComponent : MonoBehaviour
 	{
 
@@ -19,14 +19,14 @@ namespace SerV112.UtilityAI.Game
 		[SerializeField]
 		private MeshFilter m_ViewMeshFilter;
 
-		private FieldOfViewComponent m_FOW;
-		public FieldOfViewComponent FOW => m_FOW;
+		private FieldOfViewSystem m_FOW;
+		public FieldOfViewSystem FOW => m_FOW;
 		private Mesh m_ViewMesh;
 
 		// Start is called before the first frame update
 		void Start()
 		{
-			m_FOW = GetComponent<FieldOfViewComponent>();
+			m_FOW = GetComponent<FieldOfViewSystem>();
 			m_ViewMesh = new Mesh();
 			m_ViewMesh.name = "View Mesh";
 			m_ViewMeshFilter.mesh = m_ViewMesh;

@@ -2,6 +2,6 @@
 {
     public interface IShootable
     {
-        void Reload();
+        void Shoot();
     }
 }

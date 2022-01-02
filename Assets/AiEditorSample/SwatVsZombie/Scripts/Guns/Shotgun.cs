@@ -15,6 +15,7 @@ namespace SerV112.UtilityAI.Game
 
         public int CurrentBullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
+        public IGunData GunData => throw new System.NotImplementedException();
 
         public void Drop()
         {

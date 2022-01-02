@@ -6,7 +6,7 @@
     }
     public interface IBullet : IDamage
     {
-
+        void Push(int force);
     }
 
     public interface IPistolBullet : IBullet

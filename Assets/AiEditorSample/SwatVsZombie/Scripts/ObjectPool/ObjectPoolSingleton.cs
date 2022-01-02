@@ -16,9 +16,9 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private int m_MaxCapacity = 10;
 
-        IObjectPool<T> m_PoolOfPistols;
+        IObjectPool<T> m_Pool;
 
-        public IObjectPool<T> PoolOfPistols => m_PoolOfPistols;
+        public IObjectPool<T> Pool => m_Pool;
 
         public static ObjectPoolSingleton<T> Instance;
         private void Awake()
@@ -28,7 +28,7 @@ namespace SerV112.UtilityAI.Game
 
             Instance = this;
 
-            m_PoolOfPistols = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity, m_MaxCapacity);
+            m_Pool = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity, m_MaxCapacity);
         }
 
         protected abstract T CreateObject();

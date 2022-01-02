@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
+    [RequireComponent(typeof(GunDataComponent))]
     public class Pistol : MonoBehaviour, IPistol
     {
         [SerializeField]
         private int m_MaxBulletsInGun = 30;
-        public int MaxBulletsInGun => m_MaxBulletsInGun;
 
-        public int m_CurrentBullets;
-        public int CurrentBullets { get => m_CurrentBullets; set => m_CurrentBullets = value; }
+        [SerializeField]
+        GunDataComponent m_Data;
 
+        [SerializeField]
+        Transform m_BulletSpawner;
+
+        public IGunData GunData => m_Data; 
+
+        void Awake()
+        {
+            m_Data = GetComponent<GunDataComponent>();
+        }
         public void Drop()
         {
             gameObject.SetActive(false);
@@ -29,7 +38,13 @@ namespace SerV112.UtilityAI.Game
 
         public void Shoot()
         {
-            throw new System.NotImplementedException();
+            if (m_Data.CurrentBullets > 0)
+            {
+                var bullet = PistolBulletPoolSingleton.Instance.Pool.Get();
+                bullet.transform.SetPositionAndRotation(m_BulletSpawner.position, m_BulletSpawner.rotation);
+                bullet.Push(m_Data.GunThrowForce);
+                m_Data.CurrentBullets--;
+            }
         }
 
         public Vector3 GetPosistion()

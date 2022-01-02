@@ -7,7 +7,7 @@ namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(HealthDataComponent))]
-    public class DamageApplicatorComponent : MonoBehaviour, IDamageable
+    public class DamageApplicatorSystem : MonoBehaviour, IDamageable
     {
         [SerializeField]
         private UnityEvent<int> m_OnTakeDamage;

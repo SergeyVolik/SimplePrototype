@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(DamageApplicatorComponent))]
+    [RequireComponent(typeof(DamageApplicatorSystem))]
     [RequireComponent(typeof(HealthDataComponent))]
     public class KillComponent : MonoBehaviour, IKillable
     {

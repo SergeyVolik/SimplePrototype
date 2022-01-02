@@ -14,19 +14,19 @@ namespace SerV112.UtilityAI.Game
             return bullet;
         }
 
-        protected override void DestroyObject(PistolBullet pistol)
+        protected override void DestroyObject(PistolBullet Obj)
         {
-            Destroy(pistol.gameObject);
+            Destroy(Obj.gameObject);
         }
 
-        protected override void TakeFromPool(PistolBullet pistol)
+        protected override void TakeFromPool(PistolBullet Obj)
         {
-
+            Obj.gameObject.SetActive(true);
         }
 
-        protected override void ReturnToPool(PistolBullet pistol)
+        protected override void ReturnToPool(PistolBullet Obj)
         {
-
+            Obj.gameObject.SetActive(false);
         }
 
 

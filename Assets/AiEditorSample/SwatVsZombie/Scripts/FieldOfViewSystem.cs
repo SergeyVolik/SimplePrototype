@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SerV112.UtilityAI.Game
 {
-	public class FieldOfViewComponent : MonoBehaviour
+	public class FieldOfViewSystem : MonoBehaviour
 	{
 		[SerializeField]
 		private float m_viewRadius;
@@ -33,7 +33,7 @@ namespace SerV112.UtilityAI.Game
 		}
 
 		private void Start()
-		{
+		{ 
 			StartCoroutine("FindTargetsWithDelay", .2f);
 		}
 

@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 6955824582452122578}
   - component: {fileID: 1094989069900499359}
   - component: {fileID: 7639393724942708890}
-  - component: {fileID: 6517540117642675609}
-  - component: {fileID: 6517540117642675613}
+  - component: {fileID: 102474202}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Weapon
@@ -104,7 +103,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &6517540117642675609
+--- !u!65 &102474202
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,22 +114,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0000002, y: 1.0000005, z: 1.0000001}
-  m_Center: {x: 0.000000059604645, y: 0, z: 0}
---- !u!114 &6517540117642675613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639479515762416986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f52be6f813b2f6548af28b949b9efe61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 7639393724942708890}
-  m_Collider: {fileID: 6517540117642675609}
+  m_Size: {x: 1, y: 2.9911857, z: 1.0000001}
+  m_Center: {x: 0.000001898701, y: -0.99559236, z: 1.639441e-14}
 --- !u!1 &8191141701626245187
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +129,7 @@ GameObject:
   - component: {fileID: 6517540117247619361}
   - component: {fileID: 6517540117247619360}
   - component: {fileID: 3161020950321049535}
+  - component: {fileID: 1922365111}
   m_Layer: 0
   m_Name: PistolPlaceHolderItem
   m_TagString: Weapon
@@ -211,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c33202bceb27749bb77a01b509f56a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AnimWeapon: {fileID: 6517540117642675613}
+  m_AnimWeapon: {fileID: 1922365111}
 --- !u!114 &3161020950321049535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +210,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144af289aebf46f4c873c281bf0ad2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1922365111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8191141701626245187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52be6f813b2f6548af28b949b9efe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 7639393724942708890}
+  m_Collider: {fileID: 102474202}
 --- !u!1 &8191141702433803939
 GameObject:
   m_ObjectHideFlags: 0

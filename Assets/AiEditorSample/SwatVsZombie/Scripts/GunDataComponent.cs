@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-    public class GunDataComponent : MonoBehaviour
+    public class GunDataComponent : MonoBehaviour, IGunData
     {
         [SerializeField]
         int m_MaxBulletsInGun = 30;
@@ -15,13 +15,14 @@ namespace SerV112.UtilityAI.Game
         public int CurrentBullets { get => m_CurrentBullets; set => m_CurrentBullets = value; }
 
         [SerializeField]
-        private float m_GunThrowForce = 1000;
-        public float GunThrowForce => m_GunThrowForce;
-        public void Setup(GunDataComponent newData)
+        private int m_GunThrowForce = 1000;
+        public int GunThrowForce => m_GunThrowForce;
+
+        public void UpdateData(IGunData newData)
         {
-            m_MaxBulletsInGun = newData.m_MaxBulletsInGun;
-            m_CurrentBullets = newData.m_CurrentBullets;
-            m_GunThrowForce = newData.m_GunThrowForce;
+            m_MaxBulletsInGun = newData.MaxBulletsInGun;
+            m_CurrentBullets = newData.CurrentBullets;
+            m_GunThrowForce = newData.GunThrowForce;
         }
     }
 }

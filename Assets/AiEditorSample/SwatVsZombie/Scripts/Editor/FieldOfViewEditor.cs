@@ -5,13 +5,13 @@ using UnityEditor;
 namespace SerV112.UtilityAI.Game.Editor
 {
 
-	[CustomEditor(typeof(FieldOfViewComponent))]
+	[CustomEditor(typeof(FieldOfViewSystem))]
 	public class FieldOfViewEditor : UnityEditor.Editor
 	{
 
 		void OnSceneGUI()
 		{
-			FieldOfViewComponent fow = (FieldOfViewComponent)target;
+			FieldOfViewSystem fow = (FieldOfViewSystem)target;
 			Handles.color = Color.white;
 			Handles.DrawWireArc(fow.transform.position, Vector3.up, Vector3.forward, 360, fow.viewRadius);
 			Vector3 viewAngleA = fow.DirFromAngle(-fow.viewAngle / 2, false);
