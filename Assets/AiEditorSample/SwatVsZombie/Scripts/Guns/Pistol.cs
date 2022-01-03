@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(GunDataComponent))]
@@ -9,13 +11,14 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private int m_MaxBulletsInGun = 30;
 
-        [SerializeField]
-        GunDataComponent m_Data;
+        private GunDataComponent m_Data;
 
         [SerializeField]
-        Transform m_BulletSpawner;
+        private Transform m_BulletSpawner;
 
-        public IGunData GunData => m_Data; 
+        public IGunData GunData => m_Data;
+
+        public UnityEvent OnShoot => throw new System.NotImplementedException();
 
         void Awake()
         {
