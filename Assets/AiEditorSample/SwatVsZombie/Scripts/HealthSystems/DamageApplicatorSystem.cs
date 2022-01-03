@@ -9,8 +9,6 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(IHealthData))]
     public class DamageApplicatorSystem : MonoBehaviour, IDamageable
     {
-        [SerializeField]
-        private UnityEvent<int> m_OnTakeDamage;
 
         private IHealthData m_Health;
 
@@ -19,12 +17,11 @@ namespace SerV112.UtilityAI.Game
             m_Health = GetComponent<IHealthData>();
         }
 
-        public UnityEvent<int> OnTakeDamage => m_OnTakeDamage;
         public void TakeDamage(int damage)
         {
             m_Health.Health -= damage;
             print("TakeDamage");
-            m_OnTakeDamage.Invoke(damage);
+            m_Health.OnHealthChanged.Invoke();
         }
 
 

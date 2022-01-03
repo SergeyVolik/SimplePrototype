@@ -1,0 +1,1560 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80fbf42a931b12409ecac9e2310a031, type: 3}
+  m_Name: SimpleAI
+  m_EditorClassIdentifier: 
+  m_GraphModel:
+    id: 0
+  m_Namespace: 
+  m_BuildMode: 2
+  m_GPUPrecision: 0
+  m_Debug: 1
+  m_CodeGenGuid: a7ef09dddca1270408c30caa11304e76
+  m_FolderGuid: 5c27e4b419a76144999967cbcd305ed9
+  m_RootDirectory: {fileID: 102900000, guid: ab4a4780ca8812e41a465b7c8c3bfb91, type: 3}
+  m_GeneratedObjects:
+  - {fileID: 11500000, guid: 713c4fea739728e4b86c939448dcf968, type: 3}
+  m_PrevGeneratedAiSimulationScript: 
+  m_PrevGeneratedAiAgentScript: 
+  LastGeneratedEnumsNames:
+  - SimpleAiActions
+  LastGeneratedMonoAgent: AIAgentSimpleAI
+  LastGeneratedMonoSimulation: AISimulationSimpleAI
+  LastGeneratedHlsl: SimpleAI
+  references:
+    version: 1
+    00000000:
+      type: {class: AIGraphModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_AssetModel: {fileID: 11400000}
+        m_GraphNodeModels:
+        - id: 1
+        - id: 2
+        - id: 3
+        - id: 4
+        - id: 5
+        - id: 6
+        - id: 7
+        - id: 8
+        - id: 9
+        - id: 10
+        - id: 11
+        - id: 12
+        - id: 13
+        - id: 14
+        - id: 15
+        - id: 16
+        - id: 17
+        - id: 18
+        - id: 19
+        - id: 20
+        - id: 21
+        - id: 22
+        - id: 23
+        - id: 24
+        - id: 25
+        - id: 26
+        - id: 27
+        - id: 28
+        m_EdgeModels: []
+        m_BadgeModels: []
+        m_GraphEdgeModels:
+        - id: 29
+        - id: 30
+        - id: 31
+        - id: 32
+        - id: 33
+        - id: 34
+        - id: 35
+        - id: 36
+        - id: 37
+        - id: 38
+        - id: 39
+        - id: 40
+        - id: 41
+        - id: 42
+        - id: 43
+        - id: 44
+        - id: 45
+        - id: 46
+        - id: 47
+        - id: 48
+        - id: 49
+        - id: 50
+        - id: 51
+        - id: 52
+        - id: 53
+        - id: 54
+        - id: 55
+        - id: 56
+        m_PolymorphicEdgeModels: []
+        m_StickyNoteModels: []
+        m_GraphStickyNoteModels: []
+        m_PlacematModels: []
+        m_GraphPlacematModels: []
+        m_GraphVariableModels:
+        - id: 57
+        - id: 58
+        - id: 59
+        - id: 60
+        m_GraphPortalModels: []
+        m_Name: 
+        m_StencilTypeName: SerV112.UtilityAIEditor.AIStencil, SerV112.UtilityAIEditor,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    00000001:
+      type: {class: AIProcessorNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 17811733193297478025
+          m_Value1: 2054058548429638636
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: 520.35785, y: 355.71973}
+        m_Title: SimpleAI (AIProcessor)
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - StateGroup0
+        m_ScoreInputCount: 1
+        m_Name: SimpleAI
+    00000002:
+      type: {class: StateGroupNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 11771989197857328069
+          m_Value1: 5492068484517251266
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: 160.00003, y: 368.99994}
+        m_Title: SimpleAiActions (StateGroup)
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input0
+        - Input1
+        - Input2
+        - Input3
+        - Input4
+        m_VerticalInputCount: 5
+        m_EnumName: SimpleAiActions
+        m_FieldName: Default
+    00000003:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 6309034560196618604
+          m_Value1: 14848643088898742461
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -321.99982, y: -42.000046}
+        m_Title: RunToHealth (State)
+        m_InputConstantsById:
+          m_KeyList:
+          - input
+          m_ValueList:
+          - id: 61
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: RunToHealth
+    00000004:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 4637609977741600158
+          m_Value1: 5411399983490416031
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -2006.6002, y: -161.70374}
+        m_Title: NormalizedValue
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 57
+    00000005:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 4562418167297305233
+          m_Value1: 17395892914174077686
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -428.64984, y: 196.24973}
+        m_Title: ThrowWeaponToEnemy (State)
+        m_InputConstantsById:
+          m_KeyList:
+          - input
+          m_ValueList:
+          - id: 62
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: ThrowWeaponToEnemy
+    00000006:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 14990936138027028835
+          m_Value1: 872877175853259064
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -811.2585, y: 413.5307}
+        m_Title: ShootToEnemy (State)
+        m_InputConstantsById:
+          m_KeyList:
+          - input
+          m_ValueList:
+          - id: 63
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: ShootToEnemy
+    00000007:
+      type: {class: SineCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 3567061365415820235
+          m_Value1: 12334299135559837504
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1136.9998, y: -547.59985}
+        m_Title: Sine Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input
+        m_Stepness: 0.5
+        m_OffsetY: 0
+        m_OffsetX: 0
+    00000008:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 5804135229691418465
+          m_Value1: 15977214355643160233
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -608, y: 633.99976}
+        m_Title: SearchGun (State)
+        m_InputConstantsById:
+          m_KeyList:
+          - input
+          m_ValueList:
+          - id: 64
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: SearchGun
+    00000009:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5501363270392728017
+          m_Value1: 16488178810709669015
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1320.2996, y: -22.949997}
+        m_Title: SeeEnemy
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 59
+    0000000A:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5342829530449208700
+          m_Value1: 7757900080822026675
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1502.0278, y: 138.94417}
+        m_Title: Ammo
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 58
+    0000000B:
+      type: {class: StateNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 4971546711585529544
+          m_Value1: 1752698229529573851
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -331.64996, y: 984.05}
+        m_Title: Patrol (State)
+        m_InputConstantsById:
+          m_KeyList:
+          - input
+          m_ValueList:
+          - id: 65
+        m_State: 0
+        m_Collapsed: 0
+        m_Name: Patrol
+    0000000C:
+      type: {class: OneMinusNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 15957577339609595689
+          m_Value1: 12189432826292341072
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1289.7358, y: 96.089554}
+        m_Title: OneMinus
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input
+    0000000D:
+      type: {class: Multiply01NodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 12673780138686672811
+          m_Value1: 2805674935642431785
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -891.0999, y: 96.30003}
+        m_Title: Multiply01
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input0
+        - Input1
+        - Input2
+        m_VerticalInputCount: 3
+    0000000E:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 4904883831563553708
+          m_Value1: 11713829806430635452
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1658.1328, y: 558.2834}
+        m_Title: Ammo
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 58
+    0000000F:
+      type: {class: OneMinusNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 3834198127163529799
+          m_Value1: 1257118865054166551
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1706.882, y: -306.09592}
+        m_Title: OneMinus
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input
+    00000010:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5573280840724011509
+          m_Value1: 3245039311025827172
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1680.2804, y: 499.52246}
+        m_Title: SeeEnemy
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 59
+    00000011:
+      type: {class: Multiply01NodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 12547948347044036366
+          m_Value1: 9248332391341469401
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1270.3759, y: 406.69382}
+        m_Title: Multiply01
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input0
+        - Input1
+        - Input2
+        m_VerticalInputCount: 3
+    00000012:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5704795694168090405
+          m_Value1: 144388584567312549
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1643.4717, y: 828.642}
+        m_Title: HasGun
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 60
+    00000013:
+      type: {class: OneMinusNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 2502009042633802976
+          m_Value1: 13985656884564104650
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1374.8629, y: 695.85297}
+        m_Title: OneMinus
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input
+    00000014:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5725665712623579329
+          m_Value1: 11146231106525360283
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1658.2048, y: 615.0159}
+        m_Title: HasGun
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 60
+    00000015:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 11672937909167209457
+          m_Value1: 15691557070117593768
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1247.3375, y: 251.38242}
+        m_Title: HasGun
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 60
+    00000016:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 18433612233541589891
+          m_Value1: 11465263348494399594
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -834.4423, y: 1501.8524}
+        m_Title: HasGun
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 60
+    00000017:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5643039645326086063
+          m_Value1: 17870738755714026395
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1246.7516, y: 1455.0677}
+        m_Title: SeeEnemy
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 59
+    00000018:
+      type: {class: OneMinusNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 9945513394866998294
+          m_Value1: 4402034527408346599
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1039.4117, y: 1335.8173}
+        m_Title: OneMinus
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input
+    00000019:
+      type: {class: Multiply01NodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 17026468279314232483
+          m_Value1: 12641281397513261029
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -617.0001, y: 1257}
+        m_Title: Multiply01
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input0
+        - Input1
+        - Input2
+        m_VerticalInputCount: 3
+    0000001A:
+      type: {class: VariableNodeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 4817249595996275040
+          m_Value1: 12494901608686877372
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1720.3004, y: 1132.0575}
+        m_Title: Helath
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_DeclarationModel:
+          id: 57
+    0000001B:
+      type: {class: Multiply01NodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 6867413237453505099
+          m_Value1: 4024019538787517411
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -950.4512, y: 681.18115}
+        m_Title: Multiply01
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input0
+        - Input1
+        m_VerticalInputCount: 3
+    0000001C:
+      type: {class: ExponentialCurveNodeModel, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 8914935356817346087
+          m_Value1: 18225015830138694086
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Position: {x: -1299.567, y: 937.53107}
+        m_Title: Exponential Curve
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_State: 0
+        m_Collapsed: 0
+        m_ParameterNames:
+        - Input
+        m_Exponential: 100
+        m_Offset: 0
+    0000001D:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 774468508528840531
+          m_Value1: 14144165983993025802
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11771989197857328069
+            m_Value1: 5492068484517251266
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 17811733193297478025
+            m_Value1: 2054058548429638636
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: StateGroup0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000001E:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5205144218966180412
+          m_Value1: 12669622565748834841
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 6309034560196618604
+            m_Value1: 14848643088898742461
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11771989197857328069
+            m_Value1: 5492068484517251266
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000001F:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 6471040634718974616
+          m_Value1: 7896320642197049737
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4562418167297305233
+            m_Value1: 17395892914174077686
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11771989197857328069
+            m_Value1: 5492068484517251266
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input1
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000020:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 15793456284754991167
+          m_Value1: 8654449434229150684
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 14990936138027028835
+            m_Value1: 872877175853259064
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11771989197857328069
+            m_Value1: 5492068484517251266
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input2
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000021:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 2120919752546995166
+          m_Value1: 1540931490780896369
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 3567061365415820235
+            m_Value1: 12334299135559837504
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 6309034560196618604
+            m_Value1: 14848643088898742461
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000022:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 9973311894552204006
+          m_Value1: 8510914999864016103
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5804135229691418465
+            m_Value1: 15977214355643160233
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11771989197857328069
+            m_Value1: 5492068484517251266
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input3
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000023:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 15258956052212305701
+          m_Value1: 2904358757083086295
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4971546711585529544
+            m_Value1: 1752698229529573851
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11771989197857328069
+            m_Value1: 5492068484517251266
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input4
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000024:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 9198289852584322180
+          m_Value1: 15703996958346133647
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5342829530449208700
+            m_Value1: 7757900080822026675
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 15957577339609595689
+            m_Value1: 12189432826292341072
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000025:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 12186343284165732155
+          m_Value1: 12020389510375303664
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5501363270392728017
+            m_Value1: 16488178810709669015
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12673780138686672811
+            m_Value1: 2805674935642431785
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000026:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 18294141589151566061
+          m_Value1: 4930963767327267306
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 15957577339609595689
+            m_Value1: 12189432826292341072
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12673780138686672811
+            m_Value1: 2805674935642431785
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input1
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000027:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 11734283682768888918
+          m_Value1: 17176410728879682220
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12673780138686672811
+            m_Value1: 2805674935642431785
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4562418167297305233
+            m_Value1: 17395892914174077686
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000028:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 3738622215272700106
+          m_Value1: 6889200838227490678
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4637609977741600158
+            m_Value1: 5411399983490416031
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 3834198127163529799
+            m_Value1: 1257118865054166551
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000029:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 4276754367401066032
+          m_Value1: 16048626198633944589
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 3834198127163529799
+            m_Value1: 1257118865054166551
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 3567061365415820235
+            m_Value1: 12334299135559837504
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000002A:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 2735771480237492076
+          m_Value1: 2498749910096259020
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5573280840724011509
+            m_Value1: 3245039311025827172
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12547948347044036366
+            m_Value1: 9248332391341469401
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000002B:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 7515212076525754805
+          m_Value1: 12599771016371765042
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4904883831563553708
+            m_Value1: 11713829806430635452
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12547948347044036366
+            m_Value1: 9248332391341469401
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input1
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000002C:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 11936546579820467335
+          m_Value1: 4583694536015343803
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12547948347044036366
+            m_Value1: 9248332391341469401
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 14990936138027028835
+            m_Value1: 872877175853259064
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000002D:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 6909168765000213555
+          m_Value1: 9341313064920867053
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5704795694168090405
+            m_Value1: 144388584567312549
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 2502009042633802976
+            m_Value1: 13985656884564104650
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000002E:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 11382618891752442782
+          m_Value1: 10706547199234484814
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5725665712623579329
+            m_Value1: 11146231106525360283
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12547948347044036366
+            m_Value1: 9248332391341469401
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input2
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    0000002F:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 16545943162482296131
+          m_Value1: 7162142232081170669
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 11672937909167209457
+            m_Value1: 15691557070117593768
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12673780138686672811
+            m_Value1: 2805674935642431785
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input2
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000030:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 3763710894088853779
+          m_Value1: 6079682436772933336
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5643039645326086063
+            m_Value1: 17870738755714026395
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 9945513394866998294
+            m_Value1: 4402034527408346599
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000031:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 17661806426909484306
+          m_Value1: 2417695484257233503
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 17026468279314232483
+            m_Value1: 12641281397513261029
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4971546711585529544
+            m_Value1: 1752698229529573851
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000032:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 17727203595446144648
+          m_Value1: 834683009010719466
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 9945513394866998294
+            m_Value1: 4402034527408346599
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 17026468279314232483
+            m_Value1: 12641281397513261029
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input1
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000033:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 16271818937570517727
+          m_Value1: 6715471117722754946
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 18433612233541589891
+            m_Value1: 11465263348494399594
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 17026468279314232483
+            m_Value1: 12641281397513261029
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input2
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000034:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 605686510023083837
+          m_Value1: 14289888759763864208
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 6867413237453505099
+            m_Value1: 4024019538787517411
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 5804135229691418465
+            m_Value1: 15977214355643160233
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000035:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 11497815572554739496
+          m_Value1: 8426650435889222784
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 4817249595996275040
+            m_Value1: 12494901608686877372
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: MainPortName
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 8914935356817346087
+            m_Value1: 18225015830138694086
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000036:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 16090103203620317458
+          m_Value1: 11680959880093245360
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 8914935356817346087
+            m_Value1: 18225015830138694086
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 17026468279314232483
+            m_Value1: 12641281397513261029
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000037:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 5230760206608678501
+          m_Value1: 442325241594531094
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 8914935356817346087
+            m_Value1: 18225015830138694086
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 6867413237453505099
+            m_Value1: 4024019538787517411
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input1
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000038:
+      type: {class: EdgeModel, ns: UnityEditor.GraphToolsFoundation.Overdrive.BasicModel,
+        asm: Unity.GraphTools.Foundation.Overdrive.Model}
+      data:
+        m_Guid:
+          m_Value0: 4012781700351850669
+          m_Value1: 16500800798250728015
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 2502009042633802976
+            m_Value1: 13985656884564104650
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 6867413237453505099
+            m_Value1: 4024019538787517411
+          m_GraphAssetModel: {fileID: 11400000}
+          m_UniqueId: Input0
+        m_EdgeControlPoints: []
+        m_EditMode: 0
+        m_EdgeLabel: 
+    00000039:
+      type: {class: NormalizedFloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor,
+        asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 591598451487273474
+          m_Value1: 875966279380118013
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Helath
+        m_DataType:
+          Identification: SerV112.UtilityAIEditor.NormalizedFloat, SerV112.UtilityAIEditor,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 66
+        m_Modifiers: 0
+        variableFlags: 0
+    0000003A:
+      type: {class: NormalizedFloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor,
+        asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 13980195930811272293
+          m_Value1: 6525928118907028274
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: Ammo
+        m_DataType:
+          Identification: SerV112.UtilityAIEditor.NormalizedFloat, SerV112.UtilityAIEditor,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 67
+        m_Modifiers: 0
+        variableFlags: 0
+    0000003B:
+      type: {class: NormalizedFloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor,
+        asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 8914004546797139380
+          m_Value1: 12858558834687086466
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: SeeEnemy
+        m_DataType:
+          Identification: SerV112.UtilityAIEditor.NormalizedFloat, SerV112.UtilityAIEditor,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 68
+        m_Modifiers: 0
+        variableFlags: 0
+    0000003C:
+      type: {class: NormalizedFloatVariableDeclarationModel, ns: SerV112.UtilityAIEditor,
+        asm: SerV112.UtilityAIEditor}
+      data:
+        m_Guid:
+          m_Value0: 6638958111511284606
+          m_Value1: 16070212439415496694
+        m_AssetModel: {fileID: 11400000}
+        m_Color: {r: 0, g: 0, b: 0, a: 0}
+        m_HasUserColor: 0
+        m_Version: 1
+        m_Name: HasGun
+        m_DataType:
+          Identification: SerV112.UtilityAIEditor.NormalizedFloat, SerV112.UtilityAIEditor,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        m_IsExposed: 1
+        m_Tooltip: 
+        m_InitializationValue:
+          id: 69
+        m_Modifiers: 0
+        variableFlags: 0
+    0000003D:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 0
+    0000003E:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 0
+    0000003F:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 0
+    00000040:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 0
+    00000041:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 0
+    00000042:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 100
+    00000043:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 7
+    00000044:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 1
+    00000045:
+      type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
+      data:
+        m_Value:
+          Value: 0
+          Min: 0
+          Max: 1

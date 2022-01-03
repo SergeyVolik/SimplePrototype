@@ -1,0 +1,136 @@
+//-----------------------------------------------------------------------
+// This file is AUTO-GENERATED.
+// Changes for this script by hand might be lost when auto-generation is run.
+// (Generated date:03.01.2022 18:03:09)
+ //-----------------------------------------------------------------------
+
+#pragma kernel CSMain
+#define NB_THREADS_PER_GROUP 64
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"
+const float myPI = 3.14159265358979323846;
+const float minus_infinity = -3.402823466e+38;
+
+float Normalize(float value, float min, float max)
+{
+   return clamp((value - min) / (max - min), 0, 1);
+}
+
+float OneMinus(float value)
+{
+   return 1 - value;
+}
+
+float SineCurve(float x, float steepness, float offset)
+{
+    return clamp(sin(x * myPI * steepness) + offset, 0, 1);
+}
+
+float Multiply01_3(float values[3])
+{
+    float result = values[0];
+    for(int i = 1; i < 3; i++)
+    {
+        result = result * values[i];
+    }
+    return result;
+}
+
+float ExponentialCurve(float x, float exponent, float offset)
+{
+    return clamp(1 - ((1 - pow(x, exponent)) / 1) + offset, 0, 1);
+}
+
+float Multiply01_2(float values[2])
+{
+    float result = values[0];
+    for(int i = 1; i < 2; i++)
+    {
+        result = result * values[i];
+    }
+    return result;
+}
+
+int SelectMaxValueIndex5(float values[5])
+{
+    float max = minus_infinity;
+    int result = 0;
+   for (int i = 0; i < 5; i++)
+    {
+       if (max < values[i])
+        {
+           max = values[i];
+           result = i;
+        }
+    }
+    return result;
+}
+
+
+struct InAgentData {
+   float Helath;
+   float SeeEnemy;
+   float Ammo;
+   float HasGun;
+};
+struct OutAgentData {
+   int SimpleAiActions;
+   float Age;
+};
+CBUFFER_START(Always)
+    float SimulationTime;
+    float DeltaTime;
+CBUFFER_END
+StructuredBuffer<InAgentData> InAgentBuffer;
+RWStructuredBuffer<OutAgentData> OutAgentBuffer;
+
+[numthreads(NB_THREADS_PER_GROUP,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    int index = id.x;
+
+    float nomalizedHelath = Normalize(InAgentBuffer[index].Helath, 0, 100);
+	float oneMinus0 = OneMinus(nomalizedHelath);
+	float sineCurve0 = SineCurve(oneMinus0, 0.50, 0.00);
+    float nomalizedSeeEnemy = Normalize(InAgentBuffer[index].SeeEnemy, 0, 1);
+    float nomalizedAmmo = Normalize(InAgentBuffer[index].Ammo, 0, 7);
+	float oneMinus1 = OneMinus(nomalizedAmmo);
+    float nomalizedHasGun = Normalize(InAgentBuffer[index].HasGun, 0, 1);
+    float floatArray0[3] = {
+        nomalizedSeeEnemy,
+        oneMinus1,
+        nomalizedHasGun,
+    };
+	float multiply0 = Multiply01_3(floatArray0);
+    float floatArray1[3] = {
+        nomalizedSeeEnemy,
+        nomalizedAmmo,
+        nomalizedHasGun,
+    };
+	float multiply1 = Multiply01_3(floatArray1);
+	float oneMinus2 = OneMinus(nomalizedHasGun);
+	float exponentialCurve0 = ExponentialCurve(nomalizedHelath, 100.00, 0.00);
+    float floatArray2[2] = {
+        oneMinus2,
+        exponentialCurve0,
+    };
+	float multiply2 = Multiply01_2(floatArray2);
+	float oneMinus3 = OneMinus(nomalizedSeeEnemy);
+    float floatArray3[3] = {
+        exponentialCurve0,
+        oneMinus3,
+        nomalizedHasGun,
+    };
+	float multiply3 = Multiply01_3(floatArray3);
+    float floatArray4[5] = {
+        sineCurve0,
+        multiply0,
+        multiply1,
+        multiply2,
+        multiply3,
+    };
+	int selectIndex0 = SelectMaxValueIndex5(floatArray4);
+   OutAgentData output; 
+   output.SimpleAiActions = selectIndex0; 
+   output.Age = OutAgentBuffer[index].Age + DeltaTime; 
+   OutAgentBuffer[index] = output;
+}

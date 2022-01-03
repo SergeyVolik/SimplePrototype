@@ -6,11 +6,9 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(IDamageable))]
     [RequireComponent(typeof(IHealthData))]
     public class KillSystem : MonoBehaviour, IKillable
     {
-        private IDamageable m_DamageApplicator;
         private IHealthData m_HealthData;
 
         [SerializeField]
@@ -21,19 +19,18 @@ namespace SerV112.UtilityAI.Game
 
         private void Awake()
         {
-            m_DamageApplicator = GetComponent<IDamageable>();
             m_HealthData = GetComponent<IHealthData>();
         }
         private void OnEnable()
         {
-            m_DamageApplicator.OnTakeDamage.AddListener(CheckToKill);
+            m_HealthData.OnHealthChanged.AddListener(CheckToKill);
         }
 
         private void OnDisable()
         {
-            m_DamageApplicator.OnTakeDamage.RemoveListener(CheckToKill);
+            m_HealthData.OnHealthChanged.RemoveListener(CheckToKill);
         }
-        private void CheckToKill(int damage)
+        private void CheckToKill()
         {
             if (m_HealthData.Health <= 0)
             {

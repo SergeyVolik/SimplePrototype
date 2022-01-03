@@ -15,5 +15,10 @@ namespace SerV112.UtilityAI.Game
         public int Health { get => m_Health; set => m_Health = value; }
         public int MaxHealth { get => m_MaxHealth; set => m_MaxHealth = value; }
 
+        public UnityEvent OnHealthChanged => m_OnHealthChanged;
+
+
+        [SerializeField]
+        private UnityEvent m_OnHealthChanged;
     }
 }

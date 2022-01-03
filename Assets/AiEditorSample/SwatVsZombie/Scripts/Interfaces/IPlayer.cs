@@ -23,6 +23,8 @@ namespace SerV112.UtilityAI.Game
     {
         int Health { get; set; }
         int MaxHealth { get; set; }
+
+        UnityEvent OnHealthChanged { get; }
     }
 
     public interface IKillable
@@ -33,15 +35,11 @@ namespace SerV112.UtilityAI.Game
     }
     public interface IHealable
     {
-        public UnityEvent<int> OnHeal { get; }
         void Heal(int value);
 
     }
     public interface IDamageable
     {
-
-
-        public UnityEvent<int> OnTakeDamage { get; }
 
         void TakeDamage(int value);
     }

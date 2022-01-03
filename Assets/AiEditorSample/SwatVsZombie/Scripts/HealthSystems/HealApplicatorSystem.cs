@@ -11,10 +11,6 @@ namespace SerV112.UtilityAI.Game
     {
         private IHealthData m_Health;
 
-        [SerializeField]
-        private UnityEvent<int> m_OnHeal;
-        public UnityEvent<int> OnHeal => m_OnHeal;
-
         void Awake()
         {
             m_Health = GetComponent<IHealthData>();
@@ -31,7 +27,7 @@ namespace SerV112.UtilityAI.Game
             }
 
             if (value > 0)
-                m_OnHeal.Invoke(value);
+                m_Health.OnHealthChanged.Invoke();
 
         }
     }
