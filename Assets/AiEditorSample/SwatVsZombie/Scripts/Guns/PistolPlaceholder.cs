@@ -9,7 +9,7 @@ namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(GunDataComponent))]
-    public class PistolPlaceholder : MonoBehaviour, IGunPlaceholder
+    public class PistolPlaceholder : MonoBehaviour, IGunPlaceholder, IProjectile
     {
         Rigidbody m_Rigidbody;
         GunDataComponent m_GunDataComponent;
@@ -24,6 +24,12 @@ namespace SerV112.UtilityAI.Game
 
         public IGunData Data => m_GunDataComponent;
 
+        public int Damage => m_Damage;
+
+        [SerializeField]
+        private int m_Damage = 9999;
+        [SerializeField]
+        private int m_VelocitySpeedToDamage = 10;
         public void Drop()
         {
             gameObject.SetActive(true);
@@ -35,8 +41,28 @@ namespace SerV112.UtilityAI.Game
             transform.SetPositionAndRotation(post, rot);
         }
 
-       
 
+
+        private void OnCollisionEnter(Collision collision)
+        {
+
+          
+            var com = collision.gameObject.GetComponent<IDamageable>();
+
+            Debug.Log(m_Rigidbody.velocity.magnitude);
+            if (com != null && m_Rigidbody.velocity.magnitude > m_VelocitySpeedToDamage)
+            {
+              
+                com.TakeDamage(m_Damage);
+                
+            }
+
+        }
+
+        public void Push(int force)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

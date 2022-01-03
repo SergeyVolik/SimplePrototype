@@ -10,10 +10,12 @@ namespace SerV112.UtilityAI.Game
     {
         private Rigidbody m_RB;
         private PrepareRotation m_PrepareRot;
+        private Collider m_Collider;
         [SerializeField]
         private AnimatedWeapon m_AnimWeapon;
         private void Awake()
         {
+            m_Collider = GetComponent<Collider>();
             m_RB = GetComponent<Rigidbody>();
             m_PrepareRot = GetComponent<PrepareRotation>();
         }
@@ -22,6 +24,7 @@ namespace SerV112.UtilityAI.Game
         {
             m_AnimWeapon.Animator.enabled = true;
             m_AnimWeapon.Collider.isTrigger = true;
+            m_Collider.isTrigger = true;
         }
         void OnEnable()
         {
@@ -30,6 +33,7 @@ namespace SerV112.UtilityAI.Game
             m_RB.useGravity = true;
             m_RB.isKinematic = false;
             m_AnimWeapon.Collider.isTrigger = false;
+            m_Collider.isTrigger = false;
             m_AnimWeapon.Animator.enabled = false;
             m_AnimWeapon.Animator.transform.localPosition = Vector3.zero;
             m_AnimWeapon.Animator.transform.localRotation = Quaternion.identity;
