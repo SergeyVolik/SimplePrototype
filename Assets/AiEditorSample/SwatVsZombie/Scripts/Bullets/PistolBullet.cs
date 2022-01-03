@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
+
 namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PistolBullet : MonoBehaviour, IBullet
     {
         Rigidbody m_Rigidbody;
+        [SerializeField]
+        private UnityEvent<IDamageable> m_OnHit;
+
+        public UnityEvent<IDamageable> OnHit => m_OnHit;
 
         void Awake()
         {
@@ -30,7 +36,8 @@ namespace SerV112.UtilityAI.Game
             PistolBulletPoolSingleton.Instance.Pool.Release(this);
             m_Rigidbody.velocity = Vector3.zero;
             m_Rigidbody.angularVelocity = Vector3.zero;
-            Debug.Log(collision.gameObject.name);
+ 
+            OnHit.Invoke(com);
         }
 
         [SerializeField]

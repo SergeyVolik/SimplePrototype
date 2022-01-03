@@ -11,6 +11,6 @@ namespace SerV112.UtilityAI.Game
 
     public interface IShootEvent
     {
-        UnityEvent OnShoot { get; }
+        UnityEvent<bool> OnShoot { get; }
     }
 }

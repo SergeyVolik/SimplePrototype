@@ -37,6 +37,7 @@ namespace SerV112.UtilityAI.Game
         {
             if (m_HealthData.Health <= 0)
             {
+                print("Kill");
                 m_OnKilled.Invoke();
                 ForceDead();
             }

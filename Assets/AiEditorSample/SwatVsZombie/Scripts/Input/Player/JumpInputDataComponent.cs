@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
 
-
+    [DisallowMultipleComponent]
     public class JumpInputDataComponent : AbstractPressDownInputComponent, IJumpInputData
     {
 

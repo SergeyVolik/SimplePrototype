@@ -7,11 +7,11 @@ namespace SerV112.UtilityAI.Game
     public class GunDataComponent : MonoBehaviour, IGunData
     {
         [SerializeField]
-        int m_MaxBulletsInGun = 30;
+        int m_MaxBulletsInGun;
         public int MaxBulletsInGun => m_MaxBulletsInGun;
 
         [SerializeField]
-        int m_CurrentBullets = 30;
+        int m_CurrentBullets;
         public int CurrentBullets { get => m_CurrentBullets; set => m_CurrentBullets = value; }
 
         [SerializeField]

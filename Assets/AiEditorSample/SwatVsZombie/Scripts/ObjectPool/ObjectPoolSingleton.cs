@@ -13,8 +13,6 @@ namespace SerV112.UtilityAI.Game
 
         [SerializeField]
         private int m_StartCapacity = 10;
-        [SerializeField]
-        private int m_MaxCapacity = 10;
 
         IObjectPool<T> m_Pool;
 
@@ -28,7 +26,7 @@ namespace SerV112.UtilityAI.Game
 
             Instance = this;
 
-            m_Pool = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity, m_MaxCapacity);
+            m_Pool = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity);
         }
 
         protected abstract T CreateObject();

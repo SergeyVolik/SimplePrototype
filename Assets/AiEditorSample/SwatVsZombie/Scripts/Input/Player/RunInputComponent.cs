@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
+    [DisallowMultipleComponent]
     public class RunInputComponent : AbstractPressDownAndUpInputComponent, IRunInputData { }
 
 }

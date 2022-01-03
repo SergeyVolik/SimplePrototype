@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
+    [DisallowMultipleComponent]
     public class AimInputDataComponent : AbstractPressDownInputComponent, IAimInputData
     {
         protected override void Update()

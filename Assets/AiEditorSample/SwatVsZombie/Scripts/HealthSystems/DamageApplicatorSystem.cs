@@ -23,6 +23,7 @@ namespace SerV112.UtilityAI.Game
         public void TakeDamage(int damage)
         {
             m_Health.Health -= damage;
+            print("TakeDamage");
             m_OnTakeDamage.Invoke(damage);
         }
 

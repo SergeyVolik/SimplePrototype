@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(IShootEvent))]
-    public class ShootSFXSystem : MonoBehaviour
+    public class CantShootSFX : MonoBehaviour
     {
         [SerializeField]
         AudioClip m_AudioClip;
@@ -19,7 +19,7 @@ namespace SerV112.UtilityAI.Game
 
         private void Play(bool hasAmmo)
         {
-            if(hasAmmo)
+            if(!hasAmmo)
                 AudioSource.PlayClipAtPoint(m_AudioClip, transform.position);
         }
         private void OnEnable()

@@ -9,16 +9,15 @@ namespace SerV112.UtilityAI.Game
         private Action<T> m_OnTakeFromPool;
         private Action<T> m_OnReturnedToPool;
         private Action<T> m_OnObjectDestroy;
-        private int m_MaxCapacity;
+
 
         Stack<T> m_PooledObjects = new Stack<T>();
-        public ObjectPool(Func<T> onCreate, Action<T> onTakeFromPool, Action<T> onReturnedToPool, Action<T> onObjectDestroy, int startCapacity, int maxCapacity)
+        public ObjectPool(Func<T> onCreate, Action<T> onTakeFromPool, Action<T> onReturnedToPool, Action<T> onObjectDestroy, int startCapacity)
         {
             m_OnCreate = onCreate;
             m_OnTakeFromPool = onTakeFromPool;
             m_OnReturnedToPool = onReturnedToPool;
             m_OnObjectDestroy = onObjectDestroy;
-            m_MaxCapacity = maxCapacity;
 
             PrepareInternal(startCapacity);
         }
@@ -42,7 +41,6 @@ namespace SerV112.UtilityAI.Game
 
         public int Capacity => m_PooledObjects.Count;
 
-        public int MaxCapacity => m_MaxCapacity;
 
         public T Get()
         {
@@ -68,16 +66,11 @@ namespace SerV112.UtilityAI.Game
 
             if (obj != null)
             {
-                if (Capacity == MaxCapacity)
-                {
-                    m_OnObjectDestroy(obj);
-                }
-                else
-                {
-                    m_OnReturnedToPool(obj);
-                    m_PooledObjects.Push(obj);
 
-                }
+                m_OnReturnedToPool(obj);
+                m_PooledObjects.Push(obj);
+
+                
 
                 return true;
             }

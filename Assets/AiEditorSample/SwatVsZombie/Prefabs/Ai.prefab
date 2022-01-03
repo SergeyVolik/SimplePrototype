@@ -181,6 +181,8 @@ GameObject:
   - component: {fileID: 6829477624569176183}
   - component: {fileID: 1555448297167564453}
   - component: {fileID: 6867472658129236150}
+  - component: {fileID: 5995215151392267221}
+  - component: {fileID: 149096728}
   m_Layer: 0
   m_Name: Ai
   m_TagString: Untagged
@@ -313,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 281f4d34a44ea9248a54e71ccbb49166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Gravity: -9.81
+  m_Gravity: 9.81
 --- !u!114 &6333293646518652302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +374,32 @@ MonoBehaviour:
   m_OnKilled:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5995215151392267221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552894491251813489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff16ec106547138478689a14dfaaa6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: 4279ee96699d604449dc968a24d59ad9, type: 3}
+--- !u!114 &149096728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552894491251813489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5ada84a06f046459f5271b24f01214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: 6613b71399034534b9000570d6ed1583, type: 3}
 --- !u!1 &6552894491402963213
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +731,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6552894491402963212}
     m_Modifications:
+    - target: {fileID: 1660650774, guid: c686ed29af8cdbe4fa34f8d941c86c52, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3161020948863522444, guid: c686ed29af8cdbe4fa34f8d941c86c52,
         type: 3}
       propertyPath: m_BulletSpawner
@@ -775,6 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3492084297199310423, guid: c686ed29af8cdbe4fa34f8d941c86c52, type: 3}
+    - {fileID: 3056953549570750695, guid: c686ed29af8cdbe4fa34f8d941c86c52, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c686ed29af8cdbe4fa34f8d941c86c52, type: 3}
 --- !u!4 &8155663904350266229 stripped
 Transform:

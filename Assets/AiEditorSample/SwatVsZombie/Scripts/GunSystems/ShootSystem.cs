@@ -14,16 +14,19 @@ namespace SerV112.UtilityAI.Game
         IShootInpuData IShootInpuData;
         IGun Gun;
         IGunData Data;
-        public UnityEvent OnShoot => m_OnShoot;
-
+        public UnityEvent<bool> OnShoot => m_OnShoot;
         [SerializeField]
-        UnityEvent m_OnShoot;
+        UnityEvent<bool> m_OnShoot;
         public void Shoot()
         {
-            if (IShootInpuData.PressDown && Data.CurrentBullets > 0)
+            if (IShootInpuData.PressDown)
             {
-                Gun.Shoot();
-                OnShoot.Invoke();
+                if (Data.CurrentBullets > 0)
+                {
+                    Gun.Shoot();
+                    OnShoot.Invoke(true);
+                }
+                else OnShoot.Invoke(false);
             }
         }
 

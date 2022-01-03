@@ -22,6 +22,8 @@ namespace SerV112.UtilityAI.Game
 
         public GunDataComponent GunDataComponent => m_GunDataComponent;
 
+        public IGunData Data => m_GunDataComponent;
+
         public void Drop()
         {
             gameObject.SetActive(true);

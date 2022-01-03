@@ -6,7 +6,6 @@
         bool Release(T obj);
 
         int Capacity { get; }
-        int MaxCapacity { get; }
     }
 
 }

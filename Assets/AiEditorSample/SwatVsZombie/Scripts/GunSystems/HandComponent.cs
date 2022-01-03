@@ -50,6 +50,9 @@ namespace SerV112.UtilityAI.Game
         public void ThrowWeapon()
         {
             ActiveGun.Drop();
+
+            Debug.Log($"{ActiveGun.GunData.CurrentBullets} - {LastGunPlaceholders.Data.CurrentBullets}");
+            LastGunPlaceholders.Data.UpdateData(ActiveGun.GunData);
             LastGunPlaceholders.SetPositionAndRot(ActiveGun.GetPosistion(), ActiveGun.GetRotation());
             LastGunPlaceholders.Drop();
 
