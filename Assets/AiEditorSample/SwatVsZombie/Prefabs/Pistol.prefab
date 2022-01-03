@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 3161020948863522444}
   - component: {fileID: 493050697916084158}
   - component: {fileID: 3056953549570750694}
-  - component: {fileID: 3056953549570750695}
   - component: {fileID: 6387329725181738775}
+  - component: {fileID: 6349297264402750015}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -107,19 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaead96e306e544e9ad34f3295c5062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3056953549570750695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3161020948863522446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bf0907e078e54b4ea808a484d25114a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: b105900b1fcd1534390128866cc03072, type: 3}
+  m_AudioClip: {fileID: 0}
 --- !u!114 &6387329725181738775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,6 +123,21 @@ MonoBehaviour:
   m_OnShoot:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6349297264402750015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161020948863522446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7777c4ce92ab7e746a522f3fd5b03bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxBulletsInGun: 0
+  m_CurrentBullets: 0
+  m_GunThrowForce: 1000
 --- !u!1 &3161020949670832238
 GameObject:
   m_ObjectHideFlags: 0

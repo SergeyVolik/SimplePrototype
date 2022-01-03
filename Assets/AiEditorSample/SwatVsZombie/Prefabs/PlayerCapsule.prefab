@@ -841,6 +841,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Health: 100
   m_MaxHealth: 100
+  m_OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3056953549570750691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,7 +895,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3056953549620042055}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddb8a96d586e83f4ab382b1763855508, type: 3}
   m_Name: 
@@ -913,7 +916,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3056953549620042055}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d60d3b43208cdc648aa4a9c9ea004412, type: 3}
   m_Name: 
@@ -946,9 +949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4729946a2f9d7224b93c73d0b1b1ce1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OnHeal:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3340501504975557953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,9 +961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc84d95bc39b2444b44982df28fc756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3056953549570750692
 MonoBehaviour:
   m_ObjectHideFlags: 0

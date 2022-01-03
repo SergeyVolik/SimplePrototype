@@ -25,63 +25,22 @@ using UnityEditor;
 #endif
 
 
-
-public class <#= AIAgentClassName #> : MonoBehaviour
+public class <#= AIAgentClassName #> : AIAgentBase<<#= AISimulationClassName #>, <#= AISimulationClassName #>.AgentInData, <#= AISimulationClassName #>.AgentOutData>
 {
-	[SerializeField]
-    public int Index;
-    [Header("Params")]
-    [SerializeField]
-    private <#= AISimulationClassName #>.AgentInData InData;
-    [Header("Results")]
-    [SerializeField]
-    private <#= AISimulationClassName #>.AgentOutData OutData;
-
-    public <#= AISimulationClassName #>.AgentInData GetAgentData() => InData;
-
-
-    <#= AISimulationClassName #> m_Simulation;
 
 #if UNITY_EDITOR
     private bool Awaked = false;
-#endif
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        m_Simulation = <#= AISimulationClassName #>.Instance;
+        base.Awake();
 
-        if (!m_Simulation)
-        {
-            GameObject obj = new GameObject(nameof(<#= AISimulationClassName #>));
-            m_Simulation = obj.AddComponent<<#= AISimulationClassName #>>();
-        }
-
-#if UNITY_EDITOR
         Awaked = true;
-#endif
+
 
     }
 
-    private void OnEnable()
-    {
-        m_Simulation.AddAgent(this);
-    }
-
-    private void OnDisable()
-    {
-        m_Simulation.RemoveAgent(this);
-    }
-<#if(settings.Debug) { #>
-#if UNITY_EDITOR
-    public void SetAgentOutDataInternal(<#= AISimulationClassName #>.AgentOutData data)
-    {
-        OutData = data;
-    }
-#endif
-<#}#>
-
-#if UNITY_EDITOR
     private void OnValidate()
     {
         if (Application.isPlaying && Awaked)
@@ -91,62 +50,27 @@ public class <#= AIAgentClassName #> : MonoBehaviour
     }
 #endif
 
-    public void ChangeAgentData(<#= AISimulationClassName #>.AgentInData value) 
-    {
-        InData = value;
-        m_Simulation.ChangeAgentData(Index, InData);
-        
-    }
-
 }
 
 #if UNITY_EDITOR
 
-[CustomEditor(typeof(<#= AIAgentClassName#>))]
+[CustomEditor(typeof(<#= AIAgentClassName #>))]
 [CanEditMultipleObjects]
-public class  <#= AIAgentInspectorClassName #> : Editor
+public class  Inspector<#= AIAgentClassName #> : AIAgentBaseInpsector
 {
 <#for(var i = 0; i < settings.AiAgentInspector.BoxMessages.Count; i++) { #>
     const string m_Warning<#=i#> = "<#= settings.AiAgentInspector.BoxMessages[i].Message#>";
 <#}#>
-    SerializedProperty Index;
-    SerializedProperty InData;
-    SerializedProperty OutData;
-
-
-	void OnEnable()
-	{
-		Index = serializedObject.FindProperty("Index");
-        InData = serializedObject.FindProperty("InData");
-        OutData = serializedObject.FindProperty("OutData");
-
-
-	}
 
 	public override void OnInspectorGUI()
     {
+        base.OnInspectorGUI();
 
-        serializedObject.Update();
-        GUI.enabled = false;
-        if(Application.isPlaying)
-        {          
-            EditorGUILayout.PropertyField(Index);  
-        }
-
-        GUI.enabled = true;
-        EditorGUILayout.PropertyField(InData);
-
-        GUI.enabled = false;
-
-        EditorGUILayout.PropertyField(OutData);
-
-        GUI.enabled = true;
 <#for(var i = 0; i < settings.AiAgentInspector.BoxMessages.Count; i++) { #>
         EditorGUILayout.HelpBox(m_Warning<#=i#>, MessageType.<#=settings.AiAgentInspector.BoxMessages[i].MessageType.ToString()#>, true);
 <#}#>
-        serializedObject.ApplyModifiedProperties();
+
     }
 }
 
 #endif
-

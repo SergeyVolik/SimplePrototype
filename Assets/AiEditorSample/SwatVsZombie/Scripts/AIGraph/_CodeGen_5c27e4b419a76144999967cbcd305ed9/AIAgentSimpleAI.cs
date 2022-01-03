@@ -12,61 +12,22 @@ using UnityEditor;
 #endif
 
 
-
-public class AIAgentSimpleAI : MonoBehaviour
+public class AIAgentSimpleAI : AIAgentBase<AISimulationSimpleAI, AISimulationSimpleAI.AgentInData, AISimulationSimpleAI.AgentOutData>
 {
-	[SerializeField]
-    public int Index;
-    [Header("Params")]
-    [SerializeField]
-    private AISimulationSimpleAI.AgentInData InData;
-    [Header("Results")]
-    [SerializeField]
-    private AISimulationSimpleAI.AgentOutData OutData;
-
-    public AISimulationSimpleAI.AgentInData GetAgentData() => InData;
-
-
-    AISimulationSimpleAI m_Simulation;
 
 #if UNITY_EDITOR
     private bool Awaked = false;
-#endif
 
 
-    private void Awake()
+    protected override void Awake()
     {
-        m_Simulation = AISimulationSimpleAI.Instance;
+        base.Awake();
 
-        if (!m_Simulation)
-        {
-            GameObject obj = new GameObject(nameof(AISimulationSimpleAI));
-            m_Simulation = obj.AddComponent<AISimulationSimpleAI>();
-        }
-
-#if UNITY_EDITOR
         Awaked = true;
-#endif
+
 
     }
 
-    private void OnEnable()
-    {
-        m_Simulation.AddAgent(this);
-    }
-
-    private void OnDisable()
-    {
-        m_Simulation.RemoveAgent(this);
-    }
-#if UNITY_EDITOR
-    public void SetAgentOutDataInternal(AISimulationSimpleAI.AgentOutData data)
-    {
-        OutData = data;
-    }
-#endif
-
-#if UNITY_EDITOR
     private void OnValidate()
     {
         if (Application.isPlaying && Awaked)
@@ -76,58 +37,23 @@ public class AIAgentSimpleAI : MonoBehaviour
     }
 #endif
 
-    public void ChangeAgentData(AISimulationSimpleAI.AgentInData value) 
-    {
-        InData = value;
-        m_Simulation.ChangeAgentData(Index, InData);
-        
-    }
-
 }
 
 #if UNITY_EDITOR
 
 [CustomEditor(typeof(AIAgentSimpleAI))]
 [CanEditMultipleObjects]
-public class  InspectorAIAgentSimpleAI : Editor
+public class  InspectorAIAgentSimpleAI : AIAgentBaseInpsector
 {
     const string m_Warning0 = "Debug Mode. Inspector results fields will be updating in a play mode.";
-    SerializedProperty Index;
-    SerializedProperty InData;
-    SerializedProperty OutData;
-
-
-	void OnEnable()
-	{
-		Index = serializedObject.FindProperty("Index");
-        InData = serializedObject.FindProperty("InData");
-        OutData = serializedObject.FindProperty("OutData");
-
-
-	}
 
 	public override void OnInspectorGUI()
     {
+        base.OnInspectorGUI();
 
-        serializedObject.Update();
-        GUI.enabled = false;
-        if(Application.isPlaying)
-        {          
-            EditorGUILayout.PropertyField(Index);  
-        }
-
-        GUI.enabled = true;
-        EditorGUILayout.PropertyField(InData);
-
-        GUI.enabled = false;
-
-        EditorGUILayout.PropertyField(OutData);
-
-        GUI.enabled = true;
         EditorGUILayout.HelpBox(m_Warning0, MessageType.Info, true);
-        serializedObject.ApplyModifiedProperties();
+
     }
 }
 
 #endif
-
