@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
@@ -16,6 +14,8 @@ namespace SerV112.UtilityAI.Game
         public int CurrentBullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
         public IGunData GunData => throw new System.NotImplementedException();
+
+        public UnityEvent<int> OnShoot => throw new System.NotImplementedException();
 
         public void Drop()
         {
@@ -43,6 +43,11 @@ namespace SerV112.UtilityAI.Game
         }
 
         public void Shoot()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        int IShootable.Shoot()
         {
             throw new System.NotImplementedException();
         }

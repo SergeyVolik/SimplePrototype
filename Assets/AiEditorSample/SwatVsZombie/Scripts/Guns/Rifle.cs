@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
     public class Rifle : MonoBehaviour, IGun
     {
-        public IEnumerable<IBullet> Bullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-        public int MaxBulletsInGun => throw new System.NotImplementedException();
-
-        public int CurrentBullets { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
         public IGunData GunData => throw new System.NotImplementedException();
+
+        public UnityEvent<int> OnShoot => throw new System.NotImplementedException();
 
         public void Drop()
         {
@@ -37,12 +31,7 @@ namespace SerV112.UtilityAI.Game
             throw new System.NotImplementedException();
         }
 
-        public void Reload()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Shoot()
+        public int Shoot()
         {
             throw new System.NotImplementedException();
         }

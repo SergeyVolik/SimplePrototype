@@ -1,7 +1,7 @@
 ﻿namespace SerV112.UtilityAI.Game
 {
-	public interface IShootInpuData
+	public interface IShootInpuData : IButtonDownEvent
 	{
-		public bool PressDown { get; }
+
 	}
 }

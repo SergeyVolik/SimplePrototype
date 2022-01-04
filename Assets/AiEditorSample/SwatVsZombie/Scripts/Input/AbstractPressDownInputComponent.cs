@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
@@ -8,19 +9,17 @@ namespace SerV112.UtilityAI.Game
     {
         [SerializeField]
         protected KeyCode m_Key;
+        public UnityEvent PressDown => m_PressDown;
         [SerializeField]
-        protected bool m_PressDown;
+        private UnityEvent m_PressDown;
 
-        public bool PressDown => m_PressDown;
 
-      
         // Update is called once per frame
         protected virtual void Update()
         {
-            m_PressDown = false;
             if (Input.GetKeyDown(m_Key))
             {
-                m_PressDown = true;
+                PressDown.Invoke();
 
             }
         }

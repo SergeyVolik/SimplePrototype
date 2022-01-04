@@ -12,24 +12,36 @@ namespace SerV112.UtilityAI.Game
         IMoveSettingsData data;
         IRunInputData m_Input;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             m_Input = GetComponent<IRunInputData>();
             data = GetComponent<MoveDataComponent>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDisable()
         {
-            if (m_Input.PressDown)
-            {
-                data.CurrentSpeed = data.RunSpeed;
-            }
-            if (m_Input.PressUp)
-            {
-                data.CurrentSpeed = data.MoveSpeed;
-            }
+            m_Input.PressDown.RemoveListener(SetRunSpeed);
+            m_Input.PressUp.RemoveListener(SetWalkSpeed);
         }
+
+        private void OnEnable()
+        {
+            m_Input.PressDown.AddListener(SetRunSpeed);
+            m_Input.PressUp.AddListener(SetWalkSpeed);
+        }
+
+
+        void SetRunSpeed()
+        {
+            data.CurrentSpeed = data.RunSpeed;
+        }
+
+        void SetWalkSpeed()
+        {
+            data.CurrentSpeed = data.MoveSpeed;
+        }
+        // Update is called once per frame
+
     }
 
 }

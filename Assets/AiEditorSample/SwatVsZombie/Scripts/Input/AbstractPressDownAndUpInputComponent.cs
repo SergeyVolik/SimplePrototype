@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
     public class AbstractPressDownAndUpInputComponent : AbstractPressDownInputComponent
     {
-        public bool PressUp => m_PressUp;
-
+        public UnityEvent PressUp => m_PressUp;
         [SerializeField]
-        protected bool m_PressUp;
+        private UnityEvent m_PressUp;
 
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
-            m_PressUp = false;
+
             if (Input.GetKeyUp(m_Key))
             {
-                m_PressUp = true;
+                PressUp.Invoke();
 
             }
         }

@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
 
     public interface IShootAIInpuData : IShootInpuData
     {
-        void UpdateInput(bool value);
+
     }
+
+
+
     [DisallowMultipleComponent]
-    public class ShootAIInputDataComponent : MonoBehaviour, IShootAIInpuData
+    public class ShootAIInputDataComponent : AbstractAIInput, IShootAIInpuData
     {
         public bool PressDown => m_Value;
 

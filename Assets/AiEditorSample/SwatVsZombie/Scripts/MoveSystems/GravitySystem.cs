@@ -5,8 +5,6 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(IGravityData))]
-    [RequireComponent(typeof(IVelocityY))]
     [RequireComponent(typeof(CharacterController))]
     public class GravitySystem : MonoBehaviour, IVelocityY, IGravityData
     {

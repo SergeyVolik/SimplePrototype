@@ -4,13 +4,13 @@ namespace SerV112.UtilityAI.Game
 {
     public interface IShootable
     {
-        void Shoot();
+        int Shoot();
 
 
     }
 
     public interface IShootEvent
     {
-        UnityEvent<bool> OnShoot { get; }
+        UnityEvent<int> OnShoot { get; }
     }
 }

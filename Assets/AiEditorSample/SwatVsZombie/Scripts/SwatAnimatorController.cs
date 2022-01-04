@@ -74,16 +74,16 @@ namespace SerV112.UtilityAI.Game
             m_Controller.SetFloat(m_AnimatorParamX, m_MoveData.Horizontal);
             m_Controller.SetFloat(m_AnimatorParamY, m_MoveData.Vertical);
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (EyeSensor.visibleTargets.Count > 0)
-                    TargetSetup.SetTarget(EyeSensor.visibleTargets[0]);
+            //if (Input.GetMouseButtonDown(1))
+            //{
+            //    if (EyeSensor.visibleTargets.Count > 0)
+            //        TargetSetup.SetTarget(EyeSensor.visibleTargets[0]);
 
-            }
-            else if (Input.GetMouseButtonUp(1))
-            {
-                TargetSetup.ClearTarget();
-            }
+            //}
+            //else if (Input.GetMouseButtonUp(1))
+            //{
+            //    TargetSetup.ClearTarget();
+            //}
         }
     }
 }

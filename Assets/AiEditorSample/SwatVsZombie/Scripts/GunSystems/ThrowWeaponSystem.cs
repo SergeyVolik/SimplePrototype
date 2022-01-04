@@ -1,26 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 namespace SerV112.UtilityAI.Game
 {
+
+    public interface IThrowItemEvent
+    {
+        UnityEvent OnThrow { get; }
+    }
     [DisallowMultipleComponent]
     [RequireComponent(typeof(HandComponent))]
     [RequireComponent(typeof(IThrowInput))]
-    public class ThrowWeaponSystem : MonoBehaviour
+    public class ThrowWeaponSystem : MonoBehaviour, IThrowItemEvent
     {
         private HandComponent m_HandComponent;
         IThrowInput input;
+
+        public UnityEvent OnThrow => m_OnThrow;
+        [SerializeField]
+        private UnityEvent m_OnThrow;
         void Awake()
         {
             input = GetComponent<IThrowInput>();
             m_HandComponent = GetComponent<HandComponent>();
         }
 
-        private void Update()
+        private void OnEnable()
         {
-            if (input.PressDown && m_HandComponent.ActiveGun != null)
+            input.PressDown.AddListener(Throw);
+        }
+
+        private void OnDisable()
+        {
+            input.PressDown.RemoveListener(Throw);
+        }
+
+        void Throw()
+        {
+            if (m_HandComponent.ActiveGun != null)
             {
                 m_HandComponent.ThrowWeapon();
+                m_OnThrow.Invoke();
 
             }
         }

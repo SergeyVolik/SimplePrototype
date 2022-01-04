@@ -9,35 +9,37 @@ namespace SerV112.UtilityAI.Game
         Vector3 Direction { get; }
     }
     [DisallowMultipleComponent]
-    public class AimInputDataComponent : AbstractPressDownInputComponent, IAimInputData, IAimDirection
+    public class AimInputDataComponent : AbstractPressDownAndUpInputComponent, IAimInputData, IAimDirection
     {
         public Vector3 Direction => m_AimDir;
         private Camera m_ViewCamera;
+
+        [SerializeField]
         private Vector3 m_AimDir;
         void Awake()
         {
             m_ViewCamera = Camera.main;
         }
+
+
+
+        void CalcAimDir()
+        {
+            var ray = m_ViewCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+            {
+                m_AimDir = Vector3.ProjectOnPlane(hit.point - transform.position, Vector3.up).normalized;
+            }
+        }
+
+
         protected override void Update()
         {
-            if (Input.GetKeyDown(m_Key))
-            {
-                m_PressDown = true;
+            base.Update();
 
-            }
-            else if (Input.GetKeyUp(m_Key))
-            {
-                m_PressDown = false;
-            }
+          
+            CalcAimDir();
 
-            if (m_PressDown)
-            {
-                var ray = m_ViewCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
-                {
-                    m_AimDir = Vector3.ProjectOnPlane(hit.point - transform.position, Vector3.up).normalized;
-                }
-            }
         }
     }
 

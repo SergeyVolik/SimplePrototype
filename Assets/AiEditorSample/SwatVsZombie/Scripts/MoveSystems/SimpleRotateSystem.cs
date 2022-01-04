@@ -21,6 +21,32 @@ namespace SerV112.UtilityAI.Game
 			m_MoveData = GetComponent<IMoveInputData>();
 
 		}
+
+		bool NeedRotate = true;
+
+        private void OnEnable()
+        {
+			aimData.PressDown.AddListener(DisableRotation);
+			aimData.PressUp.AddListener(EnableRotation);
+
+		}
+
+        private void OnDisable()
+        {
+			aimData.PressDown.RemoveListener(DisableRotation);
+			aimData.PressUp.RemoveListener(EnableRotation);
+		}
+
+		void EnableRotation()
+		{
+			NeedRotate = true;
+		}
+
+		void DisableRotation()
+		{
+			NeedRotate = false;
+		}
+
 		private void FixedUpdate()
 		{
 			DefaultRot();
@@ -28,7 +54,7 @@ namespace SerV112.UtilityAI.Game
 
 		private void DefaultRot()
 		{
-			if (m_MoveData.IsMove && !aimData.PressDown)
+			if (m_MoveData.IsMove && NeedRotate)
 			{
 
 				transform.rotation = Quaternion.Slerp(

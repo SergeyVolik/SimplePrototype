@@ -1,27 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
 
-    public interface IThrowItemAIInpuData : IShootInpuData
+    public interface IThrowItemAIInpuData : IThrowInput
     {
-        void UpdateInput(bool value);
     }
 
     [DisallowMultipleComponent]
     public class ThrowItemAIInputDataComponent : MonoBehaviour, IThrowItemAIInpuData
     {
-        public bool PressDown => m_Value;
 
-        public void UpdateInput(bool value)
-        {
-            m_Value = value;
-        }
+        public UnityEvent PressDown => m_PressDown;
 
         [SerializeField]
-        private bool m_Value;
+        private UnityEvent m_PressDown;
     }
 
 }

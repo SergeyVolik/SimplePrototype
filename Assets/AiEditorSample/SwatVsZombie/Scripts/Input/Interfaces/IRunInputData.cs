@@ -1,8 +1,7 @@
 ﻿namespace SerV112.UtilityAI.Game
 {
-	public interface IRunInputData
+	public interface IRunInputData : IButtonDownEvent, IButtonUpEvent
 	{
-		public bool PressDown { get; }
-		public bool PressUp { get; }
+
 	}
 }

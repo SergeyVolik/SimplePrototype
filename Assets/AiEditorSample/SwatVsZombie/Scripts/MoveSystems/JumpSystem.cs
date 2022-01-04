@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(GravitySystem))]
+    [RequireComponent(typeof(IGravityData))]
     [RequireComponent(typeof(IJumpInputData))]
     public class JumpSystem : MonoBehaviour
     {
@@ -16,9 +16,9 @@ namespace SerV112.UtilityAI.Game
         private IVelocityY m_YVelocity;
         private GravitySystem m_GravitySystem;
         private IJumpInputData m_JumpInput;
-        private bool m_Jump;
 
-        private void Start()
+
+        private void Awake()
         {
             m_JumpInput = GetComponent<IJumpInputData>();
             m_GravitySystem = GetComponent<GravitySystem>();
@@ -26,26 +26,24 @@ namespace SerV112.UtilityAI.Game
             m_YVelocity = GetComponent<IVelocityY>();
         }
 
-       
-        private void Update()
+        private void OnEnable()
         {
+            m_JumpInput.PressDown.AddListener(Jump);
+        }
 
-            if (m_JumpInput.PressDown && m_GravitySystem.ground)
+        private void OnDisable()
+        {
+            m_JumpInput.PressDown.RemoveListener(Jump);
+        }
+
+        void Jump()
+        {
+            if (m_GravitySystem.ground)
             {
-                m_Jump = true;
-            }
-
-        }
-        private void FixedUpdate()
-        {
-
-            if (m_Jump)
-            { 
-                m_Jump = false;
                 m_YVelocity.VelocityY += Mathf.Sqrt(m_JumpInput.JumpForce * m_GravityData.Gravity);
-
             }
         }
+
 
     }
 

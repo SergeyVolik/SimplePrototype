@@ -1,7 +1,9 @@
-﻿namespace SerV112.UtilityAI.Game
+﻿using UnityEngine.Events;
+
+namespace SerV112.UtilityAI.Game
 {
-	public interface IThrowInput
+	public interface IThrowInput : IButtonDownEvent
 	{
-		public bool PressDown { get; }
+
 	}
 }

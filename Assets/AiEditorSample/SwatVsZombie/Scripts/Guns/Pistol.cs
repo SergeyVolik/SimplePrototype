@@ -18,7 +18,10 @@ namespace SerV112.UtilityAI.Game
 
         public IGunData GunData => m_Data;
 
-        public UnityEvent OnShoot => throw new System.NotImplementedException();
+        [SerializeField]
+        private UnityEvent<int> m_OnShoot;
+
+        public UnityEvent<int> OnShoot => m_OnShoot;
 
         void Awake()
         {
@@ -39,7 +42,7 @@ namespace SerV112.UtilityAI.Game
             throw new System.NotImplementedException();
         }
 
-        public void Shoot()
+        public int Shoot()
         {
             if (m_Data.CurrentBullets > 0)
             {
@@ -47,8 +50,17 @@ namespace SerV112.UtilityAI.Game
                 bullet.transform.SetPositionAndRotation(m_BulletSpawner.position, m_BulletSpawner.rotation);
                 bullet.Push(m_Data.GunThrowForce);
                 m_Data.CurrentBullets--;
+
+
+              
+
+
             }
+            OnShoot.Invoke(m_Data.CurrentBullets);
+
+            return m_Data.CurrentBullets;
         }
+
 
         public Vector3 GetPosistion()
         {

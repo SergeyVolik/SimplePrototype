@@ -8,8 +8,25 @@ namespace SerV112.UtilityAI.Game.Editor
 	[CustomEditor(typeof(FieldOfViewSystem))]
 	public class FieldOfViewEditor : UnityEditor.Editor
 	{
+        private void OnEnable()
+        {
+			FieldOfViewSystem fow = (FieldOfViewSystem)target;
 
-		void OnSceneGUI()
+			fow.OnTargetDetected.AddListener(SetTarget);
+		}
+		private void OnDisable()
+		{
+			FieldOfViewSystem fow = (FieldOfViewSystem)target;
+
+			fow.OnTargetDetected.RemoveListener(SetTarget);
+		}
+
+		void SetTarget(Transform t)
+		{
+			targetEnemy = t;
+		}
+		Transform targetEnemy;
+        void OnSceneGUI()
 		{
 			FieldOfViewSystem fow = (FieldOfViewSystem)target;
 			Handles.color = Color.white;
@@ -21,12 +38,11 @@ namespace SerV112.UtilityAI.Game.Editor
 			Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleB * fow.viewRadius);
 
 			Handles.color = Color.red;
-			foreach (Transform visibleTarget in fow.visibleTargets)
-			{
-				Handles.DrawLine(fow.transform.position, visibleTarget.position);
+			if(targetEnemy)
+				Handles.DrawLine(fow.transform.position, targetEnemy.position);
 			}
 
 		}
 
-	}
+	
 }

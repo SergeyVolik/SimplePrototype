@@ -1,10 +1,7 @@
 ﻿namespace SerV112.UtilityAI.Game
 {
-	public interface IJumpInputData
+	public interface IJumpInputData : IButtonDownEvent
 	{
-		public bool PressDown { get; }
-
-
 		public float JumpForce { get; }
 	}
 }

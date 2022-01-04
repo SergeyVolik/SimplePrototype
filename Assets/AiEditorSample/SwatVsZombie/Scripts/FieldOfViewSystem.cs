@@ -1,11 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
+
+	public interface IEnemyDetectedEvent
+	{
+		UnityEvent<Transform> OnTargetDetected { get; }
+		UnityEvent<Transform> OnTargetLost { get; }
+	}
 	[DisallowMultipleComponent]
-	public class FieldOfViewSystem : MonoBehaviour
+	public class FieldOfViewSystem : MonoBehaviour, IEnemyDetectedEvent
 	{
 		[SerializeField]
 		private float m_viewRadius;
@@ -22,8 +29,15 @@ namespace SerV112.UtilityAI.Game
 		public float viewRadius => m_viewRadius;
 		public LayerMask targetMask => m_targetMask;
 		public LayerMask obstacleMask => m_obstacleMask;
+
+        public UnityEvent<Transform> OnTargetDetected => m_OnDetected;
+
+        public UnityEvent<Transform> OnTargetLost => m_OnTargetLost;
+
+        public UnityEvent<Transform> m_OnDetected;
+		public UnityEvent<Transform> m_OnTargetLost;
 		//[HideInInspector]
-		public List<Transform> visibleTargets = new List<Transform>();
+		//public List<Transform> visibleTargets = new List<Transform>();
 		public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
 		{
 			if (!angleIsGlobal)
@@ -49,24 +63,43 @@ namespace SerV112.UtilityAI.Game
 		}
 
 
-
+		Transform lastTarget;
+		bool targetLost = true;
 		void FindVisibleTargets()
 		{
-			visibleTargets.Clear();
+			//visibleTargets.Clear();
 			Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-
+			targetLost = true;
 			for (int i = 0; i < targetsInViewRadius.Length; i++)
 			{
+
 				Transform target = targetsInViewRadius[i].transform;
-				Vector3 dirToTarget = (target.position - transform.position).normalized;
-				if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+
+				if (!lastTarget)
 				{
-					float dstToTarget = Vector3.Distance(transform.position, target.position);
-					if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+					Vector3 dirToTarget = (target.position - transform.position).normalized;
+					if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
 					{
-						visibleTargets.Add(target);
+						float dstToTarget = Vector3.Distance(transform.position, target.position);
+						if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+						{
+
+							lastTarget = target;
+							m_OnDetected.Invoke(target);
+							return;
+							//visibleTargets.Add(target);
+						}
 					}
 				}
+				else if (lastTarget == target)
+					targetLost = false;
+
+			}
+
+			if (targetLost)
+			{
+				m_OnTargetLost.Invoke(lastTarget);
+				lastTarget = null;
 			}
 		}
 

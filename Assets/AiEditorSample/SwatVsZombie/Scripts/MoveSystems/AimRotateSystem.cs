@@ -26,13 +26,34 @@ namespace SerV112.UtilityAI.Game
             AimRot();
         }
 
+        private void OnEnable()
+        {
+            aimData.PressDown.AddListener(PressDownEvt);
+            aimData.PressUp.AddListener(PressUpEvt);
+        }
+
+        private void OnDisable()
+        {
+            aimData.PressDown.RemoveListener(PressDownEvt);
+            aimData.PressUp.AddListener(PressUpEvt);
+        }
+
+        private bool NeedRotate;
+
+        private void PressDownEvt()
+        {
+            NeedRotate = true;
+        }
+        private void PressUpEvt()
+        {
+            NeedRotate = false;
+        }
 
         private void AimRot()
         {
-            if (aimData.PressDown)
-            {
+            if (NeedRotate)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_AimDir.Direction), Time.fixedDeltaTime * data.RotationSpeed);
-            }
+            
         }
     }
 

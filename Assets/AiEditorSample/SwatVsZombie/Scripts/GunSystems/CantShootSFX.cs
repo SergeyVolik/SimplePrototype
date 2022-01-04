@@ -17,9 +17,9 @@ namespace SerV112.UtilityAI.Game
            
         }
 
-        private void Play(bool hasAmmo)
+        private void Play(int ammo)
         {
-            if(!hasAmmo)
+            if(ammo == 0)
                 AudioSource.PlayClipAtPoint(m_AudioClip, transform.position);
         }
         private void OnEnable()
