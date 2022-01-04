@@ -5,6 +5,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
 	[RequireComponent(typeof(FieldOfViewSystem))]
+	[DisallowMultipleComponent]
 	public class FieldOfViewMeshDebugComponent : MonoBehaviour
 	{
 
@@ -34,12 +35,26 @@ namespace SerV112.UtilityAI.Game
 
 		void LateUpdate()
 		{
-			DrawFieldOfView();
+			if (NeedUpdate)
+			{
+				DrawFieldOfView();
+			}
+		}
+
+		bool NeedUpdate;
+        private void OnBecameInvisible()
+        {
+			NeedUpdate = false;
+		}
+
+        private void OnBecameVisible()
+        {
+			NeedUpdate = true;		
 		}
 
 
 
-		void DrawFieldOfView()
+        void DrawFieldOfView()
 		{
 			int stepCount = Mathf.RoundToInt(m_FOW.viewAngle * m_MeshResolution);
 			float stepAngleSize = m_FOW.viewAngle / stepCount;

@@ -47,7 +47,6 @@ namespace SerV112.UtilityAI.Game
 
             m_inData.HasGun = hasGun ? 1f : 0f;
             m_inData.Ammo = hasGun ? m_Hand.ActiveGun.GunData.CurrentBullets : 0f;
-            m_inData.SeeEnemy = m_FieldOfViewSystem.visibleTargets.Count > 0 ? 1f: 0f;
             Agent.ChangeAgentData(m_inData);
         }
 

@@ -134,7 +134,7 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
         {
             m_SimulationAgents[i].Index = i;
 
-            m_AgentInArray[i] = m_SimulationAgents[i].GetAgentData();
+            m_AgentInArray[i] = m_SimulationAgents[i].GetInData();
 
         }
 
@@ -152,7 +152,7 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
         {
             m_SimulationAgents.Add(m_SimulationAgentsToAdd[i]);
             m_SimulationAgentsToAdd[i].Index = m_SimulationAgents.Count - 1;
-            m_AgentInArray[m_SimulationAgents.Count - 1] = m_SimulationAgents[i].GetAgentData();
+            m_AgentInArray[m_SimulationAgents.Count - 1] = m_SimulationAgents[i].GetInData();
         }
 
         m_SimulationAgentsToAdd.Clear();
@@ -167,7 +167,7 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
 
         for (int i = 0; i < m_SimulationAgents.Count; i++)
         {
-            m_AgentInArray[i] = m_SimulationAgents[i].GetAgentData();
+            m_AgentInArray[i] = m_SimulationAgents[i].GetInData();
         }
 
         Debug.Log($"NeedRecreateBuffers: {m_CurrentSimulationSize}");

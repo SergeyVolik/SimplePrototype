@@ -4,22 +4,20 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-    [RequireComponent(typeof(MoveDataComponent))]
     [RequireComponent(typeof(IRotationSpeed))]
     [RequireComponent(typeof(IAimInputData))]
+    [DisallowMultipleComponent]
     public class AimRotateSystem : MonoBehaviour
     {
         private IRotationSpeed data;
         private IAimInputData aimData;
-        private Vector3 m_AimRotation;     
-        private Camera m_ViewCamera;
-
+        private IAimDirection m_AimDir;
 
         private void Awake()
         {
+            m_AimDir = GetComponent<IAimDirection>();
             data = GetComponent<IRotationSpeed>();
             aimData = GetComponent<IAimInputData>();
-            m_ViewCamera = Camera.main;
         }
 
         // Update is called once per frame
@@ -33,13 +31,7 @@ namespace SerV112.UtilityAI.Game
         {
             if (aimData.PressDown)
             {
-                var ray = m_ViewCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
-                {
-                    m_AimRotation = Vector3.ProjectOnPlane(hit.point - transform.position, Vector3.up).normalized;
-                }
-
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_AimRotation), Time.fixedDeltaTime * data.RotationSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(m_AimDir.Direction), Time.fixedDeltaTime * data.RotationSpeed);
             }
         }
     }

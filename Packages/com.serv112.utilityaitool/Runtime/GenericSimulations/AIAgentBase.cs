@@ -14,8 +14,8 @@ public abstract class AIAgentBase<SimT, InT, OutT> : MonoBehaviour where InT : s
     [SerializeField]
     protected OutT OutData;
 
-    public InT GetAgentData() => InData;
-
+    public InT GetInData() => InData;
+    public OutT GetOutData() => OutData;
 
     protected AISimulationBase<SimT, InT, OutT> m_Simulation;
 

@@ -7,8 +7,6 @@ namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(GravitySystem))]
-    [RequireComponent(typeof(GravityDataComponent))]
-    [RequireComponent(typeof(VelocityYDataComponent))]
     [RequireComponent(typeof(IJumpInputData))]
     public class JumpSystem : MonoBehaviour
     {

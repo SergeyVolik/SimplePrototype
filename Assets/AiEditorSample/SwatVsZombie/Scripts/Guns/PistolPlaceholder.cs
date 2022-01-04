@@ -49,7 +49,6 @@ namespace SerV112.UtilityAI.Game
           
             var com = collision.gameObject.GetComponent<IDamageable>();
 
-            Debug.Log(m_Rigidbody.velocity.magnitude);
             if (com != null && m_Rigidbody.velocity.magnitude > m_VelocitySpeedToDamage)
             {
               

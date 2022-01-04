@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace SerV112.UtilityAI.Game
 {
+	[DisallowMultipleComponent]
 	public class FieldOfViewSystem : MonoBehaviour
 	{
 		[SerializeField]

@@ -7,18 +7,25 @@ namespace SerV112.UtilityAI.Game
     [DisallowMultipleComponent]
     [RequireComponent(typeof(IGravityData))]
     [RequireComponent(typeof(IVelocityY))]
-    public class GravitySystem : MonoBehaviour
+    [RequireComponent(typeof(CharacterController))]
+    public class GravitySystem : MonoBehaviour, IVelocityY, IGravityData
     {
 
-        IGravityData data;
-        IVelocityY velocity;
+        public float VelocityY { get => m_VelocityY; set => m_VelocityY = value; }
+
+        [SerializeField]
+        private float m_VelocityY;
+
+        public float Gravity { get => m_Gravity; set => m_Gravity = value; }
+
+        [SerializeField]
+        private float m_Gravity = 9.81f;
+
         CharacterController controller;
         // Start is called before the first frame update
         void Start()
         {
             controller = GetComponent<CharacterController>();
-            data = GetComponent<IGravityData>();
-            velocity = GetComponent<IVelocityY>();
         }
 
         // Update is called once per frame
@@ -28,14 +35,14 @@ namespace SerV112.UtilityAI.Game
         {
           
             //Debug.Log(groundedPlayer);
-            if (ground && velocity.VelocityY < 0)
+            if (ground && m_VelocityY < 0)
             {
-                velocity.VelocityY = 0f;
+                m_VelocityY = 0f;
             }
 
 
-            velocity.VelocityY += -data.Gravity * Time.fixedDeltaTime;
-            controller.Move(new Vector3(0, velocity.VelocityY, 0) * Time.fixedDeltaTime);
+            m_VelocityY += -Gravity * Time.fixedDeltaTime;
+            controller.Move(new Vector3(0, m_VelocityY, 0) * Time.fixedDeltaTime);
             ground = controller.isGrounded;
 
         }
