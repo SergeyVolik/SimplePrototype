@@ -21,11 +21,11 @@ namespace SerV112.UtilityAI.Game
 
 		}
 
-		void FixedUpdate()
+		void Update()
 		{
 
 			m_Velocity = new Vector3(m_MoveData.Horizontal, 0, m_MoveData.Vertical).normalized * m_MoveSpeed.CurrentSpeed;
-			m_CharacterController.Move(m_Velocity * Time.fixedDeltaTime);
+			m_CharacterController.Move(m_Velocity * Time.deltaTime);
 			
 		}
     }

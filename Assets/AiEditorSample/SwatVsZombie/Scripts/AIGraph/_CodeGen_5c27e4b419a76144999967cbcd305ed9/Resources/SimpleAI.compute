@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // This file is AUTO-GENERATED.
 // Changes for this script by hand might be lost when auto-generation is run.
-// (Generated date:04.01.2022 14:57:25)
+// (Generated date:04.01.2022 16:44:54)
  //-----------------------------------------------------------------------
 
 #pragma kernel CSMain
@@ -191,7 +191,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 {
     int index = id.x;
 
-    float nomalizedHelath = Normalize(InAgentBuffer[index].Helath, 0, 100);
+    float nomalizedHelath = Normalize(InAgentBuffer[index].Helath, 0, 7);
 	float oneMinus0 = OneMinus(nomalizedHelath);
 	float sineCurve0 = SineCurve(oneMinus0, 0.50, 0.00);
     float nomalizedSeeEnemy = Normalize(InAgentBuffer[index].SeeEnemy, 0, 1);

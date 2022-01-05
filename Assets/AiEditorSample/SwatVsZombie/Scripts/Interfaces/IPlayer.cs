@@ -29,7 +29,7 @@ namespace SerV112.UtilityAI.Game
 
     public interface IKillable
     {
-        public UnityEvent OnKilled { get; }
+        public UnityEvent OnDeadth { get; }
 
         void ForceDead();
     }
@@ -38,10 +38,10 @@ namespace SerV112.UtilityAI.Game
         void Heal(int value);
 
     }
-    public interface IDamageable
+    public interface IDamageApplicator
     {
 
-        void TakeDamage(int value);
+        void DoDamage(int value);
     }
 
     public interface IMoveable

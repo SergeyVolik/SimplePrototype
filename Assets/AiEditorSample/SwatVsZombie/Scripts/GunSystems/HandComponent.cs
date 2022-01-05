@@ -47,17 +47,32 @@ namespace SerV112.UtilityAI.Game
             return m_Rifle;
         }
 
-        public void ThrowWeapon()
+        private void UpdateGunProjectileDataAndDrop()
         {
-            ActiveGun.Drop();
-
-            Debug.Log($"{ActiveGun.GunData.CurrentBullets} - {LastGunPlaceholders.Data.CurrentBullets}");
             LastGunPlaceholders.Data.UpdateData(ActiveGun.GunData);
             LastGunPlaceholders.SetPositionAndRot(ActiveGun.GetPosistion(), ActiveGun.GetRotation());
-            LastGunPlaceholders.Drop();
-
-            m_ActiveGun = null;
-            m_LastGunPlaceholders = null;
+        }
+        public void Drop()
+        {
+            if (ActiveGun != null)
+            {
+                ActiveGun.Drop();
+                LastGunPlaceholders.Drop();
+                UpdateGunProjectileDataAndDrop();
+                m_ActiveGun = null;
+                m_LastGunPlaceholders = null;
+            }
+        }
+        public void ThrowWeapon(float force)
+        {
+            if (ActiveGun != null)
+            {
+                UpdateGunProjectileDataAndDrop();
+                ActiveGun.Drop();           
+                LastGunPlaceholders.Launch(force);
+                m_ActiveGun = null;
+                m_LastGunPlaceholders = null;
+            }
         }
 
     }

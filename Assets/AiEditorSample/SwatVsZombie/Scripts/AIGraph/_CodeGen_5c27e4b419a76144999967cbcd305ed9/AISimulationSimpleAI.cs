@@ -21,7 +21,7 @@ public class AISimulationSimpleAI : AISimulationBase<AISimulationSimpleAI, AISim
     {
        
         [SerializeField]
-        [Range(0, 100)]
+        [Range(0, 7)]
         public float Helath;
         [SerializeField]
         [Range(0, 1)]

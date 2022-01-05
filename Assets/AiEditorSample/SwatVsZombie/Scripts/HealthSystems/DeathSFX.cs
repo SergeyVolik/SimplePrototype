@@ -6,32 +6,31 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(KillSystem))]
+    [RequireComponent(typeof(DeathSystem))]
     public class DeathSFX : MonoBehaviour
     {
-        KillSystem m_KillSystem;
+        DeathSystem m_KillSystem;
 
         [SerializeField]
         AudioClip m_Clip;
         private void Awake()
         {
-            m_KillSystem = GetComponent<KillSystem>();
+            m_KillSystem = GetComponent<DeathSystem>();
         }
 
         private void OnEnable()
         {
-            m_KillSystem.OnKilled.AddListener(Play);
+            m_KillSystem.OnDeadth.AddListener(Play);
         }
 
         private void OnDisable()
         {
-            m_KillSystem.OnKilled.RemoveListener(Play);
+            m_KillSystem.OnDeadth.RemoveListener(Play);
         }
 
         void Play()
         {
- 
-            AudioSource.PlayClipAtPoint(m_Clip, transform.position);
+            OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position);
         }
     }
 

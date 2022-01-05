@@ -16,6 +16,11 @@ namespace SerV112.UtilityAI.Game
             throw new System.NotImplementedException();
         }
 
+        public void Drop(int force)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Equip()
         {
             throw new System.NotImplementedException();

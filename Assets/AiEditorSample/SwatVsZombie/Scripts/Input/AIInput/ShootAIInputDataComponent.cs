@@ -16,14 +16,7 @@ namespace SerV112.UtilityAI.Game
     [DisallowMultipleComponent]
     public class ShootAIInputDataComponent : AbstractAIInput, IShootAIInpuData
     {
-        public bool PressDown => m_Value;
 
-        public void UpdateInput(bool value)
-        {
-            m_Value = value;
-        }
-        [SerializeField]
-        private bool m_Value;
     }
 
 }

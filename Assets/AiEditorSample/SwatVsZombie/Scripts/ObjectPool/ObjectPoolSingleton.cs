@@ -6,35 +6,80 @@ using System.Threading.Tasks;
 using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
-    public abstract class ObjectPoolSingleton<T> : MonoBehaviour where T : UnityEngine.Object
-    {
-        [SerializeField]
-        protected T m_Prefab;
+    public abstract class ObjectPoolSingleton<SingT, T> : ObjectPoolMonoBehaviour<T> where T : Component where SingT : Component
+	{
+      
+		private static SingT _instance = null;
 
-        [SerializeField]
-        private int m_StartCapacity = 10;
+		public static bool IsAwake { get { return (_instance != null); } }
 
-        IObjectPool<T> m_Pool;
+		/// <summary>
+		/// gets the instance of this Singleton
+		/// use this for all instance calls:
+		/// MyClass.Instance.MyMethod();
+		/// or make your public methods static
+		/// and have them use Instance
+		/// </summary>
+		public static SingT Instance
+		{
+			get
+			{
+				if (_instance == null)
+				{
+					_instance = (SingT)FindObjectOfType(typeof(SingT));
+					if (_instance == null)
+					{
 
-        public IObjectPool<T> Pool => m_Pool;
+						string goName = typeof(SingT).ToString();
 
-        public static ObjectPoolSingleton<T> Instance;
-        private void Awake()
-        {
-            if (Instance)
-                Destroy(this);
+						GameObject go = GameObject.Find(goName);
+						if (go == null)
+						{
+							go = new GameObject();
+							go.name = goName;
+						}
 
-            Instance = this;
+						_instance = go.AddComponent<SingT>();
+					}
+				}
+				return _instance;
+			}
+		}
 
-            m_Pool = new ObjectPool<T>(CreateObject, TakeFromPool, ReturnToPool, DestroyObject, m_StartCapacity);
-        }
+		/// <summary>
+		/// for garbage collection
+		/// </summary>
+		public virtual void OnApplicationQuit()
+		{
+			// release reference on exit
+			_instance = null;
+		}
 
-        protected abstract T CreateObject();
+		// in your child class you can implement Awake()
+		// and add any initialization code you want such as
+		// DontDestroyOnLoad(go);
+		// if you want this to persist across loads
+		// or if you want to set a parent object with SetParent()
 
-        protected abstract void DestroyObject(T pistol);
+		/// <summary>
+		/// parent this to another gameobject by string
+		/// call from Awake if you so desire
+		/// </summary>
+		protected void SetParent(string parentGOName)
+		{
+			if (parentGOName != null)
+			{
+				GameObject parentGO = GameObject.Find(parentGOName);
+				if (parentGO == null)
+				{
+					parentGO = new GameObject();
+					parentGO.name = parentGOName;
+				}
+				this.transform.parent = parentGO.transform;
+			}
+		}
 
-        protected abstract void TakeFromPool(T pistol);
+	}
 
-        protected abstract void ReturnToPool(T pistol);
-    }
+   
 }

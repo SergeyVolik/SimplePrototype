@@ -22,6 +22,7 @@ namespace SerV112.UtilityAI.Game
         // Start is called before the first frame update
         void Awake()
         {
+            ThrowItemAIInputDataComponent = GetComponent<ThrowItemAIInputDataComponent>();
             AimInputDataComponent = GetComponent<AIAimInputDataComponent>();
             agentBrain = GetComponent<AIAgentSimpleAI>();
             Fov = GetComponent<IEnemyDetectedEvent>();
@@ -60,7 +61,6 @@ namespace SerV112.UtilityAI.Game
         {
             var dataIn = agentBrain.GetInData();
             lastTraget = target;
-            print(seeEnemy);
             if (seeEnemy)
                 AimInputDataComponent.PressDown.Invoke();
             else AimInputDataComponent.PressUp.Invoke();
@@ -75,26 +75,46 @@ namespace SerV112.UtilityAI.Game
             dataIn.Ammo = bullets;
             agentBrain.ChangeAgentData(dataIn);
         }
+        void UpdateHasGunData()
+        {
+            var dataIn = agentBrain.GetInData();
+            dataIn.HasGun = 0f;
+            agentBrain.ChangeAgentData(dataIn);
+        }
         void Update()
         {
           
-            var dataOut = agentBrain.GetOutData();
+           
 
-
-            if (dataOut.SimpleAiActions == SimpleAiActions.ShootToEnemy && seeEnemy)
+            if (seeEnemy)
             {
+                var dataOut = agentBrain.GetOutData();
 
-                AimInputDataComponent.UpdateDirection(Vector3.ProjectOnPlane(lastTraget.position - transform.position, Vector3.up).normalized);
+                if(lastTraget != null)
+                    AimInputDataComponent.UpdateDirection(Vector3.ProjectOnPlane(lastTraget.position - transform.position, Vector3.up).normalized);
 
-                if (ShootDelay < t)
+                switch (dataOut.SimpleAiActions)
                 {
-                    UpdateBulletsData(HandComponent.ActiveGun.Shoot());
-                    t = 0;
-                }
-            
-            }
 
-            t+= Time.deltaTime;
+                    case SimpleAiActions.ThrowWeaponToEnemy:
+                        ThrowItemAIInputDataComponent.PressDown.Invoke();
+                        UpdateHasGunData();
+                        break;
+                    case SimpleAiActions.ShootToEnemy:
+                      
+
+                        if (ShootDelay < t)
+                        {
+                            UpdateBulletsData(HandComponent.ActiveGun.Shoot());
+                            t = 0;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                t += Time.deltaTime;
+            }
         }
     }
 

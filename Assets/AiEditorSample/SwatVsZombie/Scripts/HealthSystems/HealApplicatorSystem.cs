@@ -22,7 +22,7 @@ namespace SerV112.UtilityAI.Game
 
             if (newHealth > m_Health.MaxHealth)
             {
-                value = value - newHealth - m_Health.MaxHealth;
+                value = newHealth - m_Health.MaxHealth;
                 m_Health.Health = m_Health.MaxHealth;
             }
 

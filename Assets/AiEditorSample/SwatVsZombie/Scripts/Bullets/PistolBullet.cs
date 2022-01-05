@@ -13,30 +13,34 @@ namespace SerV112.UtilityAI.Game
     {
         Rigidbody m_Rigidbody;
         [SerializeField]
-        private UnityEvent<IDamageable> m_OnHit;
+        private UnityEvent<IDamageApplicator> m_OnHit;
 
-        public UnityEvent<IDamageable> OnHit => m_OnHit;
+        public UnityEvent<IDamageApplicator> OnHit => m_OnHit;
 
         void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Push(int force)
+        public void Launch(float force)
         {
             m_Rigidbody.AddForce(m_Rigidbody.transform.forward * force);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            var com = collision.gameObject.GetComponent<IDamageable>();
+            var com = collision.gameObject.GetComponent<IDamageApplicator>();
             if (com != null)
-                com.TakeDamage(m_Damage);
+            {
+                com.DoDamage(m_Damage);
+                HitBloodParticlePool.Instance.PlayParticleAtPosition(transform.position);
 
+            }
+            else {
+                HitWallParticlePool.Instance.PlayParticleAtPosition(transform.position);
+            }
             PistolBulletPoolSingleton.Instance.Pool.Release(this);
-            m_Rigidbody.velocity = Vector3.zero;
-            m_Rigidbody.angularVelocity = Vector3.zero;
- 
+           
             OnHit.Invoke(com);
         }
 

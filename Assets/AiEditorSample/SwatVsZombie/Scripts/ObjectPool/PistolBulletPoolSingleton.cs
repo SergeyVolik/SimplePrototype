@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
-    public class PistolBulletPoolSingleton : ObjectPoolSingleton<PistolBullet>
+    public class PistolBulletPoolSingleton : ObjectPoolSingleton<PistolBulletPoolSingleton, PistolBullet>
     {
 
         protected override PistolBullet CreateObject()
@@ -27,6 +27,9 @@ namespace SerV112.UtilityAI.Game
         protected override void ReturnToPool(PistolBullet Obj)
         {
             Obj.gameObject.SetActive(false);
+            var m_Rigidbody = Obj.GetComponent<Rigidbody>();
+            m_Rigidbody.velocity = Vector3.zero;
+            m_Rigidbody.angularVelocity = Vector3.zero;
         }
 
 

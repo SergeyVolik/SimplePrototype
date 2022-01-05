@@ -48,7 +48,7 @@ namespace SerV112.UtilityAI.Game
             {
                 var bullet = PistolBulletPoolSingleton.Instance.Pool.Get();
                 bullet.transform.SetPositionAndRotation(m_BulletSpawner.position, m_BulletSpawner.rotation);
-                bullet.Push(m_Data.GunThrowForce);
+                bullet.Launch(m_Data.GunThrowForce);
                 m_Data.CurrentBullets--;
 
 

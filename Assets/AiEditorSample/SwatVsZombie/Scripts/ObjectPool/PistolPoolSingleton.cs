@@ -7,7 +7,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
 
-    public class PistolPoolSingleton : ObjectPoolSingleton<Pistol>
+    public class PistolPoolSingleton : ObjectPoolSingleton<PistolPoolSingleton, Pistol>
     {
 
         protected override Pistol CreateObject()

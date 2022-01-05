@@ -34,8 +34,7 @@ namespace SerV112.UtilityAI.Game
             if (m_Health.Health < prevHealth)
             {
                 prevHealth = m_Health.Health;
-                Debug.Log("HitSFX");
-                AudioSource.PlayClipAtPoint(m_Clip, transform.position);
+                OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position);
             }
         }
     }

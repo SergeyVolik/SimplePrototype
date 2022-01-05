@@ -144,7 +144,7 @@ MonoBehaviour:
   m_OnHit:
     m_PersistentCalls:
       m_Calls: []
-  m_Damage: 20
+  m_Damage: 1
 --- !u!114 &4405914202679031451
 MonoBehaviour:
   m_ObjectHideFlags: 0

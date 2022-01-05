@@ -44,12 +44,12 @@ public abstract class AIAgentBase<SimT, InT, OutT> : MonoBehaviour where InT : s
     {
         m_Simulation.RemoveAgent(this);
     }
-#if UNITY_EDITOR
+
     public void SetAgentOutDataInternal(OutT data)
     {
         OutData = data;
     }
-#endif
+
 
     public void ChangeAgentData(InT value)
     {

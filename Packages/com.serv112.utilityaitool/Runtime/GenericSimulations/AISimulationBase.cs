@@ -94,6 +94,24 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
     }
 
 
+    private void Update()
+    {
+        if (m_UpdateSimulation)
+        {
+            UpdateSimulation();
+        }
+
+
+    }
+
+
+    private void OnDestroy()
+    {
+        if (m_AgentInArray.IsCreated)
+            m_AgentInArray.Dispose();
+        m_AgentOutBuffer?.Dispose();
+        m_AgentInBuffer?.Dispose();
+    }
 
     private void ResizeBuffers()
     {
@@ -200,13 +218,13 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
 
             stopWatch.Restart();
             stopWatch.Start();
-#if UNITY_EDITOR
+
             for (int i = 0; i < m_SimulationAgents.Count; i++)
             {
 
                 m_SimulationAgents[i].SetAgentOutDataInternal(m_AgentOutArray[i]);
             }
-#endif
+
         }
 
         if (req.hasError)
@@ -264,23 +282,10 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
         }
     }
 
-    private void Update()
+
+    public OutT GetAgentOutData(int index)
     {
-        if (m_UpdateSimulation)
-        {
-            UpdateSimulation();
-        }
-
-
-    }
-
-
-    private void OnDestroy()
-    {
-        if (m_AgentInArray.IsCreated)
-            m_AgentInArray.Dispose();
-        m_AgentOutBuffer?.Dispose();
-        m_AgentInBuffer?.Dispose();
+        return m_AgentOutArray[index];
     }
 
     public void AddAgent(AIAgentBase<SimT, InT, OutT> agent)
@@ -300,6 +305,7 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
 
         m_SimulationAgentsToRemove.Add(agent);
     }
+
 
 
     public void ChangeAgentData(int index, InT value)

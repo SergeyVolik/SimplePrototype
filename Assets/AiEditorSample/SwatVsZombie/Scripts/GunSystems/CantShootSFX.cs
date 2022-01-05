@@ -20,7 +20,7 @@ namespace SerV112.UtilityAI.Game
         private void Play(int ammo)
         {
             if(ammo == 0)
-                AudioSource.PlayClipAtPoint(m_AudioClip, transform.position);
+                OneShotAudioPool.Instance.PlayClipAtPoint(m_AudioClip, transform.position);
         }
         private void OnEnable()
         {

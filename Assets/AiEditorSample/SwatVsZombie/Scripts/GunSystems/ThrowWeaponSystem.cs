@@ -21,6 +21,8 @@ namespace SerV112.UtilityAI.Game
         public UnityEvent OnThrow => m_OnThrow;
         [SerializeField]
         private UnityEvent m_OnThrow;
+        [SerializeField]
+        private float force = 1000;
         void Awake()
         {
             input = GetComponent<IThrowInput>();
@@ -41,7 +43,7 @@ namespace SerV112.UtilityAI.Game
         {
             if (m_HandComponent.ActiveGun != null)
             {
-                m_HandComponent.ThrowWeapon();
+                m_HandComponent.ThrowWeapon(force);
                 m_OnThrow.Invoke();
 
             }

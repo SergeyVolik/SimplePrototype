@@ -29,13 +29,13 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private int m_Damage = 9999;
         [SerializeField]
-        private int m_VelocitySpeedToDamage = 10;
+        private float m_VelocitySpeedToDamage = 1;
         public void Drop()
         {
             gameObject.SetActive(true);
-            m_Rigidbody.AddForce(m_Rigidbody.transform.forward * m_GunDataComponent.GunThrowForce);
         }
 
+        
         public void SetPositionAndRot(Vector3 post, Quaternion rot)
         {
             transform.SetPositionAndRotation(post, rot);
@@ -47,20 +47,21 @@ namespace SerV112.UtilityAI.Game
         {
 
           
-            var com = collision.gameObject.GetComponent<IDamageable>();
+            var com = collision.gameObject.GetComponent<IDamageApplicator>();
 
             if (com != null && m_Rigidbody.velocity.magnitude > m_VelocitySpeedToDamage)
             {
               
-                com.TakeDamage(m_Damage);
+                com.DoDamage(m_Damage);
                 
             }
 
         }
 
-        public void Push(int force)
+        public void Launch(float force)
         {
-            throw new NotImplementedException();
+            gameObject.SetActive(true);
+            m_Rigidbody.AddForce(m_Rigidbody.transform.forward * force);
         }
     }
 

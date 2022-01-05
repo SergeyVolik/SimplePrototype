@@ -41,21 +41,16 @@ namespace SerV112.UtilityAI.Game
 
                 if (!Move)
                 {
-                    print("Change patrule destination");
                     m_Agent.SetDestination(m_PatrolPoints[m_CurrentTargetIndex].position);
                     Move = true;
                     m_CurrentTargetIndex++;
                     m_CurrentTargetIndex = (m_CurrentTargetIndex) % (m_PatrolPoints.Count - 1);
                 }
-                else
-                {
-                    m_Agent.isStopped = false;
-                }
 
             }
             else if (data.SimpleAiActions != SimpleAiActions.Patrol && Move)
             {
-                m_Agent.isStopped = true;
+                m_Agent.ResetPath();
             }
         }
 

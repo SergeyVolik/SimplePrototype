@@ -8,7 +8,7 @@ namespace SerV112.UtilityAI.Game
 
     public interface IEquipGunEvent
     {
-        UnityEvent OnEquipGun { get; }
+        UnityEvent<IGun> OnEquipGun { get; }
     }
 
     [RequireComponent(typeof(HandComponent))]
@@ -26,9 +26,9 @@ namespace SerV112.UtilityAI.Game
 
         const string WeaponTag = "Weapon";
 
-        public UnityEvent OnEquipGun => m_OnEquipGun;
+        public UnityEvent<IGun> OnEquipGun => m_OnEquipGun;
         [SerializeField]
-        private UnityEvent m_OnEquipGun;
+        private UnityEvent<IGun> m_OnEquipGun;
         private void OnTriggerEnter(Collider other)
         {
             if (this.enabled == true && other.CompareTag(WeaponTag))
@@ -41,8 +41,8 @@ namespace SerV112.UtilityAI.Game
                     {
                         case PistolPlaceholder wg:
 
-                            m_Hand.SetPistol(wg);
-                            m_OnEquipGun.Invoke();
+                            
+                            m_OnEquipGun.Invoke(m_Hand.SetPistol(wg));
                             break;
                         default:
                             break;

@@ -2,7 +2,7 @@
 {
     public interface IProjectile : IDamage
     {
-        void Push(int force);
+        void Launch(float force);
     }
 
 }

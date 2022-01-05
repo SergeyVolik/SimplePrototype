@@ -28,10 +28,12 @@ namespace SerV112.UtilityAI.Game
             
         }
 
-        void Play(IDamageable dam)
+        void Play(IDamageApplicator dam)
         {
-            if(dam == null)
-                AudioSource.PlayClipAtPoint(clip, transform.position, 0.3f);
+            if (dam == null)
+            {
+                OneShotAudioPool.Instance.PlayClipAtPoint(clip, transform.position, 0.3f);
+            }
         }
 
         

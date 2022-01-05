@@ -18,11 +18,12 @@ MonoBehaviour:
   m_BuildMode: 2
   m_GPUPrecision: 0
   m_Debug: 1
-  m_CodeGenGuid: 7493d967383041c4bb4a4d4c5b0f4f7f
+  m_CodeGenGuid: e787f93a65911d04ca397849494a7f9b
   m_FolderGuid: 5c27e4b419a76144999967cbcd305ed9
   m_RootDirectory: {fileID: 102900000, guid: ab4a4780ca8812e41a465b7c8c3bfb91, type: 3}
   m_GeneratedObjects:
   - {fileID: 11500000, guid: 713c4fea739728e4b86c939448dcf968, type: 3}
+  - {fileID: 11500000, guid: 6d89557c90d88ad4484b36910d67777d, type: 3}
   m_PrevGeneratedAiSimulationScript: 
   m_PrevGeneratedAiAgentScript: 
   LastGeneratedEnumsNames:
@@ -1616,7 +1617,7 @@ MonoBehaviour:
         m_Value:
           Value: 0
           Min: 0
-          Max: 100
+          Max: 7
     00000045:
       type: {class: NormalizedFloatConstant, ns: SerV112.UtilityAIEditor, asm: SerV112.UtilityAIEditor}
       data:
