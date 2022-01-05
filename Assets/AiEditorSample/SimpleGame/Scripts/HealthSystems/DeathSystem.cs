@@ -13,7 +13,7 @@ namespace SerV112.UtilityAI.Game
 
         [SerializeField]
         private UnityEvent m_OnDeath;
-        public UnityEvent OnDeadth => m_OnDeath;
+        public UnityEvent OnEvent => m_OnDeath;
 
         // Start is called before the first frame update
 
@@ -23,12 +23,12 @@ namespace SerV112.UtilityAI.Game
         }
         private void OnEnable()
         {
-            m_HealthData.OnHealthChanged.AddListener(CheckToKill);
+            m_HealthData.OnEvent.AddListener(CheckToKill);
         }
 
         private void OnDisable()
         {
-            m_HealthData.OnHealthChanged.RemoveListener(CheckToKill);
+            m_HealthData.OnEvent.RemoveListener(CheckToKill);
         }
         private void CheckToKill()
         {

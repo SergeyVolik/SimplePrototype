@@ -4,33 +4,25 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-    [RequireComponent(typeof(IShootEvent))]
-    public class CantShootSFX : MonoBehaviour
+    [RequireComponent(typeof(IShootSoundEvent))]
+    [RequireComponent(typeof(IGunData))]
+    public class CantShootSFX : PlaySoundComponent<IShootSoundEvent>
     {
-        [SerializeField]
-        AudioClip m_AudioClip;
-        IShootEvent m_Event;
+        IGunData m_GunData;
         // Start is called before the first frame update
-        void Awake()
+        protected override void Awake()
         {
-            m_Event = GetComponent<IShootEvent>();
+            base.Awake();
+            m_GunData = GetComponent<IGunData>();
            
         }
 
-        private void Play(int ammo)
+        protected override void PlaySFX()
         {
-            if(ammo == 0)
-                OneShotAudioPool.Instance.PlayClipAtPoint(m_AudioClip, transform.position);
-        }
-        private void OnEnable()
-        {
-            m_Event.OnShoot.AddListener(Play);
+            if (m_GunData.CurrentBullets == 0)
+                OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position, m_Volume);
         }
 
-        private void OnDisable()
-        {
-            m_Event.OnShoot.RemoveListener(Play);
-        }
 
     }
 

@@ -19,9 +19,10 @@ namespace SerV112.UtilityAI.Game
         public IGunData GunData => m_Data;
 
         [SerializeField]
-        private UnityEvent<int> m_OnShoot;
+        private UnityEvent m_OnShoot;
 
-        public UnityEvent<int> OnShoot => m_OnShoot;
+        public UnityEvent OnEvent => m_OnShoot;
+
 
         void Awake()
         {
@@ -56,7 +57,8 @@ namespace SerV112.UtilityAI.Game
 
 
             }
-            OnShoot.Invoke(m_Data.CurrentBullets);
+
+            OnEvent.Invoke();
 
             return m_Data.CurrentBullets;
         }

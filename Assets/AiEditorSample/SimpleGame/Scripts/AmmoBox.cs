@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
-    public class AmmoBox : MonoBehaviour
+
+
+    [DisallowMultipleComponent]
+    public class AmmoBox : MonoBehaviour, IBusterSelectedSoundEvent
     {
         [SerializeField]
         private int Ammo = 20;
 
+        public UnityEvent OnEvent => m_OnEvent;
+
+        [SerializeField]
+        private UnityEvent m_OnEvent;
         private void OnTriggerEnter(Collider other)
         {
 
-            var heal = other.GetComponentInChildren<IGunData>();
+            var gundata = other.GetComponentInChildren<IGunData>();
 
 
-            if (heal != null)
+            if (gundata != null)
             {
-                heal.CurrentBullets += Ammo;
-                
+                gundata.CurrentBullets += Ammo;
+
+                OnEvent.Invoke();
                 Destroy(gameObject);
             }
 

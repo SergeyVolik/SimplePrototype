@@ -27,7 +27,7 @@ namespace SerV112.UtilityAI.Game
             }
 
             if (value > 0)
-                m_Health.OnHealthChanged.Invoke();
+                m_Health.OnEvent.Invoke();
 
         }
     }

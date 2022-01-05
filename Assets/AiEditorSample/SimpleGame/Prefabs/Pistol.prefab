@@ -81,6 +81,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxBulletsInGun: 30
   m_BulletSpawner: {fileID: 1660650774}
+  m_OnShoot:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &493050697916084158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Key: 32
-  m_PressDown: 0
+  m_PressDown:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3056953549570750694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaead96e306e544e9ad34f3295c5062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AudioClip: {fileID: 0}
+  m_Clip: {fileID: 8300000, guid: b105900b1fcd1534390128866cc03072, type: 3}
+  m_Volume: 1
 --- !u!114 &6387329725181738775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,9 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76954a4bdeb145f46a0350448105ff94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OnShoot:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &6349297264402750015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +141,9 @@ MonoBehaviour:
   m_MaxBulletsInGun: 0
   m_CurrentBullets: 0
   m_GunThrowForce: 1000
+  m_OnCurrentBulletsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3161020949670832238
 GameObject:
   m_ObjectHideFlags: 0

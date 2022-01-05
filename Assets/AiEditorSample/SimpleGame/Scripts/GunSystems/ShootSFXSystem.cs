@@ -4,37 +4,30 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-    [RequireComponent(typeof(IShootEvent))]
-    public class ShootSFXSystem : MonoBehaviour
+    [RequireComponent(typeof(IShootSoundEvent))]
+    [RequireComponent(typeof(IGunData))]
+    public class ShootSFXSystem : PlaySoundComponent<IShootSoundEvent>
     {
-        [SerializeField]
-        AudioClip m_AudioClip;
-        IShootEvent m_Event;
+     
+        IGunData m_GunData;
         // Start is called before the first frame update
-        void Awake()
+        protected override void Awake()
         {
-            m_Event = GetComponent<IShootEvent>();
-           
+            base.Awake();
+
+            m_GunData = GetComponent<IGunData>();
         }
 
-        private void Play(int ammo)
+        protected override void PlaySFX()
         {
-            if (ammo > 0)
+            if (m_GunData.CurrentBullets > 0)
             {
-                OneShotAudioPool.Instance.PlayClipAtPoint(m_AudioClip, transform.position);
+                OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position);
                
 
             }
         }
-        private void OnEnable()
-        {
-            m_Event.OnShoot.AddListener(Play);
-        }
 
-        private void OnDisable()
-        {
-            m_Event.OnShoot.RemoveListener(Play);
-        }
 
     }
 

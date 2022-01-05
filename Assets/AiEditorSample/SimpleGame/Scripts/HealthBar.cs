@@ -18,12 +18,12 @@ namespace SerV112.UtilityAI.Game
         }
         private void OnEnable()
         {
-            m_Health.OnHealthChanged.AddListener(OnHealthChanged);
+            m_Health.OnEvent.AddListener(OnHealthChanged);
         }
 
         private void OnDisable()
         {
-            m_Health.OnHealthChanged.RemoveListener(OnHealthChanged);
+            m_Health.OnEvent.RemoveListener(OnHealthChanged);
         }
 
         void OnHealthChanged()

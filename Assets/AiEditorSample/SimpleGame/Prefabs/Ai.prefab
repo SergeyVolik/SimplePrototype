@@ -177,12 +177,10 @@ GameObject:
   - component: {fileID: 3592254029716549110}
   - component: {fileID: 6333293646518652302}
   - component: {fileID: 6829477624569176183}
-  - component: {fileID: 1555448297167564453}
   - component: {fileID: 6867472658129236150}
   - component: {fileID: 5995215151392267221}
   - component: {fileID: 149096728}
   - component: {fileID: 7214394229185602472}
-  - component: {fileID: 8013268291734835472}
   - component: {fileID: 149096730}
   - component: {fileID: 149096729}
   - component: {fileID: 4625268314951487472}
@@ -332,21 +330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc84d95bc39b2444b44982df28fc756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1555448297167564453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552894491251813489}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6bb5ec94704e884c98430d2bd0a717d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_VelocityY: 0
-  m_Gravity: 9.81
-  ground: 0
+  m_DoDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6867472658129236150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Clip: {fileID: 8300000, guid: 4279ee96699d604449dc968a24d59ad9, type: 3}
+  m_Volume: 1
 --- !u!114 &149096728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Clip: {fileID: 8300000, guid: 6613b71399034534b9000570d6ed1583, type: 3}
+  m_Volume: 1
 --- !u!114 &7214394229185602472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,25 +390,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Index: 0
   InData:
-    Helath: 100
+    Helath: 7
     SeeEnemy: 0
     Ammo: 0
     HasGun: 0
   OutData:
     SimpleAiActions: 0
     Age: 0
---- !u!114 &8013268291734835472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6552894491251813489}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bfead9a41b480047a9cd7200724671f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &149096730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,7 +497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_viewRadius: 8
-  m_viewAngle: 139
+  m_viewAngle: 360
   m_targetMask:
     serializedVersion: 2
     m_Bits: 8192

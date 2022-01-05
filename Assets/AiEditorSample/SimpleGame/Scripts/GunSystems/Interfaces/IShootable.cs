@@ -9,8 +9,8 @@ namespace SerV112.UtilityAI.Game
 
     }
 
-    public interface IShootEvent
+    public interface IShootEvent : IShootSoundEvent
     {
-        UnityEvent<int> OnShoot { get; }
+
     }
 }

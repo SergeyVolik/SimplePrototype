@@ -9,7 +9,9 @@ namespace SerV112.UtilityAI.Game
     {
         public IGunData GunData => throw new System.NotImplementedException();
 
-        public UnityEvent<int> OnShoot => throw new System.NotImplementedException();
+        public UnityEvent<int> OnEvent => throw new System.NotImplementedException();
+
+        UnityEvent IEvent.OnEvent => throw new System.NotImplementedException();
 
         public void Drop()
         {

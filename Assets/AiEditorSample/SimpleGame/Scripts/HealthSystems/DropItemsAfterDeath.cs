@@ -6,7 +6,7 @@ namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(DeathSystem))]
     [RequireComponent(typeof(HandComponent))]
-    
+    [DisallowMultipleComponent]
     public class DropItemsAfterDeath : MonoBehaviour
     {
         HandComponent HandComponent;
@@ -20,12 +20,12 @@ namespace SerV112.UtilityAI.Game
 
         private void OnEnable()
         {
-            DeathSystem.OnDeadth.AddListener(OnDeath);
+            DeathSystem.OnEvent.AddListener(OnDeath);
         }
 
         private void OnDisable()
         {
-            DeathSystem.OnDeadth.RemoveListener(OnDeath);
+            DeathSystem.OnEvent.RemoveListener(OnDeath);
         }
 
         void OnDeath()

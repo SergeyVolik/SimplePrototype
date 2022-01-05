@@ -21,13 +21,19 @@ namespace SerV112.UtilityAI.Game
         }
 
         float lastElapsedTime;
+
+        public UnityEvent OnEvent => m_DoDamageEvent;
+
+        [SerializeField]
+        private UnityEvent m_DoDamageEvent;
         public void DoDamage(int damage)
         {
             //if (Time.time - lastElapsedTime > m_InvulnerabilityTime)
             //{
                 //lastElapsedTime = Time.time;
                 m_Health.Health -= damage;
-                m_Health.OnHealthChanged.Invoke();
+                OnEvent.Invoke();
+                m_Health.OnEvent.Invoke();
             //}
         }
 

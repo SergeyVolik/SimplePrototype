@@ -19,17 +19,19 @@ namespace SerV112.UtilityAI.Game
 
     }
 
-    public interface IHealthData
+    public interface IHealthChangedEvent : ISoundEvent
+    {
+
+    }
+    public interface IHealthData : IHealthChangedEvent
     {
         int Health { get; set; }
         int MaxHealth { get; set; }
 
-        UnityEvent OnHealthChanged { get; }
     }
 
-    public interface IKillable
+    public interface IKillable : IDeathSoundEvent
     {
-        public UnityEvent OnDeadth { get; }
 
         void ForceDead();
     }
@@ -38,7 +40,11 @@ namespace SerV112.UtilityAI.Game
         void Heal(int value);
 
     }
-    public interface IDamageApplicator
+
+   
+
+
+    public interface IDamageApplicator : IHitSoundEvent, IEffectEvent
     {
 
         void DoDamage(int value);

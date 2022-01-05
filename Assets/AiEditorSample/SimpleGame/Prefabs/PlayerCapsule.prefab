@@ -901,6 +901,7 @@ GameObject:
   - component: {fileID: 3547574317298934771}
   - component: {fileID: 1602718548}
   - component: {fileID: 1602718549}
+  - component: {fileID: 1700823795311751658}
   m_Layer: 13
   m_Name: PlayerCapsule
   m_TagString: Untagged
@@ -1156,6 +1157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc84d95bc39b2444b44982df28fc756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DoDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3056953549570750692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,6 +1267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Clip: {fileID: 8300000, guid: 4279ee96699d604449dc968a24d59ad9, type: 3}
+  m_Volume: 1
 --- !u!208 &1602718548
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1294,6 +1299,20 @@ MonoBehaviour:
   m_OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1700823795311751658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056953549620042055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5ada84a06f046459f5271b24f01214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 8300000, guid: 6613b71399034534b9000570d6ed1583, type: 3}
+  m_Volume: 1
 --- !u!1 &3056953549702659131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,7 +2669,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e84d4d8da6e6cf418053d4018b0d7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AudioClip: {fileID: 8300000, guid: 78730f94a239afb419ca7e0b64738d9e, type: 3}
+  m_Clip: {fileID: 8300000, guid: 78730f94a239afb419ca7e0b64738d9e, type: 3}
+  m_Volume: 1
 --- !u!1001 &3056953550824716420
 PrefabInstance:
   m_ObjectHideFlags: 0
