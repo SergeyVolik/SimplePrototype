@@ -8,6 +8,8 @@ namespace SerV112.UtilityAI.Game
     public class ShootVFX : PlayEffectComponent<IShootEffectEvent> {
         IGunData IGunData;
 
+        [SerializeField]
+        private Transform MuzzleFlashSpawnPoint;
         protected override void Awake()
         {
             base.Awake();
@@ -18,6 +20,7 @@ namespace SerV112.UtilityAI.Game
             if (IGunData.CurrentBullets != 0)
             {
                 DropShellParticlePool.Instance.PlayParticleWithPositionAndRotation(transform.position, transform.rotation);
+                MuzzleFlashParticlePool.Instance.PlayParticleAtPosition(MuzzleFlashSpawnPoint.position);
             }
         }
     }

@@ -11,7 +11,7 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(AIAimInputDataComponent))]
     [RequireComponent(typeof(HandComponent))]
     [RequireComponent(typeof(ThrowItemAIInputDataComponent))]
-
+    [DisallowMultipleComponent]
     public class AiActionShootTheEnemy : MonoBehaviour
     {
         AIAimInputDataComponent AimInputDataComponent;

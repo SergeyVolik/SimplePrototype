@@ -5,11 +5,15 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(IDeathEffectEvent))]
+    [DisallowMultipleComponent]
     public class DeathVFX : PlayEffectComponent<IDeathEffectEvent>
     {
         protected override void Play()
         {
-            HitBloodParticlePool.Instance.PlayParticleAtPosition(transform.position);
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo, 10))
+            {
+                DeathBloodParticlePool.Instance.PlayParticleAtPosition(new Vector3(hitInfo.point.x, hitInfo.point.y+0.05f, hitInfo.point.z) );
+            }
         }
 
     }

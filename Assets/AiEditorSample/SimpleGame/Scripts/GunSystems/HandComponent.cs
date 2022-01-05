@@ -5,8 +5,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
 
-    [DisallowMultipleComponent]
-    
+    [DisallowMultipleComponent]   
     public class HandComponent : MonoBehaviour
     {
         [SerializeField]

@@ -44,13 +44,11 @@ namespace SerV112.UtilityAI.Game
 		bool NeedUpdate;
         private void OnBecameInvisible()
         {
-			print(NeedUpdate);
 			NeedUpdate = false;
 		}
 
         private void OnBecameVisible()
         {
-			print(NeedUpdate);
 			NeedUpdate = true;		
 		}
 
