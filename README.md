@@ -8,4 +8,4 @@
 ### Left Shift - Acceleration
 ### Left Mouse Button - Shoot
 ### Right Mouse Button - Aim
-### G - Throw Gun
+### G - Throw A Gun
