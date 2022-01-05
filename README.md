@@ -1,1 +1,1 @@
-# AntsGame
+# SimplePrototype
