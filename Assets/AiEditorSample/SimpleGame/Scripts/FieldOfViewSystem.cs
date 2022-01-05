@@ -37,7 +37,7 @@ namespace SerV112.UtilityAI.Game
         public UnityEvent<Transform> m_OnDetected;
 		public UnityEvent<Transform> m_OnTargetLost;
 		//[HideInInspector]
-		//public List<Transform> visibleTargets = new List<Transform>();
+		private List<Transform> visibleTargets = new List<Transform>();
 		public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
 		{
 			if (!angleIsGlobal)
@@ -67,32 +67,30 @@ namespace SerV112.UtilityAI.Game
 		bool targetLost = true;
 		void FindVisibleTargets()
 		{
-			//visibleTargets.Clear();
+			visibleTargets.Clear();
 			Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 			targetLost = true;
+			
+
 			for (int i = 0; i < targetsInViewRadius.Length; i++)
 			{
 
 				Transform target = targetsInViewRadius[i].transform;
 
-				if (!lastTarget)
+				Vector3 dirToTarget = (target.position - transform.position).normalized;
+				if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
 				{
-					Vector3 dirToTarget = (target.position - transform.position).normalized;
-					if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+					float dstToTarget = Vector3.Distance(transform.position, target.position);
+					if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
 					{
-						float dstToTarget = Vector3.Distance(transform.position, target.position);
-						if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+						if (lastTarget == target)
 						{
-
-							lastTarget = target;
-							m_OnDetected.Invoke(target);
-							return;
-							//visibleTargets.Add(target);
+							targetLost = false;
 						}
+
+						else visibleTargets.Add(target);
 					}
 				}
-				else if (lastTarget == target)
-					targetLost = false;
 
 			}
 
@@ -100,6 +98,14 @@ namespace SerV112.UtilityAI.Game
 			{
 				m_OnTargetLost.Invoke(lastTarget);
 				lastTarget = null;
+				if (visibleTargets.Count > 0)
+				{
+					lastTarget = visibleTargets[0];
+					m_OnDetected.Invoke(lastTarget);
+				}
+				
+				
+				
 			}
 		}
 

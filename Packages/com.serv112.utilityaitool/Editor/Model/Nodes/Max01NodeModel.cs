@@ -12,7 +12,12 @@ namespace SerV112.UtilityAIEditor
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Max01")]
     public class Max01NodeModel : ExtendableInputPortNode
     {
+        protected override void OnDefineNode()
+        {
+            m_MinInputPorts = 2;
 
+            base.OnDefineNode();
+        }
         public override float Evaluate()
         {
             throw new NotImplementedException();

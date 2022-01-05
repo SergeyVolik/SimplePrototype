@@ -38,6 +38,7 @@ namespace SerV112.UtilityAIEditor
 
         protected override void OnDefineNode()
         {
+
             foreach (var name in m_ParameterNames)
             {
                 //this.AddDataInputPort<float>(name);
@@ -46,6 +47,8 @@ namespace SerV112.UtilityAIEditor
                     options = PortModelOptions.NoEmbeddedConstant;
                 this.AddDataInputPort(name, InputType, options: options);
             }
+            
+
             if(!DeadEndNode)
                 DataOut0 = this.AddDataOutputPort("output", OutputType);//this.AddDataOutputPort<float>("out");
 

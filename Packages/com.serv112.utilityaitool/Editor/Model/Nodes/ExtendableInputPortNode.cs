@@ -11,25 +11,38 @@ namespace SerV112.UtilityAIEditor
 {
     public abstract class ExtendableInputPortNode : NormalizedFunctionNodeModel, IExtendableInputPortNode
     {
-        protected List<string> InputPorts = new List<string>();
+        private List<string> InputPorts;
 
-        public int NumberOfInputPorts => m_VerticalInputCount;
-        [SerializeField, HideInInspector]
-        int m_VerticalInputCount = 2;
+        public int NumberOfInputPorts => m_ParameterNames.Length;
+
 
         protected virtual string PortName { get; set; } = "Input";
+        protected int m_MinInputPorts;
+        [SerializeField]
+        protected int m_InputPorts;
 
-        public ExtendableInputPortNode()
+        protected override void OnDefineNode()
         {
-            for (int i = 0; i < NumberOfInputPorts; i++)
+            if (m_ParameterNames.Length < m_MinInputPorts)
             {
-                InputPorts.Add(PortName + i);
+                InputPorts = m_ParameterNames.ToList();
+
+                for (int i = 0; i < m_MinInputPorts; i++)
+                {
+                    InputPorts.Add($"{PortName}{InputPorts.Count}");
+                }
+
+                m_ParameterNames = InputPorts.ToArray();
             }
-            m_ParameterNames = InputPorts.ToArray();
+
+            
+
+            base.OnDefineNode();
         }
+
         public void AddPort()
         {
-            m_VerticalInputCount++;
+            InputPorts = m_ParameterNames.ToList();
             InputPorts.Add($"{PortName}{InputPorts.Count}");
             m_ParameterNames = InputPorts.ToArray();
             DefineNode();
@@ -37,7 +50,8 @@ namespace SerV112.UtilityAIEditor
         }
         public IEnumerable<IGraphElementModel> RemovePort()
         {
-            m_VerticalInputCount--;
+
+            InputPorts = m_ParameterNames.ToList();
             InputPorts.Remove(InputPorts[InputPorts.Count - 1]);
             m_ParameterNames = InputPorts.ToArray();
             var ports = this.GetInputPorts().ToList();

@@ -25,13 +25,13 @@ namespace SerV112.UtilityAI.Game
         private void OnEnable()
         {
             m_EquipWeaponSystem.OnEquipGun.AddListener(EnableUI);
-            m_ThrowWeaponSystem.OnThrow.AddListener(DisableUI);
+            m_ThrowWeaponSystem.OnEvent.AddListener(DisableUI);
         }
 
         private void OnDisable()
         {
             m_EquipWeaponSystem.OnEquipGun.RemoveListener(EnableUI);
-            m_ThrowWeaponSystem.OnThrow.RemoveListener(DisableUI);
+            m_ThrowWeaponSystem.OnEvent.RemoveListener(DisableUI);
         }
 
         void DisableUI()

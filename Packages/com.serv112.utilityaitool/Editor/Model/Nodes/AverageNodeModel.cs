@@ -15,16 +15,16 @@ namespace SerV112.UtilityAIEditor
 
         public override float Evaluate()
         {
-            if (InputPorts.Count == 0)
+            if (m_ParameterNames.Length == 0)
                 return 0;
 
             float sum = 0;
-            for (int i = 0; i < InputPorts.Count; i++)
+            for (int i = 0; i < m_ParameterNames.Length; i++)
             {
                 sum += GetParameterValue(i);
             }
 
-            sum /= InputPorts.Count;
+            sum /= m_ParameterNames.Length;
 
             return sum;
         }

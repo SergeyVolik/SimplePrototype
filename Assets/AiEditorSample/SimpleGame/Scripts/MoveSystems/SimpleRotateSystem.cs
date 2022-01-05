@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-	[RequireComponent(typeof(MoveDataComponent))]
+	[RequireComponent(typeof(MoveData))]
 	[RequireComponent(typeof(CharacterController))]
 	public class SimpleRotateSystem : MonoBehaviour
 	{

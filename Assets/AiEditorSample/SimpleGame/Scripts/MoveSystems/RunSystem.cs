@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(MoveDataComponent))]
+    [RequireComponent(typeof(MoveData))]
     [RequireComponent(typeof(IRunInputData))]
     public class RunSystem : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace SerV112.UtilityAI.Game
         void Awake()
         {
             m_Input = GetComponent<IRunInputData>();
-            data = GetComponent<MoveDataComponent>();
+            data = GetComponent<MoveData>();
         }
 
         private void OnDisable()

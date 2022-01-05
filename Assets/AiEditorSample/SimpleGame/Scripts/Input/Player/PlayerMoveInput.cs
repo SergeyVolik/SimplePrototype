@@ -4,12 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
-{
-  
-   
-
+{  
     [DisallowMultipleComponent]
-    public class PlayerInputDataComponent : MonoBehaviour, IMoveInputData
+    public class PlayerMoveInput : MonoBehaviour, IMoveInputData
     {
         public float Horizontal => m_Horizontal;
 

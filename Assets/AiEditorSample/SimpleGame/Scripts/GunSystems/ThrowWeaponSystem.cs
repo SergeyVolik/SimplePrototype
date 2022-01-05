@@ -6,19 +6,17 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
 
-    public interface IThrowItemEvent
-    {
-        UnityEvent OnThrow { get; }
-    }
+
+
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(HandComponent))]
+    [RequireComponent(typeof(HandData))]
     [RequireComponent(typeof(IThrowInput))]
-    public class ThrowWeaponSystem : MonoBehaviour, IThrowItemEvent
+    public class ThrowWeaponSystem : MonoBehaviour, IThrowGunEvent
     {
-        private HandComponent m_HandComponent;
+        private HandData m_HandComponent;
         IThrowInput input;
 
-        public UnityEvent OnThrow => m_OnThrow;
+        public UnityEvent OnEvent => m_OnThrow;
         [SerializeField]
         private UnityEvent m_OnThrow;
         [SerializeField]
@@ -26,7 +24,7 @@ namespace SerV112.UtilityAI.Game
         void Awake()
         {
             input = GetComponent<IThrowInput>();
-            m_HandComponent = GetComponent<HandComponent>();
+            m_HandComponent = GetComponent<HandData>();
         }
 
         private void OnEnable()

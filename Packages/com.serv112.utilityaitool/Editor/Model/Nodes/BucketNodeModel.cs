@@ -23,7 +23,7 @@ namespace SerV112.UtilityAIEditor
             OutputType = AIGraphCustomTypes.AIBucket;
             
             
-            m_ParameterNames = InputPorts.ToArray();
+            //m_ParameterNames = InputPorts.ToArray();
 
         }      
 

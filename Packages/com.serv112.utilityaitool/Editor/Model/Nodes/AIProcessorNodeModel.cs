@@ -10,12 +10,11 @@ namespace SerV112.UtilityAIEditor
 {
     [Serializable]
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "AIProcessor")]
-    public class AIProcessorNodeModel : NormalizedFunctionNodeModel, IExtendableInputPortNode, INameable
+    public class AIProcessorNodeModel : ExtendableInputPortNode, IExtendableInputPortNode, INameable
     {
-        [SerializeField, HideInInspector]
-        int m_ScoreInputCount = 1;
+
         public const string InspectorName = "Name";
-        public int ScoreInputCount => m_ScoreInputCount;
+
 
         [SerializeField, HideInInspector]
         private string m_Name = "AIProcessor";
@@ -37,40 +36,16 @@ namespace SerV112.UtilityAIEditor
 
         }
 
+        protected override void OnDefineNode()
+        {
+            m_MinInputPorts = 1;
 
+            base.OnDefineNode();
+        }
         public override PortCapacity GetPortCapacity(IPortModel portModel)
         {
             PortCapacity cap = PortCapacity.Single;
             return cap;
-        }
-
-        public void AddPort()
-        {
-            m_ScoreInputCount++;
-            inputPortNames.Add($"{InputPortName}{inputPortNames.Count}");
-            m_ParameterNames = inputPortNames.ToArray();
-            DefineNode();
-
-        }
-        public IEnumerable<IGraphElementModel> RemovePort()
-        {
-            var last = inputPortNames[inputPortNames.Count - 1];
-            inputPortNames.Remove(last);
-            m_ParameterNames = inputPortNames.ToArray();
-            m_ScoreInputCount--;
-
-            var ports = this.GetInputPorts().ToList();
-            IEnumerable<IGraphElementModel> edgesToRemove = null;
-
-            if (ports.Count > 0)
-            {
-                edgesToRemove = ports[ports.Count - 1].GetConnectedEdges().ToList();
-            }
-
-            DefineNode();
-
-            return edgesToRemove;
-
         }
 
         public override float Evaluate()

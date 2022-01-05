@@ -78,7 +78,6 @@ namespace SerV112.UtilityAIEditor
         {
             var oldValue = @const as NormalizedFloatConstant;
             var val = oldValue.Value;
-            Debug.Log(@const);
             var root = new VisualElement();
             root.AddToClassList(PropertyField.ussClassName);
 

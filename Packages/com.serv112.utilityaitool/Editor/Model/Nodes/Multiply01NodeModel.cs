@@ -12,14 +12,19 @@ namespace SerV112.UtilityAIEditor
     [SearcherItem(typeof(AIStencil), SearcherContext.Graph, "Multiply01")]
     public class Multiply01NodeModel : ExtendableInputPortNode
     {
+        protected override void OnDefineNode()
+        {
+            m_MinInputPorts = 2;
 
+            base.OnDefineNode();
+        }
         public override float Evaluate()
         {
-            if (InputPorts.Count == 0)
+            if (m_ParameterNames.Length == 0)
                 return 0;
 
             float value = GetParameterValue(0);
-            for (int i = 1; i < InputPorts.Count; i++)
+            for (int i = 1; i < m_ParameterNames.Length; i++)
             {
                 value *= GetParameterValue(i);
             }

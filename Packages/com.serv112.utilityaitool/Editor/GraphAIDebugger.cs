@@ -161,12 +161,12 @@ namespace SerV112.UtilityAIEditor
 
         public void Register(GraphViewEditorWindow window)
         {
-            Debug.Log("MyCustomPluginHandler has been registered");
+            //Debug.Log("MyCustomPluginHandler has been registered");
         }
 
         public void Unregister()
         {
-            Debug.Log("MyCustomPluginHandler has been unregistered");
+            //Debug.Log("MyCustomPluginHandler has been unregistered");
         }
     }
 }

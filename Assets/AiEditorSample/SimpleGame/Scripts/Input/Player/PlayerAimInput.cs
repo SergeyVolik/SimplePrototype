@@ -9,7 +9,7 @@ namespace SerV112.UtilityAI.Game
         Vector3 Direction { get; }
     }
     [DisallowMultipleComponent]
-    public class AimInputDataComponent : AbstractPressDownAndUpInputComponent, IAimInputData, IAimDirection
+    public class PlayerAimInput : AbstractPressDownAndUpInputComponent, IAimInputData, IAimDirection
     {
         public Vector3 Direction => m_AimDir;
         private Camera m_ViewCamera;

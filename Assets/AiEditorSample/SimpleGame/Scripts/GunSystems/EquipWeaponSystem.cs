@@ -11,15 +11,15 @@ namespace SerV112.UtilityAI.Game
         UnityEvent<IGun> OnEquipGun { get; }
     }
 
-    [RequireComponent(typeof(HandComponent))]
+    [RequireComponent(typeof(HandData))]
     [DisallowMultipleComponent]
     public class EquipWeaponSystem : MonoBehaviour, IEquipGunEvent
     {
-        HandComponent m_Hand;
+        HandData m_Hand;
 
         void Start()
         {
-            m_Hand = GetComponent<HandComponent>();
+            m_Hand = GetComponent<HandData>();
         }
 
         

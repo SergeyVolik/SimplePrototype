@@ -6,7 +6,7 @@ namespace SerV112.UtilityAI.Game
 {
 
     [DisallowMultipleComponent]
-    public class JumpInputDataComponent : AbstractPressDownInputComponent, IJumpInputData
+    public class PlayerJumpInput : AbstractPressDownInputComponent, IJumpInputData
     {
 
         public float JumpForce => m_JumpForce;

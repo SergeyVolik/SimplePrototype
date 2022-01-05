@@ -5,17 +5,17 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [RequireComponent(typeof(DeathSystem))]
-    [RequireComponent(typeof(HandComponent))]
+    [RequireComponent(typeof(HandData))]
     [DisallowMultipleComponent]
     public class DropItemsAfterDeath : MonoBehaviour
     {
-        HandComponent HandComponent;
+        HandData HandComponent;
         DeathSystem DeathSystem;
         // Start is called before the first frame update
         void Awake()
         {
             DeathSystem = GetComponent<DeathSystem>();
-            HandComponent = GetComponent<HandComponent>();
+            HandComponent = GetComponent<HandData>();
         }
 
         private void OnEnable()

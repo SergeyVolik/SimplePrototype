@@ -9,7 +9,7 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(AIAgentSimpleAI))]
     [RequireComponent(typeof(IEquipGunEvent))]
-    [RequireComponent(typeof(IThrowItemEvent))]
+    [RequireComponent(typeof(IThrowGunEvent))]
     public class AIActionMoveToGun : MonoBehaviour
     {
 
@@ -17,13 +17,13 @@ namespace SerV112.UtilityAI.Game
         List<PistolPlaceholder> Pistol;
         NavMeshAgent m_NavAgent;
         AIAgentSimpleAI m_AgentBrain;
-        IThrowItemEvent m_Event;
+        IThrowGunEvent m_Event;
         IEquipGunEvent m_EquipEvent;
 
         private bool m_IsMoving;
         private void Awake()
         {
-            m_Event = GetComponent<IThrowItemEvent>();
+            m_Event = GetComponent<IThrowGunEvent>();
             m_EquipEvent = GetComponent<IEquipGunEvent>();
             m_AgentBrain = GetComponent<AIAgentSimpleAI>();
             m_NavAgent = GetComponent<NavMeshAgent>();
@@ -38,12 +38,12 @@ namespace SerV112.UtilityAI.Game
 
         private void OnEnable()
         {
-            m_Event.OnThrow.AddListener(UpdateHasGunDataFalse);
+            m_Event.OnEvent.AddListener(UpdateHasGunDataFalse);
             m_EquipEvent.OnEquipGun.AddListener(UpdateHasGunDataTrue);
         }
         private void OnDisable()
         {
-            m_Event.OnThrow.RemoveListener(UpdateHasGunDataFalse);
+            m_Event.OnEvent.RemoveListener(UpdateHasGunDataFalse);
             m_EquipEvent.OnEquipGun.RemoveListener(UpdateHasGunDataTrue);
         }
         void UpdateHasGunDataTrue(IGun gundata)
@@ -56,7 +56,6 @@ namespace SerV112.UtilityAI.Game
 
         void UpdateHasGunDataFalse()
         {
-            print("UpdateHasGunDataFalse");
             m_IsMoving = false;
             var m_inData = m_AgentBrain.GetInData();
             m_inData.HasGun = 0f;

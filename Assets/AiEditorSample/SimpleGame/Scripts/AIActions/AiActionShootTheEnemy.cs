@@ -9,7 +9,7 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(IEnemyDetectedEvent))]
     [RequireComponent(typeof(AIAgentSimpleAI))]
     [RequireComponent(typeof(AIAimInputDataComponent))]
-    [RequireComponent(typeof(HandComponent))]
+    [RequireComponent(typeof(HandData))]
     [RequireComponent(typeof(ThrowItemAIInputDataComponent))]
     [DisallowMultipleComponent]
     public class AiActionShootTheEnemy : MonoBehaviour
@@ -17,7 +17,7 @@ namespace SerV112.UtilityAI.Game
         AIAimInputDataComponent AimInputDataComponent;
         IEnemyDetectedEvent Fov;
         AIAgentSimpleAI agentBrain;
-        HandComponent HandComponent;
+        HandData HandComponent;
         ThrowItemAIInputDataComponent ThrowItemAIInputDataComponent;
         // Start is called before the first frame update
         void Awake()
@@ -26,7 +26,7 @@ namespace SerV112.UtilityAI.Game
             AimInputDataComponent = GetComponent<AIAimInputDataComponent>();
             agentBrain = GetComponent<AIAgentSimpleAI>();
             Fov = GetComponent<IEnemyDetectedEvent>();
-            HandComponent = GetComponent<HandComponent>();
+            HandComponent = GetComponent<HandData>();
         }
 
         private void OnEnable()

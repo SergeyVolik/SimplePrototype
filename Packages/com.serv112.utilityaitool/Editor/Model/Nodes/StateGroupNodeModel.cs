@@ -32,7 +32,12 @@ namespace SerV112.UtilityAIEditor
 
         public const string InspectorLabelNameText = "Name";
 
+        protected override void OnDefineNode()
+        {
+            m_MinInputPorts = 2;
 
+            base.OnDefineNode();
+        }
         public StateGroupNodeModel()
         {
 

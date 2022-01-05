@@ -5,12 +5,12 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    public class HealthDataComponent : MonoBehaviour, IHealthData
+    public class HealthData : MonoBehaviour, IHealthData
     {
         [SerializeField]
-        private int m_Health = 100;
+        private int m_Health = 7;
         [SerializeField]
-        private int m_MaxHealth = 100;
+        private int m_MaxHealth = 7;
 
         public int Health { get => m_Health; set => m_Health = value; }
         public int MaxHealth { get => m_MaxHealth; set => m_MaxHealth = value; }

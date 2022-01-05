@@ -6,7 +6,7 @@ namespace SerV112.UtilityAI.Game
 {
 
     [DisallowMultipleComponent]   
-    public class HandComponent : MonoBehaviour
+    public class HandData : MonoBehaviour
     {
         [SerializeField]
         private Pistol m_Pistol;

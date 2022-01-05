@@ -7,7 +7,7 @@ namespace SerV112.UtilityAI.Game
     public class HealthBar : MonoBehaviour
     {
         [SerializeField]
-        private HealthDataComponent m_Health;
+        private HealthData m_Health;
 
         [SerializeField]
         List<MeshRenderer> HealthCubes;

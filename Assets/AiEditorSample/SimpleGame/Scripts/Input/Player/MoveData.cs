@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    public class MoveDataComponent : MonoBehaviour, IMoveSettingsData
+    public class MoveData : MonoBehaviour, IMoveSettingsData
     {
         [SerializeField]
         private float m_Speed = 6;
