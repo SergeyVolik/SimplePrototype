@@ -116,15 +116,13 @@ namespace SerV112.UtilityAI.Game
                     {
                         Debug.Log("Update path to gun");
 
-                        
-                        if (m_NavAgent.pathPending)
-                        {
-                            m_NavAgent.ResetPath();
-                            var result = m_NavAgent.SetDestination(tragetGun.transform.position);
-                            if (!result)
-                                m_IsMoving = false;
 
-                        }
+                        m_NavAgent.ResetPath();
+                        var result = m_NavAgent.SetDestination(tragetGun.transform.position);
+                        if (!result)
+                            m_IsMoving = false;
+
+                        
                     }
                     else
                     {

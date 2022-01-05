@@ -29,7 +29,7 @@ namespace SerV112.UtilityAI.Game
 
             m_ActiveGun = m_Pistol;
             m_ActiveGun.Equip();
-            m_Pistol.GunData.UpdateData(placeholder.GunDataComponent);
+            m_Pistol.GunData.UpdateData(placeholder.Data);
            
           
             return m_Pistol;
