@@ -9,7 +9,7 @@ namespace SerV112.UtilityAI.Game
 
     }
 
-    public interface IShootEvent : IShootSoundEvent
+    public interface IShootEvent : IShootSoundEvent, IShootEffectEvent
     {
 
     }

@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AiEditorSample/SimpleGame/SWATVsZomvie.unity
+    path: Assets/AiEditorSample/SimpleGame/SimleGameScene.unity
     guid: 60e6189ca3fe3094289741700b8644c4
   m_configObjects: {}

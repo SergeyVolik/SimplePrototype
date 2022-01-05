@@ -95,7 +95,7 @@ namespace SerV112.UtilityAI.Game
                 {
                     if (!m_IsMoving)
                     {
-                        print($"Change path to gun {gameObject.name}");
+                       
                         m_IsMoving = true;
                         m_NavAgent.isStopped = false;
                         m_NavAgent.ResetPath();
@@ -114,7 +114,7 @@ namespace SerV112.UtilityAI.Game
 
                     else if (tragetGun.gameObject.activeSelf)
                     {
-                        Debug.Log("Update path to gun");
+                        
 
 
                         m_NavAgent.ResetPath();
@@ -126,7 +126,7 @@ namespace SerV112.UtilityAI.Game
                     }
                     else
                     {
-                        Debug.Log("Gun is not active");
+                       
                         tragetGun = null;
                         m_IsMoving = false;
                     }

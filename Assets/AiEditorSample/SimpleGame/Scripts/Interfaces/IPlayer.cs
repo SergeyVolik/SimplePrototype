@@ -30,7 +30,7 @@ namespace SerV112.UtilityAI.Game
 
     }
 
-    public interface IKillable : IDeathSoundEvent
+    public interface IKillable : IDeathSoundEvent, IDeathEffectEvent
     {
 
         void ForceDead();
@@ -44,7 +44,7 @@ namespace SerV112.UtilityAI.Game
    
 
 
-    public interface IDamageApplicator : IHitSoundEvent, IEffectEvent
+    public interface IDamageApplicator : IHitSoundEvent, IHitEffectEvent
     {
 
         void DoDamage(int value);

@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
+
+
     [RequireComponent(typeof(Rigidbody))]
     public class PistolBullet : MonoBehaviour, IBullet
     {
@@ -33,7 +35,6 @@ namespace SerV112.UtilityAI.Game
             if (com != null)
             {
                 com.DoDamage(m_Damage);
-                HitBloodParticlePool.Instance.PlayParticleAtPosition(transform.position);
 
             }
             else {
@@ -47,5 +48,7 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private int m_Damage = 10;
         public int Damage => m_Damage;
+
+        public UnityEvent OnEvent => throw new NotImplementedException();
     }
 }
