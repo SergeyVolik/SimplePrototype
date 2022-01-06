@@ -10,6 +10,8 @@ namespace SerV112.UtilityAI.Game
 
         [SerializeField]
         private Transform MuzzleFlashSpawnPoint;
+        [SerializeField]
+        protected ParticlePoolSO m_MuzzleFlash;
         protected override void Awake()
         {
             base.Awake();
@@ -19,8 +21,11 @@ namespace SerV112.UtilityAI.Game
         {
             if (IGunData.CurrentBullets != 0)
             {
-                DropShellParticlePool.Instance.PlayParticleWithPositionAndRotation(transform.position, transform.rotation);
-                MuzzleFlashParticlePool.Instance.PlayParticleAtPosition(MuzzleFlashSpawnPoint.position);
+
+                PlayWithPos(m_MuzzleFlash.Request(), MuzzleFlashSpawnPoint.position, m_MuzzleFlash);
+                PlayWithPosAndRot(m_Pool.Request(), transform.position, transform.rotation, m_Pool);
+
+
             }
         }
     }

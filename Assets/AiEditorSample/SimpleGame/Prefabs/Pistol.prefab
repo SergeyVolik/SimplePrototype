@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxBulletsInGun: 30
   m_BulletSpawner: {fileID: 1660650774}
+  m_BulletPool: {fileID: 11400000, guid: d3c6bd6436077ad4383a53d5a6955645, type: 2}
   m_OnShoot:
     m_PersistentCalls:
       m_Calls: []
@@ -98,7 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ee39a866677f54fadd5768f2dadcb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Key: 32
+  m_InputReader: {fileID: 11400000, guid: a9a8e0756e36eab4d87f787327533d5a, type: 2}
+  m_PressUp:
+    m_PersistentCalls:
+      m_Calls: []
   m_PressDown:
     m_PersistentCalls:
       m_Calls: []
@@ -114,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceaead96e306e544e9ad34f3295c5062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: b105900b1fcd1534390128866cc03072, type: 3}
-  m_Volume: 1
+  m_SFX: {fileID: 11400000, guid: b656c51394fc2c043bb00a4812527756, type: 2}
+  m_Pool: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398, type: 2}
 --- !u!114 &6387329725181738775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a454933a22852940af3175d2e6ba1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Pool: {fileID: 11400000, guid: e03e40247a52e9e4db8ef07c185b2a93, type: 2}
   MuzzleFlashSpawnPoint: {fileID: 1338091209778922771}
+  m_MuzzleFlash: {fileID: 11400000, guid: 578f48e8d79780a43871b94510f1f00a, type: 2}
 --- !u!1 &3161020949670832238
 GameObject:
   m_ObjectHideFlags: 0

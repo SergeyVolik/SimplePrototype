@@ -8,10 +8,7 @@ namespace SerV112.UtilityAI.Game
     [DisallowMultipleComponent]
     public class HitVFX : PlayEffectComponent<IHitEffectEvent>
     {
-        protected override void Play()
-        {
-            HitBloodParticlePool.Instance.PlayParticleAtPosition(transform.position);
-        }
+       
 
     }
 

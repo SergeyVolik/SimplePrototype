@@ -663,7 +663,7 @@ PlayerSettings:
     tvOS: 1
   scriptingBackend:
     Android: 0
-    Standalone: 0
+    Standalone: 1
     WP8: 2
     WebGL: 1
     WebPlayer: 0
@@ -685,7 +685,8 @@ PlayerSettings:
   gcIncremental: 1
   assemblyVersionValidation: 1
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: FPS2

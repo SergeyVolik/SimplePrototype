@@ -161,6 +161,7 @@ MonoBehaviour:
   m_OnHit:
     m_PersistentCalls:
       m_Calls: []
+  m_BulletPool: {fileID: 11400000, guid: d3c6bd6436077ad4383a53d5a6955645, type: 2}
   m_Damage: 1
 --- !u!114 &4405914202679031451
 MonoBehaviour:
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SFX: {fileID: 11400000, guid: 1caa12ab8dbfb914caefd99f9ce92bf2, type: 2}
+  m_Pool: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398, type: 2}
 --- !u!114 &-1757639019682498722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d24d9adf0f0e1d49938449148927584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Pool: {fileID: 11400000, guid: 20cd00c2c33312240bb8f2fabb38e614, type: 2}

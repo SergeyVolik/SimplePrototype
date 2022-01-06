@@ -21,6 +21,13 @@ namespace SerV112.UtilityAI.Game
 
         public UnityEvent OnEvent => m_OnHit;
 
+        [SerializeField]
+        private BulletPoolSO m_BulletPool;
+
+        [SerializeField]
+        private int m_Damage = 10;
+        public int Damage => m_Damage;
+
         void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
@@ -45,14 +52,14 @@ namespace SerV112.UtilityAI.Game
 
 
             }
-            PistolBulletPoolSingleton.Instance.Pool.Release(this);
+            m_Rigidbody.angularVelocity = Vector3.zero;
+            m_Rigidbody.velocity = Vector3.zero;
+            m_BulletPool.Return(this);
            
             
         }
 
-        [SerializeField]
-        private int m_Damage = 10;
-        public int Damage => m_Damage;
+
 
     }
 }

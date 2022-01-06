@@ -9,21 +9,32 @@ namespace SerV112.UtilityAI.Game
     {
         [SerializeField]
         private GameObject player;
-
+        [SerializeField]
+        InputReader m_reader;
         [SerializeField]
         private GameObject PlayerDeadPanel;
+
+        private void Awake()
+        {
+            m_reader.JumpEvent += M_reader_JumpEvent;
+        }
         private void Update()
         {
             if (player == null)
             {
                 PlayerDeadPanel.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Return))
-                {
-                    SceneManager.LoadScene(0);
-                }
             }
-            
+        }
+
+        private void M_reader_JumpEvent()
+        {
+            if (player == null)
+            {
+                SceneManager.LoadScene(0);
+                
+            }
+           
         }
     }
 

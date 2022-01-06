@@ -16,6 +16,8 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private Transform m_BulletSpawner;
 
+        [SerializeField]
+        private BulletPoolSO m_BulletPool;
         public IGunData GunData => m_Data;
 
         [SerializeField]
@@ -47,14 +49,10 @@ namespace SerV112.UtilityAI.Game
         {
             if (m_Data.CurrentBullets > 0)
             {
-                var bullet = PistolBulletPoolSingleton.Instance.Pool.Get();
-                bullet.transform.SetPositionAndRotation(m_BulletSpawner.position, m_BulletSpawner.rotation);
+                var bullet = m_BulletPool.Request();
+                bullet.transform.SetPositionAndRotation(m_BulletSpawner.position, m_BulletSpawner.rotation);           
                 bullet.Launch(m_Data.GunThrowForce);
                 m_Data.CurrentBullets--;
-
-
-              
-
 
             }
 

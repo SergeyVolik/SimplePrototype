@@ -10,7 +10,7 @@ namespace SerV112.UtilityAI.Game
     {
      
         IGunData m_GunData;
-        // Start is called before the first frame update
+
         protected override void Awake()
         {
             base.Awake();
@@ -22,7 +22,7 @@ namespace SerV112.UtilityAI.Game
         {
             if (m_GunData.CurrentBullets > 0)
             {
-                OneShotAudioPool.Instance.PlaySFXWithPosition(m_SFX, transform.position);
+                PlayAtPos(transform.position);
 
 
             }
