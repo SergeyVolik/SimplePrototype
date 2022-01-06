@@ -10,7 +10,7 @@ using SerV112.UtilityAI.Game;
 namespace SerV112.UtilityAI.Editor
 {
 
-    [CustomEditor(typeof(AudioEvent), true)]
+    [CustomEditor(typeof(AudioSettingsSO), true)]
     public class AudioEventInspector : UnityEditor.Editor
     {
         [SerializeField]
@@ -34,7 +34,7 @@ namespace SerV112.UtilityAI.Editor
             if (GUILayout.Button("preview"))
             {
                
-                ((AudioEvent)target).Play(m_Preview);
+                ((AudioSettingsSO)target).Play(m_Preview);
             }
             EditorGUI.EndDisabledGroup();
         }

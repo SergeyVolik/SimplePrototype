@@ -8,7 +8,7 @@ namespace SerV112.UtilityAI.Game
         T Event;
 
         [SerializeField]
-        protected SFXEvent m_SFX;
+        protected SFXSettingsSO m_SFX;
 
         // Start is called before the first frame update
         protected virtual void Awake()

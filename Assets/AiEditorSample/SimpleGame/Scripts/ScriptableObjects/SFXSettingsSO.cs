@@ -31,7 +31,7 @@ namespace SerV112.UtilityAI.Game
 
 
     [CreateAssetMenu(menuName = "Sound/SFXEvent")]
-    public class SFXEvent : AudioEvent
+    public class SFXSettingsSO : AudioSettingsSO
     {
 
         [SerializeField]

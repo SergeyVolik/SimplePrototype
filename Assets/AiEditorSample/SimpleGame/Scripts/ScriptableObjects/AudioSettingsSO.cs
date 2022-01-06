@@ -2,7 +2,7 @@
 
 namespace SerV112.UtilityAI.Game
 {
-    public class AudioEvent : ScriptableObject
+    public class AudioSettingsSO : DescriptionBaseSO
     {
         [SerializeField]
         protected AudioClip[] SFX;

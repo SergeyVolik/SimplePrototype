@@ -24,7 +24,7 @@ namespace SerV112.UtilityAI.Game
             source.Play();
         }
 
-        public void PlaySFXWithPosition(SFXEvent evertData, Vector3 vector3)
+        public void PlaySFXWithPosition(SFXSettingsSO evertData, Vector3 vector3)
         {
             var source = Pool.Get();
             source.transform.position = vector3;
