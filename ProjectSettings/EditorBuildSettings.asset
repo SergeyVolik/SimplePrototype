@@ -6,8 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/AiEditorSample/SimpleGame/SimleGameScene.unity
-    guid: 60e6189ca3fe3094289741700b8644c4
+    path: Assets/AiEditorSample/SimpleGame/Scenes/InitScene.unity
+    guid: 30c11eb71db83494f9048dc6319dccfa
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 2d0c7e894b83ac54e9df17a295526b73,
+      type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 44ce3ea0915f0594bb67830b9a94e9a5,
       type: 2}

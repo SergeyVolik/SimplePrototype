@@ -19,30 +19,42 @@ namespace SerV112.UtilityAI.Game
         public event UnityAction ShootingCanceledEvent = delegate { };
         public event UnityAction ThrowEvent = delegate { };
         public event UnityAction JumpEvent = delegate { };
-        public GameInput _gameInput;
+        private GameInput _gameInput;
 
         private void OnEnable()
         {
           
             if (_gameInput == null)
             {
-                Debug.Log("GameInput Created");
                 _gameInput = new GameInput();
+                _gameInput.Gameplay.SetCallbacks(this);
 
-            
-                
             }
-            _gameInput.Enable();
-            _gameInput.Gameplay.Enable();
-            _gameInput.Gameplay.SetCallbacks(this);
+
+
+           
         }
 
         private void OnDisable()
         {
-            Debug.Log("GameInput Disable");
-            _gameInput.Gameplay.Disable();
+
+            DisableAllInput();
         }
 
+        public void DisableAllInput()
+        {
+            _gameInput.Gameplay.Disable();
+        }
+        public void EnableGameplayInput()
+        {
+            _gameInput.Gameplay.Enable();
+
+        }
+        public void DisableGameplayInput()
+        {
+            _gameInput.Gameplay.Disable();
+
+        }
         public void OnAim(InputAction.CallbackContext context)
         {
 

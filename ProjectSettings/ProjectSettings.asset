@@ -135,7 +135,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: 44ce3ea0915f0594bb67830b9a94e9a5, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -663,7 +664,7 @@ PlayerSettings:
     tvOS: 1
   scriptingBackend:
     Android: 0
-    Standalone: 1
+    Standalone: 0
     WP8: 2
     WebGL: 1
     WebPlayer: 0
@@ -686,7 +687,7 @@ PlayerSettings:
   assemblyVersionValidation: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
-    Standalone: 3
+    Standalone: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: FPS2

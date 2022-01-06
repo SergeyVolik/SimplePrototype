@@ -1466,7 +1466,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228020355}
-  m_LocalRotation: {x: 0.49834457, y: -0.000000027764731, z: 0.000000015959328, w: 0.86697906}
+  m_LocalRotation: {x: 0.4983446, y: 0.000000010162596, z: -0.0000000058415175, w: 0.86697906}
   m_LocalPosition: {x: -1.77, y: 13.860001, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4643,6 +4643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1602718547}
+  m_reader: {fileID: 11400000, guid: a9a8e0756e36eab4d87f787327533d5a, type: 2}
   PlayerDeadPanel: {fileID: 1466226963}
 --- !u!4 &773091693
 Transform:
@@ -8766,7 +8767,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480878916}
-  m_LocalRotation: {x: 0.49834457, y: -0.000000027764731, z: 0.000000015959328, w: 0.86697906}
+  m_LocalRotation: {x: 0.4983446, y: 0.000000010162596, z: -0.0000000058415175, w: 0.86697906}
   m_LocalPosition: {x: -1.77, y: 13.860001, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11529,6 +11530,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398,
         type: 2}
+    - target: {fileID: 3056953549392179071, guid: aab2ca9a1e5de024ba25c89487748a0f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3056953549620042055, guid: aab2ca9a1e5de024ba25c89487748a0f,
         type: 3}
       propertyPath: m_Name

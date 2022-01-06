@@ -46,7 +46,7 @@ namespace SerV112.UtilityAI.Game
            
         }
 
-        List<AudioSource> WaitSources = new List<AudioSource>();
+        static readonly List<AudioSource> WaitSources = new List<AudioSource>();
         protected virtual void PlaySFX()
         {
             PlayAtPos(transform.position);

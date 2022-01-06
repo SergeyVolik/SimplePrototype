@@ -22,7 +22,7 @@ namespace SerV112.UtilityAI.Game
             if (IGunData.CurrentBullets != 0)
             {
 
-                PlayWithPos(m_MuzzleFlash.Request(), MuzzleFlashSpawnPoint.position, m_MuzzleFlash);
+                PlayWithPosAndRot(m_MuzzleFlash.Request(), MuzzleFlashSpawnPoint.position, MuzzleFlashSpawnPoint.rotation, m_MuzzleFlash);
                 PlayWithPosAndRot(m_Pool.Request(), transform.position, transform.rotation, m_Pool);
 
 

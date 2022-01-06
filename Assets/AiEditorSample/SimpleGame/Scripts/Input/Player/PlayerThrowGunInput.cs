@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace SerV112.UtilityAI.Game
 {
     [DisallowMultipleComponent]
-    public class ThrowGunInput : AbstractPressDownInputComponent, IThrowInput
+    public class PlayerThrowGunInput : AbstractPressDownInputComponent, IThrowInput
     {
         [SerializeField]
         protected InputReader m_InputReader;

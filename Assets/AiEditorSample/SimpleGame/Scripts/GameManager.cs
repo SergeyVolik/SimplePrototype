@@ -31,7 +31,7 @@ namespace SerV112.UtilityAI.Game
         {
             if (player == null)
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
                 
             }
            
