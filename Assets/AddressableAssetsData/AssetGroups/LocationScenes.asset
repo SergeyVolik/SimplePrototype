@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 7dce030c368cf0247ad52d5211ca0b00
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 60e6189ca3fe3094289741700b8644c4
+    m_Address: Assets/AiEditorSample/SimpleGame/Scenes/SimpleGameScene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
   m_SchemaSet:

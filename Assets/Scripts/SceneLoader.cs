@@ -38,10 +38,14 @@ namespace SerV112.UtilityAI.Game
             _loadGameplayMap.OnLoadingRequested -= LoadGameMap;
         }
 
+        bool notUnloadScene;
         private void LoadMenu(GameSceneSO menuToLoad, bool showLoadingScreen, bool fadeScreen)
         {
             if (_isLoading)
                 return;
+           
+            if (_sceneToLoad == menuToLoad)
+                notUnloadScene = true;
 
             _sceneToLoad = menuToLoad;
             _isLoading = true;
@@ -52,19 +56,23 @@ namespace SerV112.UtilityAI.Game
 
         private void LoadGameMap(GameSceneSO gameMap, bool showLoadingScreen, bool fadeScreen)
         {
+            Debug.Log($"LoadGameplay {_isLoading}");
             if (_isLoading)
                 return;
 
+            if (_sceneToLoad == gameMap)
+                notUnloadScene = true;
+
             _sceneToLoad = gameMap;
             _isLoading = true;
-            Debug.Log("LoadGameplay");
+           
 
             UnloadPreviousScene();
         }
 
         private void LoadNewScene()
         {
-
+            notUnloadScene = false;
             _loadingOperationHandle = _sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true, 0);
             _loadingOperationHandle.Completed += OnNewSceneLoaded;
         }
@@ -83,24 +91,31 @@ namespace SerV112.UtilityAI.Game
         }
         private void UnloadPreviousScene()
         {
-           
-
+            AsyncOperationHandle<SceneInstance> scene;
             if (_currentlyLoadedScene != null) //would be null if the game was started in Initialisation
             {
                 if (_currentlyLoadedScene.sceneReference.OperationHandle.IsValid())
                 {
                     //Unload the scene through its AssetReference, i.e. through the Addressable system
-                    _currentlyLoadedScene.sceneReference.UnLoadScene();
+                    scene = _currentlyLoadedScene.sceneReference.UnLoadScene();
+
+                    if (notUnloadScene)
+                    {
+                        scene.Completed += (e) => LoadNewScene();
+
+                        return;
+                    }
+
                 }
-#if UNITY_EDITOR
-                else
-                {
-                    //Only used when, after a "cold start", the player moves to a new scene
-                    //Since the AsyncOperationHandle has not been used (the scene was already open in the editor),
-                    //the scene needs to be unloaded using regular SceneManager instead of as an Addressable
-                    SceneManager.UnloadSceneAsync(_currentlyLoadedScene.sceneReference.editorAsset.name);
-                }
-#endif
+//#if UNITY_EDITOR
+//                else
+//                {
+//                    //Only used when, after a "cold start", the player moves to a new scene
+//                    //Since the AsyncOperationHandle has not been used (the scene was already open in the editor),
+//                    //the scene needs to be unloaded using regular SceneManager instead of as an Addressable
+//                    SceneManager.UnloadSceneAsync(_currentlyLoadedScene.sceneReference.editorAsset.name);
+//                }
+//#endif
             }
 
             LoadNewScene();

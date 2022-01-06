@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: LogicScriptableObjects
+  m_Name: ScriptableObjects
   m_EditorClassIdentifier: 
-  m_GroupName: LogicScriptableObjects
+  m_GroupName: ScriptableObjects
   m_Data:
     m_SerializedData: []
   m_GUID: 9de5af63d8a1946419ef0b87fac80eff
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: f5d603530be25bc4185984e03823ad12
+    m_Address: Assets/SriptableObjectAssets
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
   m_SchemaSet:

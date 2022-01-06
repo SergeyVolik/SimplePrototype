@@ -14,6 +14,10 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private GameObject PlayerDeadPanel;
 
+        [SerializeField]
+        private GameSceneSO m_Scene;
+        [SerializeField]
+        private LoadEventChannelSO m_ReloadScene;
         private void Awake()
         {
             m_reader.JumpEvent += M_reader_JumpEvent;
@@ -31,8 +35,9 @@ namespace SerV112.UtilityAI.Game
         {
             if (player == null)
             {
-                SceneManager.LoadScene(1);
-                
+                m_ReloadScene.RaiseEvent(m_Scene);
+
+
             }
            
         }

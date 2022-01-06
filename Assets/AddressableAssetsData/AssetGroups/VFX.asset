@@ -17,28 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ffca2307f15b2de4c88168173dd9692a
   m_SerializeEntries:
-  - m_GUID: 26285f2e50f9ef548920e80bd25e9456
-    m_Address: Assets/AiEditorSample/SimpleGame/VFX/BleedingEffect.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 66f7afff215adf6459d5cf9e74124755
-    m_Address: Assets/AiEditorSample/SimpleGame/VFX/BloodAfterDeath.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 5bbfbbb81776e7149b26448b1b924278
-    m_Address: Assets/AiEditorSample/SimpleGame/VFX/DamageParticle.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1fc1cfd6d96280b4792f71f0ebf5af28
-    m_Address: Assets/AiEditorSample/SimpleGame/VFX/DropBulletShellEffect.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 2cb316a736f8b0740a4efc23cc8143a8
-    m_Address: Assets/AiEditorSample/SimpleGame/VFX/MuzzleFlashEffect.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 719ae99bb5d26c54e9314c108a29b037
-    m_Address: Assets/AiEditorSample/SimpleGame/VFX/WallDamageParticle.prefab
+  - m_GUID: 03bbf1c99a571b34c92ffc07c13b29fd
+    m_Address: Assets/VFX
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

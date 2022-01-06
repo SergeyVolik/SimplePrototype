@@ -17,44 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: f05d49c208ebe674787bfb7be4173e71
   m_SerializeEntries:
-  - m_GUID: 4279ee96699d604449dc968a24d59ad9
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/BulletHit.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 4e53435f12d2b9748a97b727a5d8f235
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/BulletInWall (mp3cut.net).mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9024d3db45f8c0149b2b4b3149a222a6
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/GunEquipSound.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 21c6bd01576525f45b27b1f6e08df3dd
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/HealSound.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6613b71399034534b9000570d6ed1583
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/minecraft-death-sound.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b105900b1fcd1534390128866cc03072
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/Pistol.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: fbcd0df52d9302a4f8faa1173d35a86f
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/ShootgunShot.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 78730f94a239afb419ca7e0b64738d9e
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/ShootWithoutBullet.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8ffe8fb8f153869449a6a5bee3c7487a
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/shotgunReload.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 16783650be3d7c9458751d8f8df12f73
-    m_Address: Assets/AiEditorSample/SimpleGame/SFX/SpeedBuster.mp3
+  - m_GUID: 729d7c54d167ce4428f99146c1ce45bc
+    m_Address: Assets/Audio/SFX
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
