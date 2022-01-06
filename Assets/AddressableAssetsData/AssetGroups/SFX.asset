@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SFX
+  m_EditorClassIdentifier: 
+  m_GroupName: SFX
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f05d49c208ebe674787bfb7be4173e71
+  m_SerializeEntries:
+  - m_GUID: 4279ee96699d604449dc968a24d59ad9
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/BulletHit.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4e53435f12d2b9748a97b727a5d8f235
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/BulletInWall (mp3cut.net).mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9024d3db45f8c0149b2b4b3149a222a6
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/GunEquipSound.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21c6bd01576525f45b27b1f6e08df3dd
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/HealSound.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6613b71399034534b9000570d6ed1583
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/minecraft-death-sound.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b105900b1fcd1534390128866cc03072
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/Pistol.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fbcd0df52d9302a4f8faa1173d35a86f
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/ShootgunShot.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 78730f94a239afb419ca7e0b64738d9e
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/ShootWithoutBullet.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8ffe8fb8f153869449a6a5bee3c7487a
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/shotgunReload.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16783650be3d7c9458751d8f8df12f73
+    m_Address: Assets/AiEditorSample/SimpleGame/SFX/SpeedBuster.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: adf30b10fe866904ea75647f6205f12e, type: 2}
+    - {fileID: 11400000, guid: abae76eac7fabb24d9a24d067158fb27, type: 2}

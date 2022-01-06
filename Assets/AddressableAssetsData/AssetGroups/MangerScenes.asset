@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MangerScenes
+  m_EditorClassIdentifier: 
+  m_GroupName: MangerScenes
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 308e08c686a8d8342ba4b3fa2ae27d2d
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: df9a813e0e9aef6469143d6a81cfafe6, type: 2}
+    - {fileID: 11400000, guid: 3d28161bebc8d3646b48736a014b5dd4, type: 2}

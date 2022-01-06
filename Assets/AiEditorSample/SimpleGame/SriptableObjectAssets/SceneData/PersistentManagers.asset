@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PersistentManagers
   m_EditorClassIdentifier: 
   description: 
-  sceneType: 0
+  sceneType: 1
   sceneReference:
     m_AssetGUID: ae71997ffce1a9043a52e3320c40fac7
     m_SubObjectName: 

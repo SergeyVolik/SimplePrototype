@@ -16,12 +16,7 @@ namespace SerV112.UtilityAI.Game
 		/// </summary>
 		public enum GameSceneType
 		{
-			//Playable scenes
-			Location, //SceneSelector tool will also load PersistentManagers and Gameplay
-			Menu, //SceneSelector tool will also load Gameplay
-
-			//Special scenes
-			Initialisation,
+			Menu,
 			PersistentManagers,
 			Gameplay
 		}
