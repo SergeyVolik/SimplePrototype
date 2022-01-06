@@ -20,7 +20,7 @@ namespace SerV112.UtilityAI.Game
         protected override void PlaySFX()
         {
             if (m_GunData.CurrentBullets == 0)
-                OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position, m_Volume);
+                OneShotAudioPool.Instance.PlaySFXWithPosition(m_SFX, transform.position);
         }
 
 

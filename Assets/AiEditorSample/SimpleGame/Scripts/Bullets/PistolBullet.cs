@@ -8,16 +8,18 @@ using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
-
+    public interface INoTragetBulletSoundEvent : ISoundEvent { }
+    public interface INoTragetBulletEffectEvent : IEffectEvent { }
+    public interface INoTragetBulletvent : INoTragetBulletSoundEvent, INoTragetBulletEffectEvent { }
 
     [RequireComponent(typeof(Rigidbody))]
-    public class PistolBullet : MonoBehaviour, IBullet
+    public class PistolBullet : MonoBehaviour, IBullet, INoTragetBulletvent
     {
         Rigidbody m_Rigidbody;
         [SerializeField]
-        private UnityEvent<IDamageApplicator> m_OnHit;
+        private UnityEvent m_OnHit;
 
-        public UnityEvent<IDamageApplicator> OnHit => m_OnHit;
+        public UnityEvent OnEvent => m_OnHit;
 
         void Awake()
         {
@@ -38,17 +40,19 @@ namespace SerV112.UtilityAI.Game
 
             }
             else {
-                HitWallParticlePool.Instance.PlayParticleAtPosition(transform.position);
+
+                OnEvent.Invoke();
+
+
             }
             PistolBulletPoolSingleton.Instance.Pool.Release(this);
            
-            OnHit.Invoke(com);
+            
         }
 
         [SerializeField]
         private int m_Damage = 10;
         public int Damage => m_Damage;
 
-        public UnityEvent OnEvent => throw new NotImplementedException();
     }
 }

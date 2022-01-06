@@ -6,10 +6,9 @@ namespace SerV112.UtilityAI.Game
     {
 
         T Event;
+
         [SerializeField]
-        protected AudioClip m_Clip;
-        [SerializeField, Range(0, 1)]
-        protected float m_Volume = 1;
+        protected SFXEvent m_SFX;
 
         // Start is called before the first frame update
         protected virtual void Awake()
@@ -28,7 +27,7 @@ namespace SerV112.UtilityAI.Game
 
         protected virtual void PlaySFX()
         {
-            OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position, m_Volume);
+            OneShotAudioPool.Instance.PlaySFXWithPosition(m_SFX, transform.position);
         }
     }
 }

@@ -1118,8 +1118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff16ec106547138478689a14dfaaa6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: 4279ee96699d604449dc968a24d59ad9, type: 3}
-  m_Volume: 1
+  m_SFX: {fileID: 11400000, guid: 6658d2f065d39994eae3a3466e7bb217, type: 2}
 --- !u!114 &5475925447402165287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,8 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5ada84a06f046459f5271b24f01214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: 6613b71399034534b9000570d6ed1583, type: 3}
-  m_Volume: 1
+  m_SFX: {fileID: 11400000, guid: 0d953192ee05f5c488f712648ccbe41d, type: 2}
 --- !u!114 &2378633190833640037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,6 +1753,12 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3056953549570750694, guid: c686ed29af8cdbe4fa34f8d941c86c52,
+        type: 3}
+      propertyPath: m_SFX
+      value: 
+      objectReference: {fileID: 11400000, guid: b656c51394fc2c043bb00a4812527756,
+        type: 2}
     - target: {fileID: 3161020948863522444, guid: c686ed29af8cdbe4fa34f8d941c86c52,
         type: 3}
       propertyPath: m_BulletSpawner

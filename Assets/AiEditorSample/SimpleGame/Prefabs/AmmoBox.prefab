@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ammo: 7
+  m_OnEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1812785011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72,8 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82183d9391e6f4b47a272bb941672000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 8300000, guid: 9024d3db45f8c0149b2b4b3149a222a6, type: 3}
-  m_Volume: 0
+  m_SFX: {fileID: 11400000, guid: 9835a00d4f6bfa84186f01fb6cd90544, type: 2}
 --- !u!1 &8961611097432316612
 GameObject:
   m_ObjectHideFlags: 0

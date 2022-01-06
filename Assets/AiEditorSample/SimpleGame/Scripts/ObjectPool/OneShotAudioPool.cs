@@ -23,6 +23,13 @@ namespace SerV112.UtilityAI.Game
             source.volume = volume;
             source.Play();
         }
+
+        public void PlaySFXWithPosition(SFXEvent evertData, Vector3 vector3)
+        {
+            var source = Pool.Get();
+            source.transform.position = vector3;
+            evertData.Play(source);
+        }
         protected override void DestroyObject(AudioSource source)
         {
             Destroy(source);

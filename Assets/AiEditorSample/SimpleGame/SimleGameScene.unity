@@ -1507,7 +1507,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228020355}
-  m_LocalRotation: {x: 0.4983446, y: 0.000000010162596, z: -0.0000000058415175, w: 0.86697906}
+  m_LocalRotation: {x: 0.49834457, y: -0.00000002776473, z: 0.000000015959328, w: 0.86697906}
   m_LocalPosition: {x: -1.77, y: 13.860001, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -9149,7 +9149,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480878916}
-  m_LocalRotation: {x: 0.4983446, y: 0.000000010162596, z: -0.0000000058415175, w: 0.86697906}
+  m_LocalRotation: {x: 0.49834457, y: -0.00000002776473, z: 0.000000015959328, w: 0.86697906}
   m_LocalPosition: {x: -1.77, y: 13.860001, z: -5.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12013,11 +12013,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 442263764, guid: aab2ca9a1e5de024ba25c89487748a0f, type: 3}
+      propertyPath: m_SFX
+      value: 
+      objectReference: {fileID: 11400000, guid: de750ae8c2322d84b9a8eac86d084022,
+        type: 2}
+    - target: {fileID: 1435252778, guid: aab2ca9a1e5de024ba25c89487748a0f, type: 3}
+      propertyPath: m_SFX
+      value: 
+      objectReference: {fileID: 11400000, guid: b656c51394fc2c043bb00a4812527756,
+        type: 2}
     - target: {fileID: 122240133189637698, guid: aab2ca9a1e5de024ba25c89487748a0f,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1700823795311751658, guid: aab2ca9a1e5de024ba25c89487748a0f,
+        type: 3}
+      propertyPath: m_SFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d953192ee05f5c488f712648ccbe41d,
+        type: 2}
     - target: {fileID: 3056953549620042055, guid: aab2ca9a1e5de024ba25c89487748a0f,
         type: 3}
       propertyPath: m_Name
@@ -12078,6 +12094,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3547574317298934771, guid: aab2ca9a1e5de024ba25c89487748a0f,
+        type: 3}
+      propertyPath: m_SFX
+      value: 
+      objectReference: {fileID: 11400000, guid: 6658d2f065d39994eae3a3466e7bb217,
+        type: 2}
     - target: {fileID: 6537336408688696646, guid: aab2ca9a1e5de024ba25c89487748a0f,
         type: 3}
       propertyPath: Target

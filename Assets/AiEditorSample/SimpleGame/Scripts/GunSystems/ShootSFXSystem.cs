@@ -22,8 +22,8 @@ namespace SerV112.UtilityAI.Game
         {
             if (m_GunData.CurrentBullets > 0)
             {
-                OneShotAudioPool.Instance.PlayClipAtPoint(m_Clip, transform.position);
-               
+                OneShotAudioPool.Instance.PlaySFXWithPosition(m_SFX, transform.position);
+
 
             }
         }
