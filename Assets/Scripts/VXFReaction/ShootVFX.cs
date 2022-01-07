@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SerV112.UtilityAI.Game.Channels;
 
 namespace SerV112.UtilityAI.Game
 {
@@ -11,7 +12,7 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private Transform MuzzleFlashSpawnPoint;
         [SerializeField]
-        protected ParticlePoolSO m_MuzzleFlash;
+        protected PositionAndRotationEventChannelSO m_MuzzleFlashChannel;
         protected override void Awake()
         {
             base.Awake();
@@ -21,9 +22,8 @@ namespace SerV112.UtilityAI.Game
         {
             if (IGunData.CurrentBullets != 0)
             {
-
-                PlayWithPosAndRot(m_MuzzleFlash.Request(), MuzzleFlashSpawnPoint.position, MuzzleFlashSpawnPoint.rotation, m_MuzzleFlash);
-                PlayWithPosAndRot(m_Pool.Request(), transform.position, transform.rotation, m_Pool);
+                m_Channel.RaiseEvent(transform.position, transform.rotation);
+                m_MuzzleFlashChannel.RaiseEvent(MuzzleFlashSpawnPoint.position, MuzzleFlashSpawnPoint.rotation);
 
 
             }

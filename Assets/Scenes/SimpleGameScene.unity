@@ -97,8 +97,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 20075772cc08eae468ceda0f0a4b9d51,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 85817cd5963baaa4fb510e9ad09b09d6,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -11446,6 +11448,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398,
         type: 2}
+    - target: {fileID: 1700823795311751658, guid: aab2ca9a1e5de024ba25c89487748a0f,
+        type: 3}
+      propertyPath: m_SfxEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 136760b6109c57742af3f056cdcaa1fc,
+        type: 2}
     - target: {fileID: 3056953549392179071, guid: aab2ca9a1e5de024ba25c89487748a0f,
         type: 3}
       propertyPath: m_IsActive
@@ -11511,12 +11519,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3547574317298934771, guid: aab2ca9a1e5de024ba25c89487748a0f,
-        type: 3}
-      propertyPath: m_SFX
-      value: 
-      objectReference: {fileID: 11400000, guid: 6658d2f065d39994eae3a3466e7bb217,
-        type: 2}
     - target: {fileID: 3547574317298934771, guid: aab2ca9a1e5de024ba25c89487748a0f,
         type: 3}
       propertyPath: m_Pool

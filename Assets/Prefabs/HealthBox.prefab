@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SFX: {fileID: 11400000, guid: 888362d93c088e140878297ab83dfd30, type: 2}
-  m_Pool: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398, type: 2}
+  m_SfxEvent: {fileID: 11400000, guid: 136760b6109c57742af3f056cdcaa1fc, type: 2}
 --- !u!1 &2328856366525636842
 GameObject:
   m_ObjectHideFlags: 0

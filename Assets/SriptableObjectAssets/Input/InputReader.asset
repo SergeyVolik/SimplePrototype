@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b9052d2041b4146b7dd3d9d6daa9ba, type: 3}
   m_Name: InputReader
   m_EditorClassIdentifier: 
-  description: 
+  description: Player input based on a new unity input system

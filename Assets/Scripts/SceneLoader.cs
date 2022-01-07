@@ -1,3 +1,4 @@
+using SerV112.UtilityAI.Game.Channels;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-namespace SerV112.UtilityAI.Game
+namespace SerV112.UtilityAI.Game.Managers
 {
     public class SceneLoader : MonoBehaviour
     {
 
-        [SerializeField]
-        private GamePlaySceneSO m_GamePlayScene;
 
         [Header("Listening to")]
         [SerializeField] private LoadEventChannelSO _loadMenu = default;     
         [SerializeField] private LoadEventChannelSO _loadGameplayMap = default;
-
-        [SerializeField] private InputReader m_InputReader;
 
         private bool _isLoading = false; //To prevent a new loading request while already loading a new scene
 
@@ -107,15 +104,6 @@ namespace SerV112.UtilityAI.Game
                     }
 
                 }
-//#if UNITY_EDITOR
-//                else
-//                {
-//                    //Only used when, after a "cold start", the player moves to a new scene
-//                    //Since the AsyncOperationHandle has not been used (the scene was already open in the editor),
-//                    //the scene needs to be unloaded using regular SceneManager instead of as an Addressable
-//                    SceneManager.UnloadSceneAsync(_currentlyLoadedScene.sceneReference.editorAsset.name);
-//                }
-//#endif
             }
 
             LoadNewScene();

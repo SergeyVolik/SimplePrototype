@@ -1,3 +1,4 @@
+using SerV112.UtilityAI.Game.Channels;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,17 @@ namespace SerV112.UtilityAI.Game
         {
             m_reader.JumpEvent += M_reader_JumpEvent;
         }
+
+        private void OnEnable()
+        {
+            m_reader.EnableGameplayInput();
+        }
+
+        private void OnDisable()
+        {
+            m_reader.DisableGameplayInput();
+        }
+
         private void Update()
         {
             if (player == null)

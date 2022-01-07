@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SerV112.UtilityAI.Game.Channels;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -19,12 +20,11 @@ namespace SerV112.UtilityAI.Game
 		[Header("Broadcasting on")]
 		[SerializeField] private AssetReference _menuLoadChannel = default;
 
-		[SerializeField]
-		private InputReader reader;
+
 
 		private void Start()
 		{
-			reader.EnableGameplayInput();
+			
 			//Load the persistent managers scene
 			_managersScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true).Completed += LoadEventChannel;
 		}

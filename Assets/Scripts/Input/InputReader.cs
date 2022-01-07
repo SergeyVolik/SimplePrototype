@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace SerV112.UtilityAI.Game
 {
-    [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
+    //[CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
     public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions
     {
 

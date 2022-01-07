@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SFX: {fileID: 11400000, guid: b656c51394fc2c043bb00a4812527756, type: 2}
-  m_Pool: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398, type: 2}
+  m_SfxEvent: {fileID: 11400000, guid: 136760b6109c57742af3f056cdcaa1fc, type: 2}
 --- !u!114 &6387329725181738775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a454933a22852940af3175d2e6ba1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Pool: {fileID: 11400000, guid: e03e40247a52e9e4db8ef07c185b2a93, type: 2}
+  m_Channel: {fileID: 11400000, guid: 6df66c3bd8c2d5f47a9db307efc77e0f, type: 2}
   MuzzleFlashSpawnPoint: {fileID: 1338091209778922771}
-  m_MuzzleFlash: {fileID: 11400000, guid: 578f48e8d79780a43871b94510f1f00a, type: 2}
+  m_MuzzleFlashChannel: {fileID: 11400000, guid: 5864bfc4900a2b2488f9f55d8be73055,
+    type: 2}
 --- !u!1 &3161020949670832238
 GameObject:
   m_ObjectHideFlags: 0

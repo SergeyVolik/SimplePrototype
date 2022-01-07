@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SFX: {fileID: 11400000, guid: 1caa12ab8dbfb914caefd99f9ce92bf2, type: 2}
-  m_Pool: {fileID: 11400000, guid: 49b52e83b6511e642a95b75282c57398, type: 2}
+  m_SfxEvent: {fileID: 11400000, guid: 136760b6109c57742af3f056cdcaa1fc, type: 2}
 --- !u!114 &-1757639019682498722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,4 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d24d9adf0f0e1d49938449148927584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Pool: {fileID: 11400000, guid: 20cd00c2c33312240bb8f2fabb38e614, type: 2}
+  m_Channel: {fileID: 11400000, guid: 724cd6ef5fbdb8c4190c19283a0ba30f, type: 2}

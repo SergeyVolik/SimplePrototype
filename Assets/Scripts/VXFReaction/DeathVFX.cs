@@ -12,7 +12,7 @@ namespace SerV112.UtilityAI.Game
         {
             if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo, 10))
             {
-                PlayWithPos(m_Pool.Request(), new Vector3(hitInfo.point.x, hitInfo.point.y + 0.05f, hitInfo.point.z), m_Pool);
+                m_Channel.RaiseEvent(new Vector3(hitInfo.point.x, hitInfo.point.y + 0.05f, hitInfo.point.z));
             }
         }
 
