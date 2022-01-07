@@ -173,6 +173,17 @@
                 },
                 {
                     "name": "",
+                    "id": "197d1fe6-1ebe-42eb-b514-2ade6399cfe3",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardOrGamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2b3309e9-6f0a-4c6a-a00a-32c5c550df6f",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -195,6 +206,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8f442515-7948-4bf8-a924-9dbc29c8b89d",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardOrGamepad",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4fc15383-2170-4ddc-a319-c0a54f4a0706",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -208,6 +230,17 @@
                     "name": "",
                     "id": "aad77449-a247-43a4-8e5d-0a8773d829cf",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardOrGamepad",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "157345a5-9a5e-4c48-a9df-30e351b4c5b6",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardOrGamepad",
@@ -241,6 +274,11 @@
                 },
                 {
                     "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<AndroidGamepad>",
                     "isOptional": true,
                     "isOR": false
                 }
