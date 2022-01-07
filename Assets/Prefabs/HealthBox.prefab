@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5595653874906317059}
   - component: {fileID: 730992821}
   - component: {fileID: 2085641305}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HealthBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1375562344227064426}
   - component: {fileID: 5793145206879839625}
   - component: {fileID: 7508376994298906606}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: New Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 7138588653339093551}
   - component: {fileID: 5627243124039653420}
   - component: {fileID: 3395414302844188518}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

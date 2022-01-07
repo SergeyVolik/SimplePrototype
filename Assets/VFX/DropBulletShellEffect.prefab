@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8813159662849525250}
   - component: {fileID: 8813159662849525253}
   - component: {fileID: 8813159662849525252}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: DropBulletShellEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

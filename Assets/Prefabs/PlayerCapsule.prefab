@@ -1145,6 +1145,8 @@ GameObject:
   - component: {fileID: 1700823795311751658}
   - component: {fileID: 4804477154149800167}
   - component: {fileID: 440924839210743690}
+  - component: {fileID: 2150299300478772333}
+  - component: {fileID: 6890957433253012328}
   m_Layer: 13
   m_Name: PlayerCapsule
   m_TagString: Untagged
@@ -1544,6 +1546,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Channel: {fileID: 11400000, guid: 8a2353dc130248540ae300c7cf47b4dc, type: 2}
+--- !u!114 &2150299300478772333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056953549620042055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb8a96d586e83f4ab382b1763855508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewRadius: 40
+  m_viewAngle: 120
+  m_targetMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnTargetLost:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6890957433253012328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3056953549620042055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60d3b43208cdc648aa4a9c9ea004412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MeshResolution: 1
+  m_EdgeResolveIterations: 4
+  m_EdgeDstThreshold: 0.5
+  m_ViewMeshFilter: {fileID: 3056953549392179008}
+  m_FOW: {fileID: 2150299300478772333}
+  NeedUpdate: 0
 --- !u!1 &3056953549702659131
 GameObject:
   m_ObjectHideFlags: 0

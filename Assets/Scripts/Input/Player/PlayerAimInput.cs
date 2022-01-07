@@ -10,6 +10,7 @@ namespace SerV112.UtilityAI.Game
     {
         Vector3 Direction { get; }
     }
+    [RequireComponent(typeof(FieldOfViewSystem))]
     [DisallowMultipleComponent]
     public class PlayerAimInput : AbstractPressDownAndUpInputComponent, IAimInputData, IAimDirection
     {
@@ -29,8 +30,11 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         protected UnityEvent m_PressDown;
 
+        FieldOfViewSystem FieldOfViewSystem;
+
         void Awake()
         {
+            FieldOfViewSystem = GetComponent<FieldOfViewSystem>();
             m_ViewCamera = Camera.main;
         }
        
@@ -38,9 +42,26 @@ namespace SerV112.UtilityAI.Game
         {
             m_InputReader.AimingStartedEvent += M_InputReader_AimingStartedEvent;
             m_InputReader.AimingCanceledEvent += M_InputReader_AimingCanceledEvent;
+            FieldOfViewSystem.OnTargetDetected.AddListener(TargetDetected);
+            FieldOfViewSystem.OnTargetLost.AddListener(TargetLost);
 
         }
+        Transform enemy;
+        private void TargetDetected(Transform trans)
+        {
+            print("Detected");
+            enemy = trans;
+            PressDown.Invoke();
+        }
 
+        private void TargetLost(Transform trans)
+        {
+            print("Lost");
+            enemy = null;
+
+            
+            m_PressUp.Invoke();
+        }
         private void M_InputReader_AimingCanceledEvent()
         {
             m_PressUp.Invoke();
@@ -55,15 +76,25 @@ namespace SerV112.UtilityAI.Game
         {
             m_InputReader.AimingStartedEvent -= M_InputReader_AimingStartedEvent;
             m_InputReader.AimingCanceledEvent -= M_InputReader_AimingCanceledEvent;
+            FieldOfViewSystem.OnTargetDetected.RemoveListener(TargetDetected);
+            FieldOfViewSystem.OnTargetLost.RemoveListener(TargetLost);
         }
 
-
+      
         void CalcAimDir()
         {
-            var ray = m_ViewCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+            if (enemy == null)
             {
-                m_AimDir = Vector3.ProjectOnPlane(hit.point - transform.position, Vector3.up).normalized;
+                var ray = m_ViewCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+                if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+                {
+                    m_AimDir = Vector3.ProjectOnPlane(hit.point - transform.position, Vector3.up).normalized;
+                }
+            }
+            else {
+
+                m_AimDir = Vector3.ProjectOnPlane(enemy.position - transform.position, Vector3.up).normalized;
+
             }
         }
 

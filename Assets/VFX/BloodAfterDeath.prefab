@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3998697074581330482}
   - component: {fileID: 3998697074581330485}
   - component: {fileID: 3998697074581330484}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BloodAfterDeath
   m_TagString: Untagged
   m_Icon: {fileID: 0}

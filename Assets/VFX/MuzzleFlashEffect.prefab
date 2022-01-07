@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6597763747349984062}
   - component: {fileID: 6597763747349984057}
   - component: {fileID: 6597763747349984056}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1390765490812721637}
   - component: {fileID: 1390765490812721634}
   - component: {fileID: 1390765490812721635}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: DamageParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

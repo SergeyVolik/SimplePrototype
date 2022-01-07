@@ -5,7 +5,6 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
 	[RequireComponent(typeof(FieldOfViewSystem))]
-	[DisallowMultipleComponent]
 	public class FieldOfViewMeshDebugComponent : MonoBehaviour
 	{
 
@@ -20,14 +19,19 @@ namespace SerV112.UtilityAI.Game
 		[SerializeField]
 		private MeshFilter m_ViewMeshFilter;
 
+		[SerializeField]
 		private FieldOfViewSystem m_FOW;
 		public FieldOfViewSystem FOW => m_FOW;
 		private Mesh m_ViewMesh;
 
+		[SerializeField]
+		private bool NeedUpdate;
+
+
 		// Start is called before the first frame update
 		void Start()
 		{
-			m_FOW = GetComponent<FieldOfViewSystem>();
+			//m_FOW = GetComponent<FieldOfViewSystem>();
 			m_ViewMesh = new Mesh();
 			m_ViewMesh.name = "View Mesh";
 			m_ViewMeshFilter.mesh = m_ViewMesh;
@@ -41,7 +45,7 @@ namespace SerV112.UtilityAI.Game
 			}
 		}
 
-		bool NeedUpdate;
+
         private void OnBecameInvisible()
         {
 			NeedUpdate = false;
@@ -54,7 +58,7 @@ namespace SerV112.UtilityAI.Game
 
 
 
-        void DrawFieldOfView()
+		void DrawFieldOfView()
 		{
 			int stepCount = Mathf.RoundToInt(m_FOW.viewAngle * m_MeshResolution);
 			float stepAngleSize = m_FOW.viewAngle / stepCount;

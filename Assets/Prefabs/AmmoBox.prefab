@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5106764911362788064}
-  - component: {fileID: 3431954070344130524}
   - component: {fileID: 1812785011}
   - component: {fileID: 4589268082834351121}
+  - component: {fileID: 783394444}
   m_Layer: 0
   m_Name: AmmoBox
   m_TagString: Untagged
@@ -34,22 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3431954070344130524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5106764911362788095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23e1f83dcf00d464c81d1a070fa10cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ammo: 7
-  m_OnEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &1812785011
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77,6 +61,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SFX: {fileID: 11400000, guid: 9835a00d4f6bfa84186f01fb6cd90544, type: 2}
   m_SfxEvent: {fileID: 11400000, guid: 136760b6109c57742af3f056cdcaa1fc, type: 2}
+--- !u!114 &783394444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5106764911362788095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e1f83dcf00d464c81d1a070fa10cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ammo: 20
+  m_OnEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8961611097432316612
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4671938225029094708}
   - component: {fileID: 2431606999227725153}
   - component: {fileID: 9109542700402545411}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 841930974158851775}
   - component: {fileID: 7788015060206535090}
   - component: {fileID: 3729907807301791058}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: New Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

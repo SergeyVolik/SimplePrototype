@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1094989069900499359}
   - component: {fileID: 7639393724942708890}
   - component: {fileID: 8126073454048431629}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Mesh
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1922365111}
   - component: {fileID: 4420346978427930387}
   - component: {fileID: 2092687394}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PistolPlaceHolderItem
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 8191141701626245187}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 7.499, y: 2.257, z: -0.758}
-  m_LocalScale: {x: 1.793271, y: 1.793271, z: 1.793271}
+  m_LocalScale: {x: 1.7932703, y: 1.7932705, z: 1.7932706}
   m_Children:
   - {fileID: 3010940770160390760}
   m_Father: {fileID: 0}
@@ -243,6 +243,9 @@ MonoBehaviour:
   m_MaxBulletsInGun: 7
   m_CurrentBullets: 7
   m_GunThrowForce: 1000
+  m_OnCurrentBulletsChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2092687394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -267,7 +270,7 @@ GameObject:
   - component: {fileID: 8191141702433803938}
   - component: {fileID: 8191141702433803936}
   - component: {fileID: 8191141702433803937}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Pistol (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0913413fa9f2794468e91f20effb1820, type: 2}
+  - {fileID: 2100000, guid: 7ee622bb69dcd0b409e22ef6b690964d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

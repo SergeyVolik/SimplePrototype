@@ -11,7 +11,7 @@ namespace SerV112.UtilityAI.Game
 		UnityEvent<Transform> OnTargetDetected { get; }
 		UnityEvent<Transform> OnTargetLost { get; }
 	}
-	[DisallowMultipleComponent]
+
 	public class FieldOfViewSystem : MonoBehaviour, IEnemyDetectedEvent
 	{
 		[SerializeField]
@@ -65,6 +65,7 @@ namespace SerV112.UtilityAI.Game
 
 		Transform lastTarget;
 		bool targetLost = true;
+		bool preTargetLost = true;
 		void FindVisibleTargets()
 		{
 			visibleTargets.Clear();
@@ -96,7 +97,8 @@ namespace SerV112.UtilityAI.Game
 
 			if (targetLost)
 			{
-				m_OnTargetLost.Invoke(lastTarget);
+				if(preTargetLost != targetLost)
+					m_OnTargetLost.Invoke(lastTarget);
 				lastTarget = null;
 				if (visibleTargets.Count > 0)
 				{
@@ -107,6 +109,8 @@ namespace SerV112.UtilityAI.Game
 				
 				
 			}
+
+			preTargetLost = targetLost;
 		}
 
 
