@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: ScriptableObjects
+  m_Name: TextMeshPro
   m_EditorClassIdentifier: 
-  m_GroupName: ScriptableObjects
+  m_GroupName: TextMeshPro
   m_Data:
     m_SerializedData: []
-  m_GUID: 9de5af63d8a1946419ef0b87fac80eff
+  m_GUID: 7c812304b42d20d499daa6c771c29e83
   m_SerializeEntries:
-  - m_GUID: f5d603530be25bc4185984e03823ad12
-    m_Address: Assets/SriptableObjectAssets
+  - m_GUID: e3265ab4bf004d28a9537516768c1c75
+    m_Address: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe393ace9b354375a9cb14cdbbc28be4
+    m_Address: Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 02b11cad4c71e7444928fcc1f14e232b, type: 2}
-    - {fileID: 11400000, guid: 5e43d52c1eab83a438e171e7b9d15b04, type: 2}
+    - {fileID: 11400000, guid: 3a2769d2aa20d94449e4e64ea6a2e021, type: 2}
+    - {fileID: 11400000, guid: ce22cdc44018b2e46906ca6ef887bca4, type: 2}

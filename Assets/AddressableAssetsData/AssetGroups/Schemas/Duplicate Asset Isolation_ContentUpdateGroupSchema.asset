@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7642f5daf759332438371029007cd48f, type: 3}
-  m_Name: AIProcessorDataSO
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Duplicate Asset Isolation_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  m_Agents: []
+  m_Group: {fileID: 11400000, guid: 8bc7e3618009cc246b165e5e537185f4, type: 2}
+  m_StaticContent: 1

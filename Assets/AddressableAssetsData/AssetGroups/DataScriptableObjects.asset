@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: DataScriptableObjects
+  m_EditorClassIdentifier: 
+  m_GroupName: DataScriptableObjects
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 01306669b502d644689889a25e6c157e
+  m_SerializeEntries:
+  - m_GUID: 1a306f2c03c81624586161170bda2fbe
+    m_Address: Assets/SriptableObjectAssets/SriptrableObjectsData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 66e1c046781bdc248a483fb98bbd2f97
+    m_Address: Assets/SriptableObjectAssets/Factories
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 582632d759408334782ce5d9c6c0a057
+    m_Address: Assets/SriptableObjectAssets/Pools
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bf11dcb2af2245d46bc209a7bbde6854, type: 2}
+    - {fileID: 11400000, guid: f9445904b01ac8c43aafde3393c4391e, type: 2}

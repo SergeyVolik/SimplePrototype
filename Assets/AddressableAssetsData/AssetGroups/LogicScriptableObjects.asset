@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: LogicScriptableObjects
+  m_EditorClassIdentifier: 
+  m_GroupName: LogicScriptableObjects
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9de5af63d8a1946419ef0b87fac80eff
+  m_SerializeEntries:
+  - m_GUID: f5d603530be25bc4185984e03823ad12
+    m_Address: Assets/SriptableObjectAssets
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab6d12f93179185468998f6d5d210d30
+    m_Address: Assets/SriptableObjectAssets/SceneData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b80120dca37e4742bf669d526cc63fc
+    m_Address: Assets/Scripts/AIGraph/SimpleAIDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 02b11cad4c71e7444928fcc1f14e232b, type: 2}
+    - {fileID: 11400000, guid: 5e43d52c1eab83a438e171e7b9d15b04, type: 2}

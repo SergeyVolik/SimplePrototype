@@ -133,10 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 782057316}
   - component: {fileID: 782057315}
-  - component: {fileID: 782057318}
-  - component: {fileID: 782057317}
-  - component: {fileID: 782057320}
-  - component: {fileID: 782057319}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -177,72 +173,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &782057317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782057314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb6da493fc371544bbf9ecacc52c22e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Data: {fileID: 11400000, guid: 61e5ab3d47e7a3e42b7c7133efe87171, type: 2}
-  m_GrowhSizeIfOverflow: 10
-  m_UpdateRateInSec: 1
---- !u!114 &782057318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782057314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0153336d4acdac49a0822e4bbf6b220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Index: 0
-  InData:
-    NormalizedValue: 0
-  OutData:
-    Default: 0
-  m_Data: {fileID: 11400000, guid: 61e5ab3d47e7a3e42b7c7133efe87171, type: 2}
---- !u!114 &782057319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782057314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d89557c90d88ad4484b36910d67777d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Data: {fileID: 11400000, guid: 8b80120dca37e4742bf669d526cc63fc, type: 2}
-  m_GrowhSizeIfOverflow: 10
-  m_UpdateRateInSec: 1
---- !u!114 &782057320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782057314}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50d1261f09bcb6f4981e280b11b9dbc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Index: 0
-  InData:
-    Helath: 7
-    SeeEnemy: 0
-    Ammo: 0
-    HasGun: 0
-  OutData:
-    SimpleAiActions: 0
-  m_Data: {fileID: 11400000, guid: 8b80120dca37e4742bf669d526cc63fc, type: 2}
