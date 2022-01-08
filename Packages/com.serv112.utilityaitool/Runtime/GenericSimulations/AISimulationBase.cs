@@ -78,14 +78,14 @@ public abstract class AISimulationBase<SimT, InT, OutT> : MonoBehaviour where In
             return;
         }
 
-
+        Instance = this;
 
         m_SimulationTimeID = Shader.PropertyToID("SimulationTime");
         m_DeltaTimeID = Shader.PropertyToID("DeltaTime");
         m_AgentInID = Shader.PropertyToID("InAgentBuffer");
         m_AgentOutID = Shader.PropertyToID("OutAgentBuffer");
 
-        Instance = this;
+        
 
         m_SimulationShader = FindComputeShader();
         m_KernelIndex = m_SimulationShader.FindKernel("CSMain");

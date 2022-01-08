@@ -47,9 +47,9 @@ namespace SerV112.UtilityAI.Game
 
         private void Update()
         {
-            if (m_AIAgentSimpleAI.GetOutData().SimpleAiActions == SimpleAiActions.RunToHealth)
+            if (m_AIAgentSimpleAI.OutData.SimpleAiActions == SimpleAiActions.RunToHealth)
             {
-                
+
             }
         }
 

@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: d44878d0f29499044a711389d6212b81
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 8b80120dca37e4742bf669d526cc63fc
+    m_Address: Assets/Scripts/AIGraph/SimpleAIDataSO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dfcfa00a4411c234b862599483dc32e7, type: 2}
   m_SchemaSet:

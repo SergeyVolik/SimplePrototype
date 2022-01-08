@@ -24,10 +24,29 @@ namespace SerV112.UtilityAIEditor
         private static readonly string UtilityAISimulationTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityAISimulationMono.tt");
         private static readonly string UtilityAIAgentTemplate = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityAIAgentMono.tt");
 
+        private static readonly string UtilityJobAISimulationMono = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityJobAISimulationMono.tt");
+        private static readonly string UtilityJobAISimulationDataSO = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityJobAISimulationDataSO.tt");
+        private static readonly string UtilityJobAIAgentMono = string.Join("/", DirectoryUtils.DefaultPath, "Editor/CodeGen/Templates/UtilityJobAIAgentMono.tt");
 
-        public static void CreateMonoBehaviourAIProcessorInspector(string pathWithScripts, string filename, AIAgentInspectorSettings settings)
+
+
+        //public static void CreateMonoBehaviourAIProcessorInspector(string pathWithScripts, string filename, AIAgentInspectorSettings settings)
+        //{
+        //    CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityAIAgentMonoInspector);
+        //}
+        public static void CreateUtilityJobAISimulationMonoScript(string pathWithScripts, string filename, JobSystemAiSimulationSettins settings)
         {
-            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityAIAgentMonoInspector);
+            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityJobAISimulationMono);
+        }
+
+        public static void CreateUtilityJobAISimulationDataSO(string pathWithScripts, string filename, JobSystemAiSimulationSettins settings)
+        {
+            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityJobAISimulationDataSO);
+        }
+
+        public static void CreateUtilityJobAIAgentMono(string pathWithScripts, string filename, JobSystemAiSimulationSettins settings)
+        {
+            CreateTemplate(pathWithScripts, filename, "cs", JsonConvert.SerializeObject(settings), UtilityJobAIAgentMono);
         }
 
         public static void CreateUtilityAISimulationMonoScript(string pathWithScripts, string filename, UtilityAISimulationSettings settings)

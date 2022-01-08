@@ -42,6 +42,42 @@ namespace SerV112.UtilityAI.Math
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Max(NativeArray<float> values)
+        {
+            float Max = float.MinValue;
+            
+            for (int i = 0; i < values.Length; i++)           
+                if (Max < values[i])
+                    Max = values[i];
+            
+            return Max;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Min(NativeArray<float> values)
+        {
+            float Min = float.MaxValue;
+
+            for (int i = 0; i < values.Length; i++)
+                if (Min > values[i])
+                    Min = values[i];
+
+            return Min;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Multiply(NativeArray<float> values)
+        {
+            float result = values[0];
+
+            for (int i = 1; i < values.Length; i++)
+                result *= values[i];
+
+            return result;
+        }
+
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int SelectAnswerIndex(NativeArray<float> values)
         {
             float max = float.MinValue;

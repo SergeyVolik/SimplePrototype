@@ -63,7 +63,7 @@ namespace SerV112.UtilityAIEditor
 
 
         Dictionary<string, string> InStructureFields = new Dictionary<string, string>();
-        Dictionary<SerializableGUID, string> CustomCurves = new Dictionary<SerializableGUID, string>();
+     
 
         Dictionary<int, HLSLSelectMaxValueIndexFunction> SelecteIndexFunctions = new Dictionary<int, HLSLSelectMaxValueIndexFunction>();
         Dictionary<int, HLSLAverageFunction> AverageFunctions = new Dictionary<int, HLSLAverageFunction>();
@@ -310,8 +310,8 @@ namespace SerV112.UtilityAIEditor
         {
             var cosineCurveNodeResult = HLSLCosineCurveFunction.Execute(
                        GetValue(cosineCurveNode.InputPort, out _),
-                       cosineCurveNode.Steepness.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                       cosineCurveNode.OffsetY.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                        GetFloatStrWithDot(cosineCurveNode.Steepness),
+                        GetFloatStrWithDot(cosineCurveNode.OffsetY)                     
                        );
             return SaveFunctionCallToVariable(cosineCurveNodeResult, "cosineCurve", ref cosineCurveCallCounter, m_Precision.ToString());
         }
@@ -343,21 +343,7 @@ namespace SerV112.UtilityAIEditor
             return (true, array);
         }
 
-        private (List<string> paramsNames, string floatArrayParams) GetFunctionParams(List<IPortModel> ports)
-        {
 
-            var paramsNames = new List<string>();
-            var floatArrayParams = "";
-            for (int i = 0; i < ports.Count; i++)
-            {
-                var param = GetValue(ports[i], out _);
-                floatArrayParams += param;
-                paramsNames.Add(param);
-
-            }
-
-            return (paramsNames, floatArrayParams);
-        }
 
         protected override string AverageNodeModel(AverageNodeModel averNode)
         {
@@ -390,8 +376,8 @@ namespace SerV112.UtilityAIEditor
         {
             var exponentialCurveResult = HLSLExponentialCurveFunction.Execute(
                        GetValue(expCurveNode.InputPort, out _),
-                       expCurveNode.Exponent.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                       expCurveNode.OffsetY.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                       GetFloatStrWithDot(expCurveNode.Exponent),
+                       GetFloatStrWithDot(expCurveNode.OffsetY)
                        );
             return SaveFunctionCallToVariable(exponentialCurveResult, "exponentialCurve", ref exponentialCurveCallCounter, m_Precision.ToString());
         }
@@ -400,8 +386,8 @@ namespace SerV112.UtilityAIEditor
         {
             var linearCurveResult = HLSLLinearCurveFunction.Execute(
                       GetValue(linearCurveNode.InputPort, out _),
-                      linearCurveNode.Slope.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                      linearCurveNode.OffsetY.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                       GetFloatStrWithDot(linearCurveNode.Slope),
+                        GetFloatStrWithDot(linearCurveNode.OffsetY)
                       );
             return SaveFunctionCallToVariable(linearCurveResult, "linearCurve", ref linearCurveCallCounter, m_Precision.ToString());
         }
@@ -410,8 +396,8 @@ namespace SerV112.UtilityAIEditor
         {
             var logisticCurveResult = HLSLLogisticCurveFunction.Execute(
                       GetValue(logisticNode.InputPort, out _),
-                      logisticNode.Steepness.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                      logisticNode.OffsetX.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                      GetFloatStrWithDot(logisticNode.Steepness),
+                        GetFloatStrWithDot(logisticNode.OffsetX)
                       );
             return SaveFunctionCallToVariable(logisticCurveResult, "logisticCurve", ref logisticCurveCallCounter, m_Precision.ToString());
         }
@@ -420,7 +406,7 @@ namespace SerV112.UtilityAIEditor
         {
             var logitCurveResult = HLSLLogitCurveFunction.Execute(
                     GetValue(logitNode.InputPort, out _),
-                    logitNode.LogBase.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                    GetFloatStrWithDot(logitNode.LogBase)
                     );
             return SaveFunctionCallToVariable(logitCurveResult, "logitCurve", ref logitCurveCallCounter, m_Precision.ToString());
         }
@@ -461,8 +447,8 @@ namespace SerV112.UtilityAIEditor
         {
             var sineCurveResult = HLSLSineCurveFunction.Execute(
                     GetValue(sineCurveNode.InputPort, out _),
-                    sineCurveNode.Steepness.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                    sineCurveNode.OffsetY.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                     GetFloatStrWithDot(sineCurveNode.Steepness),
+                      GetFloatStrWithDot(sineCurveNode.OffsetY)
                     );
             return SaveFunctionCallToVariable(sineCurveResult, "sineCurve", ref sineCurveCallCounter, m_Precision.ToString());
         }
@@ -488,7 +474,7 @@ namespace SerV112.UtilityAIEditor
             return GetFloatStrWithDot(value01.Value01);
         }
 
-        protected override string Multiply1NodeModel(Multiply01NodeModel mult01)
+        protected override string MultiplyNodeModel(Multiply01NodeModel mult01)
         {
             var ports = mult01.GetPorts(PortDirection.Input, PortType.Data).ToList();
             var paramsData = GetFunctionParams(ports);
@@ -500,11 +486,6 @@ namespace SerV112.UtilityAIEditor
                 MultiplyFunctions.Add(ports.Count, multFunc);
             }
 
-            if (!result.existed)
-            {
-                var avrageResult = multFunc.Execute(result.arrayName);
-                return SaveFunctionCallToVariable(avrageResult, "multiply", ref multiplyArrayCounter, m_Precision.ToString());
-            }
 
             return SaveFunctionCallToVariable(multFunc.Execute(result.arrayName), "multiply", ref multiplyArrayCounter, m_Precision.ToString());
         }
@@ -536,5 +517,14 @@ namespace SerV112.UtilityAIEditor
 
         }
 
+        protected override string Max01NodeModel(Max01NodeModel value01)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string Min01NodeModel(Min01NodeModel mult01)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

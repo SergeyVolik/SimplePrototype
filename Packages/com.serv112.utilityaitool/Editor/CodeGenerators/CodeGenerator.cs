@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEditor.GraphToolsFoundation.Overdrive;
 using UnityEditor.GraphToolsFoundation.Overdrive.BasicModel;
 using UnityEngine;
+using UnityEngine.GraphToolsFoundation.Overdrive;
 
 namespace SerV112.UtilityAIEditor
 {
@@ -16,6 +17,7 @@ namespace SerV112.UtilityAIEditor
         protected StringBuilder m_LocalVariableDeclaration = new StringBuilder();
         protected Dictionary<string, string> Variables = new Dictionary<string, string>();
         protected Dictionary<string, string> initedFloatArrays = new Dictionary<string, string>();
+        protected Dictionary<SerializableGUID, string> CustomCurves = new Dictionary<SerializableGUID, string>();
         protected AIGraphAssetModel m_Asset;
         protected AIStencil m_Stencil;
         protected string m_FileContent;
@@ -65,6 +67,22 @@ namespace SerV112.UtilityAIEditor
         {
             return GetStringWithTabs(str, m_TabsForClass);
         }
+        protected (List<string> paramsNames, string floatArrayParams) GetFunctionParams(List<IPortModel> ports)
+        {
+
+            var paramsNames = new List<string>();
+            var floatArrayParams = "";
+            for (int i = 0; i < ports.Count; i++)
+            {
+                var param = GetValue(ports[i], out _);
+                floatArrayParams += param;
+                paramsNames.Add(param);
+
+            }
+
+            return (paramsNames, floatArrayParams);
+        }
+
         protected string NextNode(NodeModel nodeModel)
         {
 
@@ -134,7 +152,13 @@ namespace SerV112.UtilityAIEditor
                     return Value01NodeModel(value01);
 
                 case Multiply01NodeModel mult01:
-                    return Multiply1NodeModel(mult01);
+                    return MultiplyNodeModel(mult01);
+
+                case Max01NodeModel max01:
+                    return Max01NodeModel(max01);
+
+                case Min01NodeModel min01:
+                    return Min01NodeModel(min01);
 
                 case CustomCurveNodeModel customCurve:
                     return CustomCurveNodeModel(customCurve);
@@ -149,9 +173,7 @@ namespace SerV112.UtilityAIEditor
 
         }
 
-        protected abstract string Value01NodeModel(Value01NodeModel value01);
-        protected abstract string Multiply1NodeModel(Multiply01NodeModel mult01);
-        protected abstract string CustomCurveNodeModel(CustomCurveNodeModel customCurve);
+      
 
         protected string GetValue(IPortModel port, out string name)
         {
@@ -176,23 +198,32 @@ namespace SerV112.UtilityAIEditor
         }
 
 
-        protected string SaveFunctionCallToVariable(string functionCall, string varibaleName, ref int functionCallCounter, string precision)
+        protected string SaveFunctionCallToVariable(string functionCall, string varibaleName, ref int functionCallCounter, string varType, bool cast = false)
         {
             if (!FunctionCalls.TryGetValue(functionCall, out var localVarCosine))
             {
                 localVarCosine = $"{varibaleName}{functionCallCounter}";
                 FunctionCalls.Add(functionCall, localVarCosine);
 
-                string type = precision;
+                string type = varType;
 
 
-
-                m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{type} {localVarCosine} = {functionCall};"));
+                if(!cast)
+                    m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{type} {localVarCosine} = {functionCall};"));
+                else m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{type} {localVarCosine} = ({type}){functionCall};"));
                 functionCallCounter++;
             }
 
             return localVarCosine;
         }
+
+        protected abstract string Max01NodeModel(Max01NodeModel value01);
+        protected abstract string Min01NodeModel(Min01NodeModel mult01);
+
+        protected abstract string Value01NodeModel(Value01NodeModel value01);
+        protected abstract string MultiplyNodeModel(Multiply01NodeModel mult01);
+        protected abstract string CustomCurveNodeModel(CustomCurveNodeModel customCurve);
+
         protected abstract string AIProcessorNodeModelNode(AIProcessorNodeModel processor);
 
         protected abstract string StateGroupNodeModel(StateGroupNodeModel stateGroup);

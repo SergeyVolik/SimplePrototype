@@ -59,7 +59,7 @@ namespace SerV112.UtilityAI.Game
         Transform lastTraget;
         void UpdateSeeData(Transform target)
         {
-            var dataIn = agentBrain.GetInData();
+            var dataIn = agentBrain.InData;
             lastTraget = target;
             if (seeEnemy)
                 AimInputDataComponent.PressDown.Invoke();
@@ -71,26 +71,29 @@ namespace SerV112.UtilityAI.Game
 
         void UpdateBulletsData(int bullets)
         {
-            var dataIn = agentBrain.GetInData();
+            //DOTO FIX
+            var dataIn = agentBrain.InData;
             dataIn.Ammo = bullets;
             agentBrain.ChangeAgentData(dataIn);
         }
         void UpdateHasGunData()
         {
-            var dataIn = agentBrain.GetInData();
+            //DOTO FIX
+            var dataIn = agentBrain.InData;
             dataIn.HasGun = 0f;
             agentBrain.ChangeAgentData(dataIn);
         }
         void Update()
         {
-          
-           
 
+
+
+            //TODO FIX
             if (seeEnemy)
             {
-                var dataOut = agentBrain.GetOutData();
+                var dataOut = agentBrain.OutData;
 
-                if(lastTraget != null)
+                if (lastTraget != null)
                     AimInputDataComponent.UpdateDirection(Vector3.ProjectOnPlane(lastTraget.position - transform.position, Vector3.up).normalized);
 
                 switch (dataOut.SimpleAiActions)
@@ -101,7 +104,7 @@ namespace SerV112.UtilityAI.Game
                         UpdateHasGunData();
                         break;
                     case SimpleAiActions.ShootToEnemy:
-                      
+
 
                         if (ShootDelay < t)
                         {

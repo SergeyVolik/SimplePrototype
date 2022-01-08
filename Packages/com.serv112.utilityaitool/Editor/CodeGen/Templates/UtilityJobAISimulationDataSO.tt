@@ -1,0 +1,27 @@
+<#@ template hostspecific="true" language="C#/Unity" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="SerV112.UtilityAIEditor" #>
+<#
+
+var settingsJson = this.Host.ResolveParameterValue("-", "-", "settings");
+
+var settings = JsonConvert.DeserializeObject<JobSystemAiSimulationSettins>(settingsJson);
+
+string SimulationName = settings.SimulationName;
+string AgentName = settings.AgentName;
+string JobName = settings.JobName;
+string InDataType = settings.InDataType;
+string OutDataType = settings.OutDataType;
+string SimDataSOName = settings.SimDataSOName;
+#>
+//-----------------------------------------------------------------------
+// This file is AUTO-GENERATED.
+// Changes for this script by hand might be lost when auto-generation is run.
+// (Generated date: <#=DateTime.Now.ToString("yyyy-MM-dd")#>)
+//-----------------------------------------------------------------------
+
+using SerV112.UtilityAI.Base;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "<#=SimDataSOName#>", menuName = "AISimulationData/<#=SimDataSOName#>")]
+public class <#=SimDataSOName#> : AISimulationData<<#=InDataType#>, <#=OutDataType#>, <#=SimDataSOName#>> { }

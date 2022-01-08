@@ -27,8 +27,8 @@ namespace SerV112.UtilityAI.Game
         // Update is called once per frame
         void Update()
         {
-           
-            var data = m_AgentBrain.GetOutData();
+            //DOTO FIX
+            var data = m_AgentBrain.OutData;
 
             if (m_Agent.remainingDistance < 0.5f)
             {
@@ -37,7 +37,7 @@ namespace SerV112.UtilityAI.Game
             }
             if (data.SimpleAiActions == SimpleAiActions.Patrol)
             {
-              
+
 
                 if (!Move)
                 {

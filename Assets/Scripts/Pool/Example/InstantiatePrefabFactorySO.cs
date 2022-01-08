@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace SerV112.UtilityAI.Game
 {
 	public abstract class InstantiatePrefabFactorySO<T> : FactorySO<T> where T : Component

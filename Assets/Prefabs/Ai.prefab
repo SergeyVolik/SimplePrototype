@@ -957,6 +957,8 @@ MonoBehaviour:
   m_EdgeResolveIterations: 4
   m_EdgeDstThreshold: 0.5
   m_ViewMeshFilter: {fileID: 6552894491025906294}
+  m_FOW: {fileID: 0}
+  NeedUpdate: 0
 --- !u!114 &5605136828032685993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,7 +1022,7 @@ MonoBehaviour:
     HasGun: 0
   OutData:
     SimpleAiActions: 0
-    Age: 0
+  m_Data: {fileID: 11400000, guid: 8b80120dca37e4742bf669d526cc63fc, type: 2}
 --- !u!114 &494138212214657729
 MonoBehaviour:
   m_ObjectHideFlags: 0

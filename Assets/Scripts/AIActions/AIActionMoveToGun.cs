@@ -48,7 +48,8 @@ namespace SerV112.UtilityAI.Game
         }
         void UpdateHasGunDataTrue(IGun gundata)
         {
-            var m_inData = m_AgentBrain.GetInData();
+
+            var m_inData = m_AgentBrain.InData;
             m_inData.HasGun = 1f;
             m_inData.Ammo = gundata.GunData.CurrentBullets;
             m_AgentBrain.ChangeAgentData(m_inData);
@@ -56,8 +57,9 @@ namespace SerV112.UtilityAI.Game
 
         void UpdateHasGunDataFalse()
         {
+            //DOTO FIX
             m_IsMoving = false;
-            var m_inData = m_AgentBrain.GetInData();
+            var m_inData = m_AgentBrain.InData;
             m_inData.HasGun = 0f;
             m_AgentBrain.ChangeAgentData(m_inData);
         }
@@ -87,14 +89,15 @@ namespace SerV112.UtilityAI.Game
         {
             while (true)
             {
-                var data = m_AgentBrain.GetOutData();
+                //DOTO FIX
+                var data = m_AgentBrain.OutData;
 
 
                 if (data.SimpleAiActions == SimpleAiActions.SearchGun)
                 {
                     if (!m_IsMoving)
                     {
-                       
+
                         m_IsMoving = true;
                         m_NavAgent.isStopped = false;
                         m_NavAgent.ResetPath();
@@ -105,7 +108,6 @@ namespace SerV112.UtilityAI.Game
                         {
 
                             tragetGun = GetClosest(pistols);
-                            //var closestPosition = pistols[Random.Range(0, pistols.Count)].transform.position;//GetClosest(pistols);
                             m_NavAgent.SetDestination(tragetGun.transform.position);
                         }
 
@@ -113,7 +115,7 @@ namespace SerV112.UtilityAI.Game
 
                     else if (tragetGun.gameObject.activeSelf)
                     {
-                        
+
 
 
                         m_NavAgent.ResetPath();
@@ -121,11 +123,11 @@ namespace SerV112.UtilityAI.Game
                         if (!result)
                             m_IsMoving = false;
 
-                        
+
                     }
                     else
                     {
-                       
+
                         tragetGun = null;
                         m_IsMoving = false;
                     }

@@ -19,20 +19,30 @@ namespace SerV112.UtilityAIEditor
         private StringBuilder m_PropertiesDecl = new StringBuilder();
         private StringBuilder m_ExecuteFUnction = new StringBuilder();
 
+        public string InAgentDataName = "InAgentData";
+        public string OutAgentDataName = "OutAgentData";
+
 
         private string m_Namesapce;
 
-        public JobSystemCodeGen(AIGraphAssetModel Asset, AIStencil Stencil, string Filename, string FilePath) : base(Asset, Stencil, Filename, FilePath, "cs")
+        private string outputLocalVariable = "resultVar";
+        private List<string> m_OutputEnumTypes;
+        string processorName;
+        public JobSystemCodeGen(AIGraphAssetModel Asset, AIStencil Stencil, string Filename, string FilePath, List<string> OutputEnumTypes, string name) : base(Asset, Stencil, Filename, FilePath, "cs")
         {
-            m_Namesapce = "MYNamespace";
-            m_TabsForClass = 1;
-            m_TabsForFunctions = 2;
-            m_TabsForLocalVars = 3;
+            InAgentDataName = "InAgentData" + name;
+            OutAgentDataName = "OutAgentData" + name;
+            //m_Namesapce = "Namespace";
+            //m_TabsForClass = 1;
+            //m_TabsForFunctions = 2;
+            //m_TabsForLocalVars = 3;
+
+            m_OutputEnumTypes = OutputEnumTypes;
         }
 
 
 
-        private string outputLocalVariable = "resultVar";
+      
         protected override string AIProcessorNodeModelNode(AIProcessorNodeModel processor)
         {
             m_ExecuteFUnction.AppendLine(GetTabsForFunctions("public void Execute (int index)"));
@@ -103,10 +113,12 @@ namespace SerV112.UtilityAIEditor
 
         protected override void CodePart()
         {
+            m_FileLinesOfCode.AppendLine("using System;");
             m_FileLinesOfCode.AppendLine("using Unity.Jobs;");
             m_FileLinesOfCode.AppendLine("using Unity.Collections;");
             m_FileLinesOfCode.AppendLine("using Unity.Burst;");
-            m_FileLinesOfCode.AppendLine("using SerV112.UtilityAI.Math;");
+            m_FileLinesOfCode.AppendLine("using SerV112.UtilityAI.Math;"); 
+            m_FileLinesOfCode.AppendLine("using SerV112.UtilityAI.Base;"); 
 
             if (!string.IsNullOrEmpty(m_Namesapce))
             {
@@ -115,50 +127,63 @@ namespace SerV112.UtilityAIEditor
             }
 
             m_FileLinesOfCode.AppendLine(GetTabsForClass("[BurstCompile]"));
-            m_FileLinesOfCode.AppendLine(GetTabsForClass("public struct ProcessAI : IJobParallelFor"));
+            m_FileLinesOfCode.AppendLine(GetTabsForClass($"public struct {m_Filename} : IUtilityAIJob<{InAgentDataName}, {OutAgentDataName}>"));
             m_FileLinesOfCode.AppendLine(GetTabsForClass("{"));
 
             var proc = m_Stencil.GetEntryPoints().OfType<AIProcessorNodeModel>().ToList()[0];
             NextNode(proc);
 
+            List<string> list = new List<string>();
+            for (int i = 0; i < inputDataFieldNames.Count; i++)
+            {
+                list.Add("float");
+            }
 
-            if (DeclareStruct(inputDataFieldNames, InAgentDataName, "float"))
+            if (DeclareStruct(inputDataFieldNames, InAgentDataName, list))
             {
 
-
-                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"public NativeArray<{InAgentDataName}> {InAgentDataName};"));
+                  m_PropertiesDecl.AppendLine(GetTabsForFunctions($"[ReadOnly]"));
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"private NativeArray<{InAgentDataName}> {InAgentDataName};"));
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"public NativeArray<{InAgentDataName}> InAgentDataArray {{ get => {InAgentDataName}; set => {InAgentDataName} = value; }}"));
+                
 
             }
 
-            if (DeclareStruct(outputDataFieldNames, OutAgentDataName, "int"))
+            if (DeclareStruct(outputDataFieldNames, OutAgentDataName, m_OutputEnumTypes))
             {
-                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"[ReadOnly]"));
-                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"public NativeArray<{OutAgentDataName}> {OutAgentDataName};"));
+              
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"private NativeArray<{OutAgentDataName}> {OutAgentDataName};"));
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"public NativeArray<{OutAgentDataName}> OutAgentDataArray {{ get => {OutAgentDataName}; set => {OutAgentDataName} = value; }}"));
             }
 
             m_FileLinesOfCode.AppendLine(m_PropertiesDecl.ToString());
             m_FileLinesOfCode.AppendLine(m_ExecuteFUnction.ToString());         
             m_FileLinesOfCode.AppendLine(GetTabsForClass("}"));
+
+
             m_FileLinesOfCode.AppendLine(m_StructDeclarationPart.ToString());
+
             if (!string.IsNullOrEmpty(m_Namesapce))
             {
 
                 m_FileLinesOfCode.AppendLine("}");
             }
 
+           
             m_FileContent = m_FileLinesOfCode.ToString();
         }
 
 
-        bool DeclareStruct(List<string> inputDataFieldNames, string structName, string type)
+        bool DeclareStruct(List<string> inputDataFieldNames, string structName, List<string> types)
         {
-            if (inputDataFieldNames.Count > 0)
+            if (inputDataFieldNames.Count > 0)           
             {
+                m_StructDeclarationPart.AppendLine(GetTabsForClass($"[Serializable]"));
                 m_StructDeclarationPart.AppendLine(GetTabsForClass($"public struct {structName} {{"));
 
                 for (int i = 0; i < inputDataFieldNames.Count; i++)
                 {
-                    m_StructDeclarationPart.AppendLine(GetTabsForFunctions($"public {type} {inputDataFieldNames[i]};"));
+                    m_StructDeclarationPart.AppendLine(GetTabsForFunctions($"public {types[i]} {inputDataFieldNames[i]};"));
                 }
 
                 m_StructDeclarationPart.AppendLine(GetTabsForClass($"}}"));
@@ -172,8 +197,7 @@ namespace SerV112.UtilityAIEditor
 
 
 
-        private const string InAgentDataName = "InAgentData";
-        private const string OutAgentDataName = "OutAgentData";
+      
 
         List<string> inputDataFieldNames = new List<string>();
         List<string> outputDataFieldNames = new List<string>();
@@ -337,7 +361,7 @@ namespace SerV112.UtilityAIEditor
         {
             outputDataFieldNames.Add(stateGroup.Name);
 
-            var stateNodes = stateGroup.GetConnectedInputDataNodes().OfType<NodeModel>().ToList();
+            var stateNodes = stateGroup.GetConnectedNodes(PortDirection.Input, PortType.Data).OfType<StateNodeModel>().ToList();
 
             string allParamsString = "";
             List<string> allParamsList = new List<string>();
@@ -348,7 +372,7 @@ namespace SerV112.UtilityAIEditor
                 allParamsList.Add(variablename);
             }
 
-            allParamsList.Sort();
+
             for (int j = 0; j < allParamsList.Count; j++)
             {
                 allParamsString += allParamsList[j];
@@ -357,7 +381,7 @@ namespace SerV112.UtilityAIEditor
             {
                 result = $"values{arrayNumber}"; 
                 m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"NativeArray<float> {result} = new  NativeArray<float>({allParamsList.Count}, Allocator.Temp);"));
-                for (int j = 0; j < allParamsList.Count; j++)
+                for (int j =0; j < allParamsList.Count; j++)
                 {
                     m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{result}[{j}] = {allParamsList[j]};"));
                 }
@@ -368,7 +392,7 @@ namespace SerV112.UtilityAIEditor
                 arrayNumber++;
             }
 
-            var vari = SaveFunctionCallToVariable($"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.SelectAnswerIndex)}({result})", $"selectIndex", ref entryIndex, "int");
+            var vari = SaveFunctionCallToVariable($"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.SelectAnswerIndex)}({result})", $"selectIndex", ref entryIndex, m_OutputEnumTypes[entryIndex], true);
 
             m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{outputLocalVariable}.{stateGroup.Name} = {vari};"));
             
@@ -415,17 +439,105 @@ namespace SerV112.UtilityAIEditor
 
         protected override string Value01NodeModel(Value01NodeModel value01)
         {
-            throw new NotImplementedException();
+            return GetFloatStrWithDot(value01.Value01);
         }
 
-        protected override string Multiply1NodeModel(Multiply01NodeModel mult01)
+        int arraysCounter;
+     
+        private (bool existed, string arrayName) PrepareFloatArray(string floatArrayParams, List<string> paramsNames)
         {
-            throw new NotImplementedException();
+            if (!initedFloatArrays.TryGetValue(floatArrayParams, out var array))
+            {
+
+               
+                array = $"floatArray{arraysCounter}";
+                m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"NativeArray<float> {array} = new  NativeArray<float>({paramsNames.Count}, Allocator.Temp);"));
+
+                for (int i = 0; i < paramsNames.Count; i++)
+                {
+
+                    m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{array}[{i}] = {paramsNames[i]};"));
+                }
+
+
+
+                initedFloatArrays.Add(floatArrayParams, array);
+
+                arraysCounter++;
+                return (false, array);
+            }
+
+            return (true, array);
         }
 
+
+        int multiply;
+        protected override string MultiplyNodeModel(Multiply01NodeModel mult01)
+        {
+            var ports = mult01.GetPorts(PortDirection.Input, PortType.Data).ToList();
+            var paramsData = GetFunctionParams(ports);
+            var result = PrepareFloatArray(paramsData.floatArrayParams, paramsData.paramsNames);
+
+            string Mylt = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Multiply)}({result.arrayName})";
+
+
+               
+            return SaveFunctionCallToVariable(Mylt, "multiply", ref multiply, "float");
+            
+        }
+
+        int customCurvesArrayCounter;
+        public static readonly int[] Array = { 1, 2, 3 };
         protected override string CustomCurveNodeModel(CustomCurveNodeModel customCurve)
         {
-            throw new NotImplementedException();
+
+            if (!CustomCurves.TryGetValue(customCurve.Guid, out var arrayName))
+            {
+                float step = 1f / 100f;
+                arrayName = $"customCurveArray{customCurvesArrayCounter}";
+
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"private static readonly float[] {arrayName} = {{"));
+                for (float x = 0; x < 1f; x += step)
+                {
+                    m_PropertiesDecl.AppendLine(GetTabsForLocal($"{GetFloatStrWithDot(Mathf.Clamp01(customCurve.CustomCurve.Evaluate(x)))},"));
+                }
+
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"}};"));
+                customCurvesArrayCounter++;
+
+                CustomCurves.Add(customCurve.Guid, arrayName);
+            }
+
+
+
+            return $"{arrayName}[(int)({GetValue(customCurve.InputPort, out _)}*100)]";
+        }
+
+        int maxCounter;
+        protected override string Max01NodeModel(Max01NodeModel max01)
+        {
+            var ports = max01.GetPorts(PortDirection.Input, PortType.Data).ToList();
+            var paramsData = GetFunctionParams(ports);
+            var result = PrepareFloatArray(paramsData.floatArrayParams, paramsData.paramsNames);
+
+            string Mylt = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Max)}({result.arrayName})";
+
+
+
+            return SaveFunctionCallToVariable(Mylt, "max", ref maxCounter, "float");
+        }
+
+        protected override string Min01NodeModel(Min01NodeModel min01)
+        {
+            var ports = min01.GetPorts(PortDirection.Input, PortType.Data).ToList();
+            var paramsData = GetFunctionParams(ports);
+            var result = PrepareFloatArray(paramsData.floatArrayParams, paramsData.paramsNames);
+
+            string Mylt = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Min)}({result.arrayName})";
+
+
+
+            return SaveFunctionCallToVariable(Mylt, "min", ref maxCounter, "float");
         }
     }
 }
