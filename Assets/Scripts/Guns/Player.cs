@@ -19,6 +19,8 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private HandHolder m_LeftHand;
         public HandHolder LeftHand => m_LeftHand;
+
+        public int CurrentBullets;
         public void DoAction()
         {
             if (!RightHand.IsFree)
