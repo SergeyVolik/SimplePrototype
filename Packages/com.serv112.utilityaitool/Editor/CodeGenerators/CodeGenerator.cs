@@ -217,6 +217,30 @@ namespace SerV112.UtilityAIEditor
             return localVarCosine;
         }
 
+        protected string SaveFunctionCallToVariableWithoutCashe(string functionCall, string varibaleName, ref int functionCallCounter, string varType, bool cast = false)
+        {
+           
+            var localVarCosine = $"{varibaleName}{functionCallCounter}";
+
+
+            string type = varType;
+
+
+            if (!cast)
+                m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{type} {localVarCosine} = {functionCall};"));
+            else m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{type} {localVarCosine} = ({type}){functionCall};"));
+
+            
+
+            return localVarCosine;
+        }
+        protected void SaveFunctionCallToExistedVariable(string functionCall, string varibaleName)
+        {
+
+                m_LocalVariableDeclaration.AppendLine(GetTabsForLocal($"{varibaleName} = {functionCall};"));
+
+        }
+
         protected abstract string Max01NodeModel(Max01NodeModel value01);
         protected abstract string Min01NodeModel(Min01NodeModel mult01);
 

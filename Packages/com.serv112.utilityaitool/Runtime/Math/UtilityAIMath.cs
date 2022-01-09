@@ -53,6 +53,19 @@ namespace SerV112.UtilityAI.Math
             return Max;
         }
 
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Max(float first, float second)
+        {
+            return first < second ? second : first;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Min(float first, float second)
+        {
+            return first > second ? second : first;
+        }
+
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Min(NativeArray<float> values)
         {

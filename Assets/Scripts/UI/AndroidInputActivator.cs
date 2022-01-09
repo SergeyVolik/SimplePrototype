@@ -9,8 +9,6 @@ namespace SerV112.UtilityAI.Game.UI
         [SerializeField]
         RectTransform AndroidInputPanel;
 
-
-
         void Awake()
         {
 #if UNITY_ANDROID
@@ -20,10 +18,6 @@ namespace SerV112.UtilityAI.Game.UI
 #endif
         }
 
-
-
-
-        // Update is called once per frame
 
     }
 

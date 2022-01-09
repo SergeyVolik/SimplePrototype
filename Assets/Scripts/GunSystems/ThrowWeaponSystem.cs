@@ -9,11 +9,12 @@ namespace SerV112.UtilityAI.Game
 
 
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(HandData))]
+    [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(IThrowInput))]
     public class ThrowWeaponSystem : MonoBehaviour, IThrowGunEvent
     {
-        private HandData m_HandComponent;
+
+        Player Player;
         IThrowInput input;
 
         public UnityEvent OnEvent => m_OnThrow;
@@ -24,7 +25,7 @@ namespace SerV112.UtilityAI.Game
         void Awake()
         {
             input = GetComponent<IThrowInput>();
-            m_HandComponent = GetComponent<HandData>();
+            Player = GetComponent<Player>();
         }
 
         private void OnEnable()
@@ -39,9 +40,10 @@ namespace SerV112.UtilityAI.Game
 
         void Throw()
         {
-            if (m_HandComponent.ActiveGun != null)
+            var result = Player.ThrowEquipedItems(force);
+
+            if (result)
             {
-                m_HandComponent.ThrowWeapon(force);
                 m_OnThrow.Invoke();
 
             }

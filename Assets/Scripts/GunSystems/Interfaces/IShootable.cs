@@ -2,9 +2,8 @@
 
 namespace SerV112.UtilityAI.Game
 {
-    public interface IShootable
+    public interface IShootable : IActionable
     {
-        int Shoot();
 
 
     }

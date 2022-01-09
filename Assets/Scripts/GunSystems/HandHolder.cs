@@ -5,18 +5,17 @@ using UnityEngine;
 namespace SerV112.UtilityAI.Game
 {
 
+
+
     [DisallowMultipleComponent]   
-    public class HandData : MonoBehaviour
+    public class HandHolder : MonoBehaviour
     {
         [SerializeField]
         private Pistol m_Pistol;
-        [SerializeField]
-        private Shotgun m_Shotgun;
-        [SerializeField]
-        private Rifle m_Rifle;
+
         private IGunPlaceholder m_LastGunPlaceholders;
         private IGun m_ActiveGun;
-
+        public bool IsFree => m_ActiveGun == null;
         public IGun ActiveGun => m_ActiveGun;
         public IGunPlaceholder LastGunPlaceholders => m_LastGunPlaceholders;
         public Pistol SetPistol(PistolPlaceholder placeholder)
@@ -34,17 +33,6 @@ namespace SerV112.UtilityAI.Game
             return m_Pistol;
         }
 
-        public Shotgun SetShotgun()
-        {
-            m_ActiveGun = m_Shotgun;
-            return m_Shotgun;
-        }
-
-        public Rifle SetRifle()
-        {
-            m_ActiveGun = m_Rifle;
-            return m_Rifle;
-        }
 
         private void UpdateGunProjectileDataAndDrop()
         {

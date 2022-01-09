@@ -11,43 +11,40 @@ namespace SerV112.UtilityAI.Game
         UnityEvent<IGun> OnEquipGun { get; }
     }
 
-    [RequireComponent(typeof(HandData))]
+    [RequireComponent(typeof(Player))]
     [DisallowMultipleComponent]
     public class EquipWeaponSystem : MonoBehaviour, IEquipGunEvent
     {
-        HandData m_Hand;
 
+        public UnityEvent<IGun> OnEquipGun => m_OnEquipGun;
+        [SerializeField]
+        private UnityEvent<IGun> m_OnEquipGun;
+
+        Player Player;
         void Start()
         {
-            m_Hand = GetComponent<HandData>();
+            Player = GetComponent<Player>();
         }
 
         
 
         const string WeaponTag = "Weapon";
 
-        public UnityEvent<IGun> OnEquipGun => m_OnEquipGun;
-        [SerializeField]
-        private UnityEvent<IGun> m_OnEquipGun;
+
         private void OnTriggerEnter(Collider other)
         {
             if (this.enabled == true && other.CompareTag(WeaponTag))
             {
-                if (m_Hand.ActiveGun == null)
+               
+                if (other.TryGetCompontInParent<IGunPlaceholder>(out var item))
                 {
-                    var ph = other.GetComponentInParent<IGunPlaceholder>();
-
-                    switch (ph)
-                    {
-                        case PistolPlaceholder wg:
-
-                            
-                            m_OnEquipGun.Invoke(m_Hand.SetPistol(wg));
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                    
+                    if(Player.TryEquipGun(item, out var gun))
+                        m_OnEquipGun.Invoke(gun);
+                    
+                }       
+                   
+                
             }
         }
     }

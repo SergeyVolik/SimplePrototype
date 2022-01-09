@@ -8,8 +8,6 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(GunDataComponent))]
     public class Pistol : MonoBehaviour, IPistol
     {
-        [SerializeField]
-        private int m_MaxBulletsInGun = 30;
 
         private GunDataComponent m_Data;
 
@@ -40,12 +38,8 @@ namespace SerV112.UtilityAI.Game
             gameObject.SetActive(true);
         }
 
-        public void Reload()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public int Shoot()
+        public void DoAction()
         {
             if (m_Data.CurrentBullets > 0)
             {
@@ -58,7 +52,6 @@ namespace SerV112.UtilityAI.Game
 
             OnEvent.Invoke();
 
-            return m_Data.CurrentBullets;
         }
 
 

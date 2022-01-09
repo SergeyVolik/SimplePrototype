@@ -142,7 +142,7 @@ namespace SerV112.UtilityAIEditor
             if (DeclareStruct(inputDataFieldNames, InAgentDataName, list))
             {
 
-                  m_PropertiesDecl.AppendLine(GetTabsForFunctions($"[ReadOnly]"));
+                m_PropertiesDecl.AppendLine(GetTabsForFunctions($"[ReadOnly]"));
                 m_PropertiesDecl.AppendLine(GetTabsForFunctions($"private NativeArray<{InAgentDataName}> {InAgentDataName};"));
                 m_PropertiesDecl.AppendLine(GetTabsForFunctions($"public NativeArray<{InAgentDataName}> InAgentDataArray {{ get => {InAgentDataName}; set => {InAgentDataName} = value; }}"));
                 
@@ -176,22 +176,20 @@ namespace SerV112.UtilityAIEditor
 
         bool DeclareStruct(List<string> inputDataFieldNames, string structName, List<string> types)
         {
-            if (inputDataFieldNames.Count > 0)           
+           
+            m_StructDeclarationPart.AppendLine(GetTabsForClass($"[Serializable]"));
+            m_StructDeclarationPart.AppendLine(GetTabsForClass($"public struct {structName} {{"));
+
+            for (int i = 0; i < inputDataFieldNames.Count; i++)
             {
-                m_StructDeclarationPart.AppendLine(GetTabsForClass($"[Serializable]"));
-                m_StructDeclarationPart.AppendLine(GetTabsForClass($"public struct {structName} {{"));
-
-                for (int i = 0; i < inputDataFieldNames.Count; i++)
-                {
-                    m_StructDeclarationPart.AppendLine(GetTabsForFunctions($"public {types[i]} {inputDataFieldNames[i]};"));
-                }
-
-                m_StructDeclarationPart.AppendLine(GetTabsForClass($"}}"));
-
-                return true;
+                m_StructDeclarationPart.AppendLine(GetTabsForFunctions($"public {types[i]} {inputDataFieldNames[i]};"));
             }
 
-            return false;
+            m_StructDeclarationPart.AppendLine(GetTabsForClass($"}}"));
+
+            return true;
+            
+
         }
         
 
@@ -487,7 +485,6 @@ namespace SerV112.UtilityAIEditor
         }
 
         int customCurvesArrayCounter;
-        public static readonly int[] Array = { 1, 2, 3 };
         protected override string CustomCurveNodeModel(CustomCurveNodeModel customCurve)
         {
 
@@ -516,28 +513,63 @@ namespace SerV112.UtilityAIEditor
         int maxCounter;
         protected override string Max01NodeModel(Max01NodeModel max01)
         {
-            var ports = max01.GetPorts(PortDirection.Input, PortType.Data).ToList();
-            var paramsData = GetFunctionParams(ports);
-            var result = PrepareFloatArray(paramsData.floatArrayParams, paramsData.paramsNames);
 
-            string Mylt = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Max)}({result.arrayName})";
-
-
-
-            return SaveFunctionCallToVariable(Mylt, "max", ref maxCounter, "float");
+            string functionName = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Max)}";
+            return MultypleFunctionCall(max01, functionName, "max", ref maxCounter);
         }
 
+        string GetFuncCallStr(string funcName, List<string> @params)
+        {
+            string result = $"{funcName}(";
+            for (int i = 0; i < @params.Count; i++)
+            {
+                if(i != @params.Count-1 )
+                    result += $"{@params[i]}, ";
+                else result += $"{@params[i]}";
+            }
+
+            return result;
+        }
+        string MultypleFunctionCall(NodeModel max01, string functionName, string varibaleName, ref int funcCallCounter)
+        {
+            var ports = max01.GetPorts(PortDirection.Input, PortType.Data).ToList();
+            var paramsData = GetFunctionParams(ports);
+
+            var key = GetFuncCallStr(functionName, paramsData.paramsNames);
+
+            if (!FunctionCalls.TryGetValue(key, out var varName))
+            {
+                varName = "0";
+                if (paramsData.paramsNames.Count >= 2)
+                {
+                    string Mylt = $"{functionName}({paramsData.paramsNames[0]},{paramsData.paramsNames[1]})";
+                    varName = SaveFunctionCallToVariableWithoutCashe(Mylt, varibaleName, ref funcCallCounter, "float");
+
+                    funcCallCounter++;
+                    for (int i = 2; i < paramsData.paramsNames.Count; i++)
+                    {
+                        SaveFunctionCallToExistedVariable($"{functionName}({varName}, {paramsData.paramsNames[i]})", varName);
+                    }
+                    FunctionCalls.Add(key, varName);
+                }
+                else if (paramsData.paramsNames.Count == 1)
+                {
+                    varName = paramsData.paramsNames[0];
+                    FunctionCalls.Add(varName, varName);
+                }
+
+                
+            }
+           
+
+            return varName;
+        }
+
+        int minCounter;
         protected override string Min01NodeModel(Min01NodeModel min01)
         {
-            var ports = min01.GetPorts(PortDirection.Input, PortType.Data).ToList();
-            var paramsData = GetFunctionParams(ports);
-            var result = PrepareFloatArray(paramsData.floatArrayParams, paramsData.paramsNames);
-
-            string Mylt = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Min)}({result.arrayName})";
-
-
-
-            return SaveFunctionCallToVariable(Mylt, "min", ref maxCounter, "float");
+            string functionName = $"{nameof(UtilityAIMath)}.{nameof(UtilityAIMath.Min)}";
+            return MultypleFunctionCall(min01, functionName, "min", ref minCounter);
         }
     }
 }

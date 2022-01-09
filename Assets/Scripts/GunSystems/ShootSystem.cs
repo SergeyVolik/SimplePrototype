@@ -17,7 +17,7 @@ namespace SerV112.UtilityAI.Game
 
         public void Shoot()
         {
-            Gun.Shoot();
+            Gun.DoAction();
         }
 
         // Start is called before the first frame update

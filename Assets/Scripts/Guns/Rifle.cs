@@ -38,7 +38,12 @@ namespace SerV112.UtilityAI.Game
             throw new System.NotImplementedException();
         }
 
-        public int Shoot()
+        public int DoAction()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        void IActionable.DoAction()
         {
             throw new System.NotImplementedException();
         }

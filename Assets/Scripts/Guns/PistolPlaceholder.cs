@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-
+    
 
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(GunDataComponent))]
-    public class PistolPlaceholder : Projectile, IGunPlaceholder
+    public class PistolPlaceholder : Projectile, IGunPlaceholder, IItem
     {
         GunDataComponent m_GunDataComponent;
 

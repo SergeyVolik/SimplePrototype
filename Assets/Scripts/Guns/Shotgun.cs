@@ -19,6 +19,11 @@ namespace SerV112.UtilityAI.Game
 
         UnityEvent IEvent.OnEvent => throw new System.NotImplementedException();
 
+        public void DoAction()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Drop()
         {
             gameObject.SetActive(false);
@@ -49,9 +54,6 @@ namespace SerV112.UtilityAI.Game
             throw new System.NotImplementedException();
         }
 
-        int IShootable.Shoot()
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }

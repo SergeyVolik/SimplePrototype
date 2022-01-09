@@ -9,7 +9,7 @@ namespace SerV112.UtilityAI.Game
     [RequireComponent(typeof(IEnemyDetectedEvent))]
     [RequireComponent(typeof(AIAgentSimpleAI))]
     [RequireComponent(typeof(AIAimInputDataComponent))]
-    [RequireComponent(typeof(HandData))]
+    [RequireComponent(typeof(Player))]
     [RequireComponent(typeof(ThrowItemAIInputDataComponent))]
     [DisallowMultipleComponent]
     public class AiActionShootTheEnemy : MonoBehaviour
@@ -17,7 +17,7 @@ namespace SerV112.UtilityAI.Game
         AIAimInputDataComponent AimInputDataComponent;
         IEnemyDetectedEvent Fov;
         AIAgentSimpleAI agentBrain;
-        HandData HandComponent;
+        Player Player;
         ThrowItemAIInputDataComponent ThrowItemAIInputDataComponent;
         // Start is called before the first frame update
         void Awake()
@@ -26,7 +26,7 @@ namespace SerV112.UtilityAI.Game
             AimInputDataComponent = GetComponent<AIAimInputDataComponent>();
             agentBrain = GetComponent<AIAgentSimpleAI>();
             Fov = GetComponent<IEnemyDetectedEvent>();
-            HandComponent = GetComponent<HandData>();
+            Player = GetComponent<Player>();
         }
 
         private void OnEnable()
@@ -71,14 +71,14 @@ namespace SerV112.UtilityAI.Game
 
         void UpdateBulletsData(int bullets)
         {
-            //DOTO FIX
+
             var dataIn = agentBrain.InData;
             dataIn.Ammo = bullets;
             agentBrain.ChangeAgentData(dataIn);
         }
         void UpdateHasGunData()
         {
-            //DOTO FIX
+
             var dataIn = agentBrain.InData;
             dataIn.HasGun = 0f;
             agentBrain.ChangeAgentData(dataIn);
@@ -88,7 +88,6 @@ namespace SerV112.UtilityAI.Game
 
 
 
-            //TODO FIX
             if (seeEnemy)
             {
                 var dataOut = agentBrain.OutData;
@@ -108,7 +107,14 @@ namespace SerV112.UtilityAI.Game
 
                         if (ShootDelay < t)
                         {
-                            UpdateBulletsData(HandComponent.ActiveGun.Shoot());
+                            Player.DoAction();
+                            var bullets = 0;
+                            if (Player.LeftHand.ActiveGun != null)
+                                bullets = Player.LeftHand.ActiveGun.GunData.CurrentBullets;
+                            if (Player.RightHand.ActiveGun != null)
+                                bullets +=Player.RightHand.ActiveGun.GunData.CurrentBullets;
+
+                            UpdateBulletsData(bullets);
                             t = 0;
                         }
                         break;
