@@ -18,14 +18,14 @@ namespace SerV112.UtilityAI.Math
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float OneMinus(this float value)
         {
-            return 1 - value;
+            return math.clamp(1 - value, 0, 1);
 
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Normalize01(this float x, float min, float max)
         {
-            return (x - min) / (max - min);
+            return math.clamp((x - min) / (max - min), 0, 1);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

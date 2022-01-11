@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace SerV112.UtilityAI.Game
 {
-    public abstract class AbstractPressDownInputComponent : MonoBehaviour
+    public abstract class AbstractPressDownInputComponent : UpdatableMonoBehaviour
     {
        
 

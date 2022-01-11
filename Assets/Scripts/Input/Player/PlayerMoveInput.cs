@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace SerV112.UtilityAI.Game
 {  
     [DisallowMultipleComponent]
     public class PlayerMoveInput : MonoBehaviour, IMoveInputData
     {
-        [SerializeField]
+        
         private InputReader m_InputReader;
 
         [SerializeField]
@@ -27,6 +28,11 @@ namespace SerV112.UtilityAI.Game
 
         public bool IsMove => m_Move;
 
+        [Inject]
+        void Construct(InputReader input)
+        {
+            m_InputReader = input;
+        }
 
         private void OnEnable()
         {

@@ -161,16 +161,11 @@ public struct JobSimpleAI : IUtilityAIJob<InAgentDataSimpleAI, OutAgentDataSimpl
 		values0[3] = multiply2;
 		values0[4] = multiply3;
 
-		Debug.Log($"ToHeathResult {oneminus0}");
-		Debug.Log($"ThrowWeapon {multiply0}");
-		Debug.Log($"ShootEnemy {multiply1}");
-		Debug.Log($"SearchGun {multiply2}");
-		Debug.Log($"Patrule {multiply3}");
-
 		SimpleAiActions selectIndex0 = (SimpleAiActions)UtilityAIMath.SelectAnswerIndex(values0);
 		resultVar.SimpleAiActions = selectIndex0;
 
 		OutAgentDataSimpleAI[index] = resultVar;
+
 		floatArray0.Dispose();
 		floatArray1.Dispose();
 		floatArray2.Dispose();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace SerV112.UtilityAI.Game
 {
@@ -9,7 +10,7 @@ namespace SerV112.UtilityAI.Game
     public class PlayerRunInput : AbstractPressDownAndUpInputComponent, IRunInputData {
 
 
-        [SerializeField]
+       
         protected InputReader m_InputReader;
 
         public UnityEvent PressUp => m_PressUp;
@@ -20,6 +21,11 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         protected UnityEvent m_PressDown;
 
+        [Inject]
+        void Construct(InputReader input)
+        {
+            m_InputReader = input;
+        }
         private void OnEnable()
         {
             m_InputReader.RunningStartedEvent += M_InputReader_RunningStartedEvent;

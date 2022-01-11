@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace SerV112.UtilityAI.Game
 {
@@ -12,7 +13,7 @@ namespace SerV112.UtilityAI.Game
     }
     [RequireComponent(typeof(FieldOfViewSystem))]
     [DisallowMultipleComponent]
-    public class PlayerAimInput : AbstractPressDownAndUpInputComponent, IAimInputData, IAimDirection
+    public class PlayerAimInput : AbstractPressDownAndUpInputComponent, IAimInputData, IAimDirection, IUpdate
     {
         public Vector3 Direction => m_AimDir;
         private Camera m_ViewCamera;
@@ -20,8 +21,14 @@ namespace SerV112.UtilityAI.Game
         [SerializeField]
         private Vector3 m_AimDir;
 
-        [SerializeField]
+
         protected InputReader m_InputReader;
+
+        [Inject]
+        void Construct(InputReader input)
+        {
+            m_InputReader = input;
+        }
         public UnityEvent PressUp => m_PressUp;
         [SerializeField]
         protected UnityEvent m_PressUp;
@@ -40,11 +47,21 @@ namespace SerV112.UtilityAI.Game
        
         private void OnEnable()
         {
+            SubscribeToUpdate(this);
             m_InputReader.AimingStartedEvent += M_InputReader_AimingStartedEvent;
             m_InputReader.AimingCanceledEvent += M_InputReader_AimingCanceledEvent;
             FieldOfViewSystem.OnTargetDetected.AddListener(TargetDetected);
             FieldOfViewSystem.OnTargetLost.AddListener(TargetLost);
 
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromUpdate(this);
+            m_InputReader.AimingStartedEvent -= M_InputReader_AimingStartedEvent;
+            m_InputReader.AimingCanceledEvent -= M_InputReader_AimingCanceledEvent;
+            FieldOfViewSystem.OnTargetDetected.RemoveListener(TargetDetected);
+            FieldOfViewSystem.OnTargetLost.RemoveListener(TargetLost);
         }
         Transform enemy;
         private void TargetDetected(Transform trans)
@@ -72,13 +89,7 @@ namespace SerV112.UtilityAI.Game
             PressDown.Invoke();
         }
 
-        private void OnDisable()
-        {
-            m_InputReader.AimingStartedEvent -= M_InputReader_AimingStartedEvent;
-            m_InputReader.AimingCanceledEvent -= M_InputReader_AimingCanceledEvent;
-            FieldOfViewSystem.OnTargetDetected.RemoveListener(TargetDetected);
-            FieldOfViewSystem.OnTargetLost.RemoveListener(TargetLost);
-        }
+
 
       
         void CalcAimDir()
@@ -99,10 +110,10 @@ namespace SerV112.UtilityAI.Game
         }
 
 
-        void Update()
+
+        public void OnUpdate()
         {
             CalcAimDir();
-
         }
     }
 

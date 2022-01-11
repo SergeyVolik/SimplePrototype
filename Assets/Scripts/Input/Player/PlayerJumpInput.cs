@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace SerV112.UtilityAI.Game
 {
@@ -9,7 +10,7 @@ namespace SerV112.UtilityAI.Game
     [DisallowMultipleComponent]
     public class PlayerJumpInput : AbstractPressDownInputComponent, IJumpInputData
     {
-        [SerializeField]
+      
         protected InputReader m_InputReader;
         public UnityEvent PressUp => m_PressUp;
         [SerializeField]
@@ -23,6 +24,12 @@ namespace SerV112.UtilityAI.Game
 
         [SerializeField]
         private float m_JumpForce = 10;
+
+        [Inject]
+        void Construct(InputReader input)
+        {
+            m_InputReader = input;
+        }
 
         private void OnEnable()
         {

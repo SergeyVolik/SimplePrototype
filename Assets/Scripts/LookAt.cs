@@ -4,20 +4,24 @@ using UnityEngine;
 
 namespace SerV112.UtilityAI.Game
 {
-    public class LookAt : MonoBehaviour
+    public class LookAt : UpdatableMonoBehaviour, IUpdate
     {
         [SerializeField]
         private Transform Target;
-        // Start is called before the first frame update
-        void Start()
-        {
 
-        }
-
-        // Update is called once per frame
-        void Update()
+        public void OnUpdate()
         {
             transform.LookAt(Target);
+        }
+
+        private void OnEnable()
+        {
+            SubscribeToUpdate(this);
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromUpdate(this);
         }
     }
 
